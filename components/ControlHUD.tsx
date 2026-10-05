@@ -1,0 +1,91 @@
+"use client";
+
+import { THEME_LABELS, LIGHT_COLORS, type Theme, type LightColor } from "@/data/units";
+import { Monitor, Sun, Waves, Palette } from "lucide-react";
+
+interface ControlHUDProps {
+  theme: Theme;
+  lightColor: LightColor;
+  onThemeChange: (theme: Theme) => void;
+  onLightColorChange: (color: LightColor) => void;
+}
+
+const themeIcons: Record<Theme, typeof Monitor> = {
+  cyber: Monitor,
+  cloud: Sun,
+  deepsea: Waves,
+};
+
+export default function ControlHUD({
+  theme,
+  lightColor,
+  onThemeChange,
+  onLightColorChange,
+}: ControlHUDProps) {
+  return (
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+      {/* 環境切換 */}
+      <div className="glass-panel rounded-xl p-3 hud-border">
+        <div className="text-[10px] tracking-widest text-cyan-400 mb-2 uppercase font-bold">
+          環境背景 / Environment
+        </div>
+        <div className="flex flex-col gap-1.5">
+          {(Object.keys(THEME_LABELS) as Theme[]).map((t) => {
+            const Icon = themeIcons[t];
+            const isActive = theme === t;
+            return (
+              <button
+                key={t}
+                onClick={() => onThemeChange(t)}
+                className={`
+                  cyber-button flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs
+                  transition-all duration-300 border
+                  ${
+                    isActive
+                      ? "border-cyan-400 bg-cyan-400/10 text-cyan-300"
+                      : "border-white/10 bg-white/5 text-white/50 hover:text-white/80"
+                  }
+                `}
+              >
+                <Icon size={14} />
+                <span>{THEME_LABELS[t].icon}</span>
+                <span className="font-medium">{THEME_LABELS[t].zh}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 燈光切換 */}
+      <div className="glass-panel rounded-xl p-3 hud-border">
+        <div className="text-[10px] tracking-widest text-cyan-400 mb-2 uppercase font-bold flex items-center gap-1">
+          <Palette size={10} />
+          光譜自訂 / Spectrum
+        </div>
+        <div className="flex gap-2">
+          {(Object.keys(LIGHT_COLORS) as LightColor[]).map((c) => {
+            const isActive = lightColor === c;
+            return (
+              <button
+                key={c}
+                onClick={() => onLightColorChange(c)}
+                title={LIGHT_COLORS[c].label}
+                className={`
+                  w-8 h-8 rounded-full border-2 transition-all duration-300
+                  ${isActive ? "scale-110 border-white" : "border-white/20 hover:border-white/50"}
+                `}
+                style={{
+                  backgroundColor: LIGHT_COLORS[c].hex,
+                  boxShadow: isActive ? `0 0 15px ${LIGHT_COLORS[c].hex}` : "none",
+                }}
+              />
+            );
+          })}
+        </div>
+        <div className="text-[9px] text-white/40 mt-1.5 text-center">
+          {LIGHT_COLORS[lightColor].label}
+        </div>
+      </div>
+    </div>
+  );
+}
