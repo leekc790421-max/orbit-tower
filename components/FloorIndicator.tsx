@@ -10,7 +10,7 @@ interface FloorIndicatorProps {
 
 export default function FloorIndicator({ activeFloor, onFloorSelect }: FloorIndicatorProps) {
   return (
-    <div className="fixed left-6 top-1/2 -translate-y-1/2 z-40">
+    <div className="fixed left-3 sm:left-6 top-1/2 -translate-y-1/2 z-40 hidden sm:block">
       <div className="glass-panel rounded-xl p-2 hud-border">
         <div className="text-[8px] tracking-widest text-cyan-400/60 text-center mb-2 uppercase font-bold">
           樓層
@@ -36,16 +36,10 @@ export default function FloorIndicator({ activeFloor, onFloorSelect }: FloorIndi
               >
                 <Building size={10} />
                 <span className="font-mono font-bold">{floor.floor}F</span>
-                {/* 狀態指示點 */}
                 <div className="flex gap-0.5 ml-auto">
-                  {occupiedCount > 0 && (
-                    <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                  )}
-                  {isolatedCount > 0 && (
-                    <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
-                  )}
+                  {occupiedCount > 0 && <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />}
+                  {isolatedCount > 0 && <div className="w-1.5 h-1.5 rounded-full bg-red-400" />}
                 </div>
-                {/* 懸停提示 */}
                 <div className="absolute left-full ml-2 px-2 py-1 rounded bg-black/80 border border-white/10 text-[9px] text-white/70 whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">
                   {floor.label}
                 </div>

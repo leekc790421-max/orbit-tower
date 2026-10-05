@@ -96,7 +96,7 @@ export default function AIConcierge() {
 
       {/* 對話框 */}
       {isOpen && (
-        <div className="fixed bottom-6 left-6 z-50 w-[360px] h-[520px] glass-panel rounded-2xl border border-cyan-400/20 flex flex-col shadow-2xl shadow-cyan-400/10">
+        <div className="fixed bottom-12 sm:bottom-6 left-3 sm:left-6 z-50 w-[calc(100vw-24px)] sm:w-[360px] h-[70vh] sm:h-[520px] max-h-[520px] glass-panel rounded-2xl border border-cyan-400/20 flex flex-col shadow-2xl shadow-cyan-400/10">
           {/* 標題列 */}
           <div className="flex items-center justify-between p-4 border-b border-white/10">
             <div className="flex items-center gap-2">

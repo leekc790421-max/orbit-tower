@@ -8,6 +8,10 @@ import ControlHUD from "@/components/ControlHUD";
 import FloorIndicator from "@/components/FloorIndicator";
 import UnitInfoCard from "@/components/UnitInfoCard";
 import AIConcierge from "@/components/AIConcierge";
+import PricingModal from "@/components/PricingModal";
+import AuthModal from "@/components/AuthModal";
+import LegalModal from "@/components/LegalModal";
+import SecurityFooter from "@/components/SecurityFooter";
 import type { Theme, LightColor, Unit } from "@/data/units";
 
 export default function Home() {
@@ -15,6 +19,11 @@ export default function Home() {
   const [lightColor, setLightColor] = useState<LightColor>("cyber-blue");
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [activeFloor, setActiveFloor] = useState<number | null>(null);
+
+  // Modal 狀態
+  const [pricingOpen, setPricingOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+  const [legalOpen, setLegalOpen] = useState(false);
 
   const handleUnitClick = useCallback((unit: Unit, _position: THREE.Vector3) => {
     setSelectedUnit(unit);
@@ -37,8 +46,12 @@ export default function Home() {
       {/* 掃描線覆蓋層 */}
       <div className="scanline-overlay" />
 
-      {/* 頂部標題 */}
-      <Header />
+      {/* 頂部標題（含登入/定價/條款入口） */}
+      <Header
+        onLoginClick={() => setAuthOpen(true)}
+        onPricingClick={() => setPricingOpen(true)}
+        onLegalClick={() => setLegalOpen(true)}
+      />
 
       {/* 左側樓層指示器 */}
       <FloorIndicator activeFloor={activeFloor} onFloorSelect={handleFloorSelect} />
@@ -49,6 +62,7 @@ export default function Home() {
         lightColor={lightColor}
         onThemeChange={setTheme}
         onLightColorChange={setLightColor}
+        onPricingClick={() => setPricingOpen(true)}
       />
 
       {/* 左下角 AI 樓管 */}
@@ -57,18 +71,24 @@ export default function Home() {
       {/* 戶別資訊卡 */}
       <UnitInfoCard unit={selectedUnit} onClose={handleCloseCard} />
 
-      {/* 底部狀態列 */}
+      {/* 資安防護狀態 + 免責聲明入口 Footer */}
       <div className="fixed bottom-0 left-0 right-0 z-30 pointer-events-none">
-        <div className="flex items-center justify-center py-2">
-          <div className="flex items-center gap-4 text-[9px] tracking-widest text-white/20 uppercase">
-            <span>Orbit Tower v1.0</span>
-            <span className="w-1 h-1 rounded-full bg-white/20" />
-            <span>3D Interactive Experience</span>
-            <span className="w-1 h-1 rounded-full bg-white/20" />
-            <span>Hex Crystal Architecture</span>
-          </div>
+        <SecurityFooter />
+        {/* 免責聲明按鈕 */}
+        <div className="flex items-center justify-center pb-1 pointer-events-auto">
+          <button
+            onClick={() => setLegalOpen(true)}
+            className="text-[8px] sm:text-[9px] text-white/20 hover:text-white/40 tracking-wider transition-colors px-3 py-1"
+          >
+            免責聲明與服務條款 / Terms & Disclaimer
+          </button>
         </div>
       </div>
+
+      {/* ===== Modals ===== */}
+      <PricingModal isOpen={pricingOpen} onClose={() => setPricingOpen(false)} />
+      <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />
+      <LegalModal isOpen={legalOpen} onClose={() => setLegalOpen(false)} />
     </main>
   );
 }
