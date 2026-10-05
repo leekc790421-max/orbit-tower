@@ -52,29 +52,29 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
 
-      <div className="relative w-full max-w-md glass-panel rounded-2xl border border-cyan-400/30 shadow-2xl shadow-cyan-400/10">
+      <div className="relative w-full sm:max-w-md h-[88vh] sm:h-auto sm:max-h-[90vh] overflow-y-auto glass-panel rounded-t-2xl sm:rounded-2xl border-t sm:border border-cyan-400/30 shadow-2xl shadow-cyan-400/10">
         {/* 頂部 */}
-        <div className="px-6 pt-6 pb-4 flex items-center justify-between border-b border-white/10">
-          <div className="flex items-center gap-3">
+        <div className="sticky top-0 z-10 glass-panel px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 flex items-center justify-between border-b border-white/10 rounded-t-2xl">
+          <div className="flex items-center gap-2 sm:gap-3">
             {view !== "login" && (
               <button
                 onClick={() => setView("login")}
                 className="w-7 h-7 rounded-full border border-white/10 flex items-center justify-center hover:border-white/30 transition-all"
               >
-                <ArrowLeft size={14} className="text-white/60" />
+                <ArrowLeft size={13} className="text-white/60" />
               </button>
             )}
             <div>
-              <h2 className="text-base font-bold text-white tracking-wider">
+              <h2 className="text-sm sm:text-base font-bold text-white tracking-wider">
                 {view === "login" && "登入 / Login"}
                 {view === "register" && "註冊 / Register"}
                 {view === "forgot" && "忘記密碼 / Reset"}
                 {view === "otp" && "驗證碼 / OTP"}
               </h2>
-              <p className="text-[9px] text-cyan-400/60 tracking-wider mt-0.5">
+              <p className="text-[8px] sm:text-[9px] text-cyan-400/60 tracking-wider mt-0.5">
                 {view === "login" && "ORBIT TOWER ACCESS PORTAL"}
                 {view === "register" && "CREATE YOUR ACCOUNT"}
                 {view === "forgot" && "RESET YOUR PASSWORD"}
@@ -84,57 +84,56 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-red-400/50 hover:bg-red-400/10 transition-all"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-red-400/50 hover:bg-red-400/10 transition-all"
           >
-            <X size={16} className="text-white/40" />
+            <X size={14} className="text-white/40" />
           </button>
         </div>
 
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {success ? (
             <div className="text-center py-8">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-400/20 border border-emerald-400/40 flex items-center justify-center">
-                <Check size={32} className="text-emerald-400" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 rounded-full bg-emerald-400/20 border border-emerald-400/40 flex items-center justify-center">
+                <Check size={28} className="text-emerald-400" />
               </div>
               <div className="text-sm font-bold text-emerald-400">登入成功</div>
               <div className="text-[10px] text-white/40 mt-1">歡迎回到 Orbit Tower</div>
             </div>
           ) : view === "login" ? (
-            /* ===== 登入 ===== */
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-3 sm:space-y-4">
               <div>
-                <label className="text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
                   Email
                 </label>
                 <div className="relative">
-                  <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+                  <Mail size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
                   <input
                     type="email"
                     required
                     placeholder="your@email.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 sm:pl-10 pr-4 py-2.5 text-[11px] sm:text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
                   密碼 / Password
                 </label>
                 <div className="relative">
-                  <Lock size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+                  <Lock size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
                   <input
                     type={showPassword ? "text" : "password"}
                     required
                     placeholder="••••••••"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-10 py-2.5 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 sm:pl-10 pr-10 py-2.5 text-[11px] sm:text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60"
                   >
-                    {showPassword ? <EyeOff size={14} /> : <Eye size={14} />}
+                    {showPassword ? <EyeOff size={13} /> : <Eye size={13} />}
                   </button>
                 </div>
               </div>
@@ -159,7 +158,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 disabled:opacity-50 transition-all"
+                className="w-full py-2.5 sm:py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 disabled:opacity-50 transition-all"
               >
                 {loading ? "驗證中..." : "登入"}
               </button>
@@ -175,7 +174,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               <button
                 type="button"
-                className="w-full py-2.5 rounded-lg border border-white/10 text-white/50 text-xs hover:bg-white/5 hover:text-white/70 transition-all"
+                className="w-full py-2 sm:py-2.5 rounded-lg border border-white/10 text-white/50 text-[11px] sm:text-xs hover:bg-white/5 hover:text-white/70 transition-all"
               >
                 OTP 快速驗證（無密碼登入）
               </button>
@@ -192,64 +191,61 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
             </form>
           ) : view === "register" ? (
-            /* ===== 註冊 ===== */
-            <form onSubmit={handleRegister} className="space-y-4">
+            <form onSubmit={handleRegister} className="space-y-3 sm:space-y-4">
               <div>
-                <label className="text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
                   企業名稱 / Company
                 </label>
                 <div className="relative">
-                  <User size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+                  <User size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
                   <input
                     type="text"
                     required
                     placeholder="您的企業名稱"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 sm:pl-10 pr-4 py-2.5 text-[11px] sm:text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
                   Email
                 </label>
                 <div className="relative">
-                  <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+                  <Mail size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
                   <input
                     type="email"
                     required
                     placeholder="your@email.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 sm:pl-10 pr-4 py-2.5 text-[11px] sm:text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
                   手機號碼 / Phone
                 </label>
-                <div className="relative">
-                  <input
-                    type="tel"
-                    required
-                    placeholder="0912-345-678"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
-                  />
-                </div>
+                <input
+                  type="tel"
+                  required
+                  placeholder="0912-345-678"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 sm:px-4 py-2.5 text-[11px] sm:text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
+                />
               </div>
 
               <div>
-                <label className="text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
                   設定密碼 / Password
                 </label>
                 <div className="relative">
-                  <Lock size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+                  <Lock size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
                   <input
                     type="password"
                     required
                     minLength={8}
                     placeholder="至少 8 個字元"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 sm:pl-10 pr-4 py-2.5 text-[11px] sm:text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
                   />
                 </div>
               </div>
@@ -272,7 +268,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <button
                 type="submit"
                 disabled={loading || !agreed}
-                className="w-full py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 disabled:opacity-50 transition-all"
+                className="w-full py-2.5 sm:py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 disabled:opacity-50 transition-all"
               >
                 {loading ? "處理中..." : "註冊並發送驗證碼"}
               </button>
@@ -289,28 +285,27 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
             </form>
           ) : view === "forgot" ? (
-            /* ===== 忘記密碼 ===== */
-            <form onSubmit={handleForgot} className="space-y-4">
-              <div className="glass-panel rounded-xl p-4 border border-white/10 mb-4">
-                <div className="flex items-start gap-3">
-                  <Shield size={18} className="text-cyan-400 mt-0.5" />
-                  <div className="text-[11px] text-white/60 leading-relaxed">
+            <form onSubmit={handleForgot} className="space-y-3 sm:space-y-4">
+              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-white/10 mb-3 sm:mb-4">
+                <div className="flex items-start gap-2 sm:gap-3">
+                  <Shield size={16} className="text-cyan-400 mt-0.5 flex-shrink-0" />
+                  <div className="text-[10px] sm:text-[11px] text-white/60 leading-relaxed">
                     請輸入您註冊時使用的 Email，我們將發送 OTP 密碼重置連結至您的信箱。
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
                   註冊 Email
                 </label>
                 <div className="relative">
-                  <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+                  <Mail size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
                   <input
                     type="email"
                     required
                     placeholder="your@email.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-4 py-2.5 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 sm:pl-10 pr-4 py-2.5 text-[11px] sm:text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
                   />
                 </div>
               </div>
@@ -318,18 +313,17 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 disabled:opacity-50 transition-all"
+                className="w-full py-2.5 sm:py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 disabled:opacity-50 transition-all"
               >
                 {loading ? "發送中..." : "發送重置連結"}
               </button>
             </form>
           ) : (
-            /* ===== OTP 驗證 ===== */
-            <div className="space-y-4">
-              <div className="glass-panel rounded-xl p-4 border border-emerald-400/20 bg-emerald-400/5">
-                <div className="flex items-start gap-3">
-                  <Check size={18} className="text-emerald-400 mt-0.5" />
-                  <div className="text-[11px] text-white/60 leading-relaxed">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-emerald-400/20 bg-emerald-400/5">
+                <div className="flex items-start gap-2 sm:gap-3">
+                  <Check size={16} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <div className="text-[10px] sm:text-[11px] text-white/60 leading-relaxed">
                     驗證碼已發送至您的 Email。請檢查信箱並輸入 6 位數驗證碼。
                     <br />
                     <span className="text-[9px] text-white/40">
@@ -340,18 +334,18 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
 
               <div>
-                <label className="text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
                   OTP 驗證碼
                 </label>
                 <input
                   type="text"
                   maxLength={6}
                   placeholder="000000"
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-center text-lg font-mono text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors tracking-widest"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 sm:py-3 text-center text-base sm:text-lg font-mono text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors tracking-widest"
                 />
               </div>
 
-              <button className="w-full py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 transition-all">
+              <button className="w-full py-2.5 sm:py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 transition-all">
                 驗證並繼續
               </button>
 

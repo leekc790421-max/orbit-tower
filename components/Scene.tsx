@@ -57,18 +57,20 @@ export default function Scene({ theme, lightColor, onUnitClick }: SceneProps) {
 
   return (
     <Canvas
-      camera={{ position: [8, 4, 8], fov: 50, near: 0.1, far: 100 }}
+      camera={{ position: [7, 3.5, 7], fov: 50, near: 0.1, far: 100 }}
       style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%" }}
+      dpr={[1, 1.5]}
       gl={{
         antialias: true,
         alpha: false,
         toneMapping: THREE.ACESFilmicToneMapping,
-        toneMappingExposure: 1.3,
+        toneMappingExposure: 1.2,
+        powerPreference: "high-performance",
       }}
       onCreated={({ gl }) => {
         gl.setClearColor("#050510");
         gl.toneMapping = THREE.ACESFilmicToneMapping;
-        gl.toneMappingExposure = 1.3;
+        gl.toneMappingExposure = 1.2;
       }}
     >
       <Suspense fallback={<LoadingFallback />}>
@@ -76,16 +78,16 @@ export default function Scene({ theme, lightColor, onUnitClick }: SceneProps) {
         <EnvironmentScene theme={theme} />
 
         {/* 環境貼圖（用於玻璃反射） */}
-        <Environment preset="city" />
+        <Environment preset="city" environmentIntensity={0.5} />
 
         {/* 六角大樓 */}
         <HexTower lightColor={lightColor} onUnitClick={handleUnitClick} />
 
-        {/* Bloom 後處理 */}
+        {/* Bloom 後處理 — 降低強度改善效能 */}
         <EffectComposer>
           <Bloom
-            intensity={1.2}
-            luminanceThreshold={0.2}
+            intensity={0.9}
+            luminanceThreshold={0.25}
             luminanceSmoothing={0.9}
             mipmapBlur
           />
@@ -97,12 +99,14 @@ export default function Scene({ theme, lightColor, onUnitClick }: SceneProps) {
           enablePan={true}
           enableZoom={true}
           enableRotate={true}
-          minDistance={5}
-          maxDistance={25}
-          minPolarAngle={Math.PI * 0.2}
-          maxPolarAngle={Math.PI * 0.7}
+          minDistance={4}
+          maxDistance={22}
+          minPolarAngle={Math.PI * 0.15}
+          maxPolarAngle={Math.PI * 0.75}
           autoRotate={false}
-          autoRotateSpeed={0.5}
+          autoRotateSpeed={0.4}
+          enableDamping={true}
+          dampingFactor={0.05}
         />
       </Suspense>
     </Canvas>

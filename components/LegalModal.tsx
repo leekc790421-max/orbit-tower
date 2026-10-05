@@ -48,36 +48,36 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
 
-      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto glass-panel rounded-2xl border border-cyan-400/30 shadow-2xl shadow-cyan-400/10">
+      <div className="relative w-full sm:max-w-3xl h-[90vh] sm:h-auto sm:max-h-[90vh] overflow-y-auto glass-panel rounded-t-2xl sm:rounded-2xl border-t sm:border border-cyan-400/30 shadow-2xl shadow-cyan-400/10">
         {/* 頂部 */}
-        <div className="sticky top-0 z-10 glass-panel border-b border-white/10 px-6 py-4 flex items-center justify-between rounded-t-2xl">
+        <div className="sticky top-0 z-10 glass-panel border-b border-white/10 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between rounded-t-2xl">
           <div>
-            <h2 className="text-lg font-bold text-white tracking-wider">
+            <h2 className="text-sm sm:text-lg font-bold text-white tracking-wider">
               免責聲明與服務條款
             </h2>
-            <p className="text-[10px] text-cyan-400/60 tracking-wider mt-0.5">
+            <p className="text-[9px] sm:text-[10px] text-cyan-400/60 tracking-wider mt-0.5">
               TERMS OF SERVICE & DISCLAIMER
             </p>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-red-400/50 hover:bg-red-400/10 transition-all"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-red-400/50 hover:bg-red-400/10 transition-all"
           >
-            <X size={16} className="text-white/40" />
+            <X size={14} className="text-white/40" />
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
           {/* 前言 */}
-          <div className="glass-panel rounded-xl p-4 border border-white/10 mb-6">
-            <p className="text-[11px] text-white/60 leading-relaxed">
+          <div className="glass-panel rounded-xl p-3 sm:p-4 border border-white/10 mb-4 sm:mb-6">
+            <p className="text-[10px] sm:text-[11px] text-white/60 leading-relaxed">
               歡迎使用 Orbit Tower 賽博虛擬地產總部服務。在使用本平台提供的任何服務之前，請仔細閱讀並理解以下條款與聲明。
               使用本服務即表示您同意遵守以下所有條款。
             </p>
-            <p className="text-[10px] text-white/40 leading-relaxed mt-2">
+            <p className="text-[9px] sm:text-[10px] text-white/40 leading-relaxed mt-2">
               Welcome to Orbit Tower Cyber Virtual HQ. Please carefully read and understand the following terms and disclaimers before using any services provided by this platform.
               By using this service, you agree to comply with all the following terms.
             </p>
@@ -89,11 +89,11 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
             return (
               <div
                 key={idx}
-                className="glass-panel rounded-xl p-5 border border-white/10 hover:border-white/20 transition-all"
+                className="glass-panel rounded-xl p-4 sm:p-5 border border-white/10 hover:border-white/20 transition-all"
               >
-                <div className="flex items-start gap-3 mb-3">
+                <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
                   <div
-                    className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                    className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
                       clause.color === "cyan"
                         ? "bg-cyan-400/10 border border-cyan-400/30"
                         : clause.color === "emerald"
@@ -102,7 +102,7 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
                     }`}
                   >
                     <Icon
-                      size={18}
+                      size={16}
                       className={
                         clause.color === "cyan"
                           ? "text-cyan-400"
@@ -113,15 +113,15 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
                     />
                   </div>
                   <div>
-                    <div className="text-[10px] text-white/30 tracking-wider uppercase">
+                    <div className="text-[9px] sm:text-[10px] text-white/30 tracking-wider uppercase">
                       條款 {idx + 1} / Clause {idx + 1}
                     </div>
-                    <h3 className="text-sm font-bold text-white mt-0.5">{clause.title}</h3>
-                    <div className="text-[9px] text-white/40">{clause.titleEn}</div>
+                    <h3 className="text-xs sm:text-sm font-bold text-white mt-0.5">{clause.title}</h3>
+                    <div className="text-[8px] sm:text-[9px] text-white/40">{clause.titleEn}</div>
                   </div>
                 </div>
-                <div className="pl-12">
-                  <p className="text-[11px] text-white/60 leading-relaxed whitespace-pre-line">
+                <div className="pl-10 sm:pl-12">
+                  <p className="text-[10px] sm:text-[11px] text-white/60 leading-relaxed whitespace-pre-line">
                     {clause.content}
                   </p>
                 </div>
@@ -130,12 +130,12 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
           })}
 
           {/* 簽署區 */}
-          <div className="glass-panel rounded-xl p-4 border border-cyan-400/20 bg-cyan-400/5 mt-6">
+          <div className="glass-panel rounded-xl p-3 sm:p-4 border border-cyan-400/20 bg-cyan-400/5 mt-4 sm:mt-6">
             <div className="text-center">
-              <div className="text-[10px] text-white/40 tracking-wider uppercase mb-2">
+              <div className="text-[9px] sm:text-[10px] text-white/40 tracking-wider uppercase mb-2">
                 最後更新 / Last Updated
               </div>
-              <div className="text-xs text-cyan-300 font-mono">2026-10-05</div>
+              <div className="text-[11px] sm:text-xs text-cyan-300 font-mono">2026-10-05</div>
               <div className="text-[10px] text-white/40 mt-3">
                 如有任何疑問，請聯繫我們的客服團隊
               </div>
@@ -148,7 +148,7 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
           {/* 確認按鈕 */}
           <button
             onClick={onClose}
-            className="w-full py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 transition-all mt-4"
+            className="w-full py-2.5 sm:py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 transition-all mt-3 sm:mt-4"
           >
             我已閱讀並理解以上條款
           </button>

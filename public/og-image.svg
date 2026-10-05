@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050510"/>
+      <stop offset="100%" style="stop-color:#0a0a2e"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0"/>
+    </linearGradient>
+    <filter id="neon">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Grid lines -->
+  <g stroke="#00d4ff" stroke-opacity="0.1" stroke-width="1">
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="0" y1="520" x2="1200" y2="520"/>
+    <line x1="0" y1="540" x2="1200" y2="540"/>
+    <line x1="0" y1="560" x2="1200" y2="560"/>
+    <line x1="0" y1="580" x2="1200" y2="580"/>
+    <line x1="0" y1="600" x2="1200" y2="600"/>
+  </g>
+  
+  <!-- Hexagonal tower silhouette -->
+  <g transform="translate(600, 280)">
+    <!-- Central glow -->
+    <ellipse cx="0" cy="0" rx="120" ry="180" fill="#00d4ff" opacity="0.05"/>
+    
+    <!-- Tower structure -->
+    <g filter="url(#neon)">
+      <!-- Hex units stacked -->
+      <rect x="-60" y="-150" width="50" height="50" rx="4" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.8"/>
+      <rect x="10" y="-150" width="50" height="50" rx="4" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.8"/>
+      <rect x="-60" y="-90" width="50" height="50" rx="4" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.6"/>
+      <rect x="10" y="-90" width="50" height="50" rx="4" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.6"/>
+      <rect x="-60" y="-30" width="50" height="50" rx="4" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.5"/>
+      <rect x="10" y="-30" width="50" height="50" rx="4" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.5"/>
+      <rect x="-60" y="30" width="50" height="50" rx="4" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.4"/>
+      <rect x="10" y="30" width="50" height="50" rx="4" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.4"/>
+      <rect x="-60" y="90" width="50" height="50" rx="4" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.3"/>
+      <rect x="10" y="90" width="50" height="50" rx="4" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.3"/>
+      
+      <!-- Inner cores (glowing) -->
+      <circle cx="-35" cy="-125" r="8" fill="#00d4ff" opacity="0.6"/>
+      <circle cx="35" cy="-125" r="8" fill="#a855f7" opacity="0.6"/>
+      <circle cx="-35" cy="-65" r="8" fill="#f5a623" opacity="0.6"/>
+      <circle cx="35" cy="-65" r="8" fill="#00d68f" opacity="0.6"/>
+      <circle cx="-35" cy="-5" r="8" fill="#00d4ff" opacity="0.4"/>
+      <circle cx="35" cy="-5" r="8" fill="#ff4444" opacity="0.4"/>
+    </g>
+    
+    <!-- Central beam -->
+    <rect x="-3" y="-180" width="6" height="360" fill="url(#glow)" opacity="0.3"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" filter="url(#neon)">
+    ORBIT TOWER
+  </text>
+  <text x="600" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#00d4ff" opacity="0.8" letter-spacing="4">
+    賽博虛擬地產總部 · CYBER VIRTUAL HQ
+  </text>
+  
+  <!-- Tagline -->
+  <text x="600" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" opacity="0.6">
+    六角晶體摩天樓 · 3D 互動體驗 · 企業旗艦空間 · 網域對映 · AI 樓管導覽
+  </text>
+  
+  <!-- Corner decorations -->
+  <g stroke="#00d4ff" stroke-width="2" fill="none" opacity="0.5">
+    <path d="M 20 20 L 20 50 M 20 20 L 50 20"/>
+    <path d="M 1180 20 L 1180 50 M 1180 20 L 1150 20"/>
+    <path d="M 20 610 L 20 580 M 20 610 L 50 610"/>
+    <path d="M 1180 610 L 1180 580 M 1180 610 L 1150 610"/>
+  </g>
+</svg>

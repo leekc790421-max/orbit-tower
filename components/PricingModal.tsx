@@ -41,7 +41,6 @@ const PLANS: Plan[] = [
     nameEn: "Growth",
     price: "$60,000",
     priceNote: "/ 次",
-    mrr: undefined,
     features: [
       "優選樓層戶別（4F~5F）",
       "獨立頂級網域 CNAME 綁定",
@@ -120,19 +119,19 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center">
       {/* 背景遮罩 */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
 
-      {/* Modal 主體 */}
-      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto glass-panel rounded-2xl border border-cyan-400/30 shadow-2xl shadow-cyan-400/10">
+      {/* Modal 主體 — 手機全螢幕 */}
+      <div className="relative w-full sm:max-w-4xl h-[92vh] sm:h-auto sm:max-h-[90vh] overflow-y-auto glass-panel rounded-t-2xl sm:rounded-2xl border-t sm:border border-cyan-400/30 shadow-2xl shadow-cyan-400/10">
         {/* 頂部標題 */}
-        <div className="sticky top-0 z-10 glass-panel border-b border-white/10 px-6 py-4 flex items-center justify-between rounded-t-2xl">
+        <div className="sticky top-0 z-10 glass-panel border-b border-white/10 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between rounded-t-2xl">
           <div>
-            <h2 className="text-lg font-bold text-white tracking-wider">
+            <h2 className="text-sm sm:text-lg font-bold text-white tracking-wider">
               {selectedPlan ? "金流結帳與對帳資訊" : "選擇進駐方案"}
             </h2>
-            <p className="text-[10px] text-cyan-400/60 tracking-wider mt-0.5">
+            <p className="text-[9px] sm:text-[10px] text-cyan-400/60 tracking-wider mt-0.5">
               {selectedPlan ? "PAYMENT & WIRE TRANSFER" : "SELECT YOUR PLAN"}
             </p>
           </div>
@@ -140,33 +139,33 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
             {selectedPlan && (
               <button
                 onClick={() => setSelectedPlan(null)}
-                className="text-[10px] px-3 py-1.5 rounded-lg border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all"
+                className="text-[9px] sm:text-[10px] px-2 sm:px-3 py-1.5 rounded-lg border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all"
               >
-                ← 返回方案
+                ← 返回
               </button>
             )}
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-red-400/50 hover:bg-red-400/10 transition-all"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-red-400/50 hover:bg-red-400/10 transition-all"
             >
-              <X size={16} className="text-white/40" />
+              <X size={14} className="text-white/40" />
             </button>
           </div>
         </div>
 
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {!selectedPlan ? (
             /* ===== 定價表 ===== */
             <>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
                 {PLANS.map((plan) => (
                   <div
                     key={plan.id}
                     className={`
-                      relative rounded-xl p-5 border transition-all duration-300 cursor-pointer
+                      relative rounded-xl p-4 sm:p-5 border transition-all duration-300 cursor-pointer
                       ${
                         plan.highlighted
-                          ? "border-cyan-400/50 bg-cyan-400/5 shadow-lg shadow-cyan-400/10 scale-[1.02]"
+                          ? "border-cyan-400/50 bg-cyan-400/5 shadow-lg shadow-cyan-400/10"
                           : "border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]"
                       }
                     `}
@@ -177,26 +176,26 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                         {plan.badge}
                       </div>
                     )}
-                    <div className="text-[10px] text-white/40 tracking-wider uppercase mb-1">
+                    <div className="text-[9px] sm:text-[10px] text-white/40 tracking-wider uppercase mb-1">
                       {plan.nameEn}
                     </div>
-                    <div className="text-base font-bold text-white mb-2">{plan.name}</div>
+                    <div className="text-sm sm:text-base font-bold text-white mb-2">{plan.name}</div>
                     <div className="flex items-baseline gap-1 mb-1">
                       <span
-                        className={`text-2xl font-bold ${plan.highlighted ? "text-cyan-300" : "text-white"}`}
+                        className={`text-xl sm:text-2xl font-bold ${plan.highlighted ? "text-cyan-300" : "text-white"}`}
                       >
                         {plan.price}
                       </span>
-                      <span className="text-xs text-white/40">{plan.priceNote}</span>
+                      <span className="text-[10px] sm:text-xs text-white/40">{plan.priceNote}</span>
                     </div>
                     {plan.mrr && (
-                      <div className="text-[10px] text-amber-400/70 mb-3">{plan.mrr}</div>
+                      <div className="text-[9px] sm:text-[10px] text-amber-400/70 mb-3">{plan.mrr}</div>
                     )}
-                    <ul className="space-y-1.5 mt-4">
+                    <ul className="space-y-1 sm:space-y-1.5 mt-3 sm:mt-4">
                       {plan.features.map((f, i) => (
-                        <li key={i} className="flex items-start gap-2 text-[11px] text-white/60">
+                        <li key={i} className="flex items-start gap-2 text-[10px] sm:text-[11px] text-white/60">
                           <ChevronRight
-                            size={12}
+                            size={11}
                             className={`mt-0.5 flex-shrink-0 ${plan.highlighted ? "text-cyan-400" : "text-white/30"}`}
                           />
                           {f}
@@ -205,7 +204,7 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                     </ul>
                     <button
                       className={`
-                        w-full mt-5 py-2.5 rounded-lg text-xs font-bold tracking-wider uppercase
+                        w-full mt-4 sm:mt-5 py-2 sm:py-2.5 rounded-lg text-[11px] sm:text-xs font-bold tracking-wider uppercase
                         transition-all border
                         ${
                           plan.highlighted
@@ -221,13 +220,13 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
               </div>
 
               {/* 快速 Payoneer 入口 */}
-              <div className="glass-panel rounded-xl p-4 border border-white/10">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <CreditCard size={20} className="text-cyan-400" />
-                    <div>
-                      <div className="text-xs font-bold text-white">快速線上支付</div>
-                      <div className="text-[10px] text-white/40">
+              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-white/10">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                    <CreditCard size={18} className="text-cyan-400 flex-shrink-0" />
+                    <div className="min-w-0">
+                      <div className="text-[11px] sm:text-xs font-bold text-white">快速線上支付</div>
+                      <div className="text-[9px] sm:text-[10px] text-white/40 truncate">
                         透過 Payoneer 安全支付通道
                       </div>
                     </div>
@@ -236,10 +235,10 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                     href={PAYONEER_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 text-xs font-bold hover:bg-cyan-400/20 transition-all"
+                    className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 text-[10px] sm:text-xs font-bold hover:bg-cyan-400/20 transition-all flex-shrink-0"
                   >
-                    Payoneer 支付
-                    <ExternalLink size={12} />
+                    Payoneer
+                    <ExternalLink size={11} />
                   </a>
                 </div>
               </div>
@@ -248,43 +247,43 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
             /* ===== 金流結帳資訊 ===== */
             <>
               {/* 已選方案摘要 */}
-              <div className="glass-panel rounded-xl p-4 border border-cyan-400/20 mb-6">
+              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-cyan-400/20 mb-4 sm:mb-6">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-[10px] text-cyan-400/60 tracking-wider uppercase">
+                  <div className="min-w-0">
+                    <div className="text-[9px] sm:text-[10px] text-cyan-400/60 tracking-wider uppercase">
                       已選方案
                     </div>
-                    <div className="text-sm font-bold text-white mt-1">
+                    <div className="text-xs sm:text-sm font-bold text-white mt-1 truncate">
                       {PLANS.find((p) => p.id === selectedPlan)?.name} —{" "}
                       {PLANS.find((p) => p.id === selectedPlan)?.price}
                       {PLANS.find((p) => p.id === selectedPlan)?.priceNote}
                     </div>
                   </div>
-                  <Shield size={24} className="text-cyan-400/40" />
+                  <Shield size={20} className="text-cyan-400/40 flex-shrink-0 ml-2" />
                 </div>
               </div>
 
               {/* 銀行電匯資訊 */}
-              <div className="space-y-4 mb-6">
-                <h3 className="text-xs font-bold text-white/70 tracking-wider flex items-center gap-2">
-                  <Building2 size={14} className="text-cyan-400" />
+              <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
+                <h3 className="text-[11px] sm:text-xs font-bold text-white/70 tracking-wider flex items-center gap-2">
+                  <Building2 size={13} className="text-cyan-400" />
                   銀行電匯資訊 / Wire Transfer
                 </h3>
 
                 {BANK_INFO.map((bank, idx) => (
                   <div
                     key={idx}
-                    className="glass-panel rounded-xl p-4 border border-white/10"
+                    className="glass-panel rounded-xl p-3 sm:p-4 border border-white/10"
                   >
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-lg">{bank.icon}</span>
-                      <div>
-                        <div className="text-xs font-bold text-white">{bank.bank}</div>
-                        <div className="text-[10px] text-white/40">{bank.type}</div>
+                    <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                      <span className="text-base sm:text-lg">{bank.icon}</span>
+                      <div className="min-w-0">
+                        <div className="text-[11px] sm:text-xs font-bold text-white truncate">{bank.bank}</div>
+                        <div className="text-[9px] sm:text-[10px] text-white/40">{bank.type}</div>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
                       {bank.branch && (
                         <InfoRow
                           label="分行"
@@ -323,15 +322,15 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
               </div>
 
               {/* Payoneer 快速支付 */}
-              <div className="glass-panel rounded-xl p-4 border border-cyan-400/20 mb-6">
+              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-cyan-400/20 mb-4 sm:mb-6">
                 <div className="flex items-center justify-between flex-wrap gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center">
-                      <CreditCard size={18} className="text-cyan-400" />
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center flex-shrink-0">
+                      <CreditCard size={16} className="text-cyan-400" />
                     </div>
-                    <div>
-                      <div className="text-xs font-bold text-white">Payoneer 快速線上支付</div>
-                      <div className="text-[10px] text-white/40">
+                    <div className="min-w-0">
+                      <div className="text-[11px] sm:text-xs font-bold text-white">Payoneer 快速線上支付</div>
+                      <div className="text-[9px] sm:text-[10px] text-white/40">
                         支援信用卡、銀行轉帳等多種支付方式
                       </div>
                     </div>
@@ -340,20 +339,20 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                     href={PAYONEER_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-xs font-bold hover:bg-cyan-400/20 transition-all hover:shadow-lg hover:shadow-cyan-400/10"
+                    className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold hover:bg-cyan-400/20 transition-all hover:shadow-lg hover:shadow-cyan-400/10 flex-shrink-0"
                   >
-                    前往 Payoneer 支付
-                    <ExternalLink size={14} />
+                    前往支付
+                    <ExternalLink size={12} />
                   </a>
                 </div>
               </div>
 
               {/* 注意事項 */}
-              <div className="glass-panel rounded-xl p-4 border border-amber-400/20 bg-amber-400/5">
-                <div className="text-[10px] text-amber-400/80 tracking-wider uppercase font-bold mb-2">
+              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-amber-400/20 bg-amber-400/5">
+                <div className="text-[9px] sm:text-[10px] text-amber-400/80 tracking-wider uppercase font-bold mb-2">
                   ⚠️ 匯款注意事項
                 </div>
-                <ul className="space-y-1 text-[11px] text-white/60">
+                <ul className="space-y-1 text-[10px] sm:text-[11px] text-white/60">
                   <li>• 匯款完成後請保留交易憑證並通知專屬顧問</li>
                   <li>• 財務人工對帳完成後（1-2 個工作天內）正式開通授權</li>
                   <li>• 國際電匯請備註「Orbit Tower [方案名稱]」以便快速對帳</li>
@@ -381,11 +380,11 @@ function InfoRow({
   copied: boolean;
 }) {
   return (
-    <div className="flex items-center justify-between bg-white/[0.03] rounded-lg px-3 py-2 border border-white/5">
-      <div>
-        <div className="text-[9px] text-white/30 uppercase tracking-wider">{label}</div>
+    <div className="flex items-center justify-between bg-white/[0.03] rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 border border-white/5">
+      <div className="min-w-0">
+        <div className="text-[8px] sm:text-[9px] text-white/30 uppercase tracking-wider">{label}</div>
         <div
-          className={`text-xs font-mono font-bold ${highlight ? "text-cyan-300" : "text-white/80"}`}
+          className={`text-[11px] sm:text-xs font-mono font-bold ${highlight ? "text-cyan-300" : "text-white/80"} truncate`}
         >
           {value}
         </div>
@@ -393,7 +392,7 @@ function InfoRow({
       <button
         onClick={onCopy}
         className={`
-          ml-2 w-7 h-7 rounded-md flex items-center justify-center transition-all
+          ml-2 w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center transition-all flex-shrink-0
           ${
             copied
               ? "bg-emerald-400/20 border border-emerald-400/40"
@@ -403,9 +402,9 @@ function InfoRow({
         title="複製"
       >
         {copied ? (
-          <Check size={12} className="text-emerald-400" />
+          <Check size={11} className="text-emerald-400" />
         ) : (
-          <Copy size={12} className="text-white/40" />
+          <Copy size={11} className="text-white/40" />
         )}
       </button>
     </div>

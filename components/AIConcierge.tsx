@@ -14,7 +14,7 @@ const INITIAL_MESSAGES: Message[] = [
     id: "1",
     role: "assistant",
     content:
-      "您好！我是 Orbit Tower 的 AI 樓管。🏢\n\n歡迎來到賽博虛擬地產總部。目前我們有 6 層樓、每層 6 戶的六角晶體空間可供進駐。\n\n需要我帶您參觀哪些樓層？或者您對哪個業態分類有興趣？",
+      "您好！我是 Orbit Tower 的 AI 樓管。\n\n歡迎來到賽博虛擬地產總部。目前我們有 6 層樓、每層 6 戶的六角晶體空間可供進駐。\n\n需要我帶您參觀哪些樓層？或者您對哪個業態分類有興趣？",
   },
 ];
 
@@ -51,7 +51,6 @@ export default function AIConcierge() {
     setInput("");
     setIsTyping(true);
 
-    // 模擬 AI 回應
     setTimeout(() => {
       const response = generateResponse(content.trim());
       const aiMsg: Message = {
@@ -87,25 +86,25 @@ export default function AIConcierge() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full glass-panel border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300 animate-float group"
+          className="fixed bottom-14 sm:bottom-6 left-2 sm:left-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full glass-panel border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300 group"
         >
-          <MessageCircle size={22} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full animate-pulse" />
+          <MessageCircle size={20} className="text-cyan-400 group-hover:scale-110 transition-transform" />
+          <div className="absolute -top-1 -right-1 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-cyan-400 rounded-full animate-pulse" />
         </button>
       )}
 
       {/* 對話框 */}
       {isOpen && (
-        <div className="fixed bottom-12 sm:bottom-6 left-3 sm:left-6 z-50 w-[calc(100vw-24px)] sm:w-[360px] h-[70vh] sm:h-[520px] max-h-[520px] glass-panel rounded-2xl border border-cyan-400/20 flex flex-col shadow-2xl shadow-cyan-400/10">
+        <div className="fixed bottom-12 sm:bottom-6 left-2 sm:left-6 right-2 sm:right-auto z-50 sm:w-[360px] h-[60vh] sm:h-[520px] max-h-[520px] glass-panel rounded-2xl border border-cyan-400/20 flex flex-col shadow-2xl shadow-cyan-400/10">
           {/* 標題列 */}
-          <div className="flex items-center justify-between p-4 border-b border-white/10">
+          <div className="flex items-center justify-between p-3 sm:p-4 border-b border-white/10">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center">
-                <Bot size={16} className="text-cyan-400" />
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center">
+                <Bot size={14} className="text-cyan-400" />
               </div>
               <div>
-                <div className="text-xs font-bold text-white tracking-wider">AI 樓管</div>
-                <div className="text-[9px] text-cyan-400/60">Orbit Building Agent</div>
+                <div className="text-[11px] sm:text-xs font-bold text-white tracking-wider">AI 樓管</div>
+                <div className="text-[8px] sm:text-[9px] text-cyan-400/60">Orbit Building Agent</div>
               </div>
             </div>
             <button
@@ -117,27 +116,27 @@ export default function AIConcierge() {
           </div>
 
           {/* 訊息區 */}
-          <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
+          <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3">
             {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex gap-2 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
               >
                 <div
-                  className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
                     msg.role === "assistant"
                       ? "bg-cyan-400/20 border border-cyan-400/40"
                       : "bg-white/10 border border-white/20"
                   }`}
                 >
                   {msg.role === "assistant" ? (
-                    <Bot size={12} className="text-cyan-400" />
+                    <Bot size={10} className="text-cyan-400" />
                   ) : (
-                    <User size={12} className="text-white/60" />
+                    <User size={10} className="text-white/60" />
                   )}
                 </div>
                 <div
-                  className={`max-w-[80%] rounded-xl px-3 py-2 text-xs leading-relaxed whitespace-pre-line ${
+                  className={`max-w-[85%] rounded-xl px-3 py-2 text-[11px] sm:text-xs leading-relaxed whitespace-pre-line ${
                     msg.role === "assistant"
                       ? "bg-white/5 border border-white/10 text-white/80"
                       : "bg-cyan-400/10 border border-cyan-400/20 text-cyan-100"
@@ -149,8 +148,8 @@ export default function AIConcierge() {
             ))}
             {isTyping && (
               <div className="flex gap-2">
-                <div className="w-6 h-6 rounded-full bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center">
-                  <Bot size={12} className="text-cyan-400" />
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center">
+                  <Bot size={10} className="text-cyan-400" />
                 </div>
                 <div className="bg-white/5 border border-white/10 rounded-xl px-3 py-2">
                   <div className="flex gap-1">
@@ -165,12 +164,12 @@ export default function AIConcierge() {
 
           {/* 建議選項 */}
           {messages.length <= 2 && (
-            <div className="px-4 pb-2 flex flex-wrap gap-1.5">
+            <div className="px-3 sm:px-4 pb-2 flex flex-wrap gap-1.5">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s}
                   onClick={() => handleSend(s)}
-                  className="text-[10px] px-2 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/5 text-cyan-300/70 hover:bg-cyan-400/10 hover:border-cyan-400/40 transition-all"
+                  className="text-[9px] sm:text-[10px] px-2 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/5 text-cyan-300/70 hover:bg-cyan-400/10 hover:border-cyan-400/40 transition-all"
                 >
                   {s}
                 </button>
@@ -179,7 +178,7 @@ export default function AIConcierge() {
           )}
 
           {/* 輸入區 */}
-          <div className="p-3 border-t border-white/10">
+          <div className="p-2 sm:p-3 border-t border-white/10">
             <div className="flex gap-2">
               <input
                 type="text"
@@ -187,7 +186,7 @@ export default function AIConcierge() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
                 placeholder="輸入訊息..."
-                className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-400/40 transition-colors"
+                className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-[11px] sm:text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-400/40 transition-colors"
               />
               <button
                 onClick={() => handleSend()}

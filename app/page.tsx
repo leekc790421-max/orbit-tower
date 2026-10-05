@@ -12,6 +12,7 @@ import PricingModal from "@/components/PricingModal";
 import AuthModal from "@/components/AuthModal";
 import LegalModal from "@/components/LegalModal";
 import SecurityFooter from "@/components/SecurityFooter";
+import FAQSection from "@/components/FAQSection";
 import type { Theme, LightColor, Unit } from "@/data/units";
 
 export default function Home() {
@@ -43,7 +44,7 @@ export default function Home() {
       {/* 3D 場景 */}
       <Scene theme={theme} lightColor={lightColor} onUnitClick={handleUnitClick} />
 
-      {/* 掃描線覆蓋層 */}
+      {/* 掃描線覆蓋層（手機版 CSS 自動隱藏） */}
       <div className="scanline-overlay" />
 
       {/* 頂部標題（含登入/定價/條款入口） */}
@@ -75,15 +76,18 @@ export default function Home() {
       <div className="fixed bottom-0 left-0 right-0 z-30 pointer-events-none">
         <SecurityFooter />
         {/* 免責聲明按鈕 */}
-        <div className="flex items-center justify-center pb-1 pointer-events-auto">
+        <div className="flex items-center justify-center pb-0.5 sm:pb-1 pointer-events-auto">
           <button
             onClick={() => setLegalOpen(true)}
-            className="text-[8px] sm:text-[9px] text-white/20 hover:text-white/40 tracking-wider transition-colors px-3 py-1"
+            className="text-[7px] sm:text-[9px] text-white/20 hover:text-white/40 tracking-wider transition-colors px-2 sm:px-3 py-0.5 sm:py-1"
           >
             免責聲明與服務條款 / Terms & Disclaimer
           </button>
         </div>
       </div>
+
+      {/* FAQ 區塊 */}
+      <FAQSection />
 
       {/* ===== Modals ===== */}
       <PricingModal isOpen={pricingOpen} onClose={() => setPricingOpen(false)} />

@@ -10,231 +10,6 @@ interface HexTowerProps {
   onUnitClick: (unit: Unit, position: THREE.Vector3) => void;
 }
 
-// ===== 內部核心：金庫/機密型 (C面金流, F面機密) =====
-function VaultCore({ color }: { color: string }) {
-  const groupRef = useRef<THREE.Group>(null);
-  const ringRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    const t = state.clock.elapsedTime;
-    if (ringRef.current) {
-      ringRef.current.rotation.z = t * 0.5;
-    }
-    if (groupRef.current) {
-      groupRef.current.rotation.y = t * 0.1;
-    }
-  });
-
-  return (
-    <group ref={groupRef} scale={0.35}>
-      {/* 中央金庫主體 */}
-      <mesh>
-        <boxGeometry args={[0.8, 0.8, 0.8]} />
-        <meshStandardMaterial
-          color="#1a1a2e"
-          metalness={0.95}
-          roughness={0.15}
-          emissive={color}
-          emissiveIntensity={0.1}
-        />
-      </mesh>
-      {/* 金庫門環 */}
-      <mesh ref={ringRef} position={[0, 0, 0.41]}>
-        <torusGeometry args={[0.25, 0.03, 16, 32]} />
-        <meshStandardMaterial
-          color={color}
-          metalness={1}
-          roughness={0.1}
-          emissive={color}
-          emissiveIntensity={0.8}
-        />
-      </mesh>
-      {/* 角落螺絲 */}
-      {[[-1, -1], [-1, 1], [1, -1], [1, 1]].map(([x, y], i) => (
-        <mesh key={i} position={[x * 0.35, y * 0.35, 0.41]}>
-          <cylinderGeometry args={[0.04, 0.04, 0.05, 8]} />
-          <meshStandardMaterial color="#888" metalness={1} roughness={0.2} />
-        </mesh>
-      ))}
-      {/* 漂浮微型粒子 */}
-      <FloatingParticles count={20} color={color} radius={0.6} />
-    </group>
-  );
-}
-
-// ===== 內部核心：能量柱型 (A面科技, D面AI) =====
-function EnergyCore({ color }: { color: string }) {
-  const coreRef = useRef<THREE.Mesh>(null);
-  const ringsRef = useRef<THREE.Group>(null);
-
-  useFrame((state) => {
-    const t = state.clock.elapsedTime;
-    if (coreRef.current) {
-      const mat = coreRef.current.material as THREE.MeshStandardMaterial;
-      mat.emissiveIntensity = 0.8 + Math.sin(t * 3) * 0.3;
-    }
-    if (ringsRef.current) {
-      ringsRef.current.rotation.y = t * 0.8;
-    }
-  });
-
-  return (
-    <group scale={0.35}>
-      {/* 中央能量柱 */}
-      <mesh ref={coreRef}>
-        <cylinderGeometry args={[0.15, 0.15, 1.2, 16]} />
-        <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={1}
-          transparent
-          opacity={0.9}
-        />
-      </mesh>
-      {/* 環繞管道 */}
-      <group ref={ringsRef}>
-        {[0.3, 0, -0.3].map((y, i) => (
-          <mesh key={i} position={[0, y, 0]} rotation={[Math.PI / 2, 0, 0]}>
-            <torusGeometry args={[0.3, 0.02, 8, 24]} />
-            <meshStandardMaterial
-              color={color}
-              emissive={color}
-              emissiveIntensity={0.6}
-              metalness={0.8}
-              roughness={0.2}
-            />
-          </mesh>
-        ))}
-      </group>
-      {/* 電路板 */}
-      {[0, Math.PI / 2, Math.PI, Math.PI * 1.5].map((rot, i) => (
-        <mesh key={i} position={[Math.cos(rot) * 0.4, 0, Math.sin(rot) * 0.4]} rotation={[0, -rot, 0]}>
-          <boxGeometry args={[0.15, 0.6, 0.02]} />
-          <meshStandardMaterial
-            color="#0a1a2a"
-            metalness={0.7}
-            roughness={0.3}
-            emissive={color}
-            emissiveIntensity={0.2}
-          />
-        </mesh>
-      ))}
-      <FloatingParticles count={15} color={color} radius={0.5} />
-    </group>
-  );
-}
-
-// ===== 內部核心：量子環型 (B面品牌, E面GEO) =====
-function QuantumCore({ color }: { color: string }) {
-  const ringsRef = useRef<THREE.Group>(null);
-  const coreRef = useRef<THREE.Mesh>(null);
-  const spheresRef = useRef<THREE.Group>(null);
-
-  useFrame((state) => {
-    const t = state.clock.elapsedTime;
-    if (ringsRef.current) {
-      ringsRef.current.rotation.x = t * 0.4;
-      ringsRef.current.rotation.z = t * 0.3;
-    }
-    if (coreRef.current) {
-      const mat = coreRef.current.material as THREE.MeshStandardMaterial;
-      mat.emissiveIntensity = 1 + Math.sin(t * 2) * 0.5;
-    }
-    if (spheresRef.current) {
-      spheresRef.current.rotation.y = t * 0.5;
-    }
-  });
-
-  return (
-    <group scale={0.35}>
-      {/* 中央發光球 */}
-      <mesh ref={coreRef}>
-        <sphereGeometry args={[0.2, 32, 32]} />
-        <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={1.5}
-          transparent
-          opacity={0.9}
-        />
-      </mesh>
-      {/* 雙環軌道 */}
-      <group ref={ringsRef}>
-        <mesh rotation={[Math.PI / 3, 0, 0]}>
-          <torusGeometry args={[0.45, 0.02, 16, 48]} />
-          <meshStandardMaterial
-            color={color}
-            emissive={color}
-            emissiveIntensity={0.8}
-            metalness={0.9}
-            roughness={0.1}
-          />
-        </mesh>
-        <mesh rotation={[0, Math.PI / 3, Math.PI / 4]}>
-          <torusGeometry args={[0.5, 0.015, 16, 48]} />
-          <meshStandardMaterial
-            color={color}
-            emissive={color}
-            emissiveIntensity={0.6}
-            metalness={0.9}
-            roughness={0.1}
-          />
-        </mesh>
-      </group>
-      {/* 懸浮發光球體 */}
-      <group ref={spheresRef}>
-        {[0, 1, 2, 3, 4].map((i) => {
-          const angle = (i / 5) * Math.PI * 2;
-          const r = 0.4;
-          return (
-            <mesh key={i} position={[Math.cos(angle) * r, Math.sin(angle * 2) * 0.2, Math.sin(angle) * r]}>
-              <sphereGeometry args={[0.06, 16, 16]} />
-              <meshStandardMaterial
-                color={color}
-                emissive={color}
-                emissiveIntensity={1}
-                transparent
-                opacity={0.8}
-              />
-            </mesh>
-          );
-        })}
-      </group>
-      <FloatingParticles count={12} color={color} radius={0.55} />
-    </group>
-  );
-}
-
-// ===== 空置戶核心：微弱脈動 =====
-function EmptyCore({ color }: { color: string }) {
-  const ref = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    const t = state.clock.elapsedTime;
-    if (ref.current) {
-      const mat = ref.current.material as THREE.MeshStandardMaterial;
-      mat.emissiveIntensity = 0.2 + Math.sin(t * 1.5) * 0.15;
-      ref.current.rotation.y = t * 0.2;
-    }
-  });
-
-  return (
-    <group scale={0.3}>
-      <mesh ref={ref}>
-        <octahedronGeometry args={[0.4, 0]} />
-        <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={0.3}
-          transparent
-          opacity={0.4}
-          wireframe
-        />
-      </mesh>
-    </group>
-  );
-}
-
 // ===== 漂浮粒子系統 =====
 function FloatingParticles({ count, color, radius }: { count: number; color: string; radius: number }) {
   const pointsRef = useRef<THREE.Points>(null);
@@ -254,7 +29,7 @@ function FloatingParticles({ count, color, radius }: { count: number; color: str
 
   useFrame((state) => {
     if (pointsRef.current) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.1;
+      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.15;
     }
   });
 
@@ -264,13 +39,308 @@ function FloatingParticles({ count, color, radius }: { count: number; color: str
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.03}
+        size={0.025}
         color={color}
         transparent
-        opacity={0.8}
+        opacity={0.7}
         sizeAttenuation
       />
     </points>
+  );
+}
+
+// ===== 金庫核心 (C面金流, F面機密) — 參考圖1: 藍色金屬保險箱 =====
+function VaultCore({ color }: { color: string }) {
+  const groupRef = useRef<THREE.Group>(null);
+  const ringRef = useRef<THREE.Mesh>(null);
+  const ring2Ref = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    if (ringRef.current) ringRef.current.rotation.z = t * 0.6;
+    if (ring2Ref.current) ring2Ref.current.rotation.z = -t * 0.4;
+    if (groupRef.current) groupRef.current.rotation.y = t * 0.12;
+  });
+
+  return (
+    <group ref={groupRef} scale={0.32}>
+      {/* 中央金屬方塊 — 保險箱主體 */}
+      <mesh>
+        <boxGeometry args={[0.7, 0.7, 0.7]} />
+        <meshStandardMaterial
+          color="#111122"
+          metalness={0.95}
+          roughness={0.12}
+          emissive={color}
+          emissiveIntensity={0.08}
+        />
+      </mesh>
+      {/* 外層旋轉環 */}
+      <mesh ref={ringRef} position={[0, 0, 0]}>
+        <torusGeometry args={[0.5, 0.025, 16, 32]} />
+        <meshStandardMaterial
+          color={color}
+          metalness={1}
+          roughness={0.08}
+          emissive={color}
+          emissiveIntensity={0.9}
+        />
+      </mesh>
+      {/* 內層反向旋轉環 */}
+      <mesh ref={ring2Ref} position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.42, 0.02, 16, 32]} />
+        <meshStandardMaterial
+          color={color}
+          metalness={1}
+          roughness={0.1}
+          emissive={color}
+          emissiveIntensity={0.6}
+        />
+      </mesh>
+      {/* 四角螺絲 */}
+      {[[-1, -1], [-1, 1], [1, -1], [1, 1]].map(([x, y], i) => (
+        <mesh key={i} position={[x * 0.3, y * 0.3, 0.36]}>
+          <cylinderGeometry args={[0.035, 0.035, 0.04, 8]} />
+          <meshStandardMaterial color="#666" metalness={1} roughness={0.15} />
+        </mesh>
+      ))}
+      {/* 側面管道 */}
+      {[0, Math.PI / 2, Math.PI, Math.PI * 1.5].map((rot, i) => (
+        <mesh key={`pipe-${i}`} position={[Math.cos(rot) * 0.36, 0, Math.sin(rot) * 0.36]} rotation={[0, -rot, 0]}>
+          <boxGeometry args={[0.06, 0.5, 0.03]} />
+          <meshStandardMaterial
+            color="#0a0a1a"
+            metalness={0.8}
+            roughness={0.2}
+            emissive={color}
+            emissiveIntensity={0.15}
+          />
+        </mesh>
+      ))}
+      <FloatingParticles count={18} color={color} radius={0.55} />
+    </group>
+  );
+}
+
+// ===== 能量核心 (A面科技, D面AI) — 參考圖1: 藍色能量柱 =====
+function EnergyCore({ color }: { color: string }) {
+  const coreRef = useRef<THREE.Mesh>(null);
+  const ringsRef = useRef<THREE.Group>(null);
+  const platesRef = useRef<THREE.Group>(null);
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    if (coreRef.current) {
+      const mat = coreRef.current.material as THREE.MeshStandardMaterial;
+      mat.emissiveIntensity = 0.8 + Math.sin(t * 3) * 0.4;
+    }
+    if (ringsRef.current) ringsRef.current.rotation.y = t * 0.9;
+    if (platesRef.current) platesRef.current.rotation.y = -t * 0.3;
+  });
+
+  return (
+    <group scale={0.32}>
+      {/* 中央能量柱 */}
+      <mesh ref={coreRef}>
+        <cylinderGeometry args={[0.12, 0.12, 1.3, 16]} />
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={1.2}
+          transparent
+          opacity={0.85}
+        />
+      </mesh>
+      {/* 外層能量光柱 */}
+      <mesh>
+        <cylinderGeometry args={[0.18, 0.18, 1.1, 16]} />
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={0.3}
+          transparent
+          opacity={0.15}
+          side={THREE.BackSide}
+        />
+      </mesh>
+      {/* 環繞管道環 */}
+      <group ref={ringsRef}>
+        {[0.35, 0, -0.35].map((y, i) => (
+          <mesh key={i} position={[0, y, 0]} rotation={[Math.PI / 2, 0, 0]}>
+            <torusGeometry args={[0.32, 0.018, 8, 24]} />
+            <meshStandardMaterial
+              color={color}
+              emissive={color}
+              emissiveIntensity={0.7}
+              metalness={0.9}
+              roughness={0.1}
+            />
+          </mesh>
+        ))}
+      </group>
+      {/* 電路板 */}
+      <group ref={platesRef}>
+        {[0, Math.PI / 2, Math.PI, Math.PI * 1.5].map((rot, i) => (
+          <mesh key={i} position={[Math.cos(rot) * 0.42, 0, Math.sin(rot) * 0.42]} rotation={[0, -rot, 0]}>
+            <boxGeometry args={[0.12, 0.7, 0.015]} />
+            <meshStandardMaterial
+              color="#0a1a2a"
+              metalness={0.7}
+              roughness={0.25}
+              emissive={color}
+              emissiveIntensity={0.2}
+            />
+          </mesh>
+        ))}
+      </group>
+      <FloatingParticles count={14} color={color} radius={0.5} />
+    </group>
+  );
+}
+
+// ===== 量子核心 (B面品牌, E面GEO) — 參考圖2: 紫色量子軌道 =====
+function QuantumCore({ color }: { color: string }) {
+  const ringsRef = useRef<THREE.Group>(null);
+  const coreRef = useRef<THREE.Mesh>(null);
+  const spheresRef = useRef<THREE.Group>(null);
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    if (ringsRef.current) {
+      ringsRef.current.rotation.x = t * 0.45;
+      ringsRef.current.rotation.z = t * 0.3;
+    }
+    if (coreRef.current) {
+      const mat = coreRef.current.material as THREE.MeshStandardMaterial;
+      mat.emissiveIntensity = 1.2 + Math.sin(t * 2.5) * 0.6;
+    }
+    if (spheresRef.current) spheresRef.current.rotation.y = t * 0.55;
+  });
+
+  return (
+    <group scale={0.32}>
+      {/* 中央發光球 */}
+      <mesh ref={coreRef}>
+        <sphereGeometry args={[0.18, 32, 32]} />
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={1.5}
+          transparent
+          opacity={0.9}
+        />
+      </mesh>
+      {/* 外層光暈球 */}
+      <mesh>
+        <sphereGeometry args={[0.25, 16, 16]} />
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={0.4}
+          transparent
+          opacity={0.12}
+          side={THREE.BackSide}
+        />
+      </mesh>
+      {/* 雙環軌道 */}
+      <group ref={ringsRef}>
+        <mesh rotation={[Math.PI / 3, 0, 0]}>
+          <torusGeometry args={[0.42, 0.018, 16, 48]} />
+          <meshStandardMaterial
+            color={color}
+            emissive={color}
+            emissiveIntensity={0.8}
+            metalness={0.9}
+            roughness={0.1}
+          />
+        </mesh>
+        <mesh rotation={[0, Math.PI / 3, Math.PI / 4]}>
+          <torusGeometry args={[0.48, 0.014, 16, 48]} />
+          <meshStandardMaterial
+            color={color}
+            emissive={color}
+            emissiveIntensity={0.6}
+            metalness={0.9}
+            roughness={0.1}
+          />
+        </mesh>
+        <mesh rotation={[Math.PI / 6, Math.PI / 2, 0]}>
+          <torusGeometry args={[0.38, 0.012, 16, 48]} />
+          <meshStandardMaterial
+            color={color}
+            emissive={color}
+            emissiveIntensity={0.5}
+            metalness={0.9}
+            roughness={0.1}
+          />
+        </mesh>
+      </group>
+      {/* 懸浮發光球體 */}
+      <group ref={spheresRef}>
+        {[0, 1, 2, 3, 4, 5].map((i) => {
+          const angle = (i / 6) * Math.PI * 2;
+          const r = 0.38;
+          return (
+            <mesh key={i} position={[Math.cos(angle) * r, Math.sin(angle * 2) * 0.15, Math.sin(angle) * r]}>
+              <sphereGeometry args={[0.045, 16, 16]} />
+              <meshStandardMaterial
+                color={color}
+                emissive={color}
+                emissiveIntensity={1.2}
+                transparent
+                opacity={0.85}
+              />
+            </mesh>
+          );
+        })}
+      </group>
+      <FloatingParticles count={12} color={color} radius={0.5} />
+    </group>
+  );
+}
+
+// ===== 空置戶核心：微弱脈動 =====
+function EmptyCore({ color }: { color: string }) {
+  const ref = useRef<THREE.Mesh>(null);
+  const innerRef = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    if (ref.current) {
+      const mat = ref.current.material as THREE.MeshStandardMaterial;
+      mat.emissiveIntensity = 0.15 + Math.sin(t * 1.5) * 0.1;
+      ref.current.rotation.y = t * 0.2;
+      ref.current.rotation.x = t * 0.1;
+    }
+    if (innerRef.current) {
+      innerRef.current.rotation.y = -t * 0.3;
+    }
+  });
+
+  return (
+    <group scale={0.28}>
+      <mesh ref={ref}>
+        <octahedronGeometry args={[0.4, 0]} />
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={0.2}
+          transparent
+          opacity={0.3}
+          wireframe
+        />
+      </mesh>
+      <mesh ref={innerRef}>
+        <octahedronGeometry args={[0.2, 0]} />
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={0.3}
+          transparent
+          opacity={0.15}
+        />
+      </mesh>
+    </group>
   );
 }
 
@@ -296,8 +366,8 @@ function InnerCore({ unit, color }: { unit: Unit; color: string }) {
   }
 }
 
-// ===== 單一六角戶別單元 =====
-function HexUnit({
+// ===== 單一晶體方塊戶別單元 (對齊參考圖: 玻璃方塊展示櫃) =====
+function CrystalUnit({
   unit,
   position,
   lightColor,
@@ -309,44 +379,17 @@ function HexUnit({
   onClick: () => void;
 }) {
   const groupRef = useRef<THREE.Group>(null);
-  const glassRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const baseColor = LIGHT_COLORS[lightColor].hex;
   const unitColor = unit.color || baseColor;
 
   useFrame((state) => {
     if (groupRef.current && hovered) {
-      groupRef.current.scale.lerp(new THREE.Vector3(1.05, 1.05, 1.05), 0.1);
+      groupRef.current.scale.lerp(new THREE.Vector3(1.06, 1.06, 1.06), 0.08);
     } else if (groupRef.current) {
-      groupRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
+      groupRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.08);
     }
   });
-
-  // 六角形形狀
-  const hexShape = useMemo(() => {
-    const shape = new THREE.Shape();
-    const size = 0.82;
-    for (let i = 0; i < 6; i++) {
-      const angle = (Math.PI / 3) * i - Math.PI / 6;
-      const x = Math.cos(angle) * size;
-      const y = Math.sin(angle) * size;
-      if (i === 0) shape.moveTo(x, y);
-      else shape.lineTo(x, y);
-    }
-    shape.closePath();
-    return shape;
-  }, []);
-
-  const extrudeSettings = useMemo(
-    () => ({
-      depth: 0.75,
-      bevelEnabled: true,
-      bevelThickness: 0.03,
-      bevelSize: 0.03,
-      bevelSegments: 3,
-    }),
-    []
-  );
 
   const getStatusEmissive = () => {
     if (unit.status === "isolated") return "#ff2222";
@@ -354,7 +397,10 @@ function HexUnit({
     return "#4488ff";
   };
 
-  const emissiveIntensity = unit.status === "available" ? 0.05 : unit.status === "isolated" ? 0.3 : 0.15;
+  const emissiveIntensity = unit.status === "available" ? 0.03 : unit.status === "isolated" ? 0.2 : 0.1;
+
+  // 晶體方塊尺寸
+  const cubeSize = 0.72;
 
   return (
     <group
@@ -374,48 +420,57 @@ function HexUnit({
         onClick();
       }}
     >
-      {/* 外殼：高質感玻璃六角柱 */}
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <extrudeGeometry args={[hexShape, extrudeSettings]} />
+      {/* === 外殼：高質感玻璃方塊 (對齊參考圖) === */}
+      <mesh>
+        <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
         <meshPhysicalMaterial
           color="#ffffff"
           transparent
-          opacity={unit.status === "available" ? 0.15 : 0.25}
-          roughness={0.05}
-          metalness={0.1}
+          opacity={unit.status === "available" ? 0.12 : 0.2}
+          roughness={0.02}
+          metalness={0.05}
           clearcoat={1}
-          clearcoatRoughness={0.05}
+          clearcoatRoughness={0.02}
           reflectivity={1}
           emissive={getStatusEmissive()}
           emissiveIntensity={emissiveIntensity}
           side={THREE.DoubleSide}
+          envMapIntensity={1.5}
         />
       </mesh>
 
-      {/* 內部核心 */}
+      {/* === 方塊邊框發光線條 === */}
+      <lineSegments>
+        <edgesGeometry args={[new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)]} />
+        <lineBasicMaterial
+          color={unit.status === "available" ? "#4488ff" : unitColor}
+          transparent
+          opacity={unit.status === "available" ? 0.25 : 0.5}
+        />
+      </lineSegments>
+
+      {/* === 內部核心 === */}
       <InnerCore unit={unit} color={unitColor} />
 
-      {/* 內部點光源 */}
+      {/* === 內部點光源 === */}
       <pointLight
         position={[0, 0, 0]}
         color={unitColor}
-        intensity={unit.status === "available" ? 0.3 : unit.status === "isolated" ? 2 : 1.2}
-        distance={3}
+        intensity={unit.status === "available" ? 0.2 : unit.status === "isolated" ? 1.8 : 1}
+        distance={2.5}
         decay={2}
       />
 
-      {/* 底部光暈圈 */}
-      {unit.status !== "available" && (
-        <mesh position={[0, 0, -0.4]} rotation={[Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[0.5, 0.85, 6]} />
-          <meshBasicMaterial
-            color={unitColor}
-            transparent
-            opacity={0.3}
-            side={THREE.DoubleSide}
-          />
-        </mesh>
-      )}
+      {/* === 底部發光底座 === */}
+      <mesh position={[0, -cubeSize / 2 - 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[cubeSize * 0.9, cubeSize * 0.9]} />
+        <meshBasicMaterial
+          color={unitColor}
+          transparent
+          opacity={unit.status === "available" ? 0.05 : 0.15}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
     </group>
   );
 }
@@ -427,17 +482,17 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
 
   useFrame((state) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += 0.0008;
+      groupRef.current.rotation.y += 0.0006;
     }
     if (coreRef.current) {
       const t = state.clock.elapsedTime;
       const mat = coreRef.current.material as THREE.MeshStandardMaterial;
-      mat.emissiveIntensity = 0.5 + Math.sin(t * 2) * 0.2;
+      mat.emissiveIntensity = 0.4 + Math.sin(t * 2) * 0.15;
     }
   });
 
-  const FLOOR_HEIGHT = 1.15;
-  const HEX_RADIUS = 1.05;
+  const FLOOR_HEIGHT = 1.05;
+  const HEX_RADIUS = 0.95;
 
   const unitPositions = useMemo(() => {
     const positions: { unit: Unit; pos: [number, number, number] }[] = [];
@@ -446,7 +501,7 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
         const angle = (Math.PI / 3) * i;
         const x = Math.cos(angle) * HEX_RADIUS;
         const z = Math.sin(angle) * HEX_RADIUS;
-        const y = (floor.floor - 1) * FLOOR_HEIGHT - 3;
+        const y = (floor.floor - 1) * FLOOR_HEIGHT - 2.5;
         positions.push({ unit, pos: [x, y, z] });
       });
     });
@@ -457,30 +512,30 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
     <group ref={groupRef}>
       {/* 中央核心柱 - 發光能量柱 */}
       <mesh ref={coreRef} position={[0, 0, 0]}>
-        <cylinderGeometry args={[0.25, 0.25, 8.5, 6]} />
+        <cylinderGeometry args={[0.2, 0.2, 7.5, 6]} />
         <meshStandardMaterial
           color={LIGHT_COLORS[lightColor].hex}
           transparent
-          opacity={0.3}
+          opacity={0.25}
           emissive={LIGHT_COLORS[lightColor].hex}
-          emissiveIntensity={0.5}
+          emissiveIntensity={0.4}
         />
       </mesh>
 
-      {/* 中央柱光暈 */}
+      {/* 中央柱外層光暈 */}
       <mesh position={[0, 0, 0]}>
-        <cylinderGeometry args={[0.35, 0.35, 8.5, 16]} />
+        <cylinderGeometry args={[0.3, 0.3, 7.5, 16]} />
         <meshBasicMaterial
           color={LIGHT_COLORS[lightColor].hex}
           transparent
-          opacity={0.08}
+          opacity={0.06}
           side={THREE.BackSide}
         />
       </mesh>
 
-      {/* 六角單元 */}
+      {/* 晶體方塊單元 */}
       {unitPositions.map(({ unit, pos }) => (
-        <HexUnit
+        <CrystalUnit
           key={unit.id}
           unit={unit}
           position={pos}
@@ -496,8 +551,8 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
       ))}
 
       {/* 頂樓天線 */}
-      <mesh position={[0, 4.8, 0]}>
-        <cylinderGeometry args={[0.04, 0.04, 2, 8]} />
+      <mesh position={[0, 4.2, 0]}>
+        <cylinderGeometry args={[0.03, 0.03, 1.8, 8]} />
         <meshStandardMaterial
           color={LIGHT_COLORS[lightColor].hex}
           emissive={LIGHT_COLORS[lightColor].hex}
@@ -505,21 +560,21 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
         />
       </mesh>
       <pointLight
-        position={[0, 5.8, 0]}
+        position={[0, 5.1, 0]}
         color={LIGHT_COLORS[lightColor].hex}
-        intensity={3}
-        distance={8}
+        intensity={2.5}
+        distance={6}
         decay={2}
       />
 
-      {/* 黑曜石反射地面 */}
-      <mesh position={[0, -4.2, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[30, 30]} />
+      {/* === 黑曜石反射地面 (對齊參考圖) === */}
+      <mesh position={[0, -3.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[18, 64]} />
         <meshStandardMaterial
-          color="#0a0a0f"
-          metalness={0.95}
-          roughness={0.05}
-          envMapIntensity={1}
+          color="#080810"
+          metalness={0.97}
+          roughness={0.03}
+          envMapIntensity={1.5}
         />
       </mesh>
     </group>
