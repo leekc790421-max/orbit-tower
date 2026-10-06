@@ -1,15 +1,17 @@
 "use client";
 
-import { Hexagon, LogIn, Menu, X, Share2 } from "lucide-react";
+import { Hexagon, LogIn, Menu, X, Share2, Info, BookOpen } from "lucide-react";
 import { useState } from "react";
 
 interface HeaderProps {
   onLoginClick: () => void;
   onPricingClick: () => void;
   onLegalClick: () => void;
+  onAboutClick: () => void;
+  onReadmeClick: () => void;
 }
 
-export default function Header({ onLoginClick, onPricingClick, onLegalClick }: HeaderProps) {
+export default function Header({ onLoginClick, onPricingClick, onLegalClick, onAboutClick, onReadmeClick }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleShare = async () => {
@@ -52,44 +54,58 @@ export default function Header({ onLoginClick, onPricingClick, onLegalClick }: H
                   Orbit Tower
                 </h1>
                 <p className="text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.2em] text-cyan-400/60 uppercase truncate">
-                  <span className="hidden sm:inline">虛擬企業總部 · Virtual HQ</span>
-                  <span className="sm:hidden">Virtual HQ</span>
+                  <span className="hidden sm:inline">賽博虛擬地產總部 · Cyber Luxury Mall</span>
+                  <span className="sm:hidden">Cyber Luxury Mall</span>
                 </p>
               </div>
             </div>
 
             {/* 桌機選單 */}
-            <div className="hidden sm:flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-2">
+              <button
+                onClick={onAboutClick}
+                className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
+              >
+                <Info size={13} />
+                關於
+              </button>
+              <button
+                onClick={onReadmeClick}
+                className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
+              >
+                <BookOpen size={13} />
+                系統說明
+              </button>
               <button
                 onClick={handleShare}
-                className="flex items-center gap-2 text-xs px-4 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
+                className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
-                <Share2 size={14} />
+                <Share2 size={13} />
                 分享
               </button>
               <button
                 onClick={onPricingClick}
-                className="text-xs px-4 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
+                className="text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
                 方案價格
               </button>
               <button
                 onClick={onLegalClick}
-                className="text-xs px-4 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
+                className="text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
                 使用條款
               </button>
               <button
                 onClick={onLoginClick}
-                className="flex items-center gap-2 text-xs px-4 py-2 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 transition-all tracking-wider font-bold"
+                className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 transition-all tracking-wider font-bold"
               >
-                <LogIn size={14} />
+                <LogIn size={13} />
                 登入
               </button>
-              <div className="flex items-center gap-2 pl-3 border-l border-white/10">
-                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-xs text-emerald-400/80 tracking-wider uppercase">
-                  線上
+              <div className="flex items-center gap-1.5 pl-2 border-l border-white/10">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-[10px] text-emerald-400/80 tracking-wider uppercase">
+                  Online
                 </span>
               </div>
             </div>
@@ -98,18 +114,18 @@ export default function Header({ onLoginClick, onPricingClick, onLegalClick }: H
             <div className="flex sm:hidden items-center gap-2">
               <button
                 onClick={handleShare}
-                className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center hover:border-cyan-400/30 transition-all"
+                className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center hover:border-cyan-400/30 transition-all"
               >
-                <Share2 size={18} className="text-white/60" />
+                <Share2 size={16} className="text-white/60" />
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center hover:border-white/30 transition-all"
+                className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center hover:border-white/30 transition-all"
               >
                 {mobileMenuOpen ? (
-                  <X size={20} className="text-white/60" />
+                  <X size={18} className="text-white/60" />
                 ) : (
-                  <Menu size={20} className="text-white/60" />
+                  <Menu size={18} className="text-white/60" />
                 )}
               </button>
             </div>
@@ -118,6 +134,26 @@ export default function Header({ onLoginClick, onPricingClick, onLegalClick }: H
           {/* 手機展開選單 */}
           {mobileMenuOpen && (
             <div className="sm:hidden mt-3 pt-3 border-t border-white/10 space-y-2">
+              <button
+                onClick={() => {
+                  onAboutClick();
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full flex items-center gap-2 text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
+              >
+                <Info size={15} />
+                關於 Orbit Tower
+              </button>
+              <button
+                onClick={() => {
+                  onReadmeClick();
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full flex items-center gap-2 text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
+              >
+                <BookOpen size={15} />
+                系統說明 / README
+              </button>
               <button
                 onClick={() => {
                   onPricingClick();

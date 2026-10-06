@@ -10,6 +10,8 @@
   --accent-emerald: #00d68f;
   --accent-purple: #a855f7;
   --border-glow: rgba(0, 212, 255, 0.3);
+  --hud-bg: rgba(15, 23, 42, 0.65);
+  --hud-blur: 12px;
 }
 
 * {
@@ -21,7 +23,7 @@
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Orbitron', 'Noto Sans TC', 'Courier New', monospace;
+  font-family: 'JetBrains Mono', 'Orbitron', 'Noto Sans TC', 'Courier New', monospace;
   overflow: hidden;
   cursor: crosshair;
   -webkit-font-smoothing: antialiased;
@@ -93,12 +95,15 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
-/* 玻璃態效果 */
+/* 玻璃態效果 — HUD 毛玻璃升級 */
 .glass-panel {
-  background: rgba(10, 10, 26, 0.7);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 212, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  background: var(--hud-bg);
+  backdrop-filter: blur(var(--hud-blur)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--hud-blur)) saturate(1.4);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* HUD 風格邊框 */

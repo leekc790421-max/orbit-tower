@@ -420,22 +420,24 @@ function CrystalUnit({
         onClick();
       }}
     >
-      {/* === 外殼：高質感玻璃方塊 (對齊參考圖) === */}
+      {/* === 外殼：高透光玻璃方塊 (MeshPhysicalMaterial + transmission) === */}
       <mesh>
         <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
         <meshPhysicalMaterial
-          color="#ffffff"
+          color={unit.status === "available" ? "#88ccff" : "#ffffff"}
           transparent
-          opacity={unit.status === "available" ? 0.12 : 0.2}
+          transmission={unit.status === "available" ? 0.92 : 0.85}
+          thickness={0.5}
           roughness={0.02}
-          metalness={0.05}
+          metalness={0.0}
           clearcoat={1}
           clearcoatRoughness={0.02}
           reflectivity={1}
+          ior={1.5}
           emissive={getStatusEmissive()}
           emissiveIntensity={emissiveIntensity}
           side={THREE.DoubleSide}
-          envMapIntensity={1.5}
+          envMapIntensity={2.0}
         />
       </mesh>
 

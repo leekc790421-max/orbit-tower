@@ -47,13 +47,13 @@ export default function ControlHUD({
           className="glass-panel rounded-xl px-4 py-3 hud-border flex items-center justify-center gap-2 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
         >
           <ShoppingBag size={18} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-          <span className="text-sm text-cyan-300 font-bold tracking-wider">查看方案</span>
+          <span className="text-sm text-cyan-300 font-bold tracking-wider">認領店面</span>
         </button>
 
         {/* 環境切換 */}
         <div className="glass-panel rounded-xl p-3 sm:p-4 hud-border">
           <div className="text-xs sm:text-sm tracking-widest text-cyan-400 mb-2 sm:mb-3 uppercase font-bold">
-            背景主題
+            場景氛圍
           </div>
           <div className="flex flex-col gap-2 sm:gap-2.5">
             {(Object.keys(THEME_LABELS) as Theme[]).map((t) => {
@@ -85,7 +85,7 @@ export default function ControlHUD({
         <div className="glass-panel rounded-xl p-3 sm:p-4 hud-border">
           <div className="text-xs sm:text-sm tracking-widest text-cyan-400 mb-2 sm:mb-3 uppercase font-bold flex items-center gap-2">
             <Palette size={14} />
-            <span>燈光顏色</span>
+            <span>光譜色調</span>
           </div>
           <div className="flex gap-3 justify-center">
             {(Object.keys(LIGHT_COLORS) as LightColor[]).map((c) => {

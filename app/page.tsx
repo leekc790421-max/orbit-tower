@@ -15,6 +15,7 @@ import SecurityFooter from "@/components/SecurityFooter";
 import FAQSection from "@/components/FAQSection";
 import Onboarding from "@/components/Onboarding";
 import AboutModal from "@/components/AboutModal";
+import ReadmeModal from "@/components/ReadmeModal";
 import type { Theme, LightColor, Unit } from "@/data/units";
 
 export default function Home() {
@@ -28,6 +29,8 @@ export default function Home() {
   const [authOpen, setAuthOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [readmeOpen, setReadmeOpen] = useState(false);
 
   // 首次進入顯示新手引導
   useEffect(() => {
@@ -59,11 +62,13 @@ export default function Home() {
       {/* 掃描線覆蓋層（手機版 CSS 自動隱藏） */}
       <div className="scanline-overlay" />
 
-      {/* 頂部標題（含登入/定價/條款入口） */}
+      {/* 頂部標題（含登入/定價/條款/關於/README 入口） */}
       <Header
         onLoginClick={() => setAuthOpen(true)}
         onPricingClick={() => setPricingOpen(true)}
         onLegalClick={() => setLegalOpen(true)}
+        onAboutClick={() => setAboutOpen(true)}
+        onReadmeClick={() => setReadmeOpen(true)}
       />
 
       {/* 左側樓層指示器 */}
@@ -102,7 +107,10 @@ export default function Home() {
       <FAQSection />
 
       {/* 關於區塊 */}
-      <AboutModal />
+      <AboutModal isOpen={aboutOpen} onClose={() => setAboutOpen(false)} />
+
+      {/* README 系統說明 */}
+      <ReadmeModal isOpen={readmeOpen} onClose={() => setReadmeOpen(false)} />
 
       {/* 新手引導 */}
       {onboardingOpen && (

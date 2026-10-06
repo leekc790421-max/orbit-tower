@@ -1,26 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import { X, Info, Hexagon, Globe, Shield, Zap, Users, Building } from "lucide-react";
+import { X, Info, Hexagon, Globe, Shield, Zap, Users, Building, Sparkles, Bottle, Search } from "lucide-react";
 
-export default function AboutModal() {
-  const [isOpen, setIsOpen] = useState(false);
+interface AboutModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
 
+export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
   return (
     <>
-      {/* 觸發按鈕 */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed top-20 sm:top-24 left-2 sm:left-6 z-40 glass-panel rounded-xl px-3 py-2 hud-border flex items-center gap-2 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
-      >
-        <Info size={16} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-        <span className="text-sm text-cyan-300 font-bold tracking-wider">關於</span>
-      </button>
-
       {/* Modal */}
       {isOpen && (
         <div className="fixed inset-0 z-[90] flex items-end sm:items-center justify-center">
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
 
           <div className="relative w-full sm:max-w-3xl h-[85vh] sm:h-auto sm:max-h-[85vh] overflow-y-auto glass-panel rounded-t-2xl sm:rounded-2xl border-t sm:border border-cyan-400/30 shadow-2xl shadow-cyan-400/10">
             {/* 頂部 */}
@@ -30,11 +23,11 @@ export default function AboutModal() {
                   關於 Orbit Tower
                 </h2>
                 <p className="text-xs sm:text-sm text-cyan-400/60 tracking-wider mt-1">
-                  你的虛擬企業總部
+                  Cyber Luxury 數位地產商場
                 </p>
               </div>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={onClose}
                 className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-red-400/50 hover:bg-red-400/10 transition-all"
               >
                 <X size={16} className="text-white/40" />
@@ -53,19 +46,39 @@ export default function AboutModal() {
                       什麼是 Orbit Tower？
                     </h3>
                     <p className="text-sm sm:text-base text-white/70 leading-relaxed">
-                      Orbit Tower 是一個創新的虛擬企業總部平台。我們用 3D 技術打造了一座六角晶體摩天樓，讓企業可以在這裡「進駐」虛擬空間，建立自己的數位據點。
+                      Orbit Tower 是一個結合 <span className="text-cyan-300 font-semibold">3D 空間體驗</span>、<span className="text-cyan-300 font-semibold">品牌虛擬展示</span>與<span className="text-cyan-300 font-semibold">動態流量裂變</span>的 Cyber Luxury 數位地產商場。我們用六角晶體摩天樓的形態，打造了一座創新的虛擬企業總部平台，讓品牌可以在這裡「進駐」虛擬空間，建立自己的數位據點。
                     </p>
                   </div>
                 </div>
               </div>
 
+              {/* 三大核心機制 */}
+              <div className="glass-panel rounded-xl p-5 border border-cyan-400/30 bg-cyan-400/5">
+                <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  <Sparkles size={20} className="text-cyan-400" />
+                  三大核心機制
+                </h3>
+                <div className="space-y-4">
+                  <CoreMechanism
+                    icon={Building}
+                    title="3D 空間展示"
+                    description="高透光晶體大樓與動態樓層排序。每層樓 6 個品牌店面，共 36 個企業空間。選擇適合你的樓層和面向，建立虛擬總部。"
+                  />
+                  <CoreMechanism
+                    icon={Bottle}
+                    title="漂流瓶互動 (/drift)"
+                    description="Groq API 毫秒級動態生成籤詩與優惠，提升顧客停留時間。每次拋接都是獨特的體驗，讓品牌與客戶建立更深層的連結。"
+                  />
+                  <CoreMechanism
+                    icon={Search}
+                    title="IndexNow 即時搜尋收錄"
+                    description="更新內容 24 小時內快速報備搜尋引擎，建立自動化流量池。讓你的品牌在 Google、Bing 等搜尋引擎中快速被發現。"
+                  />
+                </div>
+              </div>
+
               {/* 核心功能 */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <FeatureCard
-                  icon={Building}
-                  title="虛擬企業空間"
-                  description="每層樓 6 個戶別，共 36 個企業空間。選擇適合你的樓層和面向，建立虛擬總部。"
-                />
                 <FeatureCard
                   icon={Globe}
                   title="網域綁定"
@@ -81,6 +94,11 @@ export default function AboutModal() {
                   title="AI 運算資源"
                   description="內建 AI 樓管 24 小時服務，提供運算資源和智能分析，幫助你的業務成長。"
                 />
+                <FeatureCard
+                  icon={Users}
+                  title="流量裂變"
+                  description="透過漂流瓶互動與 IndexNow 即時收錄，自動建立流量池，讓品牌能見度指數成長。"
+                />
               </div>
 
               {/* 適合誰 */}
@@ -93,7 +111,7 @@ export default function AboutModal() {
                 </div>
                 <div className="space-y-3 text-sm sm:text-base text-white/70">
                   <p>• <span className="text-white font-semibold">新創團隊</span> — 需要低成本的數位據點，快速建立品牌形象</p>
-                  <p>• <span className="text-white font-semibold">自由工作者</span> — 想要專業的企业形象，接案更有說服力</p>
+                  <p>• <span className="text-white font-semibold">自由工作者</span> — 想要專業的企業形象，接案更有說服力</p>
                   <p>• <span className="text-white font-semibold">中小企業</span> — 擴展數位足跡，增加線上能見度</p>
                   <p>• <span className="text-white font-semibold">大型企業</span> — 建立創新形象，展示科技實力</p>
                 </div>
@@ -106,8 +124,8 @@ export default function AboutModal() {
                 </h3>
                 <div className="space-y-3">
                   <Step number={1} text="點擊大樓中的空置戶別（藍色方塊），查看詳細資訊" />
-                  <Step number={2} text="選擇適合你的方案（基礎 / 專業 / 旗艦）" />
-                  <Step number={3} text="完成註冊和付款，系統自動配發網域" />
+                  <Step number={2} text="選擇適合你的方案（基礎免費 / 專業 $29 / 旗艦 $99）" />
+                  <Step number={3} text="完成註冊和付款，系統自動配發網域與樓層" />
                   <Step number={4} text="開始建立你的虛擬企業總部！" />
                 </div>
               </div>
@@ -128,6 +146,20 @@ export default function AboutModal() {
         </div>
       )}
     </>
+  );
+}
+
+function CoreMechanism({ icon: Icon, title, description }: { icon: any; title: string; description: string }) {
+  return (
+    <div className="flex items-start gap-3">
+      <div className="w-10 h-10 rounded-lg bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center flex-shrink-0">
+        <Icon size={20} className="text-cyan-400" />
+      </div>
+      <div>
+        <h4 className="text-sm sm:text-base font-bold text-white mb-1">{title}</h4>
+        <p className="text-xs sm:text-sm text-white/60 leading-relaxed">{description}</p>
+      </div>
+    </div>
   );
 }
 

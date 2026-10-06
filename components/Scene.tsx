@@ -62,13 +62,13 @@ export default function Scene({ theme, lightColor, onUnitClick }: SceneProps) {
       dpr={[1, 1.5]}
       gl={{
         antialias: true,
-        alpha: false,
+        alpha: true,
         toneMapping: THREE.ACESFilmicToneMapping,
         toneMappingExposure: 1.2,
         powerPreference: "high-performance",
       }}
       onCreated={({ gl }) => {
-        gl.setClearColor("#050510");
+        gl.setClearColor("#050510", 0);
         gl.toneMapping = THREE.ACESFilmicToneMapping;
         gl.toneMappingExposure = 1.2;
       }}
@@ -83,30 +83,30 @@ export default function Scene({ theme, lightColor, onUnitClick }: SceneProps) {
         {/* 六角大樓 */}
         <HexTower lightColor={lightColor} onUnitClick={handleUnitClick} />
 
-        {/* Bloom 後處理 — 降低強度改善效能 */}
+        {/* Bloom 後處理 — 霓虹極光質感 */}
         <EffectComposer>
           <Bloom
-            intensity={0.9}
-            luminanceThreshold={0.25}
-            luminanceSmoothing={0.9}
+            intensity={1.2}
+            luminanceThreshold={0.15}
+            luminanceSmoothing={0.85}
             mipmapBlur
+            radius={0.85}
           />
         </EffectComposer>
 
-        {/* 軌道控制 */}
+        {/* 軌道控制 — 解除滾輪卡死，允許頁面滾動 */}
         <OrbitControls
           ref={controlsRef}
-          enablePan={true}
-          enableZoom={true}
+          enablePan={false}
+          enableZoom={false}
           enableRotate={true}
-          minDistance={4}
-          maxDistance={22}
+          rotateSpeed={0.5}
           minPolarAngle={Math.PI * 0.15}
           maxPolarAngle={Math.PI * 0.75}
-          autoRotate={false}
-          autoRotateSpeed={0.4}
+          autoRotate={true}
+          autoRotateSpeed={0.3}
           enableDamping={true}
-          dampingFactor={0.05}
+          dampingFactor={0.08}
         />
       </Suspense>
     </Canvas>

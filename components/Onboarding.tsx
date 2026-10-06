@@ -11,35 +11,35 @@ const STEPS = [
   {
     icon: Hexagon,
     title: "歡迎來到 Orbit Tower",
-    description: "這是一座 3D 虛擬企業總部大樓。每層樓有 6 個戶別，代表不同的企業空間。",
+    description: "這是一座結合 3D 空間體驗、品牌虛擬展示與動態流量裂變的 Cyber Luxury 數位地產商場。",
     tipMobile: "用手指滑動可以旋轉大樓，雙指張合可以縮小放大",
     tipDesktop: "用滑鼠拖曳可以旋轉大樓，滾輪可以縮小放大",
   },
   {
     icon: MousePointer,
-    title: "點擊戶別查看詳情",
-    description: "每個發光的方塊是一個企業戶別。點擊它可以看到該戶別的詳細資訊。",
-    tipMobile: "藍色 = 空置中，彩色 = 已進駐，紅色 = 保護中",
-    tipDesktop: "藍色 = 空置中，彩色 = 已進駐，紅色 = 保護中",
+    title: "🖱️ 拖拽探索 3D 樓層",
+    description: "每層樓有 6 個品牌店面。點擊發光的方塊查看該品牌的詳細資訊。",
+    tipMobile: "藍色 = 待認領，彩色 = 已進駐品牌，紅色 = 保護中",
+    tipDesktop: "藍色 = 待認領，彩色 = 已進駐品牌，紅色 = 保護中",
   },
   {
     icon: Palette,
-    title: "自訂你的體驗",
-    description: "右下角的控制面板可以切換背景主題和燈光顏色，打造你的專屬氛圍。",
-    tipMobile: "三種背景：霓虹夜城、雲海日出、深海秘境",
-    tipDesktop: "三種背景：霓虹夜城、雲海日出、深海秘境",
+    title: "🍾 拋接數位漂流瓶",
+    description: "參與漂流瓶互動，獲得專屬優惠與籤詩。每次拋接都是獨特的體驗！",
+    tipMobile: "三種場景氛圍：霓虹夜城、雲海日出、深海秘境",
+    tipDesktop: "三種場景氛圍：霓虹夜城、雲海日出、深海秘境",
   },
   {
     icon: MessageCircle,
-    title: "AI 樓管隨時待命",
-    description: "左下角的 AI 樓管可以回答你的問題，帶你參觀大樓，介紹方案價格。",
-    tipMobile: "試試問：「帶我看 3F 的空置戶」",
-    tipDesktop: "試試問：「帶我看 3F 的空置戶」",
+    title: "🏢 一鍵認領專屬品牌店面",
+    description: "選擇適合你的方案，完成認領後即可擁有專屬樓層、網域與品牌展示空間。",
+    tipMobile: "基礎版免費 / 專業版 $29 / 旗艦版 $99",
+    tipDesktop: "基礎版免費 / 專業版 $29 / 旗艦版 $99",
   },
   {
     icon: HelpCircle,
     title: "需要幫助？",
-    description: "右上角的 FAQ 按鈕有常見問題解答。也可以隨時問 AI 樓管。",
+    description: "左下角的 AI 樓管 24 小時在線，可以回答你的問題、帶你參觀大樓、介紹方案價格。",
     tipMobile: "準備好了嗎？開始探索你的虛擬總部吧！",
     tipDesktop: "準備好了嗎？開始探索你的虛擬總部吧！",
   },
@@ -132,7 +132,7 @@ export default function Onboarding({ onClose }: OnboardingProps) {
               onClick={handleSkip}
               className="flex-1 px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all text-sm sm:text-base"
             >
-              跳過教學
+              先跳過
             </button>
             <button
               onClick={handleNext}
@@ -144,7 +144,7 @@ export default function Onboarding({ onClose }: OnboardingProps) {
                   <ChevronRight size={18} />
                 </>
               ) : (
-                "開始探索"
+                "開始探索 🚀"
               )}
             </button>
           </div>
