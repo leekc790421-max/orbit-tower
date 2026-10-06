@@ -12,31 +12,36 @@ const STEPS = [
     icon: Hexagon,
     title: "歡迎來到 Orbit Tower",
     description: "這是一座 3D 虛擬企業總部大樓。每層樓有 6 個戶別，代表不同的企業空間。",
-    tip: "用滑鼠拖曳可以旋轉大樓，滾輪可以縮小放大",
+    tipMobile: "用手指滑動可以旋轉大樓，雙指張合可以縮小放大",
+    tipDesktop: "用滑鼠拖曳可以旋轉大樓，滾輪可以縮小放大",
   },
   {
     icon: MousePointer,
     title: "點擊戶別查看詳情",
     description: "每個發光的方塊是一個企業戶別。點擊它可以看到該戶別的詳細資訊。",
-    tip: "藍色 = 空置中，彩色 = 已進駐，紅色 = 保護中",
+    tipMobile: "藍色 = 空置中，彩色 = 已進駐，紅色 = 保護中",
+    tipDesktop: "藍色 = 空置中，彩色 = 已進駐，紅色 = 保護中",
   },
   {
     icon: Palette,
     title: "自訂你的體驗",
     description: "右下角的控制面板可以切換背景主題和燈光顏色，打造你的專屬氛圍。",
-    tip: "三種背景：賽博夜城、雲海高山、深海星光",
+    tipMobile: "三種背景：霓虹夜城、雲海日出、深海秘境",
+    tipDesktop: "三種背景：霓虹夜城、雲海日出、深海秘境",
   },
   {
     icon: MessageCircle,
     title: "AI 樓管隨時待命",
     description: "左下角的 AI 樓管可以回答你的問題，帶你參觀大樓，介紹方案價格。",
-    tip: "試試問：「帶我看 3F 的空置戶」",
+    tipMobile: "試試問：「帶我看 3F 的空置戶」",
+    tipDesktop: "試試問：「帶我看 3F 的空置戶」",
   },
   {
     icon: HelpCircle,
     title: "需要幫助？",
     description: "右上角的 FAQ 按鈕有常見問題解答。也可以隨時問 AI 樓管。",
-    tip: "準備好了嗎？開始探索你的虛擬總部吧！",
+    tipMobile: "準備好了嗎？開始探索你的虛擬總部吧！",
+    tipDesktop: "準備好了嗎？開始探索你的虛擬總部吧！",
   },
 ];
 
@@ -62,6 +67,7 @@ export default function Onboarding({ onClose }: OnboardingProps) {
 
   const step = STEPS[currentStep];
   const Icon = step.icon;
+  const tipText = isMobile ? step.tipMobile : step.tipDesktop;
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
@@ -100,7 +106,7 @@ export default function Onboarding({ onClose }: OnboardingProps) {
           {/* 小提示 */}
           <div className="glass-panel rounded-xl p-4 border border-cyan-400/20 bg-cyan-400/5 mb-6">
             <p className="text-xs sm:text-sm text-cyan-300 text-center">
-              💡 {step.tip}
+              💡 {tipText}
             </p>
           </div>
 
