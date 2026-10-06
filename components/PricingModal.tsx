@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X, Copy, Check, Building2, CreditCard, ExternalLink, ChevronRight, Shield } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
 interface PricingModalProps {
   isOpen: boolean;
@@ -19,57 +20,6 @@ interface Plan {
   highlighted?: boolean;
   badge?: string;
 }
-
-const PLANS: Plan[] = [
-  {
-    id: "landing",
-    name: "門戶體驗版",
-    nameEn: "Landing",
-    price: "$35,000",
-    priceNote: "/ 次",
-    features: [
-      "標準六角戶別空間（1F~3F）",
-      "子網域配發 (unit.snt-nexus.tw)",
-      "基礎頻寬與運算配額",
-      "AI 樓管基礎導覽",
-      "Email 技術支援",
-    ],
-  },
-  {
-    id: "growth",
-    name: "成長升級版",
-    nameEn: "Growth",
-    price: "$60,000",
-    priceNote: "/ 次",
-    features: [
-      "優選樓層戶別（4F~5F）",
-      "獨立頂級網域 CNAME 綁定",
-      "進階 AI 運算配額",
-      "24/7 技術支援",
-      "品牌客製化配色",
-      "優先沙盒環境",
-    ],
-    highlighted: true,
-    badge: "最受歡迎",
-  },
-  {
-    id: "scale",
-    name: "企業總部版",
-    nameEn: "Scale",
-    price: "$120,000+",
-    priceNote: "/ 次",
-    mrr: "MRR 維護費 $3,000/月",
-    features: [
-      "頂樓 Penthouse 旗艦空間（6F）",
-      "8K Lab 等級硬體規格",
-      "完整機密沙盒環境",
-      "專屬客戶經理",
-      "無限 AI 運算配額",
-      "SLA 99.9% 保證",
-      "優先新功能體驗",
-    ],
-  },
-];
 
 const BANK_INFO = [
   {
@@ -96,8 +46,60 @@ const PAYONEER_URL =
   "https://link.payoneer.com/Token?t=4D0FBCB1CAEE48E48FEACE39662D6BB7&src=mobile";
 
 export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
+  const { t } = useTranslation();
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  const PLANS: Plan[] = [
+    {
+      id: "landing",
+      name: t("pricing.planLanding"),
+      nameEn: "Landing",
+      price: "$35,000",
+      priceNote: t("pricing.perTime"),
+      features: [
+        t("pricing.landingF1"),
+        t("pricing.landingF2"),
+        t("pricing.landingF3"),
+        t("pricing.landingF4"),
+        t("pricing.landingF5"),
+      ],
+    },
+    {
+      id: "growth",
+      name: t("pricing.planGrowth"),
+      nameEn: "Growth",
+      price: "$60,000",
+      priceNote: t("pricing.perTime"),
+      features: [
+        t("pricing.growthF1"),
+        t("pricing.growthF2"),
+        t("pricing.growthF3"),
+        t("pricing.growthF4"),
+        t("pricing.growthF5"),
+        t("pricing.growthF6"),
+      ],
+      highlighted: true,
+      badge: t("pricing.mostPopular"),
+    },
+    {
+      id: "scale",
+      name: t("pricing.planScale"),
+      nameEn: "Scale",
+      price: "$120,000+",
+      priceNote: t("pricing.perTime"),
+      mrr: t("pricing.scaleMrr"),
+      features: [
+        t("pricing.scaleF1"),
+        t("pricing.scaleF2"),
+        t("pricing.scaleF3"),
+        t("pricing.scaleF4"),
+        t("pricing.scaleF5"),
+        t("pricing.scaleF6"),
+        t("pricing.scaleF7"),
+      ],
+    },
+  ];
 
   const handleCopy = async (text: string, field: string) => {
     try {
@@ -129,10 +131,10 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
         <div className="sticky top-0 z-10 glass-panel border-b border-white/10 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between rounded-t-2xl">
           <div>
             <h2 className="text-sm sm:text-lg font-bold text-white tracking-wider">
-              {selectedPlan ? "金流結帳與對帳資訊" : "選擇進駐方案"}
+              {selectedPlan ? t("pricing.checkout") : t("pricing.title")}
             </h2>
             <p className="text-[9px] sm:text-[10px] text-cyan-400/60 tracking-wider mt-0.5">
-              {selectedPlan ? "PAYMENT & WIRE TRANSFER" : "SELECT YOUR PLAN"}
+              {selectedPlan ? t("pricing.checkoutSub") : t("pricing.subtitle")}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -141,7 +143,7 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                 onClick={() => setSelectedPlan(null)}
                 className="text-[9px] sm:text-[10px] px-2 sm:px-3 py-1.5 rounded-lg border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all"
               >
-                ← 返回
+                {t("pricing.back")}
               </button>
             )}
             <button
@@ -213,7 +215,7 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                         }
                       `}
                     >
-                      選擇方案
+                      {t("pricing.selectPlan")}
                     </button>
                   </div>
                 ))}
@@ -225,9 +227,9 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                   <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                     <CreditCard size={18} className="text-cyan-400 flex-shrink-0" />
                     <div className="min-w-0">
-                      <div className="text-[11px] sm:text-xs font-bold text-white">快速線上支付</div>
+                      <div className="text-[11px] sm:text-xs font-bold text-white">{t("pricing.quickPay")}</div>
                       <div className="text-[9px] sm:text-[10px] text-white/40 truncate">
-                        透過 Payoneer 安全支付通道
+                        {t("pricing.payoneerDesc")}
                       </div>
                     </div>
                   </div>
@@ -251,7 +253,7 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                 <div className="flex items-center justify-between">
                   <div className="min-w-0">
                     <div className="text-[9px] sm:text-[10px] text-cyan-400/60 tracking-wider uppercase">
-                      已選方案
+                      {t("pricing.selectedPlan")}
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-white mt-1 truncate">
                       {PLANS.find((p) => p.id === selectedPlan)?.name} —{" "}
@@ -267,7 +269,7 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
               <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
                 <h3 className="text-[11px] sm:text-xs font-bold text-white/70 tracking-wider flex items-center gap-2">
                   <Building2 size={13} className="text-cyan-400" />
-                  銀行電匯資訊 / Wire Transfer
+                  {t("pricing.wireTransfer")}
                 </h3>
 
                 {BANK_INFO.map((bank, idx) => (
@@ -286,7 +288,7 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
                       {bank.branch && (
                         <InfoRow
-                          label="分行"
+                          label={t("pricing.branch")}
                           value={bank.branch}
                           onCopy={() => handleCopy(bank.branch!, `bank-branch-${idx}`)}
                           copied={copiedField === `bank-branch-${idx}`}
@@ -294,7 +296,7 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                       )}
                       {bank.swift && (
                         <InfoRow
-                          label="SWIFT Code"
+                          label={t("pricing.swiftCode")}
                           value={bank.swift}
                           highlight
                           onCopy={() => handleCopy(bank.swift!, `bank-swift-${idx}`)}
@@ -303,14 +305,14 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                       )}
                       {bank.code && (
                         <InfoRow
-                          label={bank.swift ? "分行解款代號" : "銀行代碼"}
+                          label={bank.swift ? t("pricing.branchCode") : t("pricing.bankCode")}
                           value={bank.code}
                           onCopy={() => handleCopy(bank.code!, `bank-code-${idx}`)}
                           copied={copiedField === `bank-code-${idx}`}
                         />
                       )}
                       <InfoRow
-                        label="帳號"
+                        label={t("pricing.account")}
                         value={bank.account}
                         highlight
                         onCopy={() => handleCopy(bank.account, `bank-account-${idx}`)}
@@ -329,9 +331,9 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                       <CreditCard size={16} className="text-cyan-400" />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-[11px] sm:text-xs font-bold text-white">Payoneer 快速線上支付</div>
+                      <div className="text-[11px] sm:text-xs font-bold text-white">{t("pricing.payoneerQuick")}</div>
                       <div className="text-[9px] sm:text-[10px] text-white/40">
-                        支援信用卡、銀行轉帳等多種支付方式
+                        {t("pricing.payoneerMethods")}
                       </div>
                     </div>
                   </div>
@@ -341,7 +343,7 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold hover:bg-cyan-400/20 transition-all hover:shadow-lg hover:shadow-cyan-400/10 flex-shrink-0"
                   >
-                    前往支付
+                    {t("pricing.goToPay")}
                     <ExternalLink size={12} />
                   </a>
                 </div>
@@ -350,12 +352,12 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
               {/* 注意事項 */}
               <div className="glass-panel rounded-xl p-3 sm:p-4 border border-amber-400/20 bg-amber-400/5">
                 <div className="text-[9px] sm:text-[10px] text-amber-400/80 tracking-wider uppercase font-bold mb-2">
-                  ⚠️ 匯款注意事項
+                  {t("pricing.wireNotice")}
                 </div>
                 <ul className="space-y-1 text-[10px] sm:text-[11px] text-white/60">
-                  <li>• 匯款完成後請保留交易憑證並通知專屬顧問</li>
-                  <li>• 財務人工對帳完成後（1-2 個工作天內）正式開通授權</li>
-                  <li>• 國際電匯請備註「SNT Nexus [方案名稱]」以便快速對帳</li>
+                  <li>• {t("pricing.wireNote1")}</li>
+                  <li>• {t("pricing.wireNote2")}</li>
+                  <li>• {t("pricing.wireNote3")}</li>
                 </ul>
               </div>
             </>
@@ -379,6 +381,7 @@ function InfoRow({
   onCopy: () => void;
   copied: boolean;
 }) {
+  const { t } = useTranslation();
   return (
     <div className="flex items-center justify-between bg-white/[0.03] rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 border border-white/5">
       <div className="min-w-0">
@@ -399,7 +402,7 @@ function InfoRow({
               : "bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20"
           }
         `}
-        title="複製"
+        title={t("pricing.copy")}
       >
         {copied ? (
           <Check size={11} className="text-emerald-400" />

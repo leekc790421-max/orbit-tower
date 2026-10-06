@@ -1,50 +1,43 @@
 "use client";
 
 import { X, Bot, Shield, Zap, CreditCard } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
 interface LegalModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const CLAUSES = [
-  {
-    icon: Bot,
-    title: "AI 運算與生成內容免責",
-    titleEn: "AI Output Disclaimer",
-    color: "cyan",
-    content: `本系統提供之 AI 生成數據、分析與建議僅供企業營運參考，不構成任何法律、金融或醫療之絕對保證。企業應自行評估最終執行決策。
-
-AI-generated data, analysis, and recommendations provided by this system are for business reference only and do not constitute absolute guarantees in legal, financial, or medical matters. Enterprises should independently evaluate final execution decisions.`,
-  },
-  {
-    icon: Shield,
-    title: "獨立沙盒與資料隱私聲明",
-    titleEn: "Sandbox & Privacy Guarantee",
-    color: "emerald",
-    content: `客戶資料均於獨立沙盒（Sandbox）與 AES-256 加密環境中運算，本平台承諾絕不將企業機密資料用於公開模型訓練或出售給第三方。
-
-All customer data is processed within isolated sandbox environments with AES-256 encryption. This platform commits to never using enterprise confidential data for public model training or selling to third parties.`,
-  },
-  {
-    icon: Zap,
-    title: "系統服務等級與 API 降級備援",
-    titleEn: "SLA & Fallback Disclaimer",
-    content: `系統預設具備多模型（Groq/DeepSeek/Claude）降級備援機制。若因上游大模型 API 業者發生不可抗力之全球性中斷，系統將自動切換備援線路，但不承擔因第三方 API 服務中斷所造成之衍生損失。
-
-The system features multi-model (Groq/DeepSeek/Claude) fallback mechanisms by default. In the event of force majeure global outages from upstream LLM API providers, the system will automatically switch to backup routes, but does not assume liability for derivative losses caused by third-party API service interruptions.`,
-  },
-  {
-    icon: CreditCard,
-    title: "匯款對帳與交易條款",
-    titleEn: "Payment & Wire Terms",
-    content: `銀行電匯與 Payoneer 支付完成後，請保留交易憑證並通知專屬顧問。系統將於財務人工對帳完成後（1-2 個工作天內）正式開通授權。
-
-After completing bank wire transfers and Payoneer payments, please retain transaction receipts and notify your dedicated consultant. The system will officially activate authorization after manual financial reconciliation is completed (within 1-2 business days).`,
-  },
-];
-
 export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
+  const { t } = useTranslation();
+
+  const CLAUSES = [
+    {
+      icon: Bot,
+      title: t("legal.clause1Title"),
+      color: "cyan",
+      content: t("legal.clause1Content"),
+    },
+    {
+      icon: Shield,
+      title: t("legal.clause2Title"),
+      color: "emerald",
+      content: t("legal.clause2Content"),
+    },
+    {
+      icon: Zap,
+      title: t("legal.clause3Title"),
+      color: "cyan",
+      content: t("legal.clause3Content"),
+    },
+    {
+      icon: CreditCard,
+      title: t("legal.clause4Title"),
+      color: "cyan",
+      content: t("legal.clause4Content"),
+    },
+  ];
+
   if (!isOpen) return null;
 
   return (
@@ -56,10 +49,10 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
         <div className="sticky top-0 z-10 glass-panel border-b border-white/10 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between rounded-t-2xl">
           <div>
             <h2 className="text-sm sm:text-lg font-bold text-white tracking-wider">
-              免責聲明與服務條款
+              {t("legal.title")}
             </h2>
             <p className="text-[9px] sm:text-[10px] text-cyan-400/60 tracking-wider mt-0.5">
-              TERMS OF SERVICE & DISCLAIMER
+              {t("legal.subtitle")}
             </p>
           </div>
           <button
@@ -74,12 +67,10 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
           {/* 前言 */}
           <div className="glass-panel rounded-xl p-3 sm:p-4 border border-white/10 mb-4 sm:mb-6">
             <p className="text-[10px] sm:text-[11px] text-white/60 leading-relaxed">
-              歡迎使用 SNT 光躍星樞 (SNT Nexus Team) 服務。在使用本平台提供的任何服務之前，請仔細閱讀並理解以下條款與聲明。
-              使用本服務即表示您同意遵守以下所有條款。
+              {t("legal.intro")}
             </p>
             <p className="text-[9px] sm:text-[10px] text-white/40 leading-relaxed mt-2">
-              Welcome to SNT Nexus (Orbit Tower). Please carefully read and understand the following terms and disclaimers before using any services provided by this platform.
-              By using this service, you agree to comply with all the following terms.
+              {t("legal.introEn")}
             </p>
           </div>
 
@@ -114,10 +105,9 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
                   </div>
                   <div>
                     <div className="text-[9px] sm:text-[10px] text-white/30 tracking-wider uppercase">
-                      條款 {idx + 1} / Clause {idx + 1}
+                      {t("legal.clause")} {idx + 1}
                     </div>
                     <h3 className="text-xs sm:text-sm font-bold text-white mt-0.5">{clause.title}</h3>
-                    <div className="text-[8px] sm:text-[9px] text-white/40">{clause.titleEn}</div>
                   </div>
                 </div>
                 <div className="pl-10 sm:pl-12">
@@ -133,11 +123,11 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
           <div className="glass-panel rounded-xl p-3 sm:p-4 border border-cyan-400/20 bg-cyan-400/5 mt-4 sm:mt-6">
             <div className="text-center">
               <div className="text-[9px] sm:text-[10px] text-white/40 tracking-wider uppercase mb-2">
-                最後更新 / Last Updated
+                {t("legal.lastUpdated")}
               </div>
               <div className="text-[11px] sm:text-xs text-cyan-300 font-mono">2026-10-05</div>
               <div className="text-[10px] text-white/40 mt-3">
-                如有任何疑問，請聯繫我們的客服團隊
+                {t("legal.contactUs")}
               </div>
               <div className="text-[10px] text-cyan-400/60 mt-1">
                 support@snt-nexus.tw
@@ -150,7 +140,7 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
             onClick={onClose}
             className="w-full py-2.5 sm:py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 transition-all mt-3 sm:mt-4"
           >
-            我已閱讀並理解以上條款
+            {t("legal.agree")}
           </button>
         </div>
       </div>

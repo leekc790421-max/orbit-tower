@@ -1,6 +1,7 @@
 "use client";
 
 import { X, Info, Hexagon, Globe, Shield, Zap, Users, Building, Sparkles, Bottle, Search } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
 interface AboutModalProps {
   isOpen: boolean;
@@ -8,6 +9,7 @@ interface AboutModalProps {
 }
 
 export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
+  const { t } = useTranslation();
   return (
     <>
       {/* Modal */}
@@ -20,10 +22,10 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
             <div className="sticky top-0 z-10 glass-panel border-b border-white/10 px-4 sm:px-6 py-4 flex items-center justify-between rounded-t-2xl">
               <div>
                 <h2 className="text-lg sm:text-xl font-bold text-white tracking-wider">
-                  關於 SNT 光躍星樞
+                  {t('about.title')}
                 </h2>
                 <p className="text-xs sm:text-sm text-cyan-400/60 tracking-wider mt-1">
-                  Cyber Luxury 數位地產商場
+                  {t('about.subtitle')}
                 </p>
               </div>
               <button
@@ -43,10 +45,10 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-bold text-white mb-2">
-                      什麼是 SNT 光躍星樞？
+                      {t('about.whatTitle')}
                     </h3>
                     <p className="text-sm sm:text-base text-white/70 leading-relaxed">
-                      SNT 光躍星樞 (Orbit Tower) 是一個結合 <span className="text-cyan-300 font-semibold">3D 空間體驗</span>、<span className="text-cyan-300 font-semibold">品牌虛擬展示</span>與<span className="text-cyan-300 font-semibold">動態流量裂變</span>的 Cyber Luxury 數位地產商場。我們用六角晶體摩天樓的形態，打造了一座創新的虛擬企業總部平台，讓品牌可以在這裡「進駐」虛擬空間，建立自己的數位據點。
+                      {t('about.whatDesc')}
                     </p>
                   </div>
                 </div>
@@ -56,23 +58,23 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
               <div className="glass-panel rounded-xl p-5 border border-cyan-400/30 bg-cyan-400/5">
                 <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
                   <Sparkles size={20} className="text-cyan-400" />
-                  三大核心機制
+                  {t('about.coreMech')}
                 </h3>
                 <div className="space-y-4">
                   <CoreMechanism
                     icon={Building}
-                    title="3D 空間展示"
-                    description="高透光晶體大樓與動態樓層排序。每層樓 6 個品牌店面，共 36 個企業空間。選擇適合你的樓層和面向，建立虛擬總部。"
+                    title={t('about.mech1Title')}
+                    description={t('about.mech1Desc')}
                   />
                   <CoreMechanism
                     icon={Bottle}
-                    title="漂流瓶互動 (/drift)"
-                    description="Groq API 毫秒級動態生成籤詩與優惠，提升顧客停留時間。每次拋接都是獨特的體驗，讓品牌與客戶建立更深層的連結。"
+                    title={t('about.mech2Title')}
+                    description={t('about.mech2Desc')}
                   />
                   <CoreMechanism
                     icon={Search}
-                    title="IndexNow 即時搜尋收錄"
-                    description="更新內容 24 小時內快速報備搜尋引擎，建立自動化流量池。讓你的品牌在 Google、Bing 等搜尋引擎中快速被發現。"
+                    title={t('about.mech3Title')}
+                    description={t('about.mech3Desc')}
                   />
                 </div>
               </div>
@@ -81,23 +83,23 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <FeatureCard
                   icon={Globe}
-                  title="網域綁定"
-                  description="支援子網域自動配發，也可以綁定你自己的網域。讓客戶輕鬆找到你。"
+                  title={t('about.featDomain')}
+                  description={t('about.featDomainDesc')}
                 />
                 <FeatureCard
                   icon={Shield}
-                  title="資安保護"
-                  description="獨立沙盒環境、AES-256 加密、多重身份驗證。你的資料絕對安全。"
+                  title={t('about.featSecurity')}
+                  description={t('about.featSecurityDesc')}
                 />
                 <FeatureCard
                   icon={Zap}
-                  title="AI 運算資源"
-                  description="內建 AI 樓管 24 小時服務，提供運算資源和智能分析，幫助你的業務成長。"
+                  title={t('about.featAI')}
+                  description={t('about.featAIDesc')}
                 />
                 <FeatureCard
                   icon={Users}
-                  title="流量裂變"
-                  description="透過漂流瓶互動與 IndexNow 即時收錄，自動建立流量池，讓品牌能見度指數成長。"
+                  title={t('about.featTraffic')}
+                  description={t('about.featTrafficDesc')}
                 />
               </div>
 
@@ -106,39 +108,39 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 <div className="flex items-center gap-3 mb-4">
                   <Users size={20} className="text-cyan-400" />
                   <h3 className="text-base sm:text-lg font-bold text-white">
-                    適合誰使用？
+                    {t('about.whoTitle')}
                   </h3>
                 </div>
                 <div className="space-y-3 text-sm sm:text-base text-white/70">
-                  <p>• <span className="text-white font-semibold">新創團隊</span> — 需要低成本的數位據點，快速建立品牌形象</p>
-                  <p>• <span className="text-white font-semibold">自由工作者</span> — 想要專業的企業形象，接案更有說服力</p>
-                  <p>• <span className="text-white font-semibold">中小企業</span> — 擴展數位足跡，增加線上能見度</p>
-                  <p>• <span className="text-white font-semibold">大型企業</span> — 建立創新形象，展示科技實力</p>
+                  <p>• <span className="text-white font-semibold">{t('about.whoStartup')}</span> — {t('about.whoStartupDesc')}</p>
+                  <p>• <span className="text-white font-semibold">{t('about.whoFreelance')}</span> — {t('about.whoFreelanceDesc')}</p>
+                  <p>• <span className="text-white font-semibold">{t('about.whoSME')}</span> — {t('about.whoSMEDesc')}</p>
+                  <p>• <span className="text-white font-semibold">{t('about.whoEnterprise')}</span> — {t('about.whoEnterpriseDesc')}</p>
                 </div>
               </div>
 
               {/* 如何開始 */}
               <div className="glass-panel rounded-xl p-5 border border-cyan-400/30 bg-cyan-400/5">
                 <h3 className="text-base sm:text-lg font-bold text-white mb-4">
-                  如何開始？
+                  {t('about.howTitle')}
                 </h3>
                 <div className="space-y-3">
-                  <Step number={1} text="點擊大樓中的空置戶別（藍色方塊），查看詳細資訊" />
-                  <Step number={2} text="選擇適合你的方案（基礎免費 / 專業 $29 / 旗艦 $99）" />
-                  <Step number={3} text="完成註冊和付款，系統自動配發網域與樓層" />
-                  <Step number={4} text="開始建立你的虛擬企業總部！" />
+                  <Step number={1} text={t('about.how1')} />
+                  <Step number={2} text={t('about.how2')} />
+                  <Step number={3} text={t('about.how3')} />
+                  <Step number={4} text={t('about.how4')} />
                 </div>
               </div>
 
               {/* 聯絡資訊 */}
               <div className="glass-panel rounded-xl p-5 border border-white/10">
                 <h3 className="text-base sm:text-lg font-bold text-white mb-3">
-                  需要協助？
+                  {t('about.helpTitle')}
                 </h3>
                 <div className="space-y-2 text-sm text-white/70">
-                  <p>📧 Email：support@snt-nexus.tw</p>
-                  <p>💬 AI 樓管：點擊左下角對話按鈕，24 小時在線</p>
-                  <p>❓ 常見問題：點擊右上角 FAQ 按鈕</p>
+                  <p>{t('about.helpEmail')}</p>
+                  <p>{t('about.helpAI')}</p>
+                  <p>{t('about.helpFAQ')}</p>
                 </div>
               </div>
             </div>

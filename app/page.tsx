@@ -16,9 +16,11 @@ import FAQSection from "@/components/FAQSection";
 import Onboarding from "@/components/Onboarding";
 import AboutModal from "@/components/AboutModal";
 import ReadmeModal from "@/components/ReadmeModal";
+import { I18nProvider, useTranslation } from "@/lib/i18n";
 import type { Theme, LightColor, Unit } from "@/data/units";
 
-export default function Home() {
+function HomeInner() {
+  const { t } = useTranslation();
   const [theme, setTheme] = useState<Theme>("cyber");
   const [lightColor, setLightColor] = useState<LightColor>("cyber-blue");
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
@@ -101,7 +103,7 @@ export default function Home() {
             onClick={() => setLegalOpen(true)}
             className="text-[7px] sm:text-[9px] text-white/20 hover:text-white/40 tracking-wider transition-colors px-2 sm:px-3 py-0.5 sm:py-1"
           >
-            免責聲明與服務條款 / Terms & Disclaimer
+            {t("security.disclaimer")}
           </button>
         </div>
       </div>
@@ -125,5 +127,13 @@ export default function Home() {
       <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />
       <LegalModal isOpen={legalOpen} onClose={() => setLegalOpen(false)} />
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <I18nProvider>
+      <HomeInner />
+    </I18nProvider>
   );
 }

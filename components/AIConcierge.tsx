@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { MessageCircle, X, Send, Bot, User } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
 interface Message {
   id: string;
@@ -9,29 +10,18 @@ interface Message {
   content: string;
 }
 
-const INITIAL_MESSAGES: Message[] = [
-  {
-    id: "1",
-    role: "assistant",
-    content:
-      "您好！我是 SNT 光躍星樞的 AI 樓管。\n\n歡迎來到 3D Cyber Luxury 自動化流量商場。目前我們有 6 層樓、每層 6 戶的六角晶體空間可供進駐。\n\n需要我帶您參觀哪些樓層？或者您對哪個業態分類有興趣？",
-  },
-];
-
-const SUGGESTIONS = [
-  "帶我看 3F 的空置戶",
-  "F 面機密沙盒是什麼？",
-  "B2B 方案有哪些？",
-  "如何綁定自己的網域？",
-];
-
 export default function AIConcierge() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
+  const [messages, setMessages] = useState<Message[]>([
+    { id: "1", role: "assistant", content: t("ai.welcome") },
+  ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const idCounter = useRef(0);
+
+  const suggestions = [t("ai.sug1"), t("ai.sug2"), t("ai.sug3"), t("ai.sug4")];
 
   const handleSend = async (text?: string) => {
     const content = text || input;
@@ -47,7 +37,7 @@ export default function AIConcierge() {
     setInput("");
     setIsTyping(true);
 
-    const delay = 800 + (idCounter.current % 10) * 120; // deterministic delay
+    const delay = 800 + (idCounter.current % 10) * 120;
     setTimeout(() => {
       const response = generateResponse(content.trim());
       idCounter.current += 1;
@@ -63,24 +53,23 @@ export default function AIConcierge() {
 
   const generateResponse = (input: string): string => {
     const lower = input.toLowerCase();
-    if (lower.includes("3f") || lower.includes("3樓") || lower.includes("三樓")) {
-      return "好的！讓我為您聚焦到 3F 商戶營運層。\n\n目前 3F 的戶別狀態：\n• 301 (A面 科技新創) — 空置待租\n• 302 (B面 個人品牌) — 空置待租\n• 303 (C面 自動金流) — 空置待租\n\n要幫您預約 301 戶的實地參觀嗎？";
+    if (lower.includes("3f") || lower.includes("3") || lower.includes("三")) {
+      return t("ai.resp3f");
     }
-    if (lower.includes("f面") || lower.includes("機密") || lower.includes("沙盒")) {
-      return "F 面是我們的「機密沙盒實案」專區，專為需要高度資安防護的企業設計。\n\n特色：\n🔒 獨立隔離運算環境\n🛡️ 紅色保護罩視覺標識\n🔐 需通過多重身份驗證\n\n目前 306 戶由 Vault-X 進駐，進行機密沙盒運算。";
+    if (lower.includes("f") || lower.includes("sandbox") || lower.includes("沙盒") || lower.includes("サンド")) {
+      return t("ai.respSandbox");
     }
-    if (lower.includes("方案") || lower.includes("價格") || lower.includes("b2b")) {
-      return "我們提供三種 B2B 進駐方案：\n\n💎 基礎方案 — NT$35,000/月\n• 標準六角戶別空間\n• 子網域配發 (unit.snt-nexus.tw)\n• 基礎頻寬與運算配額\n\n🏆 專業方案 — NT$60,000/月\n• 優選樓層戶別\n• 獨立頂級網域 CNAME 綁定\n• 進階 AI 運算配額\n• 24/7 技術支援\n\n👑 旗艦方案 — NT$120,000/月\n• 頂樓 Penthouse 空間\n• 8K Lab 等級硬體\n• 完整沙盒環境\n• 專屬客戶經理";
+    if (lower.includes("plan") || lower.includes("pricing") || lower.includes("b2b") || lower.includes("方案") || lower.includes("プラン")) {
+      return t("ai.respPlan");
     }
-    if (lower.includes("網域") || lower.includes("domain") || lower.includes("cname")) {
-      return "網域綁定非常簡單！\n\n1️⃣ 標準子網域：系統自動配發\n   例如：unit103.snt-nexus.tw\n\n2️⃣ 獨立頂級網域：CNAME 無痛綁定\n   支援將您的 www.clientbrand.com 對映至本大樓戶別。\n\n3️⃣ DNS 設定：後台一鍵完成\n   無需技術背景，AI 樓管引導設定。\n\n需要我協助您進行網域規劃嗎？";
+    if (lower.includes("domain") || lower.includes("cname") || lower.includes("網域") || lower.includes("ドメイン")) {
+      return t("ai.respDomain");
     }
-    return "感謝您的詢問！作為 SNT 光躍星樞的 AI 樓管，我可以為您提供：\n\n🏢 樓層導覽與戶別介紹\n📋 B2B 方案說明\n🌐 網域綁定教學\n🔐 機密沙盒環境說明\n\n請告訴我您感興趣的方向，我會為您詳細介紹！";
+    return t("ai.respDefault");
   };
 
   return (
     <>
-      {/* 對話按鈕 */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
@@ -91,18 +80,16 @@ export default function AIConcierge() {
         </button>
       )}
 
-      {/* 對話框 */}
       {isOpen && (
         <div className="fixed bottom-12 sm:bottom-6 left-2 sm:left-6 right-2 sm:right-auto z-50 sm:w-[360px] h-[60vh] sm:h-[520px] max-h-[520px] glass-panel rounded-2xl border border-cyan-400/20 flex flex-col shadow-2xl shadow-cyan-400/10">
-          {/* 標題列 */}
           <div className="flex items-center justify-between p-3 sm:p-4 border-b border-white/10">
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center">
                 <Bot size={14} className="text-cyan-400" />
               </div>
               <div>
-                <div className="text-[11px] sm:text-xs font-bold text-white tracking-wider">AI 樓管</div>
-                <div className="text-[8px] sm:text-[9px] text-cyan-400/60">Orbit Building Agent</div>
+                <div className="text-[11px] sm:text-xs font-bold text-white tracking-wider">{t("ai.title")}</div>
+                <div className="text-[8px] sm:text-[9px] text-cyan-400/60">{t("ai.subtitle")}</div>
               </div>
             </div>
             <button
@@ -113,7 +100,6 @@ export default function AIConcierge() {
             </button>
           </div>
 
-          {/* 訊息區 */}
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3">
             {messages.map((msg) => (
               <div
@@ -160,10 +146,9 @@ export default function AIConcierge() {
             )}
           </div>
 
-          {/* 建議選項 */}
           {messages.length <= 2 && (
             <div className="px-3 sm:px-4 pb-2 flex flex-wrap gap-1.5">
-              {SUGGESTIONS.map((s) => (
+              {suggestions.map((s) => (
                 <button
                   key={s}
                   onClick={() => handleSend(s)}
@@ -175,7 +160,6 @@ export default function AIConcierge() {
             </div>
           )}
 
-          {/* 輸入區 */}
           <div className="p-2 sm:p-3 border-t border-white/10">
             <div className="flex gap-2">
               <input
@@ -183,7 +167,7 @@ export default function AIConcierge() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                placeholder="輸入訊息..."
+                placeholder={t("ai.placeholder")}
                 className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-[11px] sm:text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-400/40 transition-colors"
               />
               <button

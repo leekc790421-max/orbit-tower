@@ -1,37 +1,37 @@
 "use client";
 
 import { Shield, Lock, RefreshCw } from "lucide-react";
-
-const SECURITY_ITEMS = [
-  {
-    icon: Shield,
-    label: "安全防護",
-    labelFull: "安全防護系統",
-    status: "運作中",
-    statusEn: "Active",
-  },
-  {
-    icon: Lock,
-    label: "資料加密",
-    labelFull: "資料加密",
-    status: "AES-256",
-    statusEn: "Encrypting",
-  },
-  {
-    icon: RefreshCw,
-    label: "系統更新",
-    labelFull: "系統版本",
-    status: "最新",
-    statusEn: "Up to date",
-  },
-];
+import { useTranslation } from "@/lib/i18n";
 
 export default function SecurityFooter() {
+  const { t } = useTranslation();
+
+  const items = [
+    {
+      icon: Shield,
+      label: t("security.protection"),
+      labelFull: t("security.protectionFull"),
+      status: t("security.active"),
+    },
+    {
+      icon: Lock,
+      label: t("security.encryption"),
+      labelFull: t("security.encryptionFull"),
+      status: t("security.encrypting"),
+    },
+    {
+      icon: RefreshCw,
+      label: t("security.sysUpdate"),
+      labelFull: t("security.sysUpdateFull"),
+      status: t("security.upToDate"),
+    },
+  ];
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-30 pointer-events-none">
       <div className="glass-panel border-t border-white/5">
         <div className="flex items-center justify-center gap-2 sm:gap-6 py-1.5 sm:py-2 px-2 sm:px-4 flex-wrap">
-          {SECURITY_ITEMS.map((item, idx) => {
+          {items.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div key={idx} className="flex items-center gap-1 sm:gap-1.5">

@@ -3,6 +3,8 @@
 import { LogIn, Menu, X, Share2, Info, BookOpen } from "lucide-react";
 import { useState } from "react";
 import type { Theme } from "@/data/units";
+import { useTranslation } from "@/lib/i18n";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 interface HeaderProps {
   theme?: Theme;
@@ -14,15 +16,15 @@ interface HeaderProps {
 }
 
 export default function Header({ theme = "cyber", onLoginClick, onPricingClick, onLegalClick, onAboutClick, onReadmeClick }: HeaderProps) {
+  const { t } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // 根據主題選擇 logo
   const logoSrc = theme === "cloud" ? "/logo-light.jpg" : "/logo-dark.jpg";
 
   const handleShare = async () => {
     const shareData = {
-      title: "SNT 光躍星樞 | 3D Cyber Luxury 專屬空間地產與自動化流量商場",
-      text: "SNT 光躍星樞 (Orbit Tower) 結合 3D 空間展示、/drift 漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
+      title: t("brand.name") + " | " + t("brand.tagline"),
+      text: t("brand.name") + " (Orbit Tower) — " + t("brand.tagline"),
       url: window.location.href,
     };
     if (navigator.share) {
@@ -34,7 +36,7 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
     } else {
       try {
         await navigator.clipboard.writeText(window.location.href);
-        alert("連結已複製到剪貼簿！");
+        alert(t("nav.copied"));
       } catch {
         // fallback failed
       }
@@ -51,17 +53,17 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
               <div className="relative flex-shrink-0">
                 <img 
                   src={logoSrc} 
-                  alt="SNT 光躍星樞" 
+                  alt={t("brand.name")} 
                   className="w-8 h-8 sm:w-10 sm:h-10 object-contain rounded-full"
                 />
               </div>
               <div className="min-w-0">
                 <h1 className="text-sm sm:text-base font-bold tracking-[0.15em] sm:tracking-[0.3em] text-white uppercase neon-text truncate">
-                  SNT <span className="text-cyan-400">|</span> 光躍星樞
+                  SNT <span className="text-cyan-400">|</span> {t("brand.nameShort")}
                 </h1>
                 <p className="text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.2em] text-cyan-400/60 uppercase truncate">
-                  <span className="hidden sm:inline">ORBIT TOWER · 3D SAAS NEXUS</span>
-                  <span className="sm:hidden">3D SAAS NEXUS</span>
+                  <span className="hidden sm:inline">ORBIT TOWER · {t("brand.taglineShort")}</span>
+                  <span className="sm:hidden">{t("brand.taglineShort")}</span>
                 </p>
               </div>
             </div>
@@ -73,51 +75,53 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
                 className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
                 <Info size={13} />
-                關於
+                {t("nav.about")}
               </button>
               <button
                 onClick={onReadmeClick}
                 className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
                 <BookOpen size={13} />
-                系統說明
+                {t("nav.readme")}
               </button>
               <button
                 onClick={handleShare}
                 className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
                 <Share2 size={13} />
-                分享
+                {t("nav.share")}
               </button>
               <button
                 onClick={onPricingClick}
                 className="text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
-                方案價格
+                {t("nav.pricing")}
               </button>
               <button
                 onClick={onLegalClick}
                 className="text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
-                使用條款
+                {t("nav.terms")}
               </button>
+              <LanguageSwitcher />
               <button
                 onClick={onLoginClick}
                 className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 transition-all tracking-wider font-bold"
               >
                 <LogIn size={13} />
-                登入
+                {t("nav.login")}
               </button>
               <div className="flex items-center gap-1.5 pl-2 border-l border-white/10">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-[10px] text-emerald-400/80 tracking-wider uppercase">
-                  Online
+                  {t("nav.online")}
                 </span>
               </div>
             </div>
 
             {/* 手機漢堡選單 */}
             <div className="flex sm:hidden items-center gap-2">
+              <LanguageSwitcher />
               <button
                 onClick={handleShare}
                 className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center hover:border-cyan-400/30 transition-all"
@@ -148,7 +152,7 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
                 className="w-full flex items-center gap-2 text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
               >
                 <Info size={15} />
-                關於 SNT 光躍星樞
+                {t("nav.aboutFull")}
               </button>
               <button
                 onClick={() => {
@@ -158,7 +162,7 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
                 className="w-full flex items-center gap-2 text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
               >
                 <BookOpen size={15} />
-                系統說明 / README
+                {t("nav.readmeFull")}
               </button>
               <button
                 onClick={() => {
@@ -167,7 +171,7 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
                 }}
                 className="w-full text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
               >
-                方案價格
+                {t("nav.pricing")}
               </button>
               <button
                 onClick={() => {
@@ -176,7 +180,7 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
                 }}
                 className="w-full text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
               >
-                使用條款
+                {t("nav.terms")}
               </button>
               <button
                 onClick={() => {
@@ -186,12 +190,12 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
                 className="w-full flex items-center justify-center gap-2 text-sm px-4 py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 font-bold"
               >
                 <LogIn size={16} />
-                登入
+                {t("nav.login")}
               </button>
               <div className="flex items-center justify-center gap-2 pt-2">
                 <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-xs text-emerald-400/80 tracking-wider uppercase">
-                  系統線上
+                  {t("nav.online")}
                 </span>
               </div>
             </div>

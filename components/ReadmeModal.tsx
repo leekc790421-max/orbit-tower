@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X, BookOpen, Building, Bottle, Search, Code, Database, Cpu, Globe } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
 interface ReadmeModalProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface ReadmeModalProps {
 }
 
 export default function ReadmeModal({ isOpen, onClose }: ReadmeModalProps) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<"overview" | "tech" | "api">("overview");
 
   return (
@@ -23,10 +25,10 @@ export default function ReadmeModal({ isOpen, onClose }: ReadmeModalProps) {
             <div className="sticky top-0 z-10 glass-panel border-b border-white/10 px-4 sm:px-6 py-4 flex items-center justify-between rounded-t-2xl">
               <div>
                 <h2 className="text-lg sm:text-xl font-bold text-white tracking-wider">
-                  系統說明 / README
+                  {t("readme.title")}
                 </h2>
                 <p className="text-xs sm:text-sm text-cyan-400/60 tracking-wider mt-1">
-                  SNT 光躍星樞 技術架構與核心機制
+                  {t("readme.subtitle")}
                 </p>
               </div>
               <button
@@ -43,19 +45,19 @@ export default function ReadmeModal({ isOpen, onClose }: ReadmeModalProps) {
                 active={activeTab === "overview"}
                 onClick={() => setActiveTab("overview")}
                 icon={BookOpen}
-                label="系統概覽"
+                label={t("readme.tabOverview")}
               />
               <TabButton
                 active={activeTab === "tech"}
                 onClick={() => setActiveTab("tech")}
                 icon={Code}
-                label="技術架構"
+                label={t("readme.tabTech")}
               />
               <TabButton
                 active={activeTab === "api"}
                 onClick={() => setActiveTab("api")}
                 icon={Database}
-                label="API & 資料"
+                label={t("readme.tabApi")}
               />
             </div>
 
@@ -88,23 +90,24 @@ function TabButton({ active, onClick, icon: Icon, label }: { active: boolean; on
 }
 
 function OverviewContent() {
+  const { t } = useTranslation();
   return (
     <div className="space-y-6">
       {/* 三大核心機制 */}
       <div className="glass-panel rounded-xl p-5 border border-white/10">
         <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
           <Building size={20} className="text-cyan-400" />
-          1. 3D 空間展示
+          {t("readme.overviewTitle1")}
         </h3>
         <div className="space-y-3 text-sm sm:text-base text-white/70">
           <p>
-            SNT 光躍星樞採用 <span className="text-cyan-300 font-semibold">Three.js + React Three Fiber</span> 打造高透光晶體大樓，結合動態樓層排序與即時光照渲染。
+            {t("readme.overviewDesc1")}
           </p>
           <ul className="space-y-2 ml-4">
-            <li>• <span className="text-white font-medium">六角晶體架構</span>：每層樓 6 個品牌店面，共 36 個企業空間</li>
-            <li>• <span className="text-white font-medium">MeshPhysicalMaterial</span>：高透光玻璃材質 (transmission: 0.9)，打造極致質感</li>
-            <li>• <span className="text-white font-medium">Bloom 後處理</span>：霓虹極光光效，強化 Cyber Luxury 視覺體驗</li>
-            <li>• <span className="text-white font-medium">動態樓層排序</span>：根據品牌進駐狀態自動調整樓層配置</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov1Item1")}</span>：{t("readme.ov1Item1Desc")}</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov1Item2")}</span>：{t("readme.ov1Item2Desc")}</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov1Item3")}</span>：{t("readme.ov1Item3Desc")}</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov1Item4")}</span>：{t("readme.ov1Item4Desc")}</li>
           </ul>
         </div>
       </div>
@@ -112,17 +115,17 @@ function OverviewContent() {
       <div className="glass-panel rounded-xl p-5 border border-white/10">
         <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
           <Bottle size={20} className="text-cyan-400" />
-          2. 漂流瓶互動 (/drift)
+          {t("readme.overviewTitle2")}
         </h3>
         <div className="space-y-3 text-sm sm:text-base text-white/70">
           <p>
-            結合 <span className="text-cyan-300 font-semibold">Groq API</span> 毫秒級動態生成籤詩與專屬優惠，提升顧客停留時間與品牌互動深度。
+            {t("readme.overviewDesc2")}
           </p>
           <ul className="space-y-2 ml-4">
-            <li>• <span className="text-white font-medium">即時生成</span>：Groq API 毫秒級回應，流暢無延遲</li>
-            <li>• <span className="text-white font-medium">動態籤詩</span>：結合品牌特色與用戶互動，生成獨特內容</li>
-            <li>• <span className="text-white font-medium">專屬優惠</span>：每次拋接都可獲得品牌折價券或限量優惠</li>
-            <li>• <span className="text-white font-medium">流量裂變</span>：鼓勵用戶分享，建立病毒式傳播效應</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov2Item1")}</span>：{t("readme.ov2Item1Desc")}</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov2Item2")}</span>：{t("readme.ov2Item2Desc")}</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov2Item3")}</span>：{t("readme.ov2Item3Desc")}</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov2Item4")}</span>：{t("readme.ov2Item4Desc")}</li>
           </ul>
         </div>
       </div>
@@ -130,17 +133,17 @@ function OverviewContent() {
       <div className="glass-panel rounded-xl p-5 border border-white/10">
         <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
           <Search size={20} className="text-cyan-400" />
-          3. IndexNow 即時搜尋收錄
+          {t("readme.overviewTitle3")}
         </h3>
         <div className="space-y-3 text-sm sm:text-base text-white/70">
           <p>
-            更新內容 <span className="text-cyan-300 font-semibold">24 小時內快速報備搜尋引擎</span>，建立自動化流量池，讓品牌在 Google、Bing 等搜尋引擎中快速被發現。
+            {t("readme.overviewDesc3")}
           </p>
           <ul className="space-y-2 ml-4">
-            <li>• <span className="text-white font-medium">即時推送</span>：內容更新後自動通知搜尋引擎，無需等待爬蟲</li>
-            <li>• <span className="text-white font-medium">多引擎支援</span>：同時推送至 Google、Bing、Yandex 等主要搜尋引擎</li>
-            <li>• <span className="text-white font-medium">自動化流程</span>：結合 Supabase Webhook，觸發自動收錄機制</li>
-            <li>• <span className="text-white font-medium">SEO 最佳化</span>：自動生成 Schema Markup、Open Graph、Twitter Card</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov3Item1")}</span>：{t("readme.ov3Item1Desc")}</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov3Item2")}</span>：{t("readme.ov3Item2Desc")}</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov3Item3")}</span>：{t("readme.ov3Item3Desc")}</li>
+            <li>• <span className="text-white font-medium">{t("readme.ov3Item4")}</span>：{t("readme.ov3Item4Desc")}</li>
           </ul>
         </div>
       </div>
@@ -149,12 +152,13 @@ function OverviewContent() {
 }
 
 function TechContent() {
+  const { t } = useTranslation();
   return (
     <div className="space-y-6">
       <div className="glass-panel rounded-xl p-5 border border-white/10">
         <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
           <Cpu size={20} className="text-cyan-400" />
-          前端技術棧
+          {t("readme.techTitle1")}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <TechCard title="Next.js 16" description="React Server Components + App Router" />
@@ -167,7 +171,7 @@ function TechContent() {
       <div className="glass-panel rounded-xl p-5 border border-white/10">
         <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
           <Database size={20} className="text-cyan-400" />
-          後端 & 資料庫
+          {t("readme.techTitle2")}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <TechCard title="Supabase" description="PostgreSQL + Realtime + Auth" />
@@ -180,7 +184,7 @@ function TechContent() {
       <div className="glass-panel rounded-xl p-5 border border-white/10">
         <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
           <Globe size={20} className="text-cyan-400" />
-          部署 & 監控
+          {t("readme.techTitle3")}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <TechCard title="Vercel" description="自動部署 + Preview Environments" />
@@ -192,7 +196,7 @@ function TechContent() {
 
       <div className="glass-panel rounded-xl p-5 border border-cyan-400/30 bg-cyan-400/5">
         <h3 className="text-base sm:text-lg font-bold text-white mb-3">
-          系統架構圖
+          {t("readme.archTitle")}
         </h3>
         <pre className="text-xs sm:text-sm text-cyan-300 overflow-x-auto">
 {`┌─────────────────────────────────────────────────────────────┐
@@ -232,16 +236,17 @@ function TechContent() {
 }
 
 function APIContent() {
+  const { t } = useTranslation();
   return (
     <div className="space-y-6">
       <div className="glass-panel rounded-xl p-5 border border-white/10">
         <h3 className="text-base sm:text-lg font-bold text-white mb-4">
-          資料庫結構 (Supabase)
+          {t("readme.apiTitle1")}
         </h3>
         <div className="space-y-4">
           <APICard
-            title="stores 資料表"
-            description="品牌店面資訊"
+            title={t("readme.apiStoresTable")}
+            description={t("readme.apiStoresDesc")}
             fields={[
               "id: uuid (PK)",
               "floor: int (樓層)",
@@ -255,8 +260,8 @@ function APIContent() {
             ]}
           />
           <APICard
-            title="payment_audit_logs 資料表"
-            description="交易與實名審核紀錄"
+            title={t("readme.apiPaymentTable")}
+            description={t("readme.apiPaymentDesc")}
             fields={[
               "id: uuid (PK)",
               "store_id: uuid (FK → stores)",
@@ -272,53 +277,53 @@ function APIContent() {
 
       <div className="glass-panel rounded-xl p-5 border border-white/10">
         <h3 className="text-base sm:text-lg font-bold text-white mb-4">
-          API 端點
+          {t("readme.apiTitle2")}
         </h3>
         <div className="space-y-4">
           <EndpointCard
             method="POST"
             path="/api/checkout"
-            description="建立結帳訂單 (Stripe / 電匯 / Payoneer)"
+            description={t("readme.apiCheckout")}
           />
           <EndpointCard
             method="POST"
             path="/api/kyc/verify"
-            description="提交實名驗證 (域名 / 企業證件)"
+            description={t("readme.apiKyc")}
           />
           <EndpointCard
             method="POST"
             path="/api/drift/generate"
-            description="Groq API 生成漂流瓶籤詩與優惠"
+            description={t("readme.apiDrift")}
           />
           <EndpointCard
             method="POST"
             path="/api/indexnow/submit"
-            description="推送 URL 至搜尋引擎"
+            description={t("readme.apiIndexNow")}
           />
           <EndpointCard
             method="GET"
             path="/api/stores/:id"
-            description="取得品牌店面詳細資訊"
+            description={t("readme.apiStoresGet")}
           />
         </div>
       </div>
 
       <div className="glass-panel rounded-xl p-5 border border-cyan-400/30 bg-cyan-400/5">
         <h3 className="text-base sm:text-lg font-bold text-white mb-3">
-          金流通道
+          {t("readme.apiTitle3")}
         </h3>
         <div className="space-y-3 text-sm text-white/70">
           <p>
-            <span className="text-cyan-300 font-semibold">通道 A (國內台幣)</span>：樂天國際商業銀行 — 用戶轉帳後輸入後五碼 + 上傳截圖
+            <span className="text-cyan-300 font-semibold">{t("readme.channelA")}</span>：{t("readme.channelADesc")}
           </p>
           <p>
-            <span className="text-cyan-300 font-semibold">通道 B (海外電匯)</span>：臺灣銀行松山分行 — 上傳 SWIFT 水單
+            <span className="text-cyan-300 font-semibold">{t("readme.channelB")}</span>：{t("readme.channelBDesc")}
           </p>
           <p>
-            <span className="text-cyan-300 font-semibold">通道 C (美金快速支付)</span>：Payoneer — 點擊跳轉專屬 Token 連結 + 輸入交易號
+            <span className="text-cyan-300 font-semibold">{t("readme.channelC")}</span>：{t("readme.channelCDesc")}
           </p>
           <p>
-            <span className="text-cyan-300 font-semibold">通道 D (線上刷卡)</span>：Stripe — 预留接口，未來啟用
+            <span className="text-cyan-300 font-semibold">{t("readme.channelD")}</span>：{t("readme.channelDDesc")}
           </p>
         </div>
       </div>

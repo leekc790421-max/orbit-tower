@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X, Mail, Lock, User, Eye, EyeOff, ArrowLeft, Shield, Check } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -11,6 +12,7 @@ interface AuthModalProps {
 type AuthView = "login" | "register" | "forgot" | "otp";
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
+  const { t } = useTranslation();
   const [view, setView] = useState<AuthView>("login");
   const [showPassword, setShowPassword] = useState(false);
   const [agreed, setAgreed] = useState(false);
@@ -69,16 +71,16 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             )}
             <div>
               <h2 className="text-sm sm:text-base font-bold text-white tracking-wider">
-                {view === "login" && "登入 / Login"}
-                {view === "register" && "註冊 / Register"}
-                {view === "forgot" && "忘記密碼 / Reset"}
-                {view === "otp" && "驗證碼 / OTP"}
+                {view === "login" && t("auth.login")}
+                {view === "register" && t("auth.register")}
+                {view === "forgot" && t("auth.forgot")}
+                {view === "otp" && t("auth.otp")}
               </h2>
               <p className="text-[8px] sm:text-[9px] text-cyan-400/60 tracking-wider mt-0.5">
-                {view === "login" && "SNT NEXUS ACCESS PORTAL"}
-                {view === "register" && "CREATE YOUR ACCOUNT"}
-                {view === "forgot" && "RESET YOUR PASSWORD"}
-                {view === "otp" && "ENTER VERIFICATION CODE"}
+                {view === "login" && t("auth.loginSub")}
+                {view === "register" && t("auth.registerSub")}
+                {view === "forgot" && t("auth.forgotSub")}
+                {view === "otp" && t("auth.otpSub")}
               </p>
             </div>
           </div>
@@ -96,8 +98,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 rounded-full bg-emerald-400/20 border border-emerald-400/40 flex items-center justify-center">
                 <Check size={28} className="text-emerald-400" />
               </div>
-              <div className="text-sm font-bold text-emerald-400">登入成功</div>
-              <div className="text-[10px] text-white/40 mt-1">歡迎回到 SNT 光躍星樞</div>
+              <div className="text-sm font-bold text-emerald-400">{t("auth.loginSuccess")}</div>
+              <div className="text-[10px] text-white/40 mt-1">{t("auth.welcomeBack")}</div>
             </div>
           ) : view === "login" ? (
             <form onSubmit={handleLogin} className="space-y-3 sm:space-y-4">
@@ -118,7 +120,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               <div>
                 <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
-                  密碼 / Password
+                  {t("auth.password")}
                 </label>
                 <div className="relative">
                   <Lock size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
@@ -144,14 +146,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     type="checkbox"
                     className="w-3.5 h-3.5 rounded border-white/20 bg-white/5 text-cyan-400 focus:ring-0 focus:ring-offset-0"
                   />
-                  <span className="text-[10px] text-white/50">記住我</span>
+                  <span className="text-[10px] text-white/50">{t("auth.rememberMe")}</span>
                 </label>
                 <button
                   type="button"
                   onClick={() => setView("forgot")}
                   className="text-[10px] text-cyan-400/70 hover:text-cyan-400 transition-colors"
                 >
-                  忘記密碼？
+                  {t("auth.forgotPassword")}
                 </button>
               </div>
 
@@ -160,7 +162,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 disabled={loading}
                 className="w-full py-2.5 sm:py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 disabled:opacity-50 transition-all"
               >
-                {loading ? "驗證中..." : "登入"}
+                {loading ? t("auth.verifying") : t("auth.login")}
               </button>
 
               <div className="relative py-2">
@@ -168,7 +170,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   <div className="w-full border-t border-white/10" />
                 </div>
                 <div className="relative flex justify-center text-[10px]">
-                  <span className="px-3 bg-transparent text-white/30">或</span>
+                  <span className="px-3 bg-transparent text-white/30">{t("auth.orDivider")}</span>
                 </div>
               </div>
 
@@ -176,17 +178,17 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 type="button"
                 className="w-full py-2 sm:py-2.5 rounded-lg border border-white/10 text-white/50 text-[11px] sm:text-xs hover:bg-white/5 hover:text-white/70 transition-all"
               >
-                OTP 快速驗證（無密碼登入）
+                {t("auth.otpQuickLogin")}
               </button>
 
               <div className="text-center pt-2">
-                <span className="text-[10px] text-white/40">還沒有帳號？</span>
+                <span className="text-[10px] text-white/40">{t("auth.noAccount")}</span>
                 <button
                   type="button"
                   onClick={() => setView("register")}
                   className="text-[10px] text-cyan-400/70 hover:text-cyan-400 ml-1 transition-colors"
                 >
-                  立即註冊
+                  {t("auth.registerNow")}
                 </button>
               </div>
             </form>
@@ -194,14 +196,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <form onSubmit={handleRegister} className="space-y-3 sm:space-y-4">
               <div>
                 <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
-                  企業名稱 / Company
+                  {t("auth.company")}
                 </label>
                 <div className="relative">
                   <User size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
                   <input
                     type="text"
                     required
-                    placeholder="您的企業名稱"
+                    placeholder={t("auth.companyPlaceholder")}
                     className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 sm:pl-10 pr-4 py-2.5 text-[11px] sm:text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
                   />
                 </div>
@@ -224,7 +226,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               <div>
                 <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
-                  手機號碼 / Phone
+                  {t("auth.phone")}
                 </label>
                 <input
                   type="tel"
@@ -236,7 +238,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               <div>
                 <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
-                  設定密碼 / Password
+                  {t("auth.setPassword")}
                 </label>
                 <div className="relative">
                   <Lock size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
@@ -244,7 +246,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     type="password"
                     required
                     minLength={8}
-                    placeholder="至少 8 個字元"
+                    placeholder={t("auth.passwordMin")}
                     className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 sm:pl-10 pr-4 py-2.5 text-[11px] sm:text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-400/40 transition-colors"
                   />
                 </div>
@@ -258,9 +260,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   className="w-3.5 h-3.5 mt-0.5 rounded border-white/20 bg-white/5 text-cyan-400 focus:ring-0 focus:ring-offset-0"
                 />
                 <span className="text-[10px] text-white/50 leading-relaxed">
-                  我已閱讀並同意{" "}
+                  {t("auth.agreeTerms")}{" "}
                   <span className="text-cyan-400/70 hover:text-cyan-400 cursor-pointer">
-                    《SNT Orbit 服務條款與免責聲明》
+                    {t("auth.termsLink")}
                   </span>
                 </span>
               </label>
@@ -270,17 +272,17 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 disabled={loading || !agreed}
                 className="w-full py-2.5 sm:py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 disabled:opacity-50 transition-all"
               >
-                {loading ? "處理中..." : "註冊並發送驗證碼"}
+                {loading ? t("auth.processing") : t("auth.sendOtp")}
               </button>
 
               <div className="text-center pt-2">
-                <span className="text-[10px] text-white/40">已有帳號？</span>
+                <span className="text-[10px] text-white/40">{t("auth.hasAccount")}</span>
                 <button
                   type="button"
                   onClick={() => setView("login")}
                   className="text-[10px] text-cyan-400/70 hover:text-cyan-400 ml-1 transition-colors"
                 >
-                  返回登入
+                  {t("auth.backToLogin")}
                 </button>
               </div>
             </form>
@@ -290,14 +292,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 <div className="flex items-start gap-2 sm:gap-3">
                   <Shield size={16} className="text-cyan-400 mt-0.5 flex-shrink-0" />
                   <div className="text-[10px] sm:text-[11px] text-white/60 leading-relaxed">
-                    請輸入您註冊時使用的 Email，我們將發送 OTP 密碼重置連結至您的信箱。
+                    {t("auth.forgotDesc")}
                   </div>
                 </div>
               </div>
 
               <div>
                 <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
-                  註冊 Email
+                  {t("auth.registerEmail")}
                 </label>
                 <div className="relative">
                   <Mail size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
@@ -315,7 +317,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 disabled={loading}
                 className="w-full py-2.5 sm:py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 disabled:opacity-50 transition-all"
               >
-                {loading ? "發送中..." : "發送重置連結"}
+                {loading ? t("auth.sending") : t("auth.sendReset")}
               </button>
             </form>
           ) : (
@@ -324,10 +326,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 <div className="flex items-start gap-2 sm:gap-3">
                   <Check size={16} className="text-emerald-400 mt-0.5 flex-shrink-0" />
                   <div className="text-[10px] sm:text-[11px] text-white/60 leading-relaxed">
-                    驗證碼已發送至您的 Email。請檢查信箱並輸入 6 位數驗證碼。
+                    {t("auth.otpSent")}
                     <br />
                     <span className="text-[9px] text-white/40">
-                      （未收到？請檢查垃圾郵件資料夾）
+                      {t("auth.otpSpam")}
                     </span>
                   </div>
                 </div>
@@ -335,7 +337,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               <div>
                 <label className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider mb-1.5 block">
-                  OTP 驗證碼
+                  {t("auth.otpCode")}
                 </label>
                 <input
                   type="text"
@@ -346,12 +348,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
 
               <button className="w-full py-2.5 sm:py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase hover:bg-cyan-400/20 transition-all">
-                驗證並繼續
+                {t("auth.verifyContinue")}
               </button>
 
               <div className="text-center">
                 <button className="text-[10px] text-white/40 hover:text-white/60 transition-colors">
-                  重新發送驗證碼（60 秒後可重試）
+                  {t("auth.resendOtp")}
                 </button>
               </div>
             </div>

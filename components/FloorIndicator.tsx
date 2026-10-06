@@ -2,6 +2,7 @@
 
 import { FLOORS } from "@/data/units";
 import { Building } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
 interface FloorIndicatorProps {
   activeFloor: number | null;
@@ -9,11 +10,15 @@ interface FloorIndicatorProps {
 }
 
 export default function FloorIndicator({ activeFloor, onFloorSelect }: FloorIndicatorProps) {
+  const { t } = useTranslation();
+
+  const floorLabels = [t("floor.f1"), t("floor.f2"), t("floor.f3"), t("floor.f4"), t("floor.f5"), t("floor.f6")];
+
   return (
     <div className="fixed left-1.5 sm:left-6 top-1/2 -translate-y-1/2 z-40">
       <div className="glass-panel rounded-lg sm:rounded-xl p-1 sm:p-2 hud-border">
         <div className="text-[7px] sm:text-[8px] tracking-widest text-cyan-400/60 text-center mb-1 sm:mb-2 uppercase font-bold">
-          樓層
+          {t("floor.label")}
         </div>
         <div className="flex flex-col-reverse gap-0.5 sm:gap-1">
           {FLOORS.map((floor) => {
@@ -42,7 +47,7 @@ export default function FloorIndicator({ activeFloor, onFloorSelect }: FloorIndi
                   {isolatedCount > 0 && <div className="w-1.5 h-1.5 rounded-full bg-red-400" />}
                 </div>
                 <div className="absolute left-full ml-2 px-2 py-1 rounded bg-black/80 border border-white/10 text-[9px] text-white/70 whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity hidden sm:block">
-                  {floor.label}
+                  {floorLabels[floor.floor - 1]}
                 </div>
               </button>
             );
