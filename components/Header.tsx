@@ -1,9 +1,11 @@
 "use client";
 
-import { Hexagon, LogIn, Menu, X, Share2, Info, BookOpen } from "lucide-react";
+import { LogIn, Menu, X, Share2, Info, BookOpen } from "lucide-react";
 import { useState } from "react";
+import type { Theme } from "@/data/units";
 
 interface HeaderProps {
+  theme?: Theme;
   onLoginClick: () => void;
   onPricingClick: () => void;
   onLegalClick: () => void;
@@ -11,8 +13,11 @@ interface HeaderProps {
   onReadmeClick: () => void;
 }
 
-export default function Header({ onLoginClick, onPricingClick, onLegalClick, onAboutClick, onReadmeClick }: HeaderProps) {
+export default function Header({ theme = "cyber", onLoginClick, onPricingClick, onLegalClick, onAboutClick, onReadmeClick }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // 根據主題選擇 logo
+  const logoSrc = theme === "cloud" ? "/logo-light.jpg" : "/logo-dark.jpg";
 
   const handleShare = async () => {
     const shareData = {
@@ -44,10 +49,11 @@ export default function Header({ onLoginClick, onPricingClick, onLegalClick, onA
             {/* Logo + 標題 */}
             <div className="flex items-center gap-2 sm:gap-3 min-w-0">
               <div className="relative flex-shrink-0">
-                <Hexagon size={24} className="text-cyan-400 sm:w-8 sm:h-8" strokeWidth={1.5} />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 bg-cyan-400 rounded-full animate-pulse" />
-                </div>
+                <img 
+                  src={logoSrc} 
+                  alt="SNT 光躍星樞" 
+                  className="w-8 h-8 sm:w-10 sm:h-10 object-contain rounded-full"
+                />
               </div>
               <div className="min-w-0">
                 <h1 className="text-sm sm:text-base font-bold tracking-[0.15em] sm:tracking-[0.3em] text-white uppercase neon-text truncate">

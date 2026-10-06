@@ -66,6 +66,7 @@ export default function Home() {
 
       {/* 頂部標題（含登入/定價/條款/關於/README 入口） */}
       <Header
+        theme={theme}
         onLoginClick={() => setAuthOpen(true)}
         onPricingClick={() => setPricingOpen(true)}
         onLegalClick={() => setLegalOpen(true)}
