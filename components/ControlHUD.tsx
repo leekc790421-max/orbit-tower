@@ -32,11 +32,11 @@ export default function ControlHUD({
       {/* 手機版：收合按鈕 */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="sm:hidden glass-panel rounded-xl px-3 py-2 hud-border flex items-center gap-2 mb-2 w-full justify-center"
+        className="sm:hidden glass-panel rounded-xl px-4 py-3 hud-border flex items-center gap-2 mb-2 w-full justify-center"
       >
-        <Palette size={14} className="text-cyan-400" />
-        <span className="text-[10px] text-cyan-300 font-bold tracking-wider">控制面板</span>
-        {expanded ? <ChevronDown size={12} className="text-cyan-400" /> : <ChevronUp size={12} className="text-cyan-400" />}
+        <Palette size={18} className="text-cyan-400" />
+        <span className="text-sm text-cyan-300 font-bold tracking-wider">控制面板</span>
+        {expanded ? <ChevronDown size={16} className="text-cyan-400" /> : <ChevronUp size={16} className="text-cyan-400" />}
       </button>
 
       {/* 面板主體 */}
@@ -44,18 +44,18 @@ export default function ControlHUD({
         {/* 選購方案按鈕 */}
         <button
           onClick={onPricingClick}
-          className="glass-panel rounded-xl px-3 py-2 hud-border flex items-center justify-center gap-2 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
+          className="glass-panel rounded-xl px-4 py-3 hud-border flex items-center justify-center gap-2 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
         >
-          <ShoppingBag size={14} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-          <span className="text-[10px] sm:text-xs text-cyan-300 font-bold tracking-wider">選購方案</span>
+          <ShoppingBag size={18} className="text-cyan-400 group-hover:scale-110 transition-transform" />
+          <span className="text-sm text-cyan-300 font-bold tracking-wider">查看方案</span>
         </button>
 
         {/* 環境切換 */}
-        <div className="glass-panel rounded-xl p-2 sm:p-3 hud-border">
-          <div className="text-[8px] sm:text-[10px] tracking-widest text-cyan-400 mb-1.5 sm:mb-2 uppercase font-bold">
-            環境背景
+        <div className="glass-panel rounded-xl p-3 sm:p-4 hud-border">
+          <div className="text-xs sm:text-sm tracking-widest text-cyan-400 mb-2 sm:mb-3 uppercase font-bold">
+            背景主題
           </div>
-          <div className="flex flex-col gap-1 sm:gap-1.5">
+          <div className="flex flex-col gap-2 sm:gap-2.5">
             {(Object.keys(THEME_LABELS) as Theme[]).map((t) => {
               const Icon = themeIcons[t];
               const isActive = theme === t;
@@ -64,7 +64,7 @@ export default function ControlHUD({
                   key={t}
                   onClick={() => onThemeChange(t)}
                   className={`
-                    cyber-button flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[10px] sm:text-xs
+                    cyber-button flex items-center gap-2 px-3 py-2 rounded-lg text-sm
                     transition-all duration-300 border
                     ${
                       isActive
@@ -73,8 +73,8 @@ export default function ControlHUD({
                     }
                   `}
                 >
-                  <Icon size={12} className="sm:w-3.5 sm:h-3.5 flex-shrink-0" />
-                  <span className="font-medium text-[9px] sm:text-xs">{THEME_LABELS[t].zh}</span>
+                  <Icon size={16} className="flex-shrink-0" />
+                  <span className="font-medium">{THEME_LABELS[t].zh}</span>
                 </button>
               );
             })}
@@ -82,12 +82,12 @@ export default function ControlHUD({
         </div>
 
         {/* 燈光切換 */}
-        <div className="glass-panel rounded-xl p-2 sm:p-3 hud-border">
-          <div className="text-[8px] sm:text-[10px] tracking-widest text-cyan-400 mb-1.5 sm:mb-2 uppercase font-bold flex items-center gap-1">
-            <Palette size={10} />
-            <span>光譜自訂</span>
+        <div className="glass-panel rounded-xl p-3 sm:p-4 hud-border">
+          <div className="text-xs sm:text-sm tracking-widest text-cyan-400 mb-2 sm:mb-3 uppercase font-bold flex items-center gap-2">
+            <Palette size={14} />
+            <span>燈光顏色</span>
           </div>
-          <div className="flex gap-2 sm:gap-2.5 justify-center">
+          <div className="flex gap-3 justify-center">
             {(Object.keys(LIGHT_COLORS) as LightColor[]).map((c) => {
               const isActive = lightColor === c;
               return (
@@ -96,7 +96,7 @@ export default function ControlHUD({
                   onClick={() => onLightColorChange(c)}
                   title={LIGHT_COLORS[c].label}
                   className={`
-                    w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 transition-all duration-300
+                    w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 transition-all duration-300
                     ${isActive ? "scale-110 border-white" : "border-white/20 hover:border-white/50"}
                   `}
                   style={{
@@ -107,7 +107,7 @@ export default function ControlHUD({
               );
             })}
           </div>
-          <div className="text-[8px] sm:text-[9px] text-white/40 mt-1.5 text-center">
+          <div className="text-xs text-white/40 mt-2 text-center">
             {LIGHT_COLORS[lightColor].label}
           </div>
         </div>

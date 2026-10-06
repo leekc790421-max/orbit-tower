@@ -10,44 +10,44 @@ interface FAQItem {
 
 const FAQ_DATA: FAQItem[] = [
   {
-    question: "Orbit Tower 是什麼？什麼是賽博虛擬地產？",
+    question: "Orbit Tower 是什麼？",
     answer:
-      "Orbit Tower 是一座六角晶體摩天樓形態的虛擬企業總部平台。企業可在此「進駐」虛擬戶別，獲得專屬網域、AI 運算資源與品牌展示空間。結合 3D 互動體驗與實際 B2B 服務，打造獨特的數位商業地產模式。",
+      "Orbit Tower 是一個虛擬企業總部平台。我們用 3D 技術打造了一座六角晶體摩天樓，讓企業可以在這裡「進駐」虛擬空間，建立自己的數位據點。每個戶別都有專屬網域和 AI 資源，幫助你在線上建立專業形象。",
   },
   {
-    question: "進駐 Orbit Tower 需要多少費用？",
+    question: "進駐需要多少費用？",
     answer:
-      "我們提供三種 B2B 方案：門戶體驗版 NT$35,000/次、成長升級版 NT$60,000/次（最受歡迎）、企業總部版 NT$120,000+/次（含 MRR 維護費 $3,000/月）。每個方案都包含不同的樓層位置、網域功能與 AI 運算配額。",
+      "我們提供三種方案：基礎方案 NT$35,000、專業方案 NT$60,000（最受歡迎）、旗艦方案 NT$120,000+（含月費 $3,000）。每個方案包含不同的樓層位置、網域功能和 AI 資源配額。",
   },
   {
-    question: "什麼是戶號實名制？如何綁定自己的網域？",
+    question: "如何綁定我自己的網域？",
     answer:
-      "每戶具備唯一識別碼（如 TOWER-F12-U03），需通過手機/Email 實名驗證開通。網域對映支援兩種方式：標準子網域（unit103.orbit-tower.tw）由系統自動配發；獨立頂級網域可透過 CNAME 無痛綁定您自有的 www.clientbrand.com。",
+      "有兩種方式：(1) 系統自動配發子網域，例如 unit103.orbit-tower.tw；(2) 綁定你自己的網域，例如 www.yourbrand.com，透過 CNAME 設定就能無痛對接。不需要技術背景，AI 樓管會一步步教你設定。",
   },
   {
-    question: "AI 樓管能做什麼？如何幫助我的企業？",
+    question: "AI 樓管能做什麼？",
     answer:
-      "AI 樓管（Orbit Building Agent）24 小時在線，可提供：樓層導覽與戶別介紹、B2B 方案說明、網域綁定教學、機密沙盒環境說明。當 AI 推薦樓層時，3D 鏡頭會自動聚焦到該戶別，提供沉浸式帶看體驗。",
+      "AI 樓管 24 小時在線，可以回答你的問題、帶你參觀大樓、介紹方案價格、教你設定網域。當 AI 推薦某個樓層時，3D 鏡頭會自動移動到那個位置，讓你直接看到實際空間。",
   },
   {
-    question: "機密沙盒（F面）是什麼？資安如何保障？",
+    question: "我的資料安全嗎？",
     answer:
-      "F 面「機密沙盒實案」專區專為需要高度資安防護的企業設計。特色包括：獨立隔離運算環境、AES-256 加密、紅色保護罩視覺標識、需通過多重身份驗證。客戶資料絕不用於公開模型訓練或出售給第三方。",
+      "絕對安全。我們使用獨立沙盒環境和 AES-256 加密保護你的資料。每個企業戶別都是獨立隔離的，需要多重身份驗證才能存取。你的資料絕不會被用於訓練公開 AI 模型或賣給第三方。",
   },
   {
-    question: "如何付款？支援哪些支付方式？",
+    question: "如何付款？",
     answer:
-      "支援三種支付方式：(1) 臺灣銀行電匯（松山分行，SWIFT: BKTWTWTP）；(2) 樂天國際商業銀行數位帳戶；(3) Payoneer 快速線上支付（支援信用卡、銀行轉帳）。匯款完成後請保留憑證，1-2 個工作天內完成對帳開通。",
+      "支援三種方式：(1) 銀行電匯（臺灣銀行松山分行）；(2) 樂天銀行數位帳戶；(3) Payoneer 線上支付（支援信用卡）。匯款後請保留憑證，1-2 個工作天內會完成對帳並開通你的空間。",
   },
   {
-    question: "3D 大樓的三種環境背景有什麼差異？",
+    question: "三種背景主題有什麼差別？",
     answer:
-      "提供三種沉浸式環境：(1) 賽博夜城 — 雨後暗黑霓虹街景，適合科技新創；(2) 雲海高山 — 高空雲海日出，展現頂級尊榮感；(3) 深海星光 — 深海微光與生物螢光粒子，營造高資安防衛意象。可隨時一鍵切換。",
+      "三種主題只是視覺風格不同，功能完全一樣：(1) 霓虹夜城 — 賽博龐克風格，適合科技業；(2) 雲海日出 — 溫暖大氣，適合品牌展示；(3) 深海秘境 — 神秘高級感，適合需要隱私的企業。你可以隨時切換。",
   },
   {
-    question: "Orbit Tower 適合哪些類型的企業？",
+    question: "適合什麼樣的企業使用？",
     answer:
-      "六角大樓六個面向分別服務不同業態：A面科技新創、B面個人品牌、C面自動金流商戶、D面AI診斷專區、E面GEO搜尋品牌、F面機密沙盒實案。無論您是新創團隊、自由職業者、還是大型企業，都能找到適合的虛擬總部空間。",
+      "適合所有需要線上據點的企業：新創團隊可以用低成本建立專業形象；自由工作者可以提升接案說服力；中小企業可以擴展數位足跡；大型企業可以展示創新形象。無論你的產業或規模，都能在 Orbit Tower 找到適合的空間。",
   },
 ];
 
@@ -61,10 +61,10 @@ export default function FAQSection() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed top-20 sm:top-24 right-2 sm:right-6 z-40 glass-panel rounded-xl px-2.5 sm:px-3 py-1.5 sm:py-2 hud-border flex items-center gap-1.5 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
+          className="fixed top-20 sm:top-24 right-2 sm:right-6 z-40 glass-panel rounded-xl px-3 py-2 hud-border flex items-center gap-2 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
         >
-          <HelpCircle size={13} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-          <span className="text-[9px] sm:text-[10px] text-cyan-300 font-bold tracking-wider">FAQ</span>
+          <HelpCircle size={16} className="text-cyan-400 group-hover:scale-110 transition-transform" />
+          <span className="text-sm text-cyan-300 font-bold tracking-wider">常見問題</span>
         </button>
       )}
 

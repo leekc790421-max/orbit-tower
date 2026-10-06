@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import * as THREE from "three";
 import Scene from "@/components/Scene";
 import Header from "@/components/Header";
@@ -13,6 +13,8 @@ import AuthModal from "@/components/AuthModal";
 import LegalModal from "@/components/LegalModal";
 import SecurityFooter from "@/components/SecurityFooter";
 import FAQSection from "@/components/FAQSection";
+import Onboarding from "@/components/Onboarding";
+import AboutModal from "@/components/AboutModal";
 import type { Theme, LightColor, Unit } from "@/data/units";
 
 export default function Home() {
@@ -25,6 +27,16 @@ export default function Home() {
   const [pricingOpen, setPricingOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
+  const [onboardingOpen, setOnboardingOpen] = useState(false);
+
+  // 首次進入顯示新手引導
+  useEffect(() => {
+    const hasVisited = localStorage.getItem("orbit-tower-visited");
+    if (!hasVisited) {
+      setOnboardingOpen(true);
+      localStorage.setItem("orbit-tower-visited", "true");
+    }
+  }, []);
 
   const handleUnitClick = useCallback((unit: Unit, _position: THREE.Vector3) => {
     setSelectedUnit(unit);
@@ -88,6 +100,14 @@ export default function Home() {
 
       {/* FAQ 區塊 */}
       <FAQSection />
+
+      {/* 關於區塊 */}
+      <AboutModal />
+
+      {/* 新手引導 */}
+      {onboardingOpen && (
+        <Onboarding onClose={() => setOnboardingOpen(false)} />
+      )}
 
       {/* ===== Modals ===== */}
       <PricingModal isOpen={pricingOpen} onClose={() => setPricingOpen(false)} />

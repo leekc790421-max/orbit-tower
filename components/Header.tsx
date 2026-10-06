@@ -42,18 +42,18 @@ export default function Header({ onLoginClick, onPricingClick, onLegalClick }: H
             {/* Logo + 標題 */}
             <div className="flex items-center gap-2 sm:gap-3 min-w-0">
               <div className="relative flex-shrink-0">
-                <Hexagon size={20} className="text-cyan-400 sm:w-7 sm:h-7" strokeWidth={1.5} />
+                <Hexagon size={24} className="text-cyan-400 sm:w-8 sm:h-8" strokeWidth={1.5} />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-1 h-1 sm:w-2 sm:h-2 bg-cyan-400 rounded-full animate-pulse" />
+                  <div className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 bg-cyan-400 rounded-full animate-pulse" />
                 </div>
               </div>
               <div className="min-w-0">
-                <h1 className="text-[10px] sm:text-sm font-bold tracking-[0.15em] sm:tracking-[0.3em] text-white uppercase neon-text truncate">
+                <h1 className="text-sm sm:text-base font-bold tracking-[0.15em] sm:tracking-[0.3em] text-white uppercase neon-text truncate">
                   Orbit Tower
                 </h1>
-                <p className="text-[7px] sm:text-[9px] tracking-[0.1em] sm:tracking-[0.2em] text-cyan-400/60 uppercase truncate">
-                  <span className="hidden sm:inline">賽博虛擬地產總部 · Cyber Virtual HQ</span>
-                  <span className="sm:hidden">Cyber HQ</span>
+                <p className="text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.2em] text-cyan-400/60 uppercase truncate">
+                  <span className="hidden sm:inline">虛擬企業總部 · Virtual HQ</span>
+                  <span className="sm:hidden">Virtual HQ</span>
                 </p>
               </div>
             </div>
@@ -62,54 +62,54 @@ export default function Header({ onLoginClick, onPricingClick, onLegalClick }: H
             <div className="hidden sm:flex items-center gap-3">
               <button
                 onClick={handleShare}
-                className="flex items-center gap-1.5 text-[10px] px-3 py-1.5 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
+                className="flex items-center gap-2 text-xs px-4 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
-                <Share2 size={12} />
+                <Share2 size={14} />
                 分享
               </button>
               <button
                 onClick={onPricingClick}
-                className="text-[10px] px-3 py-1.5 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
+                className="text-xs px-4 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
-                定價方案
+                方案價格
               </button>
               <button
                 onClick={onLegalClick}
-                className="text-[10px] px-3 py-1.5 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
+                className="text-xs px-4 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
               >
-                服務條款
+                使用條款
               </button>
               <button
                 onClick={onLoginClick}
-                className="flex items-center gap-1.5 text-[10px] px-3 py-1.5 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 transition-all tracking-wider font-bold"
+                className="flex items-center gap-2 text-xs px-4 py-2 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 transition-all tracking-wider font-bold"
               >
-                <LogIn size={12} />
+                <LogIn size={14} />
                 登入
               </button>
-              <div className="flex items-center gap-1.5 pl-3 border-l border-white/10">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[9px] text-emerald-400/80 tracking-wider uppercase">
-                  Online
+              <div className="flex items-center gap-2 pl-3 border-l border-white/10">
+                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-xs text-emerald-400/80 tracking-wider uppercase">
+                  線上
                 </span>
               </div>
             </div>
 
             {/* 手機漢堡選單 */}
-            <div className="flex sm:hidden items-center gap-1.5">
+            <div className="flex sm:hidden items-center gap-2">
               <button
                 onClick={handleShare}
-                className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:border-cyan-400/30 transition-all"
+                className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center hover:border-cyan-400/30 transition-all"
               >
-                <Share2 size={14} className="text-white/60" />
+                <Share2 size={18} className="text-white/60" />
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center hover:border-white/30 transition-all"
+                className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center hover:border-white/30 transition-all"
               >
                 {mobileMenuOpen ? (
-                  <X size={16} className="text-white/60" />
+                  <X size={20} className="text-white/60" />
                 ) : (
-                  <Menu size={16} className="text-white/60" />
+                  <Menu size={20} className="text-white/60" />
                 )}
               </button>
             </div>
@@ -123,33 +123,33 @@ export default function Header({ onLoginClick, onPricingClick, onLegalClick }: H
                   onPricingClick();
                   setMobileMenuOpen(false);
                 }}
-                className="w-full text-left text-[11px] px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
+                className="w-full text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
               >
-                定價方案 / Pricing
+                方案價格
               </button>
               <button
                 onClick={() => {
                   onLegalClick();
                   setMobileMenuOpen(false);
                 }}
-                className="w-full text-left text-[11px] px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
+                className="w-full text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
               >
-                服務條款 / Terms
+                使用條款
               </button>
               <button
                 onClick={() => {
                   onLoginClick();
                   setMobileMenuOpen(false);
                 }}
-                className="w-full flex items-center justify-center gap-2 text-[11px] px-3 py-2 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 font-bold"
+                className="w-full flex items-center justify-center gap-2 text-sm px-4 py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 font-bold"
               >
-                <LogIn size={14} />
-                登入 / Login
+                <LogIn size={16} />
+                登入
               </button>
-              <div className="flex items-center justify-center gap-1.5 pt-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[9px] text-emerald-400/80 tracking-wider uppercase">
-                  System Online
+              <div className="flex items-center justify-center gap-2 pt-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-xs text-emerald-400/80 tracking-wider uppercase">
+                  系統線上
                 </span>
               </div>
             </div>

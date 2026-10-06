@@ -13,19 +13,19 @@ const statusConfig: Record<UnitStatus, { border: string; bg: string; glow: strin
     border: "border-blue-400/50",
     bg: "bg-blue-400/10",
     glow: "shadow-blue-400/20",
-    label: "空置待租 Available",
+    label: "空置中",
   },
   occupied: {
     border: "border-amber-400/50",
     bg: "bg-amber-400/10",
     glow: "shadow-amber-400/20",
-    label: "已進駐 Occupied",
+    label: "已進駐",
   },
   isolated: {
     border: "border-red-400/50",
     bg: "bg-red-400/10",
     glow: "shadow-red-400/20",
-    label: "資安保護中 Isolated",
+    label: "保護中",
   },
 };
 

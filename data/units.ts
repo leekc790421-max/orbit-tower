@@ -41,15 +41,15 @@ export const FACE_LABELS_EN: Record<UnitFace, string> = {
 };
 
 export const STATUS_LABELS: Record<UnitStatus, string> = {
-  available: "空置待租",
+  available: "空置中",
   occupied: "已進駐",
-  isolated: "資安保護中",
+  isolated: "保護中",
 };
 
 export const THEME_LABELS: Record<Theme, { zh: string; en: string; icon: string }> = {
-  cyber: { zh: "賽博夜城", en: "Cyber Night", icon: "🌃" },
-  cloud: { zh: "雲海高山", en: "Cloud Mountain", icon: "🌄" },
-  deepsea: { zh: "深海星光", en: "Deep Sea", icon: "🌊" },
+  cyber: { zh: "霓虹夜城", en: "Cyber Night", icon: "🌃" },
+  cloud: { zh: "雲海日出", en: "Cloud Mountain", icon: "🌄" },
+  deepsea: { zh: "深海秘境", en: "Deep Sea", icon: "🌊" },
 };
 
 export const LIGHT_COLORS: Record<LightColor, { label: string; hex: string; css: string }> = {
