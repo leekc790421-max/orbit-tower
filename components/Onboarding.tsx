@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { X, ChevronRight, Hexagon, MousePointer, Palette, MessageCircle, HelpCircle } from "lucide-react";
 
 interface OnboardingProps {
@@ -49,9 +49,10 @@ export default function Onboarding({ onClose }: OnboardingProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
+  // 使用 useSyncExternalStore 或直接在 render 中判斷
+  if (typeof window !== 'undefined' && isMobile !== (window.innerWidth < 768)) {
     setIsMobile(window.innerWidth < 768);
-  }, []);
+  }
 
   const handleNext = () => {
     if (currentStep < STEPS.length - 1) {

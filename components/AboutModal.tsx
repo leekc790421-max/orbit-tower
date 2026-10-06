@@ -149,7 +149,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
   );
 }
 
-function CoreMechanism({ icon: Icon, title, description }: { icon: any; title: string; description: string }) {
+function CoreMechanism({ icon: Icon, title, description }: { icon: React.ComponentType<{ size?: number; className?: string }>; title: string; description: string }) {
   return (
     <div className="flex items-start gap-3">
       <div className="w-10 h-10 rounded-lg bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center flex-shrink-0">
@@ -163,7 +163,7 @@ function CoreMechanism({ icon: Icon, title, description }: { icon: any; title: s
   );
 }
 
-function FeatureCard({ icon: Icon, title, description }: { icon: any; title: string; description: string }) {
+function FeatureCard({ icon: Icon, title, description }: { icon: React.ComponentType<{ size?: number; className?: string }>; title: string; description: string }) {
   return (
     <div className="glass-panel rounded-xl p-4 border border-white/10 hover:border-cyan-400/30 transition-all">
       <div className="flex items-start gap-3">

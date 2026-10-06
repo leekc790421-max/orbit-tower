@@ -5,6 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import HexTower from "./HexTower";
 import EnvironmentScene from "./Environment";
 import type { Theme, LightColor, Unit } from "@/data/units";
@@ -25,7 +26,7 @@ function LoadingFallback() {
 }
 
 export default function Scene({ theme, lightColor, onUnitClick }: SceneProps) {
-  const controlsRef = useRef<any>(null);
+  const controlsRef = useRef<OrbitControlsImpl>(null);
 
   const handleUnitClick = useCallback(
     (unit: Unit, position: THREE.Vector3) => {

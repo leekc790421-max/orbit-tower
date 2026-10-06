@@ -71,7 +71,7 @@ export default function ReadmeModal({ isOpen, onClose }: ReadmeModalProps) {
   );
 }
 
-function TabButton({ active, onClick, icon: Icon, label }: { active: boolean; onClick: () => void; icon: any; label: string }) {
+function TabButton({ active, onClick, icon: Icon, label }: { active: boolean; onClick: () => void; icon: React.ComponentType<{ size?: number; className?: string }>; label: string }) {
   return (
     <button
       onClick={onClick}

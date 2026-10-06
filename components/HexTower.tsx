@@ -14,12 +14,19 @@ interface HexTowerProps {
 function FloatingParticles({ count, color, radius }: { count: number; color: string; radius: number }) {
   const pointsRef = useRef<THREE.Points>(null);
 
+  // 使用 useRef 初始化隨機值，避免 React 19 strict mode 錯誤
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
+    // 使用 deterministic seed 避免 strict mode 問題
+    let seed = count * radius * 1000;
+    const seededRandom = () => {
+      seed = (seed * 9301 + 49297) % 233280;
+      return seed / 233280;
+    };
     for (let i = 0; i < count; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.random() * Math.PI;
-      const r = radius * (0.3 + Math.random() * 0.7);
+      const theta = seededRandom() * Math.PI * 2;
+      const phi = seededRandom() * Math.PI;
+      const r = radius * (0.3 + seededRandom() * 0.7);
       pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
       pos[i * 3 + 1] = r * Math.cos(phi);
       pos[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);

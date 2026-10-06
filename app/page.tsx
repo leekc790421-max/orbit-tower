@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import * as THREE from "three";
 import Scene from "@/components/Scene";
 import Header from "@/components/Header";
@@ -28,18 +28,20 @@ export default function Home() {
   const [pricingOpen, setPricingOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
-  const [onboardingOpen, setOnboardingOpen] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
-  const [readmeOpen, setReadmeOpen] = useState(false);
-
-  // 首次進入顯示新手引導
-  useEffect(() => {
+  
+  // 首次進入顯示新手引導 - 使用 lazy initialization
+  const [onboardingOpen, setOnboardingOpen] = useState(() => {
+    if (typeof window === 'undefined') return false;
     const hasVisited = localStorage.getItem("orbit-tower-visited");
     if (!hasVisited) {
-      setOnboardingOpen(true);
       localStorage.setItem("orbit-tower-visited", "true");
+      return true;
     }
-  }, []);
+    return false;
+  });
+  
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [readmeOpen, setReadmeOpen] = useState(false);
 
   const handleUnitClick = useCallback((unit: Unit, _position: THREE.Vector3) => {
     setSelectedUnit(unit);

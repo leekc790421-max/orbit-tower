@@ -16,12 +16,17 @@ function CyberNight() {
     const count = 2000;
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
+    let seed = 54321;
+    const seededRandom = () => {
+      seed = (seed * 9301 + 49297) % 233280;
+      return seed / 233280;
+    };
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 40;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 30;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 40;
+      pos[i * 3] = (seededRandom() - 0.5) * 40;
+      pos[i * 3 + 1] = (seededRandom() - 0.5) * 30;
+      pos[i * 3 + 2] = (seededRandom() - 0.5) * 40;
       const c = new THREE.Color();
-      c.setHSL(0.55 + Math.random() * 0.1, 0.8, 0.5 + Math.random() * 0.3);
+      c.setHSL(0.55 + seededRandom() * 0.1, 0.8, 0.5 + seededRandom() * 0.3);
       col[i * 3] = c.r;
       col[i * 3 + 1] = c.g;
       col[i * 3 + 2] = c.b;
@@ -62,12 +67,17 @@ function CloudMountain() {
     const count = 1500;
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
+    let seed = 98765;
+    const seededRandom = () => {
+      seed = (seed * 9301 + 49297) % 233280;
+      return seed / 233280;
+    };
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 50;
-      pos[i * 3 + 1] = Math.random() * 15 - 3;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 50;
+      pos[i * 3] = (seededRandom() - 0.5) * 50;
+      pos[i * 3 + 1] = seededRandom() * 15 - 3;
+      pos[i * 3 + 2] = (seededRandom() - 0.5) * 50;
       const c = new THREE.Color();
-      c.setHSL(0.08 + Math.random() * 0.05, 0.6, 0.7 + Math.random() * 0.3);
+      c.setHSL(0.08 + seededRandom() * 0.05, 0.6, 0.7 + seededRandom() * 0.3);
       col[i * 3] = c.r;
       col[i * 3 + 1] = c.g;
       col[i * 3 + 2] = c.b;
@@ -105,12 +115,18 @@ function DeepSea() {
     const count = 1800;
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
+    // 使用 deterministic seed 避免 strict mode 問題
+    let seed = 12345;
+    const seededRandom = () => {
+      seed = (seed * 9301 + 49297) % 233280;
+      return seed / 233280;
+    };
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 35;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 25;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 35;
+      pos[i * 3] = (seededRandom() - 0.5) * 35;
+      pos[i * 3 + 1] = (seededRandom() - 0.5) * 25;
+      pos[i * 3 + 2] = (seededRandom() - 0.5) * 35;
       const c = new THREE.Color();
-      c.setHSL(0.5 + Math.random() * 0.15, 0.9, 0.3 + Math.random() * 0.4);
+      c.setHSL(0.5 + seededRandom() * 0.15, 0.9, 0.3 + seededRandom() * 0.4);
       col[i * 3] = c.r;
       col[i * 3 + 1] = c.g;
       col[i * 3 + 2] = c.b;

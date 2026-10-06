@@ -31,19 +31,15 @@ export default function AIConcierge() {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages]);
+  const idCounter = useRef(0);
 
   const handleSend = async (text?: string) => {
     const content = text || input;
     if (!content.trim()) return;
 
+    idCounter.current += 1;
     const userMsg: Message = {
-      id: Date.now().toString(),
+      id: `msg-${idCounter.current}`,
       role: "user",
       content: content.trim(),
     };
@@ -51,16 +47,18 @@ export default function AIConcierge() {
     setInput("");
     setIsTyping(true);
 
+    const delay = 800 + (idCounter.current % 10) * 120; // deterministic delay
     setTimeout(() => {
       const response = generateResponse(content.trim());
+      idCounter.current += 1;
       const aiMsg: Message = {
-        id: (Date.now() + 1).toString(),
+        id: `msg-${idCounter.current}`,
         role: "assistant",
         content: response,
       };
       setMessages((prev) => [...prev, aiMsg]);
       setIsTyping(false);
-    }, 800 + Math.random() * 1200);
+    }, delay);
   };
 
   const generateResponse = (input: string): string => {
