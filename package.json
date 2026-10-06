@@ -10,7 +10,10 @@
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "stress": "k6 run tests/stress-test.js",
+    "stress:prod": "k6 run --env BASE_URL=https://orbit-tower.vercel.app tests/stress-test.js",
+    "stress:docker": "docker run --rm -i grafana/k6 run - < tests/stress-test.js"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
