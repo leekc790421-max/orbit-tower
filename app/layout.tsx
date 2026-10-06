@@ -9,14 +9,20 @@ interface RootLayoutProps {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Orbit Tower — 賽博虛擬地產總部 | 六角晶體摩天樓 3D 互動體驗",
+  title: "SNT 光躍星樞 | 3D Cyber Luxury 專屬空間地產與自動化流量商場",
   description:
-    "Orbit Tower 六角晶體摩天樓 3D 互動體驗。提供企業旗艦空間、網域對映、AI 樓管導覽、機密沙盒環境。B2B 虛擬地產平台，三種環境背景切換，支援 CNAME 網域綁定。",
+    "SNT 光躍星樞 (Orbit Tower) 結合 3D 空間展示、/drift 漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
   keywords: [
+    "SNT 光躍星樞",
+    "SNT Nexus",
     "Orbit Tower",
-    "賽博地產",
-    "虛擬總部",
-    "3D 互動",
+    "3D 空間展示",
+    "漂流瓶",
+    "AI 廣告 Agent",
+    "品牌進駐",
+    "自動化流量",
+    "Cyber Luxury",
+    "虛擬地產",
     "六角晶體",
     "Three.js",
     "企業虛擬辦公室",
@@ -24,31 +30,29 @@ export const metadata: Metadata = {
     "AI 樓管",
     "B2B 平台",
     "機密沙盒",
-    "Cyberpunk",
-    "虛擬地產",
     "數位辦公",
   ],
-  authors: [{ name: "Orbit Tower Team" }],
+  authors: [{ name: "SNT Nexus Team" }],
   openGraph: {
     type: "website",
     locale: "zh_TW",
     url: SITE_URL,
-    siteName: "Orbit Tower — 賽博虛擬地產總部",
-    title: "Orbit Tower — 賽博虛擬地產總部",
-    description: "六角晶體摩天樓 3D 互動體驗。企業旗艦空間、網域對映、AI 樓管導覽。",
+    siteName: "SNT 光躍星樞 | SNT Nexus",
+    title: "SNT 光躍星樞 | 3D Cyber Luxury 專屬空間地產與自動化流量商場",
+    description: "SNT 光躍星樞 (Orbit Tower) 結合 3D 空間展示、/drift 漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
     images: [
       {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Orbit Tower — 賽博虛擬地產總部",
+        alt: "SNT 光躍星樞 | 3D Cyber Luxury 專屬空間地產與自動化流量商場",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orbit Tower — 賽博虛擬地產總部",
-    description: "六角晶體摩天樓 3D 互動體驗。企業旗艦空間、網域對映、AI 樓管導覽。",
+    title: "SNT 光躍星樞 | 3D Cyber Luxury 專屬空間地產與自動化流量商場",
+    description: "SNT 光躍星樞 (Orbit Tower) 結合 3D 空間展示、/drift 漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
     images: ["/og-image.svg"],
   },
   robots: {
@@ -90,15 +94,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
               mainEntity: [
                 {
                   "@type": "Question",
-                  name: "Orbit Tower 是什麼？什麼是賽博虛擬地產？",
+                  name: "SNT 光躍星樞是什麼？什麼是 3D Cyber Luxury 地產？",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "Orbit Tower 是一座六角晶體摩天樓形態的虛擬企業總部平台。企業可在此進駐虛擬戶別，獲得專屬網域、AI 運算資源與品牌展示空間。結合 3D 互動體驗與實際 B2B 服務，打造獨特的數位商業地產模式。",
+                    text: "SNT 光躍星樞 (Orbit Tower) 是一座六角晶體摩天樓形態的虛擬企業總部平台。企業可在此進駐虛擬戶別，獲得專屬網域、AI 運算資源與品牌展示空間。結合 3D 互動體驗、/drift 漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
                   },
                 },
                 {
                   "@type": "Question",
-                  name: "進駐 Orbit Tower 需要多少費用？",
+                  name: "進駐 SNT 光躍星樞需要多少費用？",
                   acceptedAnswer: {
                     "@type": "Answer",
                     text: "我們提供三種 B2B 方案：門戶體驗版 NT$35,000/次、成長升級版 NT$60,000/次、企業總部版 NT$120,000+/次（含 MRR 維護費 $3,000/月）。",
@@ -139,10 +143,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Orbit Tower",
-              alternateName: "賽博虛擬地產總部",
+              name: "SNT 光躍星樞",
+              alternateName: "SNT Nexus / Orbit Tower",
               url: SITE_URL,
-              description: "六角晶體摩天樓 3D 互動體驗虛擬企業總部平台",
+              description: "SNT 光躍星樞 (Orbit Tower) 結合 3D 空間展示、漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
             }),
           }}
         />

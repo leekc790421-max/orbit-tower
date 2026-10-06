@@ -26,7 +26,7 @@ export default function ReadmeModal({ isOpen, onClose }: ReadmeModalProps) {
                   系統說明 / README
                 </h2>
                 <p className="text-xs sm:text-sm text-cyan-400/60 tracking-wider mt-1">
-                  Orbit Tower 技術架構與核心機制
+                  SNT 光躍星樞 技術架構與核心機制
                 </p>
               </div>
               <button
@@ -98,7 +98,7 @@ function OverviewContent() {
         </h3>
         <div className="space-y-3 text-sm sm:text-base text-white/70">
           <p>
-            Orbit Tower 採用 <span className="text-cyan-300 font-semibold">Three.js + React Three Fiber</span> 打造高透光晶體大樓，結合動態樓層排序與即時光照渲染。
+            SNT 光躍星樞採用 <span className="text-cyan-300 font-semibold">Three.js + React Three Fiber</span> 打造高透光晶體大樓，結合動態樓層排序與即時光照渲染。
           </p>
           <ul className="space-y-2 ml-4">
             <li>• <span className="text-white font-medium">六角晶體架構</span>：每層樓 6 個品牌店面，共 36 個企業空間</li>
@@ -196,7 +196,7 @@ function TechContent() {
         </h3>
         <pre className="text-xs sm:text-sm text-cyan-300 overflow-x-auto">
 {`┌─────────────────────────────────────────────────────────────┐
-│                    Orbit Tower 架構                          │
+│                SNT 光躍星樞 架構                          │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌──────────┐      ┌──────────┐      ┌──────────┐         │

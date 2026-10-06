@@ -20,7 +20,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
             <div className="sticky top-0 z-10 glass-panel border-b border-white/10 px-4 sm:px-6 py-4 flex items-center justify-between rounded-t-2xl">
               <div>
                 <h2 className="text-lg sm:text-xl font-bold text-white tracking-wider">
-                  關於 Orbit Tower
+                  關於 SNT 光躍星樞
                 </h2>
                 <p className="text-xs sm:text-sm text-cyan-400/60 tracking-wider mt-1">
                   Cyber Luxury 數位地產商場
@@ -43,10 +43,10 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-bold text-white mb-2">
-                      什麼是 Orbit Tower？
+                      什麼是 SNT 光躍星樞？
                     </h3>
                     <p className="text-sm sm:text-base text-white/70 leading-relaxed">
-                      Orbit Tower 是一個結合 <span className="text-cyan-300 font-semibold">3D 空間體驗</span>、<span className="text-cyan-300 font-semibold">品牌虛擬展示</span>與<span className="text-cyan-300 font-semibold">動態流量裂變</span>的 Cyber Luxury 數位地產商場。我們用六角晶體摩天樓的形態，打造了一座創新的虛擬企業總部平台，讓品牌可以在這裡「進駐」虛擬空間，建立自己的數位據點。
+                      SNT 光躍星樞 (Orbit Tower) 是一個結合 <span className="text-cyan-300 font-semibold">3D 空間體驗</span>、<span className="text-cyan-300 font-semibold">品牌虛擬展示</span>與<span className="text-cyan-300 font-semibold">動態流量裂變</span>的 Cyber Luxury 數位地產商場。我們用六角晶體摩天樓的形態，打造了一座創新的虛擬企業總部平台，讓品牌可以在這裡「進駐」虛擬空間，建立自己的數位據點。
                     </p>
                   </div>
                 </div>
@@ -136,7 +136,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                   需要協助？
                 </h3>
                 <div className="space-y-2 text-sm text-white/70">
-                  <p>📧 Email：support@orbit-tower.tw</p>
+                  <p>📧 Email：support@snt-nexus.tw</p>
                   <p>💬 AI 樓管：點擊左下角對話按鈕，24 小時在線</p>
                   <p>❓ 常見問題：點擊右上角 FAQ 按鈕</p>
                 </div>

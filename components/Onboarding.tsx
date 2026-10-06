@@ -10,8 +10,8 @@ interface OnboardingProps {
 const STEPS = [
   {
     icon: Hexagon,
-    title: "歡迎來到 Orbit Tower",
-    description: "這是一座結合 3D 空間體驗、品牌虛擬展示與動態流量裂變的 Cyber Luxury 數位地產商場。",
+    title: "歡迎來到 SNT 光躍星樞",
+    description: "SNT Nexus — 結合 3D 空間體驗、品牌虛擬展示與動態流量裂變的 Cyber Luxury 數位地產商場。",
     tipMobile: "用手指滑動可以旋轉大樓，雙指張合可以縮小放大",
     tipDesktop: "用滑鼠拖曳可以旋轉大樓，滾輪可以縮小放大",
   },

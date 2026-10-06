@@ -14,7 +14,7 @@ const INITIAL_MESSAGES: Message[] = [
     id: "1",
     role: "assistant",
     content:
-      "您好！我是 Orbit Tower 的 AI 樓管。\n\n歡迎來到賽博虛擬地產總部。目前我們有 6 層樓、每層 6 戶的六角晶體空間可供進駐。\n\n需要我帶您參觀哪些樓層？或者您對哪個業態分類有興趣？",
+      "您好！我是 SNT 光躍星樞的 AI 樓管。\n\n歡迎來到 3D Cyber Luxury 自動化流量商場。目前我們有 6 層樓、每層 6 戶的六角晶體空間可供進駐。\n\n需要我帶您參觀哪些樓層？或者您對哪個業態分類有興趣？",
   },
 ];
 
@@ -70,12 +70,12 @@ export default function AIConcierge() {
       return "F 面是我們的「機密沙盒實案」專區，專為需要高度資安防護的企業設計。\n\n特色：\n🔒 獨立隔離運算環境\n🛡️ 紅色保護罩視覺標識\n🔐 需通過多重身份驗證\n\n目前 306 戶由 Vault-X 進駐，進行機密沙盒運算。";
     }
     if (lower.includes("方案") || lower.includes("價格") || lower.includes("b2b")) {
-      return "我們提供三種 B2B 進駐方案：\n\n💎 基礎方案 — NT$35,000/月\n• 標準六角戶別空間\n• 子網域配發 (unit.orbit-tower.tw)\n• 基礎頻寬與運算配額\n\n🏆 專業方案 — NT$60,000/月\n• 優選樓層戶別\n• 獨立頂級網域 CNAME 綁定\n• 進階 AI 運算配額\n• 24/7 技術支援\n\n👑 旗艦方案 — NT$120,000/月\n• 頂樓 Penthouse 空間\n• 8K Lab 等級硬體\n• 完整沙盒環境\n• 專屬客戶經理";
+      return "我們提供三種 B2B 進駐方案：\n\n💎 基礎方案 — NT$35,000/月\n• 標準六角戶別空間\n• 子網域配發 (unit.snt-nexus.tw)\n• 基礎頻寬與運算配額\n\n🏆 專業方案 — NT$60,000/月\n• 優選樓層戶別\n• 獨立頂級網域 CNAME 綁定\n• 進階 AI 運算配額\n• 24/7 技術支援\n\n👑 旗艦方案 — NT$120,000/月\n• 頂樓 Penthouse 空間\n• 8K Lab 等級硬體\n• 完整沙盒環境\n• 專屬客戶經理";
     }
     if (lower.includes("網域") || lower.includes("domain") || lower.includes("cname")) {
-      return "網域綁定非常簡單！\n\n1️⃣ 標準子網域：系統自動配發\n   例如：unit103.orbit-tower.tw\n\n2️⃣ 獨立頂級網域：CNAME 無痛綁定\n   支援將您的 www.clientbrand.com 對映至本大樓戶別。\n\n3️⃣ DNS 設定：後台一鍵完成\n   無需技術背景，AI 樓管引導設定。\n\n需要我協助您進行網域規劃嗎？";
+      return "網域綁定非常簡單！\n\n1️⃣ 標準子網域：系統自動配發\n   例如：unit103.snt-nexus.tw\n\n2️⃣ 獨立頂級網域：CNAME 無痛綁定\n   支援將您的 www.clientbrand.com 對映至本大樓戶別。\n\n3️⃣ DNS 設定：後台一鍵完成\n   無需技術背景，AI 樓管引導設定。\n\n需要我協助您進行網域規劃嗎？";
     }
-    return "感謝您的詢問！作為 Orbit Tower 的 AI 樓管，我可以為您提供：\n\n🏢 樓層導覽與戶別介紹\n📋 B2B 方案說明\n🌐 網域綁定教學\n🔐 機密沙盒環境說明\n\n請告訴我您感興趣的方向，我會為您詳細介紹！";
+    return "感謝您的詢問！作為 SNT 光躍星樞的 AI 樓管，我可以為您提供：\n\n🏢 樓層導覽與戶別介紹\n📋 B2B 方案說明\n🌐 網域綁定教學\n🔐 機密沙盒環境說明\n\n請告訴我您感興趣的方向，我會為您詳細介紹！";
   };
 
   return (

@@ -16,8 +16,8 @@ export default function Header({ onLoginClick, onPricingClick, onLegalClick, onA
 
   const handleShare = async () => {
     const shareData = {
-      title: "Orbit Tower — 賽博虛擬地產總部",
-      text: "六角晶體摩天樓 3D 互動體驗，企業旗艦空間、網域對映、AI 樓管導覽",
+      title: "SNT 光躍星樞 | 3D Cyber Luxury 專屬空間地產與自動化流量商場",
+      text: "SNT 光躍星樞 (Orbit Tower) 結合 3D 空間展示、/drift 漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
       url: window.location.href,
     };
     if (navigator.share) {
@@ -51,11 +51,11 @@ export default function Header({ onLoginClick, onPricingClick, onLegalClick, onA
               </div>
               <div className="min-w-0">
                 <h1 className="text-sm sm:text-base font-bold tracking-[0.15em] sm:tracking-[0.3em] text-white uppercase neon-text truncate">
-                  Orbit Tower
+                  SNT <span className="text-cyan-400">|</span> 光躍星樞
                 </h1>
                 <p className="text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.2em] text-cyan-400/60 uppercase truncate">
-                  <span className="hidden sm:inline">賽博虛擬地產總部 · Cyber Luxury Mall</span>
-                  <span className="sm:hidden">Cyber Luxury Mall</span>
+                  <span className="hidden sm:inline">ORBIT TOWER · 3D SAAS NEXUS</span>
+                  <span className="sm:hidden">3D SAAS NEXUS</span>
                 </p>
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function Header({ onLoginClick, onPricingClick, onLegalClick, onA
                 className="w-full flex items-center gap-2 text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
               >
                 <Info size={15} />
-                關於 Orbit Tower
+                關於 SNT 光躍星樞
               </button>
               <button
                 onClick={() => {

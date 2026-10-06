@@ -75,7 +75,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 {view === "otp" && "驗證碼 / OTP"}
               </h2>
               <p className="text-[8px] sm:text-[9px] text-cyan-400/60 tracking-wider mt-0.5">
-                {view === "login" && "ORBIT TOWER ACCESS PORTAL"}
+                {view === "login" && "SNT NEXUS ACCESS PORTAL"}
                 {view === "register" && "CREATE YOUR ACCOUNT"}
                 {view === "forgot" && "RESET YOUR PASSWORD"}
                 {view === "otp" && "ENTER VERIFICATION CODE"}
@@ -97,7 +97,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 <Check size={28} className="text-emerald-400" />
               </div>
               <div className="text-sm font-bold text-emerald-400">登入成功</div>
-              <div className="text-[10px] text-white/40 mt-1">歡迎回到 Orbit Tower</div>
+              <div className="text-[10px] text-white/40 mt-1">歡迎回到 SNT 光躍星樞</div>
             </div>
           ) : view === "login" ? (
             <form onSubmit={handleLogin} className="space-y-3 sm:space-y-4">

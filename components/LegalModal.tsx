@@ -74,11 +74,11 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
           {/* 前言 */}
           <div className="glass-panel rounded-xl p-3 sm:p-4 border border-white/10 mb-4 sm:mb-6">
             <p className="text-[10px] sm:text-[11px] text-white/60 leading-relaxed">
-              歡迎使用 Orbit Tower 賽博虛擬地產總部服務。在使用本平台提供的任何服務之前，請仔細閱讀並理解以下條款與聲明。
+              歡迎使用 SNT 光躍星樞 (SNT Nexus Team) 服務。在使用本平台提供的任何服務之前，請仔細閱讀並理解以下條款與聲明。
               使用本服務即表示您同意遵守以下所有條款。
             </p>
             <p className="text-[9px] sm:text-[10px] text-white/40 leading-relaxed mt-2">
-              Welcome to Orbit Tower Cyber Virtual HQ. Please carefully read and understand the following terms and disclaimers before using any services provided by this platform.
+              Welcome to SNT Nexus (Orbit Tower). Please carefully read and understand the following terms and disclaimers before using any services provided by this platform.
               By using this service, you agree to comply with all the following terms.
             </p>
           </div>
@@ -140,7 +140,7 @@ export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
                 如有任何疑問，請聯繫我們的客服團隊
               </div>
               <div className="text-[10px] text-cyan-400/60 mt-1">
-                support@orbit-tower.tw
+                support@snt-nexus.tw
               </div>
             </div>
           </div>

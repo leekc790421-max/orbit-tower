@@ -60,16 +60,16 @@
   </g>
   
   <!-- Title -->
-  <text x="600" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" filter="url(#neon)">
-    ORBIT TOWER
+  <text x="600" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#ffffff" filter="url(#neon)">
+    SNT | 光躍星樞
   </text>
-  <text x="600" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#00d4ff" opacity="0.8" letter-spacing="4">
-    賽博虛擬地產總部 · CYBER VIRTUAL HQ
+  <text x="600" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#00d4ff" opacity="0.8" letter-spacing="4">
+    ORBIT TOWER · 3D SAAS NEXUS
   </text>
   
   <!-- Tagline -->
-  <text x="600" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" opacity="0.6">
-    六角晶體摩天樓 · 3D 互動體驗 · 企業旗艦空間 · 網域對映 · AI 樓管導覽
+  <text x="600" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#ffffff" opacity="0.6">
+    3D 空間展示 · 漂流瓶流量裂變 · AI 廣告 Agent · 全自動化品牌進駐樞紐
   </text>
   
   <!-- Corner decorations -->

@@ -29,7 +29,7 @@ const PLANS: Plan[] = [
     priceNote: "/ 次",
     features: [
       "標準六角戶別空間（1F~3F）",
-      "子網域配發 (unit.orbit-tower.tw)",
+      "子網域配發 (unit.snt-nexus.tw)",
       "基礎頻寬與運算配額",
       "AI 樓管基礎導覽",
       "Email 技術支援",
@@ -355,7 +355,7 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                 <ul className="space-y-1 text-[10px] sm:text-[11px] text-white/60">
                   <li>• 匯款完成後請保留交易憑證並通知專屬顧問</li>
                   <li>• 財務人工對帳完成後（1-2 個工作天內）正式開通授權</li>
-                  <li>• 國際電匯請備註「Orbit Tower [方案名稱]」以便快速對帳</li>
+                  <li>• 國際電匯請備註「SNT Nexus [方案名稱]」以便快速對帳</li>
                 </ul>
               </div>
             </>
