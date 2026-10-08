@@ -1,0 +1,192 @@
+name: k6 Stress Test
+
+on:
+  # 手動觸發
+  workflow_dispatch:
+    inputs:
+      test_profile:
+        description: '測試模式 (smoke/load/stress/spike/drift/claims)'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+          - load
+          - stress
+          - spike
+          - drift
+          - claims
+      target_url:
+        description: '目標網址'
+        required: false
+        default: 'https://orbit-tower.vercel.app'
+        type: string
+
+  # 排程執行 (每週一凌晨 2 點 UTC)
+  schedule:
+    - cron: '0 2 * * 1'
+
+  # Push 到 master 時自動執行冒煙測試
+  push:
+    branches: [master]
+    paths:
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'tests/stress-test.js'
+
+jobs:
+  stress-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Start application (for local testing)
+        if: github.event.inputs.target_url == '' || github.event.inputs.target_url == 'http://localhost:3000'
+        run: |
+          npm start &
+          sleep 10
+          curl -f http://localhost:3000 || exit 1
+
+      - name: Install k6
+        run: |
+          curl -fsSL https://dl.k6.io/key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/k6-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/k6-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install -y k6
+
+      - name: Create reports directory
+        run: mkdir -p tests/reports
+
+      - name: Run Smoke Test
+        if: github.event.inputs.test_profile == 'smoke' || github.event_name == 'push'
+        env:
+          BASE_URL: ${{ github.event.inputs.target_url || 'http://localhost:3000' }}
+        run: |
+          k6 run \
+            --env BASE_URL=$BASE_URL \
+            --env K6_DURATION=10s \
+            --env K6_VUS=10 \
+            --out json=tests/reports/smoke-result.json \
+            tests/stress-test.js
+
+      - name: Run Load Test
+        if: github.event.inputs.test_profile == 'load'
+        env:
+          BASE_URL: ${{ github.event.inputs.target_url || 'http://localhost:3000' }}
+        run: |
+          k6 run \
+            --env BASE_URL=$BASE_URL \
+            --env K6_DURATION=2m \
+            --env K6_VUS=50 \
+            --out json=tests/reports/load-result.json \
+            tests/stress-test.js
+
+      - name: Run Full Stress Test
+        if: github.event.inputs.test_profile == 'stress' || github.event_name == 'schedule'
+        env:
+          BASE_URL: ${{ github.event.inputs.target_url || 'http://localhost:3000' }}
+          ADMIN_SECRET: ${{ secrets.ADMIN_SECRET }}
+        run: |
+          k6 run \
+            --env BASE_URL=$BASE_URL \
+            --env ADMIN_SECRET=$ADMIN_SECRET \
+            --env K6_DURATION=30s \
+            --env K6_VUS=200 \
+            --out json=tests/reports/stress-result.json \
+            tests/stress-test.js
+
+      - name: Run Spike Test Only
+        if: github.event.inputs.test_profile == 'spike'
+        env:
+          BASE_URL: ${{ github.event.inputs.target_url || 'http://localhost:3000' }}
+        run: |
+          k6 run \
+            --env BASE_URL=$BASE_URL \
+            --scenario spike_test \
+            --out json=tests/reports/spike-result.json \
+            tests/stress-test.js
+
+      - name: Run Drift API Test Only
+        if: github.event.inputs.test_profile == 'drift'
+        env:
+          BASE_URL: ${{ github.event.inputs.target_url || 'http://localhost:3000' }}
+        run: |
+          k6 run \
+            --env BASE_URL=$BASE_URL \
+            --env K6_DURATION=1m \
+            --env K6_VUS=100 \
+            --scenario drift_api_stress \
+            --out json=tests/reports/drift-result.json \
+            tests/stress-test.js
+
+      - name: Run Claims Test Only
+        if: github.event.inputs.test_profile == 'claims'
+        env:
+          BASE_URL: ${{ github.event.inputs.target_url || 'http://localhost:3000' }}
+          ADMIN_SECRET: ${{ secrets.ADMIN_SECRET }}
+        run: |
+          k6 run \
+            --env BASE_URL=$BASE_URL \
+            --env ADMIN_SECRET=$ADMIN_SECRET \
+            --scenario concurrent_claims \
+            --out json=tests/reports/claims-result.json \
+            tests/stress-test.js
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-test-results-${{ github.run_number }}
+          path: |
+            tests/reports/*.json
+            tests/reports/*.csv
+          retention-days: 30
+
+      - name: Check SLO compliance
+        if: always()
+        run: |
+          echo "═══════════════════════════════════════════════════════════"
+          echo "  SLO Compliance Check"
+          echo "═══════════════════════════════════════════════════════════"
+          echo ""
+          echo "  檢查測試報告中的 SLO 達成狀況..."
+          echo ""
+
+          # 如果有 JSON 報告，檢查關鍵指標
+          if [ -f tests/reports/stress-test-report.json ]; then
+            echo "  📊 從 JSON 報告提取指標:"
+            jq -r '.metrics.http_req_duration.values | "  - P95: \(.["p(95)"] | . * 100 | round / 100)ms"' tests/reports/stress-test-report.json || true
+            jq -r '.metrics.api_errors.values | "  - Error Rate: \(.rate * 100 | . * 1000 | round / 1000)%"' tests/reports/stress-test-report.json || true
+          fi
+
+          echo ""
+          echo "  ✅ 測試完成"
+
+      - name: Notify on failure
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 k6 壓力測試失敗 - ${new Date().toISOString()}`,
+              body: `排程壓力測試失敗。\n\n[查看測試報告](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
+              labels: ['bug', 'performance']
+            })
