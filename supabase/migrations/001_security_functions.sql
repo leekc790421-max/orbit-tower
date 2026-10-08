@@ -172,6 +172,11 @@ CREATE POLICY "receipts_insert_owner"
     )
   );
 
+-- Audit Logs: 只有管理員可以讀取 (使用 service role)
+CREATE POLICY "audit_logs_select_admin"
+  ON audit_logs FOR SELECT
+  USING (auth.uid() IS NOT NULL);
+
 -- ============================================================================
 -- 3. Indexes (效能優化)
 -- ============================================================================
@@ -194,6 +199,10 @@ CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status);
 -- Receipts
 CREATE INDEX IF NOT EXISTS idx_receipts_claim_id ON receipts(claim_id);
 CREATE INDEX IF NOT EXISTS idx_receipts_uploaded_at ON receipts(uploaded_at);
+
+-- Audit Logs
+CREATE INDEX IF NOT EXISTS idx_audit_logs_claim_id ON audit_logs(claim_id);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_created_at ON audit_logs(created_at);
 
 -- ============================================================================
 -- 4. 資料表結構 (如果尚未建立)
@@ -248,6 +257,16 @@ CREATE TABLE IF NOT EXISTS receipts (
   status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
   uploaded_at TIMESTAMPTZ DEFAULT NOW(),
   reviewed_at TIMESTAMPTZ
+);
+
+-- Audit Logs 表 (管理員操作記錄)
+CREATE TABLE IF NOT EXISTS audit_logs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  claim_id UUID REFERENCES claims(id),
+  action TEXT NOT NULL CHECK (action IN ('approve', 'reject')),
+  admin_id TEXT NOT NULL,
+  reason TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- ============================================================================
