@@ -402,4 +402,32 @@ export const zh = {
   lang: {
     switcher: "語言",
   },
+
+  // === Referral System ===
+  referral: {
+    title: "推薦好禮",
+    subtitle: "REFERRAL REWARDS",
+    desc: "推薦品牌進駐，雙方都能獲得獎勵！",
+    yourCode: "你的專屬推薦碼",
+    copyCode: "複製推薦碼",
+    copyLink: "複製推薦連結",
+    copied: "已複製！",
+    howItWorks: "推薦機制說明",
+    step1: "分享你的專屬推薦碼或連結給朋友",
+    step2: "朋友使用推薦碼認領店面並完成付款",
+    step3: "雙方都能獲得現金獎勵！",
+    rewards: "獎勵方案",
+    rewardLanding: "門戶體驗版：推薦人 NT$3,000 / 新戶 NT$2,000",
+    rewardGrowth: "成長升級版：推薦人 NT$5,000 / 新戶 NT$3,000",
+    rewardScale: "企業總部版：推薦人 NT$10,000 / 新戶 NT$5,000",
+    stats: "推薦統計",
+    totalReferrals: "總推薦人數",
+    conversions: "成功轉換",
+    totalRewards: "累計獎勵",
+    share: "分享賺獎勵",
+    enterCode: "輸入推薦碼",
+    applyCode: "套用推薦碼",
+    invalidCode: "無效的推薦碼",
+    codeApplied: "推薦碼已套用，雙方可獲得獎勵！",
+  },
 };

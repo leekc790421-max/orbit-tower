@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, BookOpen, Building, Bottle, Search, Code, Database, Cpu, Globe } from "lucide-react";
+import { X, BookOpen, Building, Droplets, Search, Code, Database, Cpu, Globe } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
 interface ReadmeModalProps {
@@ -114,7 +114,7 @@ function OverviewContent() {
 
       <div className="glass-panel rounded-xl p-5 border border-white/10">
         <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
-          <Bottle size={20} className="text-cyan-400" />
+          <Droplets size={20} className="text-cyan-400" />
           {t("readme.overviewTitle2")}
         </h3>
         <div className="space-y-3 text-sm sm:text-base text-white/70">

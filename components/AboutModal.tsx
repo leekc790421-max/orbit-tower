@@ -1,6 +1,6 @@
 "use client";
 
-import { X, Info, Hexagon, Globe, Shield, Zap, Users, Building, Sparkles, Bottle, Search } from "lucide-react";
+import { X, Info, Hexagon, Globe, Shield, Zap, Users, Building, Sparkles, Droplets, Search } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
 interface AboutModalProps {
@@ -67,7 +67,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     description={t('about.mech1Desc')}
                   />
                   <CoreMechanism
-                    icon={Bottle}
+                    icon={Droplets}
                     title={t('about.mech2Title')}
                     description={t('about.mech2Desc')}
                   />

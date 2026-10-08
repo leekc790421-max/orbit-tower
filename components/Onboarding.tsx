@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, ChevronRight, Hexagon, MousePointer, Palette, MessageCircle, HelpCircle } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
@@ -15,9 +15,12 @@ export default function Onboarding({ onClose }: OnboardingProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  if (typeof window !== 'undefined' && isMobile !== (window.innerWidth < 768)) {
-    setIsMobile(window.innerWidth < 768);
-  }
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const steps = [
     {

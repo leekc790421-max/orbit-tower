@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { MessageCircle, X, Send, Bot, User } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
@@ -13,13 +13,21 @@ interface Message {
 export default function AIConcierge() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { id: "1", role: "assistant", content: t("ai.welcome") },
-  ]);
+  const [userMessages, setUserMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const idCounter = useRef(0);
+
+  // Welcome message always reflects current locale
+  const welcomeMessage: Message = useMemo(() => ({
+    id: "welcome",
+    role: "assistant",
+    content: t("ai.welcome"),
+  }), [t]);
+
+  // All messages = welcome + user conversation
+  const messages = useMemo(() => [welcomeMessage, ...userMessages], [welcomeMessage, userMessages]);
 
   const suggestions = [t("ai.sug1"), t("ai.sug2"), t("ai.sug3"), t("ai.sug4")];
 
@@ -33,7 +41,7 @@ export default function AIConcierge() {
       role: "user",
       content: content.trim(),
     };
-    setMessages((prev) => [...prev, userMsg]);
+    setUserMessages((prev) => [...prev, userMsg]);
     setInput("");
     setIsTyping(true);
 
@@ -46,7 +54,7 @@ export default function AIConcierge() {
         role: "assistant",
         content: response,
       };
-      setMessages((prev) => [...prev, aiMsg]);
+      setUserMessages((prev) => [...prev, aiMsg]);
       setIsTyping(false);
     }, delay);
   };
@@ -146,7 +154,7 @@ export default function AIConcierge() {
             )}
           </div>
 
-          {messages.length <= 2 && (
+          {userMessages.length === 0 && (
             <div className="px-3 sm:px-4 pb-2 flex flex-wrap gap-1.5">
               {suggestions.map((s) => (
                 <button

@@ -1,6 +1,6 @@
 "use client";
 
-import { type Unit, FACE_LABELS, type UnitStatus } from "@/data/units";
+import { type Unit, type UnitStatus } from "@/data/units";
 import { X, Globe, Shield, Zap, Building2, MapPin } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
@@ -10,7 +10,7 @@ interface UnitInfoCardProps {
 }
 
 export default function UnitInfoCard({ unit, onClose }: UnitInfoCardProps) {
-  const { t, locale } = useTranslation();
+  const { t } = useTranslation();
   if (!unit) return null;
 
   const statusConfig: Record<UnitStatus, { border: string; bg: string; glow: string }> = {
@@ -21,7 +21,7 @@ export default function UnitInfoCard({ unit, onClose }: UnitInfoCardProps) {
 
   const config = statusConfig[unit.status];
   const statusLabel = t(`status.${unit.status}`);
-  const faceLabel = locale === "en" ? FACE_LABELS[unit.face] : t(`face.${unit.face}`);
+  const faceLabel = t(`face.${unit.face}`);
 
   return (
     <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center pointer-events-none">
