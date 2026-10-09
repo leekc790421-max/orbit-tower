@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Bot, Shield, Globe, CreditCard, FileText, Lock, Scale, AlertTriangle, RefreshCw, Copyright } from "lucide-react";
+import { ArrowLeft, Bot, Shield, Globe, CreditCard, FileText, Lock, Scale, AlertTriangle, RefreshCw, Copyright, Eye, MessageSquare, ShoppingBag, WifiOff } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
 interface DisclaimerPageProps {
@@ -88,6 +88,37 @@ export default function DisclaimerPage({ onBack }: DisclaimerPageProps) {
       title: t("disclaimer.section13Title"),
       color: "emerald",
       content: t("disclaimer.section13Content"),
+    },
+    // === 新增 5 大聲明 ===
+    {
+      icon: Eye,
+      title: t("termsExtra.section8Title"),
+      color: "cyan",
+      content: t("termsExtra.section8Content"),
+    },
+    {
+      icon: MessageSquare,
+      title: t("termsExtra.section9Title"),
+      color: "emerald",
+      content: t("termsExtra.section9Content"),
+    },
+    {
+      icon: Bot,
+      title: t("termsExtra.section10Title"),
+      color: "cyan",
+      content: t("termsExtra.section10Content"),
+    },
+    {
+      icon: ShoppingBag,
+      title: t("termsExtra.section11Title"),
+      color: "emerald",
+      content: t("termsExtra.section11Content"),
+    },
+    {
+      icon: WifiOff,
+      title: t("termsExtra.section12Title"),
+      color: "cyan",
+      content: t("termsExtra.section12Content"),
     },
   ];
 

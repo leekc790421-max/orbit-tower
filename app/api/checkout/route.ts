@@ -17,6 +17,58 @@ import { withRateLimit } from '@/lib/rate-limit/rate-limiter';
 import { validateJsonInput, validateEmail, validateSlug, validateTaxId } from '@/lib/validation/validator';
 import { executeTransaction } from '@/lib/supabase/client';
 
+/**
+ * 建立 Stripe Checkout Session
+ */
+async function createStripeCheckoutSession(params: {
+  storeId: string;
+  email: string;
+  plan: string;
+  amount: number;
+}): Promise<string | null> {
+  // 如果沒有 Stripe 金鑰，返回模擬 URL
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return `/checkout/stripe?store=${params.storeId}&plan=${params.plan}&amount=${params.amount}`;
+  }
+  
+  try {
+    // 動態載入 Stripe (避免 build 階段錯誤)
+    const stripe = new (await import('stripe')).default(process.env.STRIPE_SECRET_KEY);
+    
+    const session = await stripe.checkout.sessions.create({
+      customer_email: params.email,
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: `Orbit Tower ${params.plan === 'scale' ? 'Gold' : 'Pro'} Plan`,
+              description: params.plan === 'scale' 
+                ? '黃金樓層 — 1F-2F 黃金雙層 + Bloom 霓虹光效' 
+                : 'Pro 樓層 — 品牌專屬空間',
+            },
+            unit_amount: params.amount * 100, // Stripe 使用分
+            recurring: { interval: 'month' },
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'subscription',
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit.xingdeng.tw'}/dashboard?claimed=${params.storeId}&success=true`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit.xingdeng.tw'}/dashboard?claimed=${params.storeId}&cancelled=true`,
+      metadata: {
+        store_id: params.storeId,
+        plan: params.plan,
+      },
+    });
+    
+    return session.url;
+  } catch (error) {
+    console.error('Stripe session error:', error);
+    return null;
+  }
+}
+
 // Rate Limit: 每分鐘 5 次
 const RATE_LIMIT_TYPE = 'checkout' as const;
 
@@ -90,13 +142,17 @@ export async function POST(request: NextRequest) {
     }
     
     // 8. 驗證 Payment Channel
-    const validChannels = ['rakuten', 'bank_of_taiwan', 'payoneer'];
+    const validChannels = ['stripe', 'rakuten', 'bank_of_taiwan', 'payoneer'];
     if (!validChannels.includes(data.payment_channel)) {
       return NextResponse.json(
         { error: '無效的付款通道' },
         { status: 400 }
       );
     }
+    
+    // 8b. 判斷付款方式類型
+    const isStripe = data.payment_channel === 'stripe';
+    const isManualPayment = ['rakuten', 'bank_of_taiwan', 'payoneer'].includes(data.payment_channel);
     
     // 9. 執行 Transaction (原子性操作)
     const txResult = await executeTransaction(async (tx) => {
@@ -119,7 +175,7 @@ export async function POST(request: NextRequest) {
       }
       
       // 9c. 建立 Payment Record
-      const amount = data.plan === 'scale' ? 120000 : data.plan === 'growth' ? 60000 : 35000;
+      const amount = data.plan === 'scale' ? 99 : data.plan === 'growth' ? 29 : 0;
       const paymentResult = await tx.createPayment(
         data.store_id,
         amount,
@@ -130,10 +186,34 @@ export async function POST(request: NextRequest) {
         throw new Error(paymentResult.error);
       }
       
+      // 9d. Stripe 即時開通 / 手動付款待審核
+      let checkoutUrl = null;
+      let kycStatus = 'pending';
+      
+      if (isStripe) {
+        // Stripe 訂閱 — 建立 Checkout Session
+        checkoutUrl = await createStripeCheckoutSession({
+          storeId: data.store_id,
+          email: data.email,
+          plan: data.plan,
+          amount,
+        });
+        kycStatus = 'pending'; // 等待 Stripe Webhook 確認
+      } else if (isManualPayment) {
+        // 電匯/Payoneer — 等待上傳水單
+        kycStatus = 'awaiting_proof';
+      }
+      
       return {
         claim_id: data.store_id,
         payment_id: paymentResult.paymentId,
         amount,
+        payment_type: data.payment_channel,
+        checkout_url: checkoutUrl,
+        kyc_status: kycStatus,
+        message: isStripe 
+          ? '請完成 Stripe 付款，付款後自動開通'
+          : '請上傳匯款憑證，審核後開通',
       };
     });
     

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, FileText, Shield, Users, CreditCard, AlertTriangle, Scale, RefreshCw } from "lucide-react";
+import { ArrowLeft, FileText, Shield, Users, CreditCard, AlertTriangle, Scale, RefreshCw, Eye, MessageSquare, Bot, ShoppingBag, WifiOff } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { I18nProvider, useTranslation } from "@/lib/i18n";
@@ -49,15 +49,15 @@ function TermsContent() {
       content: t("terms.section4Content"),
     },
     {
-      icon: AlertTriangle,
+      icon: Scale,
       title: t("terms.section5Title"),
-      color: "emerald",
+      color: "cyan",
       content: t("terms.section5Content"),
     },
     {
-      icon: Scale,
+      icon: AlertTriangle,
       title: t("terms.section6Title"),
-      color: "cyan",
+      color: "emerald",
       content: t("terms.section6Content"),
     },
     {
@@ -65,6 +65,37 @@ function TermsContent() {
       title: t("terms.section7Title"),
       color: "cyan",
       content: t("terms.section7Content"),
+    },
+    // === 新增 5 大聲明 ===
+    {
+      icon: Eye,
+      title: t("termsExtra.section8Title"),
+      color: "emerald",
+      content: t("termsExtra.section8Content"),
+    },
+    {
+      icon: MessageSquare,
+      title: t("termsExtra.section9Title"),
+      color: "cyan",
+      content: t("termsExtra.section9Content"),
+    },
+    {
+      icon: Bot,
+      title: t("termsExtra.section10Title"),
+      color: "emerald",
+      content: t("termsExtra.section10Content"),
+    },
+    {
+      icon: ShoppingBag,
+      title: t("termsExtra.section11Title"),
+      color: "cyan",
+      content: t("termsExtra.section11Content"),
+    },
+    {
+      icon: WifiOff,
+      title: t("termsExtra.section12Title"),
+      color: "emerald",
+      content: t("termsExtra.section12Content"),
     },
   ];
 
