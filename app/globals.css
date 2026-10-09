@@ -31,6 +31,15 @@ body {
   touch-action: manipulation;
 }
 
+/* 手機版允許滾動（Landing page 需要） */
+@media (max-width: 640px) {
+  body.landing-scroll-active {
+    overflow: auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 /* 手機上隱藏掃描線以改善效能 */
 @media (max-width: 768px) {
   .scanline-overlay {
@@ -61,6 +70,30 @@ body {
     width: 6px;
     height: 6px;
     border-width: 1.5px;
+  }
+
+  /* 手機版 Header 固定高度與分層 */
+  .mobile-header-fixed {
+    height: 56px;
+    z-index: 50;
+  }
+
+  /* 手機版毛玻璃卡片 — 半透明讓 3D 大樓隱約可見 */
+  .glass-card-mobile {
+    background: rgba(15, 23, 42, 0.75) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  }
+
+  /* 手機版卡片間距壓縮 */
+  .mobile-card-spacing {
+    margin-bottom: 12px;
+  }
+
+  /* 手機版內容頂部安全距離 */
+  .mobile-safe-top {
+    padding-top: 64px;
   }
 }
 

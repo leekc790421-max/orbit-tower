@@ -125,10 +125,10 @@ function HomeInner() {
       {/* 資安防護狀態 + 免責聲明入口 Footer */}
       <SecurityFooter />
       {/* 免責聲明按鈕 */}
-      <div className="fixed bottom-1 sm:bottom-1.5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
+      <div className="fixed bottom-0.5 sm:bottom-1.5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
         <button
           onClick={() => setDisclaimerOpen(true)}
-          className="text-[6px] sm:text-[8px] text-white/15 hover:text-white/40 tracking-wider transition-colors px-2 py-0.5"
+          className="text-[5px] sm:text-[8px] text-white/15 hover:text-white/40 tracking-wider transition-colors px-1.5 sm:px-2 py-0.5"
         >
           {t("security.disclaimer")}
         </button>

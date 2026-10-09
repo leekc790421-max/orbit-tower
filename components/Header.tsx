@@ -26,19 +26,19 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
   return (
     <>
       {/* === 左上角：品牌 Logo === */}
-      <div className="fixed top-2 sm:top-4 left-2 sm:left-3 z-40 pointer-events-auto">
-        <div className="glass-panel rounded-lg sm:rounded-xl px-2.5 sm:px-4 py-1.5 sm:py-2 hud-border">
-          <div className="flex items-center gap-2 sm:gap-2.5">
+      <div className="fixed top-1.5 sm:top-4 left-1.5 sm:left-3 z-50 pointer-events-auto">
+        <div className="glass-panel rounded-lg sm:rounded-xl px-2 sm:px-4 py-1 sm:py-2 hud-border">
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
             <img 
               src={logoSrc} 
               alt={t("brand.name")} 
-              className="w-6 h-6 sm:w-8 sm:h-8 object-contain rounded-full"
+              className="w-5 h-5 sm:w-8 sm:h-8 object-contain rounded-full"
             />
             <div className="min-w-0">
-              <h1 className="text-[10px] sm:text-xs font-bold tracking-[0.1em] sm:tracking-[0.15em] text-white uppercase neon-text truncate">
+              <h1 className="text-[9px] sm:text-xs font-bold tracking-[0.08em] sm:tracking-[0.15em] text-white uppercase neon-text truncate max-w-[80px] sm:max-w-none">
                 SNT <span className="text-cyan-400">|</span> {t("brand.nameShort")}
               </h1>
-              <p className="text-[7px] sm:text-[9px] tracking-[0.08em] text-cyan-400/50 uppercase truncate">
+              <p className="text-[6px] sm:text-[9px] tracking-[0.06em] text-cyan-400/50 uppercase truncate">
                 {t("brand.taglineShort")}
               </p>
             </div>
@@ -47,8 +47,8 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
       </div>
 
       {/* === 右上角：功能按鈕 === */}
-      <div className="fixed top-2 sm:top-4 right-2 sm:right-3 z-40 pointer-events-auto">
-        <div className="glass-panel rounded-lg sm:rounded-xl px-2 sm:px-3 py-1.5 sm:py-2 hud-border">
+      <div className="fixed top-1.5 sm:top-4 right-1.5 sm:right-3 z-50 pointer-events-auto">
+        <div className="glass-panel rounded-lg sm:rounded-xl px-1.5 sm:px-3 py-1 sm:py-2 hud-border">
           {/* 桌機選單 */}
           <div className="hidden sm:flex items-center gap-1.5">
             <button onClick={onAboutClick} className="flex items-center gap-1 text-[11px] px-2 py-1.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all tracking-wider">
@@ -76,22 +76,22 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
           </div>
 
           {/* 手機選單 */}
-          <div className="flex sm:hidden items-center gap-1.5">
+          <div className="flex sm:hidden items-center gap-1">
             <LanguageSwitcher />
             <button
               onClick={() => setShareModalOpen(true)}
-              className="w-7 h-7 rounded-md border border-white/10 flex items-center justify-center hover:border-cyan-400/30 transition-all"
+              className="w-6 h-6 rounded-md border border-white/10 flex items-center justify-center hover:border-cyan-400/30 transition-all"
             >
-              <Share2 size={13} className="text-white/50" />
+              <Share2 size={12} className="text-white/50" />
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-7 h-7 rounded-md border border-white/10 flex items-center justify-center hover:border-white/30 transition-all"
+              className="w-6 h-6 rounded-md border border-white/10 flex items-center justify-center hover:border-white/30 transition-all"
             >
               {mobileMenuOpen ? (
-                <X size={14} className="text-white/50" />
+                <X size={13} className="text-white/50" />
               ) : (
-                <Menu size={14} className="text-white/50" />
+                <Menu size={13} className="text-white/50" />
               )}
             </button>
           </div>

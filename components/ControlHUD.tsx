@@ -44,33 +44,33 @@ export default function ControlHUD({
   };
 
   return (
-    <div className="fixed bottom-10 sm:bottom-4 right-1 sm:right-3 z-50 w-auto">
+    <div className="fixed bottom-8 sm:bottom-4 right-1 sm:right-3 z-50 w-auto">
       {/* 手機版展開按鈕 */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="sm:hidden glass-panel rounded-lg px-2.5 py-1.5 hud-border flex items-center gap-1.5 mb-1 w-full justify-center"
+        className="sm:hidden glass-panel rounded-lg px-2 py-1 hud-border flex items-center gap-1 mb-1 w-full justify-center"
       >
-        <Palette size={13} className="text-cyan-400" />
-        <span className="text-[10px] text-cyan-300 font-bold tracking-wider">{t("hud.panel")}</span>
-        {expanded ? <ChevronDown size={12} className="text-cyan-400" /> : <ChevronUp size={12} className="text-cyan-400" />}
+        <Palette size={11} className="text-cyan-400" />
+        <span className="text-[9px] text-cyan-300 font-bold tracking-wider">{t("hud.panel")}</span>
+        {expanded ? <ChevronDown size={10} className="text-cyan-400" /> : <ChevronUp size={10} className="text-cyan-400" />}
       </button>
 
       <div className={`${expanded ? "flex" : "hidden"} sm:flex flex-col gap-1 sm:gap-2`}>
         {/* 認領按鈕 */}
         <button
           onClick={onPricingClick}
-          className="glass-panel rounded-lg px-2.5 py-1.5 sm:px-3 sm:py-2 hud-border flex items-center justify-center gap-1.5 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
+          className="glass-panel rounded-lg px-2 py-1 sm:px-3 sm:py-2 hud-border flex items-center justify-center gap-1 sm:gap-1.5 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
         >
-          <ShoppingBag size={13} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-          <span className="text-[10px] sm:text-xs text-cyan-300 font-bold tracking-wider">{t("hud.claimStore")}</span>
+          <ShoppingBag size={11} className="text-cyan-400 group-hover:scale-110 transition-transform sm:w-[13px] sm:h-[13px]" />
+          <span className="text-[9px] sm:text-xs text-cyan-300 font-bold tracking-wider">{t("hud.claimStore")}</span>
         </button>
 
         {/* 主題切換 */}
-        <div className="glass-panel rounded-lg p-1.5 sm:p-2.5 hud-border">
-          <div className="text-[8px] sm:text-[10px] tracking-widest text-cyan-400/70 mb-1 sm:mb-1.5 uppercase font-bold">
+        <div className="glass-panel rounded-lg p-1 sm:p-2.5 hud-border">
+          <div className="text-[7px] sm:text-[10px] tracking-widest text-cyan-400/70 mb-0.5 sm:mb-1.5 uppercase font-bold">
             {t("hud.sceneAmbience")}
           </div>
-          <div className="flex flex-col gap-1 sm:gap-1.5">
+          <div className="flex flex-col gap-0.5 sm:gap-1.5">
             {(Object.keys(THEME_LABELS) as Theme[]).map((th) => {
               const Icon = themeIcons[th];
               const isActive = theme === th;
@@ -79,7 +79,7 @@ export default function ControlHUD({
                   key={th}
                   onClick={() => onThemeChange(th)}
                   className={`
-                    cyber-button flex items-center gap-1.5 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded text-[10px] sm:text-xs
+                    cyber-button flex items-center gap-1 sm:gap-1.5 px-1.5 py-0.5 sm:px-2.5 sm:py-1.5 rounded text-[9px] sm:text-xs
                     transition-all duration-300 border
                     ${
                       isActive
@@ -88,7 +88,7 @@ export default function ControlHUD({
                     }
                   `}
                 >
-                  <Icon size={12} className="flex-shrink-0" />
+                  <Icon size={10} className="flex-shrink-0 sm:w-3 sm:h-3" />
                   <span className="font-medium">{getThemeLabel(th)}</span>
                 </button>
               );
@@ -97,12 +97,12 @@ export default function ControlHUD({
         </div>
 
         {/* 光譜色調 */}
-        <div className="glass-panel rounded-lg p-1.5 sm:p-2.5 hud-border">
-          <div className="text-[8px] sm:text-[10px] tracking-widest text-cyan-400/70 mb-1 sm:mb-1.5 uppercase font-bold flex items-center gap-1">
-            <Palette size={10} />
+        <div className="glass-panel rounded-lg p-1 sm:p-2.5 hud-border">
+          <div className="text-[7px] sm:text-[10px] tracking-widest text-cyan-400/70 mb-0.5 sm:mb-1.5 uppercase font-bold flex items-center gap-0.5 sm:gap-1">
+            <Palette size={8} className="sm:w-[10px] sm:h-[10px]" />
             <span>{t("hud.spectrumHue")}</span>
           </div>
-          <div className="flex gap-2 justify-center">
+          <div className="flex gap-1.5 sm:gap-2 justify-center">
             {(Object.keys(LIGHT_COLORS) as LightColor[]).map((c) => {
               const isActive = lightColor === c;
               return (
@@ -111,7 +111,7 @@ export default function ControlHUD({
                   onClick={() => onLightColorChange(c)}
                   title={getLightLabel(c)}
                   className={`
-                    w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 transition-all duration-300
+                    w-5 h-5 sm:w-8 sm:h-8 rounded-full border-2 transition-all duration-300
                     ${isActive ? "scale-110 border-white" : "border-white/20 hover:border-white/50"}
                   `}
                   style={{

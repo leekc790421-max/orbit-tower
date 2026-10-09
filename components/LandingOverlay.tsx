@@ -75,7 +75,7 @@ function DarkGlassBg() {
 
 export default function LandingOverlay({ onEnter3D, onPricingClick }: LandingOverlayProps) {
   return (
-    <div className="fixed inset-0 z-[60] overflow-y-auto">
+    <div className="fixed inset-0 z-[60] overflow-y-auto overflow-x-hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
       <DarkGlassBg />
       <div className="relative z-10">
         <HeroSection onEnter3D={onEnter3D} onPricingClick={onPricingClick} />
@@ -90,10 +90,10 @@ export default function LandingOverlay({ onEnter3D, onPricingClick }: LandingOve
 }
 
 /* ============================================================
-   通用毛玻璃卡片樣式
+   通用毛玻璃卡片樣式 — 半透明讓 3D 大樓隱約可見
    ============================================================ */
-const glassCard = "rounded-xl sm:rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md";
-const glassCardHover = "hover:border-cyan-400/30 hover:bg-white/[0.06] transition-all";
+const glassCard = "rounded-xl sm:rounded-2xl border border-white/[0.12] bg-white/[0.03] backdrop-blur-md";
+const glassCardHover = "hover:border-cyan-400/30 hover:bg-white/[0.05] transition-all";
 
 /* ============================================================
    HERO
@@ -101,30 +101,30 @@ const glassCardHover = "hover:border-cyan-400/30 hover:bg-white/[0.06] transitio
 function HeroSection({ onEnter3D, onPricingClick }: { onEnter3D: () => void; onPricingClick: () => void }) {
   const { t } = useTranslation();
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-3 sm:px-6 pt-16 sm:pt-0 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-3 sm:px-6 pt-14 sm:pt-0 overflow-hidden">
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 backdrop-blur-md mb-5 sm:mb-8">
+        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-5 py-1 sm:py-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 backdrop-blur-md mb-3 sm:mb-8">
           <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-400 animate-pulse" />
-          <span className="text-[10px] sm:text-sm text-cyan-300 tracking-wider font-semibold">
+          <span className="text-[9px] sm:text-sm text-cyan-300 tracking-wider font-semibold">
             {t("landing.heroBadge")}
           </span>
         </div>
 
         {/* Main Title */}
-        <h1 className="text-2xl sm:text-5xl md:text-7xl font-extrabold text-white leading-[1.15] mb-3 sm:mb-6 tracking-tight">
+        <h1 className="text-xl sm:text-5xl md:text-7xl font-extrabold text-white leading-[1.15] mb-2 sm:mb-6 tracking-tight">
           {t("landing.heroTitle")}
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xs sm:text-xl text-white/50 mb-3 sm:mb-4 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-[11px] sm:text-xl text-white/50 mb-2 sm:mb-4 max-w-2xl mx-auto leading-[1.4]">
           {t("landing.heroSubtitle")}
         </p>
 
         {/* Features line */}
-        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-3 mb-2 sm:mb-3">
+        <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-3 mb-1.5 sm:mb-3">
           {t("landing.heroFeatures").split(" · ").map((f, i) => (
-            <span key={i} className="inline-flex items-center gap-1 text-[10px] sm:text-sm text-cyan-400/70 font-medium">
+            <span key={i} className="inline-flex items-center gap-0.5 sm:gap-1 text-[9px] sm:text-sm text-cyan-400/70 font-medium">
               {i > 0 && <span className="text-cyan-400/30">·</span>}
               {f}
             </span>
@@ -132,22 +132,22 @@ function HeroSection({ onEnter3D, onPricingClick }: { onEnter3D: () => void; onP
         </div>
 
         {/* Deploy badge */}
-        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-emerald-400/5 border border-emerald-400/20 mb-6 sm:mb-10">
-          <Zap size={11} className="text-emerald-400" />
-          <span className="text-[10px] sm:text-sm text-emerald-400/80 font-semibold">{t("landing.heroDeploy")}</span>
+        <div className="inline-flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-0.5 sm:py-1.5 rounded-full bg-emerald-400/5 border border-emerald-400/20 mb-4 sm:mb-10">
+          <Zap size={10} className="text-emerald-400 sm:w-3 sm:h-3" />
+          <span className="text-[9px] sm:text-sm text-emerald-400/80 font-semibold">{t("landing.heroDeploy")}</span>
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 mb-5 sm:mb-12 px-3">
           <button
             onClick={onPricingClick}
-            className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-sm sm:text-base tracking-wide hover:from-cyan-400 hover:to-blue-400 transition-all shadow-xl shadow-cyan-500/20 hover:-translate-y-0.5"
+            className="w-full sm:w-auto px-5 sm:px-10 py-2.5 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-[13px] sm:text-base tracking-wide hover:from-cyan-400 hover:to-blue-400 transition-all shadow-xl shadow-cyan-500/20 hover:-translate-y-0.5"
           >
             {t("landing.heroCta")}
           </button>
           <button
             onClick={onEnter3D}
-            className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl border border-white/20 bg-white/5 text-white/80 font-semibold text-sm sm:text-base tracking-wide hover:border-cyan-400/50 hover:text-white transition-all hover:-translate-y-0.5"
+            className="w-full sm:w-auto px-5 sm:px-10 py-2.5 sm:py-4 rounded-xl sm:rounded-2xl border border-white/20 bg-white/5 text-white/80 font-semibold text-[13px] sm:text-base tracking-wide hover:border-cyan-400/50 hover:text-white transition-all hover:-translate-y-0.5"
           >
             {t("landing.heroCtaSecondary")}
           </button>
@@ -156,10 +156,10 @@ function HeroSection({ onEnter3D, onPricingClick }: { onEnter3D: () => void; onP
         {/* Enter 3D */}
         <button
           onClick={onEnter3D}
-          className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/30 hover:text-cyan-400 transition-colors tracking-wide group"
+          className="inline-flex items-center gap-1 sm:gap-2 text-[11px] sm:text-sm text-white/30 hover:text-cyan-400 transition-colors tracking-wide group"
         >
           {t("landing.enter3d")}
-          <ChevronDown size={12} className="group-hover:translate-y-0.5 transition-transform" />
+          <ChevronDown size={11} className="group-hover:translate-y-0.5 transition-transform sm:w-3.5 sm:h-3.5" />
         </button>
       </div>
     </section>
@@ -178,29 +178,29 @@ function ProblemSection() {
     { icon: Users, title: t("landing.problem4Title"), desc: t("landing.problem4Desc") },
   ];
   return (
-    <section className="relative py-8 sm:py-20 px-3 sm:px-6">
+    <section className="relative py-6 sm:py-20 px-3 sm:px-6">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-6 sm:mb-12">
-          <p className="text-[10px] sm:text-sm text-cyan-400/50 tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 sm:mb-4 font-semibold">
+        <div className="text-center mb-4 sm:mb-12">
+          <p className="text-[9px] sm:text-sm text-cyan-400/50 tracking-[0.15em] sm:tracking-[0.3em] uppercase mb-1.5 sm:mb-4 font-semibold">
             {t("landing.problemSubtitle")}
           </p>
-          <h2 className="text-lg sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-base sm:text-4xl font-extrabold text-white tracking-tight">
             {t("landing.problemTitle")}
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-5">
           {problems.map((p, i) => (
             <div
               key={i}
               className={`group relative ${glassCard} ${glassCardHover} p-3 sm:p-6 border-red-400/10 hover:border-red-400/30`}
             >
-              <div className="flex items-start gap-3 sm:gap-5">
-                <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-red-400/5 border border-red-400/15 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                  <p.icon size={16} className="text-red-400/70 sm:text-red-400" />
+              <div className="flex items-start gap-2.5 sm:gap-5">
+                <div className="w-7 h-7 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-red-400/5 border border-red-400/15 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <p.icon size={14} className="text-red-400/70 sm:w-5 sm:h-5 sm:text-red-400" />
                 </div>
                 <div>
-                  <h3 className="text-sm sm:text-base font-bold text-white/90 mb-1 sm:mb-2">{p.title}</h3>
-                  <p className="text-[11px] sm:text-sm text-white/40 leading-relaxed">{p.desc}</p>
+                  <h3 className="text-[13px] sm:text-base font-bold text-white/90 mb-0.5 sm:mb-2 leading-snug">{p.title}</h3>
+                  <p className="text-[11px] sm:text-sm text-white/40 leading-[1.4]">{p.desc}</p>
                 </div>
               </div>
             </div>
@@ -229,30 +229,30 @@ function SolutionSection() {
     amber:   { border: "hover:border-amber-400/30",   iconBg: "bg-amber-400/5 border-amber-400/20",   icon: "text-amber-400",   sub: "text-amber-400/60" },
   };
   return (
-    <section className="relative py-8 sm:py-20 px-3 sm:px-6">
+    <section className="relative py-6 sm:py-20 px-3 sm:px-6">
       <div className="max-w-5xl mx-auto relative z-10">
-        <div className="text-center mb-6 sm:mb-12">
-          <p className="text-[10px] sm:text-sm text-cyan-400/50 tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 sm:mb-4 font-semibold">
+        <div className="text-center mb-4 sm:mb-12">
+          <p className="text-[9px] sm:text-sm text-cyan-400/50 tracking-[0.15em] sm:tracking-[0.3em] uppercase mb-1.5 sm:mb-4 font-semibold">
             {t("landing.solutionSubtitle")}
           </p>
-          <h2 className="text-lg sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-base sm:text-4xl font-extrabold text-white tracking-tight">
             {t("landing.solutionTitle")}
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-5">
           {solutions.map((s, i) => {
             const c = colorMap[s.color];
             return (
               <div
                 key={i}
-                className={`${glassCard} ${c.border} p-3 sm:p-6 hover:bg-white/[0.06] hover:-translate-y-0.5 transition-all`}
+                className={`${glassCard} ${c.border} p-3 sm:p-6 hover:bg-white/[0.05] hover:-translate-y-0.5 transition-all`}
               >
-                <div className={`w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl border flex items-center justify-center mb-2 sm:mb-4 ${c.iconBg}`}>
-                  <s.icon size={16} className={`${c.icon} sm:w-[22px] sm:h-[22px]`} />
+                <div className={`w-7 h-7 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl border flex items-center justify-center mb-1.5 sm:mb-4 ${c.iconBg}`}>
+                  <s.icon size={14} className={`${c.icon} sm:w-5 sm:h-5`} />
                 </div>
-                <h3 className="text-sm sm:text-base font-bold text-white/90 mb-0.5 sm:mb-1">{s.title}</h3>
-                <p className={`text-[10px] sm:text-xs tracking-wider mb-1.5 sm:mb-3 font-semibold ${c.sub}`}>{s.sub}</p>
-                <p className="text-[11px] sm:text-sm text-white/40 leading-relaxed">{s.desc}</p>
+                <h3 className="text-[13px] sm:text-base font-bold text-white/90 mb-0.5 sm:mb-1 leading-snug">{s.title}</h3>
+                <p className={`text-[9px] sm:text-xs tracking-wider mb-1 sm:mb-3 font-semibold ${c.sub}`}>{s.sub}</p>
+                <p className="text-[11px] sm:text-sm text-white/40 leading-[1.4]">{s.desc}</p>
               </div>
             );
           })}
@@ -274,13 +274,13 @@ function ShowcaseSection() {
     { title: t("landing.showcase4Title"), sub: t("landing.showcase4Sub"), desc: t("landing.showcase4Desc"), icon: "🏢" },
   ];
   return (
-    <section className="relative py-8 sm:py-20 px-3 sm:px-6">
+    <section className="relative py-6 sm:py-20 px-3 sm:px-6">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-6 sm:mb-12">
-          <p className="text-[10px] sm:text-sm text-cyan-400/50 tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 sm:mb-4 font-semibold">
+        <div className="text-center mb-4 sm:mb-12">
+          <p className="text-[9px] sm:text-sm text-cyan-400/50 tracking-[0.15em] sm:tracking-[0.3em] uppercase mb-1.5 sm:mb-4 font-semibold">
             {t("landing.showcaseSubtitle")}
           </p>
-          <h2 className="text-lg sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-base sm:text-4xl font-extrabold text-white tracking-tight">
             {t("landing.showcaseTitle")}
           </h2>
         </div>
@@ -290,12 +290,12 @@ function ShowcaseSection() {
               key={i}
               className={`group ${glassCard} ${glassCardHover} p-2.5 sm:p-5 cursor-pointer hover:-translate-y-0.5`}
             >
-              <div className="text-xl sm:text-3xl mb-1.5 sm:mb-3">{s.icon}</div>
-              <h3 className="text-xs sm:text-base font-bold text-white/90 mb-0.5 sm:mb-1">{s.title}</h3>
-              <p className="text-[9px] sm:text-xs text-cyan-400/50 tracking-wider mb-1.5 sm:mb-2 font-semibold">{s.sub}</p>
-              <p className="text-[10px] sm:text-sm text-white/40 leading-relaxed line-clamp-2">{s.desc}</p>
-              <div className="mt-2 sm:mt-3 flex items-center gap-1 text-[10px] sm:text-sm text-cyan-400/60 group-hover:text-cyan-400 transition-colors font-medium">
-                <ArrowRight size={11} />
+              <div className="text-lg sm:text-3xl mb-1 sm:mb-3">{s.icon}</div>
+              <h3 className="text-[11px] sm:text-base font-bold text-white/90 mb-0.5 sm:mb-1 leading-snug">{s.title}</h3>
+              <p className="text-[8px] sm:text-xs text-cyan-400/50 tracking-wider mb-1 sm:mb-2 font-semibold">{s.sub}</p>
+              <p className="text-[10px] sm:text-sm text-white/40 leading-[1.4] line-clamp-2">{s.desc}</p>
+              <div className="mt-1.5 sm:mt-3 flex items-center gap-1 text-[9px] sm:text-sm text-cyan-400/60 group-hover:text-cyan-400 transition-colors font-medium">
+                <ArrowRight size={10} className="sm:w-3 sm:h-3" />
                 <span>{t("landing.viewDemo")}</span>
               </div>
             </div>
@@ -322,28 +322,28 @@ function AutomationSection() {
     { icon: BarChart3, title: t("landing.auto8Title"), desc: t("landing.auto8Desc") },
   ];
   return (
-    <section className="relative py-8 sm:py-20 px-3 sm:px-6">
+    <section className="relative py-6 sm:py-20 px-3 sm:px-6">
       <div className="max-w-5xl mx-auto relative z-10">
-        <div className="text-center mb-6 sm:mb-12">
-          <p className="text-[10px] sm:text-sm text-indigo-400/50 tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 sm:mb-4 font-semibold">
+        <div className="text-center mb-4 sm:mb-12">
+          <p className="text-[9px] sm:text-sm text-indigo-400/50 tracking-[0.15em] sm:tracking-[0.3em] uppercase mb-1.5 sm:mb-4 font-semibold">
             {t("landing.autoSubtitle")}
           </p>
-          <h2 className="text-lg sm:text-4xl font-extrabold text-white tracking-tight mb-2 sm:mb-4">
+          <h2 className="text-base sm:text-4xl font-extrabold text-white tracking-tight mb-1.5 sm:mb-4">
             {t("landing.autoTitle")}
           </h2>
-          <p className="text-[11px] sm:text-base text-white/40 max-w-xl mx-auto">{t("landing.autoDesc")}</p>
+          <p className="text-[11px] sm:text-base text-white/40 max-w-xl mx-auto leading-[1.4]">{t("landing.autoDesc")}</p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
           {items.map((item, i) => (
             <div
               key={i}
-              className={`${glassCard} ${glassCardHover} p-2.5 sm:p-5`}
+              className={`${glassCard} ${glassCardHover} p-2 sm:p-5`}
             >
-              <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-indigo-400/5 border border-indigo-400/15 flex items-center justify-center mb-1.5 sm:mb-3">
-                <item.icon size={14} className="text-indigo-400 sm:w-[18px] sm:h-[18px]" />
+              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-indigo-400/5 border border-indigo-400/15 flex items-center justify-center mb-1 sm:mb-3">
+                <item.icon size={12} className="text-indigo-400 sm:w-[18px] sm:h-[18px]" />
               </div>
-              <h3 className="text-[11px] sm:text-sm font-bold text-white/80 mb-1 sm:mb-2">{item.title}</h3>
-              <p className="text-[10px] sm:text-xs text-white/40 leading-relaxed line-clamp-2">{item.desc}</p>
+              <h3 className="text-[11px] sm:text-sm font-bold text-white/80 mb-0.5 sm:mb-2 leading-snug">{item.title}</h3>
+              <p className="text-[10px] sm:text-xs text-white/40 leading-[1.4] line-clamp-2">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -363,41 +363,41 @@ function FinalCTA({ onPricingClick }: { onPricingClick: () => void }) {
     { value: t("landing.finalStats3Val"), label: t("landing.finalStats3") },
   ];
   return (
-    <section className="relative py-10 sm:py-20 px-3 sm:px-6">
+    <section className="relative py-8 sm:py-20 px-3 sm:px-6">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-xl sm:text-4xl font-extrabold text-white tracking-tight mb-3 sm:mb-5">
+        <h2 className="text-lg sm:text-4xl font-extrabold text-white tracking-tight mb-2 sm:mb-5">
           {t("landing.finalTitle")}
         </h2>
-        <p className="text-[11px] sm:text-lg text-white/40 mb-6 sm:mb-10 max-w-lg mx-auto leading-relaxed">
+        <p className="text-[11px] sm:text-lg text-white/40 mb-4 sm:mb-10 max-w-lg mx-auto leading-[1.4]">
           {t("landing.finalDesc")}
         </p>
 
         {/* Stats */}
-        <div className="flex items-center justify-center gap-4 sm:gap-12 mb-6 sm:mb-10">
+        <div className="flex items-center justify-center gap-3 sm:gap-12 mb-5 sm:mb-10">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
-              <div className="text-xl sm:text-3xl font-extrabold text-cyan-400">{s.value}</div>
-              <div className="text-[9px] sm:text-sm text-white/30 mt-1 font-medium">{s.label}</div>
+              <div className="text-lg sm:text-3xl font-extrabold text-cyan-400">{s.value}</div>
+              <div className="text-[8px] sm:text-sm text-white/30 mt-0.5 sm:mt-1 font-medium">{s.label}</div>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 px-3">
           <button
             onClick={onPricingClick}
-            className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-sm sm:text-base tracking-wide hover:from-cyan-400 hover:to-blue-400 transition-all shadow-xl shadow-cyan-500/20 hover:-translate-y-0.5"
+            className="w-full sm:w-auto px-5 sm:px-10 py-2.5 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-[13px] sm:text-base tracking-wide hover:from-cyan-400 hover:to-blue-400 transition-all shadow-xl shadow-cyan-500/20 hover:-translate-y-0.5"
           >
             {t("landing.finalCta")}
           </button>
-          <button className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl border border-white/20 bg-white/5 text-white/80 font-semibold text-sm sm:text-base tracking-wide hover:border-cyan-400/50 hover:text-white transition-all hover:-translate-y-0.5">
+          <button className="w-full sm:w-auto px-5 sm:px-10 py-2.5 sm:py-4 rounded-xl sm:rounded-2xl border border-white/20 bg-white/5 text-white/80 font-semibold text-[13px] sm:text-base tracking-wide hover:border-cyan-400/50 hover:text-white transition-all hover:-translate-y-0.5">
             {t("landing.finalCtaSecondary")}
           </button>
         </div>
 
         {/* Bottom */}
-        <div className="mt-10 sm:mt-16 pt-4 sm:pt-8 border-t border-white/10">
-          <p className="text-[10px] sm:text-xs text-white/20 tracking-wider">{t("footer.copyright")}</p>
+        <div className="mt-8 sm:mt-16 pt-3 sm:pt-8 border-t border-white/10">
+          <p className="text-[9px] sm:text-xs text-white/20 tracking-wider">{t("footer.copyright")}</p>
         </div>
       </div>
     </section>
