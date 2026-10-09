@@ -480,6 +480,7 @@ export const en = {
     showcase4Title: "Corporate Business Pavilion",
     showcase4Sub: "Corporate Showcase",
     showcase4Desc: "Corporate image display, product catalog, B2B negotiations",
+    viewDemo: "View Demo",
 
     autoTitle: "2026 Full Automation Marketing Matrix",
     autoSubtitle: "AUTOMATED MARKETING MATRIX",
@@ -665,6 +666,11 @@ export const en = {
 
   // === Admin Updates ===
   admin: {
+    console: {
+      title: "Orbit Tower Admin Console",
+      subtitle: "ADMIN CONSOLE v1.0",
+      refresh: "Refresh",
+    },
     updates: {
       mainTitle: "System Update Management",
       mainSubtitle: "SYSTEM UPDATE MANAGEMENT",

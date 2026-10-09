@@ -234,7 +234,7 @@ function ShowcaseSection() {
               <p className="text-[10px] sm:text-[11px] text-white/40 leading-relaxed">{s.desc}</p>
               <div className="mt-3 flex items-center gap-1 text-[10px] text-cyan-400/50 group-hover:text-cyan-400 transition-colors">
                 <ArrowRight size={10} />
-                <span>View Demo</span>
+                <span>{t("landing.viewDemo")}</span>
               </div>
             </div>
           ))}

@@ -507,6 +507,7 @@ export const zh = {
     showcase4Title: "Corporate Business Pavilion",
     showcase4Sub: "企業品牌館",
     showcase4Desc: "企業形象展示、產品目錄、B2B 洽談",
+    viewDemo: "查看示範",
 
     // Automation Marketing Matrix
     autoTitle: "2026 全自動行銷矩陣",
@@ -695,6 +696,11 @@ export const zh = {
 
   // === Admin Updates (系統更新管理) ===
   admin: {
+    console: {
+      title: "Orbit Tower 管理後台",
+      subtitle: "ADMIN CONSOLE v1.0",
+      refresh: "重新整理",
+    },
     updates: {
       mainTitle: "系統更新管理",
       mainSubtitle: "SYSTEM UPDATE MANAGEMENT",

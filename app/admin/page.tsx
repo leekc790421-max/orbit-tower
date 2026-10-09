@@ -6,6 +6,7 @@ import {
   RefreshCw, Eye, ChevronDown, ChevronUp, AlertTriangle,
   Users, TrendingUp, Globe, Zap,
 } from "lucide-react";
+import { useTranslation, I18nProvider } from "@/lib/i18n";
 
 // ===== Types =====
 interface Claim {
@@ -54,7 +55,8 @@ const STATUS_CONFIG: Record<string, { color: string; bg: string; icon: typeof Ch
 };
 
 // ===== Admin Dashboard =====
-export default function AdminDashboard() {
+function AdminDashboardContent() {
+  const { t } = useTranslation();
   const [claims, setClaims] = useState<Claim[]>([]);
   const [stats, setStats] = useState<DashboardStats>({ totalClaims: 0, pendingClaims: 0, approvedClaims: 0, totalRevenue: 0 });
   const [loading, setLoading] = useState(true);
@@ -178,8 +180,8 @@ export default function AdminDashboard() {
           <div className="flex items-center gap-3">
             <Shield size={24} className="text-cyan-400" />
             <div>
-              <h1 className="text-lg font-bold tracking-wider">Orbit Tower 管理後台</h1>
-              <p className="text-[10px] text-cyan-400/60 tracking-wider">ADMIN CONSOLE v1.0</p>
+              <h1 className="text-lg font-bold tracking-wider">{t("admin.console.title")}</h1>
+              <p className="text-[10px] text-cyan-400/60 tracking-wider">{t("admin.console.subtitle")}</p>
             </div>
           </div>
           <button
@@ -187,7 +189,7 @@ export default function AdminDashboard() {
             className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all text-xs"
           >
             <RefreshCw size={14} className={loading ? "animate-spin" : ""} />
-            重新整理
+            {t("admin.console.refresh")}
           </button>
         </div>
 
@@ -339,5 +341,14 @@ function DetailRow({ label, value, mono }: { label: string; value: string; mono?
       <span className="text-[9px] text-white/30 uppercase tracking-wider flex-shrink-0">{label}</span>
       <span className={`text-[11px] text-white/70 text-right ${mono ? "font-mono break-all" : ""}`}>{value}</span>
     </div>
+  );
+}
+
+// ===== Wrapper with I18nProvider =====
+export default function AdminDashboard() {
+  return (
+    <I18nProvider>
+      <AdminDashboardContent />
+    </I18nProvider>
   );
 }

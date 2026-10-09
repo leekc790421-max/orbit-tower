@@ -480,6 +480,7 @@ export const ja = {
     showcase4Title: "コーポレートビジネス館",
     showcase4Sub: "企業ショーケース",
     showcase4Desc: "企業イメージ展示、製品カタログ、B2B商談",
+    viewDemo: "デモを見る",
 
     autoTitle: "2026 全自动マーケティングマトリックス",
     autoSubtitle: "自動化マーケティングマトリックス",
@@ -665,6 +666,11 @@ export const ja = {
 
   // === Admin Updates (システム更新管理) ===
   admin: {
+    console: {
+      title: "Orbit Tower 管理コンソール",
+      subtitle: "管理コンソール v1.0",
+      refresh: "更新",
+    },
     updates: {
       mainTitle: "システム更新管理",
       mainSubtitle: "システム更新管理",
