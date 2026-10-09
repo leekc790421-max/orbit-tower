@@ -9,58 +9,95 @@ interface RootLayoutProps {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "SNT 光躍星樞 | 3D Cyber Luxury 專屬空間地產與自動化流量商場",
+  title: "SNT 光躍星樞 | AI數位旗艦館 — 3D品牌展示 × 多語客服 × 跨境收款",
   description:
-    "SNT 光躍星樞 (Orbit Tower) 結合 3D 空間展示、/drift 漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
+    "打造專屬 AI 數位旗艦館，結合 3D 品牌展示、中英日三語 AI 客服、全球客戶接待與跨境付款。7~14 天快速部署，讓您的品牌向全球展示。",
   keywords: [
+    // Brand
     "SNT 光躍星樞",
     "SNT 光躍星枢",
     "SNT Nexus",
     "Orbit Tower",
-    "3D 空間展示",
-    "3D空間展示",
-    "3Dサイバーラグジュアリー",
-    "漂流瓶",
-    "漂流瓶エンゲージメント",
-    "AI 廣告 Agent",
-    "AI広告エージェント",
-    "品牌進駐",
-    "自動化流量",
-    "Cyber Luxury",
-    "仮想地産",
-    "虛擬地產",
-    "六角晶體",
+    // Core product - Chinese
+    "AI數位旗艦館",
+    "3D品牌展示",
+    "虛擬展館",
+    "數位展廳",
+    "品牌展示平台",
+    "3D網站",
+    "沉浸式體驗",
+    "AI客服",
+    "AI導購",
+    "多語系網站",
+    "跨境收款",
+    "Payoneer",
+    "企業官網",
+    "品牌官網",
+    "數位行銷",
+    "SEO優化",
+    // Core product - English
+    "AI digital flagship store",
+    "3D brand showcase",
+    "virtual showroom",
+    "digital showroom",
+    "brand showcase platform",
+    "3D website",
+    "immersive experience",
+    "AI customer service",
+    "multilingual website",
+    "cross-border payment",
+    "corporate website",
+    "digital marketing",
+    // Core product - Japanese
+    "AIデジタル旗艦館",
+    "3Dブランドショーケース",
+    "バーチャルショールーム",
+    "デジタルショールーム",
+    "ブランド展示プラットフォーム",
+    "3Dウェブサイト",
+    "没入型体験",
+    "AIカスタマーサービス",
+    "多言語ウェブサイト",
+    "越境決済",
+    "企業ウェブサイト",
+    // Industry keywords
     "Three.js",
-    "企業虛擬辦公室",
-    "網域綁定",
-    "AI 樓管",
+    "WebGL",
+    "React",
+    "Next.js",
+    "Cyber Luxury",
+    "六角晶體",
     "B2B 平台",
     "機密沙盒",
-    "數位辦公",
+    // High-intent keywords
+    "免費預約展示",
+    "快速建置官網",
+    "7天上线",
+    "品牌數位轉型",
   ],
   authors: [{ name: "SNT Nexus Team" }],
   openGraph: {
     type: "website",
     locale: "zh_TW",
     url: SITE_URL,
-    siteName: "SNT 光躍星樞 | SNT Nexus",
-    title: "SNT 光躍星樞 | 3D Cyber Luxury 專屬空間地產與自動化流量商場",
-    description: "SNT 光躍星樞 (Orbit Tower) 結合 3D 空間展示、/drift 漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
+    siteName: "SNT 光躍星樞 | AI數位旗艦館",
+    title: "SNT 光躍星樞 | AI數位旗艦館 — 3D品牌展示 × 多語客服 × 跨境收款",
+    description: "打造專屬 AI 數位旗艦館，結合 3D 品牌展示、中英日三語 AI 客服、全球客戶接待與跨境付款。7~14 天快速部署。",
     images: [
       {
-        url: "/og-image.svg",
+        url: `${SITE_URL}/og-image.svg`,
         width: 1200,
         height: 630,
-        alt: "SNT 光躍星樞 | 3D Cyber Luxury 專屬空間地產與自動化流量商場",
+        alt: "SNT 光躍星樞 | AI數位旗艦館 — 3D品牌展示 × 多語客服 × 跨境收款",
       },
     ],
     alternateLocale: ["en_US", "ja_JP"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SNT 光躍星樞 | 3D Cyber Luxury 專屬空間地產與自動化流量商場",
-    description: "SNT 光躍星樞 (Orbit Tower) 結合 3D 空間展示、/drift 漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
-    images: ["/og-image.svg"],
+    title: "SNT 光躍星樞 | AI數位旗艦館 — 3D品牌展示 × 多語客服 × 跨境收款",
+    description: "打造專屬 AI 數位旗艦館，結合 3D 品牌展示、中英日三語 AI 客服、全球客戶接待與跨境付款。7~14 天快速部署。",
+    images: [`${SITE_URL}/og-image.svg`],
   },
   robots: {
     index: true,
@@ -79,8 +116,8 @@ export const metadata: Metadata = {
     },
   },
   other: {
-    "ja:title": "SNT 光躍星枢 | 3Dサイバーラグジュアリー空間地産＆自動化集客プラットフォーム",
-    "ja:description": "SNT光躍星枢（Orbit Tower）は、3D空間展示、/drift漂流瓶エンゲージメント、AI広告エージェントを融合した、全自動化ブランド出店＆集客エコシステムです。",
+    "ja:title": "SNT 光躍星枢 | AIデジタル旗艦館 — 3Dブランド展示 × 多言語AI客服 × 越境決済",
+    "ja:description": "専用AIデジタル旗艦館を構築。3Dブランド展示、中英日三言語AIカスタマーサービス、グローバル顧客対応、越境決済を統合。7〜14日で迅速デプロイ。",
   },
 };
 
@@ -115,58 +152,82 @@ export default function RootLayout({ children }: RootLayoutProps) {
               mainEntity: [
                 {
                   "@type": "Question",
-                  name: "SNT 光躍星樞是什麼？什麼是 3D Cyber Luxury 地產？",
+                  name: "SNT 光躍星樞是什麼？什麼是 AI 數位旗艦館？",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "SNT 光躍星樞 (Orbit Tower) 是一座六角晶體摩天樓形態的虛擬企業總部平台。企業可在此進駐虛擬戶別，獲得專屬網域、AI 運算資源與品牌展示空間。結合 3D 互動體驗、/drift 漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
+                    text: "SNT 光躍星樞 (Orbit Tower) 是一個 AI 數位旗艦館平台，讓企業透過 3D 空間展示品牌、產品與服務。結合中英日三語 AI 客服、全球客戶接待與跨境付款，7~14 天快速部署。",
                   },
                 },
                 {
                   "@type": "Question",
-                  name: "What is SNT Orbit Tower?",
+                  name: "What is SNT Orbit Tower? What is an AI Digital Flagship Store?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "SNT Orbit Tower is a hexagonal crystal skyscraper virtual corporate headquarters platform. Companies can occupy virtual units with dedicated domains, AI resources, and brand showcase spaces. Combined with 3D interactive experiences, /drift bottle engagement, and AI advertising agents, it creates a fully automated brand onboarding and traffic ecosystem.",
+                    text: "SNT Orbit Tower is an AI Digital Flagship Store platform that enables enterprises to showcase their brand, products, and services through 3D spatial experiences. Combined with trilingual AI customer service (Chinese, English, Japanese), global client reception, and cross-border payments. Deployed in 7-14 days.",
                   },
                 },
                 {
                   "@type": "Question",
-                  name: "SNT 光躍星枢とは何ですか？",
+                  name: "SNT 光躍星枢とは何ですか？AIデジタル旗艦館とは？",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "SNT 光躍星枢 (Orbit Tower) は、3D空間展示、/drift漂流瓶エンゲージメント、AI広告エージェントを融合した、全自動化ブランド出店＆集客エコシステムです。六角結晶摩天楼の形態で、革新的なバーチャル企業本社プラットフォームを構築。",
+                    text: "SNT 光躍星枢 (Orbit Tower) は、企業が3D空間でブランド・製品・サービスを展示できるAIデジタル旗艦館プラットフォームです。中英日三言語AIカスタマーサービス、グローバル顧客対応、越境決済を統合し、7〜14日で迅速デプロイ。",
                   },
                 },
                 {
                   "@type": "Question",
-                  name: "進駐 SNT 光躍星樞需要多少費用？",
+                  name: "AI 數位旗艦館的方案價格是多少？",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "我們提供三種 B2B 方案：門戶體驗版 NT$35,000/次、成長升級版 NT$60,000/次、企業總部版 NT$120,000+/次（含 MRR 維護費 $3,000/月）。",
+                    text: "我們提供三種方案：Lite USD $3,999（標準3D展示館）、Pro USD $9,999（客製品牌館，最受歡迎）、Enterprise USD $29,999+（全客製方案）。所有方案皆含中英日三語系、AI 客服、品牌展示。",
                   },
                 },
                 {
                   "@type": "Question",
-                  name: "什麼是戶號實名制？如何綁定自己的網域？",
+                  name: "如何預約免費展示？",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "每戶具備唯一識別碼，需通過手機/Email 實名驗證開通。支援標準子網域自動配發與獨立頂級網域 CNAME 綁定。",
+                    text: "點擊網站右上角「方案價格」或左下方 AI 樓管，即可預約免費展示。我們的顧問會在 24 小時內與您聯繫，了解需求並安排線上示範。完全免費，無需信用卡。",
                   },
                 },
                 {
                   "@type": "Question",
-                  name: "AI 樓管能做什麼？",
+                  name: "建置完成後可以修改內容嗎？",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "AI 樓管 24 小時在線，提供樓層導覽、B2B 方案說明、網域綁定教學、機密沙盒環境說明等服務。",
+                    text: "可以。所有方案都支援即時更新品牌資訊、產品圖片、影片內容。AI 樓管協助您快速調整展示內容，確保數位旗艦館始終保持最新狀態。",
                   },
                 },
                 {
                   "@type": "Question",
-                  name: "機密沙盒是什麼？資安如何保障？",
+                  name: "支援哪些產業？",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "F 面機密沙盒實案專區專為需要高度資安防護的企業設計，具備獨立隔離運算環境、AES-256 加密、多重身份驗證。",
+                    text: "我們服務超過 20 種產業：科技新創、醫美診所、房仲業、顧問公司、餐飲品牌、電商、教育機構、律師事務所、設計工作室等。每個產業都有專屬展示模板和 AI 客服話術。",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "如何確保投資報酬率？",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "我們提供完整的數據分析儀表板：訪客數量、停留時間、熱門頁面、AI 客服對話記錄、名單轉換率。根據現有客戶數據，平均 3 個月內可回收投資成本。",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "支援哪些付款方式？",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "台灣客戶支援 ATM 轉帳、銀行匯款。海外客戶支援 Payoneer 跨境收款、國際電匯。所有付款皆安全可靠。",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "需要 VR 設備嗎？",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "不需要。手機與電腦即可使用。SNT 光躍星樞採用網頁 3D 技術，無需安裝任何軟體或購買額外設備。",
                   },
                 },
               ],
@@ -183,7 +244,69 @@ export default function RootLayout({ children }: RootLayoutProps) {
               name: "SNT 光躍星樞",
               alternateName: "SNT Nexus / Orbit Tower / SNT 光躍星枢",
               url: SITE_URL,
-              description: "SNT 光躍星樞 (Orbit Tower) 結合 3D 空間展示、漂流瓶流量裂變與 AI 廣告 Agent，打造全自動化品牌進駐與商業變現樞紐。",
+              logo: `${SITE_URL}/logo-dark.jpg`,
+              description: "SNT 光躍星樞 (Orbit Tower) 是 AI 數位旗艦館平台，提供 3D 品牌展示、中英日三語 AI 客服、全球客戶接待與跨境付款服務。7~14 天快速部署。",
+              sameAs: [],
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "customer service",
+                availableLanguage: ["Chinese", "English", "Japanese"],
+              },
+            }),
+          }}
+        />
+        {/* Structured Data: Service */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              serviceType: "AI Digital Flagship Store Platform",
+              name: "SNT 光躍星樞 — AI 數位旗艦館",
+              description: "打造專屬 AI 數位旗艦館，結合 3D 品牌展示、中英日三語 AI 客服、全球客戶接待與跨境付款。7~14 天快速部署，讓您的品牌向全球展示。",
+              provider: {
+                "@type": "Organization",
+                name: "SNT Nexus Team",
+                url: SITE_URL,
+              },
+              areaServed: [
+                { "@type": "Country", name: "Taiwan" },
+                { "@type": "Country", name: "Japan" },
+                { "@type": "Country", name: "United States" },
+                { "@type": "Country", name: "Hong Kong" },
+                { "@type": "Country", name: "Singapore" },
+              ],
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "AI 數位旗艦館方案",
+                itemListElement: [
+                  {
+                    "@type": "Offer",
+                    name: "Lite — 標準3D展示館",
+                    price: "3999",
+                    priceCurrency: "USD",
+                    description: "標準3D展示館、AI客服、品牌展示、中英日語系、專屬網址",
+                  },
+                  {
+                    "@type": "Offer",
+                    name: "Pro — 客製品牌館",
+                    price: "9999",
+                    priceCurrency: "USD",
+                    description: "客製品牌館、AI客服、AI導購、影音展示、名單收集、中英日語系",
+                  },
+                  {
+                    "@type": "Offer",
+                    name: "Enterprise — 全客製方案",
+                    priceSpecification: {
+                      "@type": "PriceSpecification",
+                      minPrice: "29999",
+                      priceCurrency: "USD",
+                    },
+                    description: "企業客製功能、API整合、CRM整合、專屬開發",
+                  },
+                ],
+              },
             }),
           }}
         />

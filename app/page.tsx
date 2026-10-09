@@ -16,6 +16,7 @@ import FAQSection from "@/components/FAQSection";
 import Onboarding from "@/components/Onboarding";
 import AboutModal from "@/components/AboutModal";
 import ReadmeModal from "@/components/ReadmeModal";
+import FloatingCTA from "@/components/FloatingCTA";
 import { I18nProvider, useTranslation } from "@/lib/i18n";
 import type { Theme, LightColor, Unit } from "@/data/units";
 
@@ -110,6 +111,9 @@ function HomeInner() {
 
       {/* FAQ 區塊 */}
       <FAQSection />
+
+      {/* 浮動 CTA 按鈕 */}
+      <FloatingCTA onPricingClick={() => setPricingOpen(true)} />
 
       {/* 關於區塊 */}
       <AboutModal isOpen={aboutOpen} onClose={() => setAboutOpen(false)} />

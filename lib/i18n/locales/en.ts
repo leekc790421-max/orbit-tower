@@ -257,6 +257,14 @@ export const en = {
     a7: "The three themes are purely visual — all features are identical: (1) Cyber Night — cyberpunk style, great for tech; (2) Cloud Mountain — warm atmosphere, ideal for brand showcases; (3) Deep Sea — mysterious premium feel, perfect for privacy-focused companies. Switch anytime.",
     q8: "Who is this for?",
     a8: "Anyone who needs an online presence: startups can build a professional image on a budget; freelancers can boost credibility; SMEs can expand their digital footprint; enterprises can showcase innovation. Whatever your industry or size, SNT Orbit Tower has the right space for you.",
+    q9: "How do I book a free demo?",
+    a9: "Click 'Pricing' at the top-right or the AI Concierge at the bottom-left to book a free demo. Our consultants will contact you within 24 hours to understand your needs and arrange an online demonstration. Completely free, no credit card required.",
+    q10: "Can I modify content after launch?",
+    a10: "Yes. All plans support real-time updates to brand information, product images, and video content. The AI Concierge helps you quickly adjust showcase content to ensure your digital flagship store is always up to date.",
+    q11: "Which industries do you support?",
+    a11: "We serve over 20 industries: tech startups, medical clinics, real estate, consulting firms, restaurant brands, e-commerce, educational institutions, law firms, design studios, and more. Each industry has dedicated showcase templates and AI customer service scripts.",
+    q12: "How do you ensure ROI?",
+    a12: "We provide a complete analytics dashboard: visitor count, dwell time, popular pages, AI concierge conversation logs, and lead conversion rates. You can clearly see the impact of every investment. Based on existing client data, the average ROI is achieved within 3 months.",
   },
 
   about: {
@@ -406,6 +414,22 @@ export const en = {
 
   lang: {
     switcher: "Language",
+  },
+
+  share: {
+    title: "Share with Friends",
+    subtitle: "Choose a platform",
+    description: "Explore SNT Orbit Tower — 3D virtual corporate HQ platform. Build your digital flagship store!",
+    copyLink: "Copy Link",
+    copy: "Copy",
+    copied: "Copied!",
+    referralHint: "Share and earn referral rewards",
+  },
+
+  cta: {
+    title: "Ready to Build Your Digital Flagship Store?",
+    subtitle: "Deploy in 7-14 days, with zh/en/ja support",
+    button: "Book Free Demo",
   },
 
   referral: {
