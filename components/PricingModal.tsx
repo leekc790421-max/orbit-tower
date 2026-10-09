@@ -46,57 +46,54 @@ const PAYONEER_URL =
   "https://link.payoneer.com/Token?t=4D0FBCB1CAEE48E48FEACE39662D6BB7&src=mobile";
 
 export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
+  // 台灣錨定 TWD，國外錨定 USD
+  const isTW = locale === "zh";
+  
   const PLANS: Plan[] = [
     {
-      id: "landing",
-      name: t("pricing.planLanding"),
-      nameEn: "Landing",
-      price: "$35,000",
-      priceNote: t("pricing.perTime"),
+      id: "lite",
+      name: t("pricing.planLite"),
+      nameEn: "Lite",
+      price: isTW ? "NT$129,000" : "USD $3,999",
+      priceNote: t("pricing.perProject"),
       features: [
-        t("pricing.landingF1"),
-        t("pricing.landingF2"),
-        t("pricing.landingF3"),
-        t("pricing.landingF4"),
-        t("pricing.landingF5"),
+        t("pricing.liteF1"),
+        t("pricing.liteF2"),
+        t("pricing.liteF3"),
+        t("pricing.liteF4"),
       ],
     },
     {
-      id: "growth",
-      name: t("pricing.planGrowth"),
-      nameEn: "Growth",
-      price: "$60,000",
-      priceNote: t("pricing.perTime"),
+      id: "pro",
+      name: t("pricing.planPro"),
+      nameEn: "Pro",
+      price: isTW ? "NT$329,000" : "USD $9,999",
+      priceNote: t("pricing.perProject"),
       features: [
-        t("pricing.growthF1"),
-        t("pricing.growthF2"),
-        t("pricing.growthF3"),
-        t("pricing.growthF4"),
-        t("pricing.growthF5"),
-        t("pricing.growthF6"),
+        t("pricing.proF1"),
+        t("pricing.proF2"),
+        t("pricing.proF3"),
+        t("pricing.proF4"),
+        t("pricing.proF5"),
       ],
       highlighted: true,
       badge: t("pricing.mostPopular"),
     },
     {
-      id: "scale",
-      name: t("pricing.planScale"),
-      nameEn: "Scale",
-      price: "$120,000+",
-      priceNote: t("pricing.perTime"),
-      mrr: t("pricing.scaleMrr"),
+      id: "enterprise",
+      name: t("pricing.planEnterprise"),
+      nameEn: "Enterprise",
+      price: isTW ? "NT$990,000+" : "USD $29,999+",
+      priceNote: t("pricing.perProject"),
       features: [
-        t("pricing.scaleF1"),
-        t("pricing.scaleF2"),
-        t("pricing.scaleF3"),
-        t("pricing.scaleF4"),
-        t("pricing.scaleF5"),
-        t("pricing.scaleF6"),
-        t("pricing.scaleF7"),
+        t("pricing.enterpriseF1"),
+        t("pricing.enterpriseF2"),
+        t("pricing.enterpriseF3"),
+        t("pricing.enterpriseF4"),
       ],
     },
   ];
