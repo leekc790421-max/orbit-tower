@@ -373,7 +373,7 @@ function InnerCore({ unit, color }: { unit: Unit; color: string }) {
   }
 }
 
-// ===== 單一晶體方塊戶別單元 (對齊參考圖: 玻璃方塊展示櫃) =====
+// ===== 單一晶體方塊戶別單元 (對齊參考圖: 玻璃方塊展示櫃 + 機械核心) =====
 function CrystalUnit({
   unit,
   position,
@@ -386,15 +386,23 @@ function CrystalUnit({
   onClick: () => void;
 }) {
   const groupRef = useRef<THREE.Group>(null);
+  const edgeRef = useRef<THREE.LineSegments>(null);
   const [hovered, setHovered] = useState(false);
   const baseColor = LIGHT_COLORS[lightColor].hex;
   const unitColor = unit.color || baseColor;
 
   useFrame((state) => {
+    const t = state.clock.elapsedTime;
     if (groupRef.current && hovered) {
-      groupRef.current.scale.lerp(new THREE.Vector3(1.06, 1.06, 1.06), 0.08);
+      groupRef.current.scale.lerp(new THREE.Vector3(1.08, 1.08, 1.08), 0.08);
     } else if (groupRef.current) {
       groupRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.08);
+    }
+    // 邊框脈動發光
+    if (edgeRef.current) {
+      const mat = edgeRef.current.material as THREE.LineBasicMaterial;
+      const baseOpacity = unit.status === "available" ? 0.3 : unit.status === "isolated" ? 0.7 : 0.5;
+      mat.opacity = baseOpacity + Math.sin(t * 2) * 0.15;
     }
   });
 
@@ -404,10 +412,11 @@ function CrystalUnit({
     return "#4488ff";
   };
 
-  const emissiveIntensity = unit.status === "available" ? 0.03 : unit.status === "isolated" ? 0.2 : 0.1;
+  const emissiveIntensity = unit.status === "available" ? 0.02 : unit.status === "isolated" ? 0.25 : 0.12;
 
   // 晶體方塊尺寸
   const cubeSize = 0.72;
+  const gap = 0.02; // 方塊間隙
 
   return (
     <group
@@ -427,56 +436,78 @@ function CrystalUnit({
         onClick();
       }}
     >
-      {/* === 外殼：高透光玻璃方塊 (MeshPhysicalMaterial + transmission) === */}
+      {/* === 外殼：高透光玻璃方塊 — 對齊參考圖的透明展示櫃 === */}
       <mesh>
-        <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
+        <boxGeometry args={[cubeSize - gap, cubeSize - gap, cubeSize - gap]} />
         <meshPhysicalMaterial
-          color={unit.status === "available" ? "#88ccff" : "#ffffff"}
+          color={unit.status === "available" ? "#aaddff" : "#eeeeff"}
           transparent
-          transmission={unit.status === "available" ? 0.92 : 0.85}
-          thickness={0.5}
-          roughness={0.02}
+          transmission={unit.status === "available" ? 0.95 : 0.88}
+          thickness={0.3}
+          roughness={0.01}
           metalness={0.0}
           clearcoat={1}
-          clearcoatRoughness={0.02}
+          clearcoatRoughness={0.01}
           reflectivity={1}
-          ior={1.5}
+          ior={1.52}
           emissive={getStatusEmissive()}
           emissiveIntensity={emissiveIntensity}
           side={THREE.DoubleSide}
-          envMapIntensity={2.0}
+          envMapIntensity={2.5}
         />
       </mesh>
 
-      {/* === 方塊邊框發光線條 === */}
-      <lineSegments>
+      {/* === 方塊邊框發光線條 — 對齊參考圖的邊緣光暈 === */}
+      <lineSegments ref={edgeRef}>
         <edgesGeometry args={[new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)]} />
         <lineBasicMaterial
           color={unit.status === "available" ? "#4488ff" : unitColor}
           transparent
-          opacity={unit.status === "available" ? 0.25 : 0.5}
+          opacity={unit.status === "available" ? 0.3 : 0.55}
         />
       </lineSegments>
 
-      {/* === 內部核心 === */}
+      {/* === 外層光暈框 — 參考圖的 edge glow === */}
+      <mesh>
+        <boxGeometry args={[cubeSize + 0.01, cubeSize + 0.01, cubeSize + 0.01]} />
+        <meshBasicMaterial
+          color={unit.status === "available" ? "#4488ff" : unitColor}
+          transparent
+          opacity={0.03}
+          side={THREE.BackSide}
+        />
+      </mesh>
+
+      {/* === 內部核心 — 對齊參考圖的機械核心 === */}
       <InnerCore unit={unit} color={unitColor} />
 
-      {/* === 內部點光源 === */}
+      {/* === 內部點光源 — 更強的青藍發光 === */}
       <pointLight
         position={[0, 0, 0]}
         color={unitColor}
-        intensity={unit.status === "available" ? 0.2 : unit.status === "isolated" ? 1.8 : 1}
-        distance={2.5}
+        intensity={unit.status === "available" ? 0.3 : unit.status === "isolated" ? 2.2 : 1.2}
+        distance={2.8}
         decay={2}
       />
 
-      {/* === 底部發光底座 === */}
-      <mesh position={[0, -cubeSize / 2 - 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[cubeSize * 0.9, cubeSize * 0.9]} />
+      {/* === 底部 LED 底座光 — 對齊參考圖的底部打光 === */}
+      <mesh position={[0, -cubeSize / 2 - 0.005, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[cubeSize * 0.95, cubeSize * 0.95]} />
         <meshBasicMaterial
           color={unitColor}
           transparent
-          opacity={unit.status === "available" ? 0.05 : 0.15}
+          opacity={unit.status === "available" ? 0.08 : 0.2}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/* === 頂部微光 — 模擬聚光燈反射 === */}
+      <mesh position={[0, cubeSize / 2 + 0.005, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[cubeSize * 0.6, cubeSize * 0.6]} />
+        <meshBasicMaterial
+          color="#ffffff"
+          transparent
+          opacity={0.04}
           side={THREE.DoubleSide}
         />
       </mesh>
@@ -488,15 +519,20 @@ function CrystalUnit({
 export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
   const groupRef = useRef<THREE.Group>(null);
   const coreRef = useRef<THREE.Mesh>(null);
+  const coreGlowRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
+    const t = state.clock.elapsedTime;
     if (groupRef.current) {
       groupRef.current.rotation.y += 0.0006;
     }
     if (coreRef.current) {
-      const t = state.clock.elapsedTime;
       const mat = coreRef.current.material as THREE.MeshStandardMaterial;
-      mat.emissiveIntensity = 0.4 + Math.sin(t * 2) * 0.15;
+      mat.emissiveIntensity = 0.5 + Math.sin(t * 2) * 0.2;
+    }
+    if (coreGlowRef.current) {
+      const mat = coreGlowRef.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = 0.08 + Math.sin(t * 1.5) * 0.03;
     }
   });
 
@@ -519,30 +555,41 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
 
   return (
     <group ref={groupRef}>
-      {/* 中央核心柱 - 發光能量柱 */}
+      {/* === 中央核心柱 — 對齊參考圖的青藍能量柱 === */}
       <mesh ref={coreRef} position={[0, 0, 0]}>
-        <cylinderGeometry args={[0.2, 0.2, 7.5, 6]} />
+        <cylinderGeometry args={[0.18, 0.18, 7.5, 6]} />
         <meshStandardMaterial
           color={LIGHT_COLORS[lightColor].hex}
           transparent
-          opacity={0.25}
+          opacity={0.3}
           emissive={LIGHT_COLORS[lightColor].hex}
-          emissiveIntensity={0.4}
+          emissiveIntensity={0.5}
         />
       </mesh>
 
-      {/* 中央柱外層光暈 */}
-      <mesh position={[0, 0, 0]}>
-        <cylinderGeometry args={[0.3, 0.3, 7.5, 16]} />
+      {/* === 中央柱外層光暈 — 更強的 glow === */}
+      <mesh ref={coreGlowRef} position={[0, 0, 0]}>
+        <cylinderGeometry args={[0.35, 0.35, 7.5, 16]} />
         <meshBasicMaterial
           color={LIGHT_COLORS[lightColor].hex}
           transparent
-          opacity={0.06}
+          opacity={0.08}
           side={THREE.BackSide}
         />
       </mesh>
 
-      {/* 晶體方塊單元 */}
+      {/* === 中央柱最外層微弱光暈 === */}
+      <mesh position={[0, 0, 0]}>
+        <cylinderGeometry args={[0.5, 0.5, 7.2, 16]} />
+        <meshBasicMaterial
+          color={LIGHT_COLORS[lightColor].hex}
+          transparent
+          opacity={0.02}
+          side={THREE.BackSide}
+        />
+      </mesh>
+
+      {/* === 晶體方塊單元 === */}
       {unitPositions.map(({ unit, pos }) => (
         <CrystalUnit
           key={unit.id}
@@ -559,33 +606,60 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
         />
       ))}
 
-      {/* 頂樓天線 */}
+      {/* === 頂樓天線 — 更細更亮 === */}
       <mesh position={[0, 4.2, 0]}>
-        <cylinderGeometry args={[0.03, 0.03, 1.8, 8]} />
+        <cylinderGeometry args={[0.02, 0.02, 2.0, 8]} />
         <meshStandardMaterial
           color={LIGHT_COLORS[lightColor].hex}
           emissive={LIGHT_COLORS[lightColor].hex}
-          emissiveIntensity={1.5}
+          emissiveIntensity={2.0}
         />
       </mesh>
+      
+      {/* 天線頂端發光球 */}
+      <mesh position={[0, 5.2, 0]}>
+        <sphereGeometry args={[0.06, 16, 16]} />
+        <meshBasicMaterial
+          color={LIGHT_COLORS[lightColor].hex}
+          transparent
+          opacity={0.9}
+        />
+      </mesh>
+      
       <pointLight
-        position={[0, 5.1, 0]}
+        position={[0, 5.2, 0]}
         color={LIGHT_COLORS[lightColor].hex}
-        intensity={2.5}
-        distance={6}
+        intensity={3.0}
+        distance={8}
         decay={2}
       />
 
-      {/* === 黑曜石反射地面 (對齊參考圖) === */}
+      {/* === 黑曜石反射地面 — 對齊參考圖的黑色大理石反射 === */}
       <mesh position={[0, -3.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[18, 64]} />
-        <meshStandardMaterial
-          color="#080810"
-          metalness={0.97}
-          roughness={0.03}
-          envMapIntensity={1.5}
+        <circleGeometry args={[20, 64]} />
+        <meshPhysicalMaterial
+          color="#060608"
+          metalness={0.98}
+          roughness={0.02}
+          envMapIntensity={2.0}
+          clearcoat={1}
+          clearcoatRoughness={0.05}
         />
       </mesh>
+
+      {/* === 地面中心發光環 — 對齊參考圖的底部光環 === */}
+      <mesh position={[0, -3.79, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[1.2, 1.8, 6]} />
+        <meshBasicMaterial
+          color={LIGHT_COLORS[lightColor].hex}
+          transparent
+          opacity={0.06}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/* === 漂浮粒子 — 對齊參考圖的懸浮微粒 === */}
+      <FloatingParticles count={60} color={LIGHT_COLORS[lightColor].hex} radius={3.5} />
     </group>
   );
 }

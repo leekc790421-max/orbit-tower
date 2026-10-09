@@ -13,7 +13,7 @@ function CyberNight() {
   const particlesRef = useRef<THREE.Points>(null);
 
   const { positions, colors } = useMemo(() => {
-    const count = 2000;
+    const count = 2500;
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
     let seed = 54321;
@@ -26,7 +26,8 @@ function CyberNight() {
       pos[i * 3 + 1] = (seededRandom() - 0.5) * 30;
       pos[i * 3 + 2] = (seededRandom() - 0.5) * 40;
       const c = new THREE.Color();
-      c.setHSL(0.55 + seededRandom() * 0.1, 0.8, 0.5 + seededRandom() * 0.3);
+      // 更偏青藍色調
+      c.setHSL(0.55 + seededRandom() * 0.08, 0.9, 0.5 + seededRandom() * 0.3);
       col[i * 3] = c.r;
       col[i * 3 + 1] = c.g;
       col[i * 3 + 2] = c.b;
@@ -42,20 +43,37 @@ function CyberNight() {
 
   return (
     <>
-      <fog attach="fog" args={["#050520", 5, 30]} />
-      <ambientLight intensity={0.1} color="#2233ff" />
-      <directionalLight position={[5, 10, 5]} intensity={0.3} color="#6644ff" />
-      <pointLight position={[-10, 5, -10]} intensity={0.5} color="#ff0066" distance={20} />
-      <pointLight position={[10, -5, 10]} intensity={0.5} color="#00ffff" distance={20} />
+      {/* 更深的霧氣 — 對齊參考圖的黑暗氛圍 */}
+      <fog attach="fog" args={["#030308", 4, 28]} />
+      
+      {/* 環境光 — 更暗 */}
+      <ambientLight intensity={0.05} color="#1a1a3a" />
+      
+      {/* 主方向光 — 模擬頂部聚光燈 */}
+      <directionalLight position={[0, 15, 0]} intensity={0.4} color="#ffffff" />
+      
+      {/* 側面補光 — 青藍色調 */}
+      <directionalLight position={[8, 8, 8]} intensity={0.2} color="#4488ff" />
+      <directionalLight position={[-8, 8, -8]} intensity={0.15} color="#00ccff" />
+      
+      {/* 底部微弱反射光 */}
+      <pointLight position={[0, -5, 0]} intensity={0.3} color="#0066cc" distance={15} />
+      
+      {/* 遠處氛圍光 */}
+      <pointLight position={[-12, 3, -12]} intensity={0.4} color="#2244aa" distance={25} />
+      <pointLight position={[12, 3, 12]} intensity={0.4} color="#0088ff" distance={25} />
+      
+      {/* 漂浮粒子 */}
       <points ref={particlesRef}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[positions, 3]} />
           <bufferAttribute attach="attributes-color" args={[colors, 3]} />
         </bufferGeometry>
-        <pointsMaterial size={0.05} vertexColors transparent opacity={0.8} sizeAttenuation />
+        <pointsMaterial size={0.04} vertexColors transparent opacity={0.85} sizeAttenuation />
       </points>
-      {/* 地面網格 */}
-      <gridHelper args={[40, 40, "#0044ff", "#001133"]} position={[0, -5, 0]} />
+      
+      {/* 地面網格 — 更暗更細 */}
+      <gridHelper args={[50, 50, "#002244", "#000a1a"]} position={[0, -5, 0]} />
     </>
   );
 }

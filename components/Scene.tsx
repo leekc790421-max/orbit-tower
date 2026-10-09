@@ -65,37 +65,63 @@ export default function Scene({ theme, lightColor, onUnitClick }: SceneProps) {
         antialias: true,
         alpha: true,
         toneMapping: THREE.ACESFilmicToneMapping,
-        toneMappingExposure: 1.2,
+        toneMappingExposure: 1.0,
         powerPreference: "high-performance",
       }}
       onCreated={({ gl }) => {
         gl.setClearColor("#050510", 0);
         gl.toneMapping = THREE.ACESFilmicToneMapping;
-        gl.toneMappingExposure = 1.2;
+        gl.toneMappingExposure = 1.0;
       }}
     >
       <Suspense fallback={<LoadingFallback />}>
-        {/* 環境光照 */}
+        {/* === 環境光照 — 對齊參考圖的戲劇性打光 === */}
         <EnvironmentScene theme={theme} />
 
-        {/* 環境貼圖（用於玻璃反射） */}
-        <Environment preset="city" environmentIntensity={0.5} />
+        {/* === 聚光燈 — 對齊參考圖的頂部聚光燈 === */}
+        <spotLight
+          position={[0, 12, 0]}
+          angle={0.4}
+          penumbra={0.8}
+          intensity={2.5}
+          color="#ffffff"
+          castShadow={false}
+        />
+        <spotLight
+          position={[5, 8, 5]}
+          angle={0.5}
+          penumbra={0.9}
+          intensity={1.2}
+          color="#88ccff"
+          castShadow={false}
+        />
+        <spotLight
+          position={[-5, 8, -5]}
+          angle={0.5}
+          penumbra={0.9}
+          intensity={1.0}
+          color="#4488ff"
+          castShadow={false}
+        />
 
-        {/* 六角大樓 */}
+        {/* === 環境貼圖（用於玻璃反射） === */}
+        <Environment preset="city" environmentIntensity={0.6} />
+
+        {/* === 六角大樓 === */}
         <HexTower lightColor={lightColor} onUnitClick={handleUnitClick} />
 
-        {/* Bloom 後處理 — 霓虹極光質感 */}
+        {/* === Bloom 後處理 — 更強的霓虹極光質感 === */}
         <EffectComposer>
           <Bloom
-            intensity={1.2}
-            luminanceThreshold={0.15}
-            luminanceSmoothing={0.85}
+            intensity={1.5}
+            luminanceThreshold={0.1}
+            luminanceSmoothing={0.9}
             mipmapBlur
-            radius={0.85}
+            radius={0.9}
           />
         </EffectComposer>
 
-        {/* 軌道控制 — 解除滾輪卡死，允許頁面滾動 */}
+        {/* === 軌道控制 — 解除滾輪卡死，允許頁面滾動 === */}
         <OrbitControls
           ref={controlsRef}
           enablePan={false}
