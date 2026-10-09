@@ -58,9 +58,9 @@ export default function Scene({ theme, lightColor, onUnitClick }: SceneProps) {
 
   return (
     <Canvas
-      camera={{ position: [7, 3.5, 7], fov: 50, near: 0.1, far: 100 }}
+      camera={{ position: [8, 4.5, 8], fov: 48, near: 0.1, far: 100 }}
       style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%" }}
-      dpr={[1, 1.5]}
+      dpr={[1, 2]}
       gl={{
         antialias: true,
         alpha: true,
@@ -124,10 +124,14 @@ export default function Scene({ theme, lightColor, onUnitClick }: SceneProps) {
         {/* === 軌道控制 — 解除滾輪卡死，允許頁面滾動 === */}
         <OrbitControls
           ref={controlsRef}
-          enablePan={false}
-          enableZoom={false}
+          enablePan={true}
+          enableZoom={true}
           enableRotate={true}
-          rotateSpeed={0.5}
+          rotateSpeed={0.55}
+          zoomSpeed={0.8}
+          panSpeed={0.45}
+          minDistance={5}
+          maxDistance={18}
           minPolarAngle={Math.PI * 0.15}
           maxPolarAngle={Math.PI * 0.75}
           autoRotate={true}

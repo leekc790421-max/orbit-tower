@@ -455,12 +455,12 @@ export const zh = {
   // === Landing Overlay ===
   landing: {
     // Hero
-    heroTitle: "打造專屬 AI 數位旗艦館",
-    heroSubtitle: "讓您的品牌透過中英日三語向全球展示",
-    heroFeatures: "AI客服 · 3D品牌展示 · 全球客戶接待 · 跨境付款",
-    heroDeploy: "7~14天快速部署",
-    heroCta: "預約免費展示",
-    heroCtaSecondary: "查看示範館",
+    heroTitle: "Orbit Tower 賽博虛擬總部",
+    heroSubtitle: "把企業品牌、服務與客戶接待，放進一座可互動的 3D 虛擬總部",
+    heroFeatures: "3D 空間展示 · AI 樓管導覽 · B2B 品牌進駐 · 多語服務",
+    heroDeploy: "桌面與平板皆可直接操作",
+    heroCta: "預約 B2B 導覽",
+    heroCtaSecondary: "先看 3D 大樓",
     heroBadge: "Global AI Digital Showroom Platform",
     enter3d: "進入 3D 體驗 →",
 

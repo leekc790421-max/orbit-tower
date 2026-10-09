@@ -15,14 +15,14 @@ interface LandingOverlayProps {
 function DarkGlassBg() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950/95 via-slate-900/90 to-slate-950/95" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-sky-50 to-blue-100/90" />
 
-      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-[40%_60%_55%_45%_/_50%_45%_55%_50%] bg-gradient-to-br from-cyan-900/20 to-blue-900/10 animate-[float_14s_ease-in-out_infinite]" />
-      <div className="absolute top-1/3 -right-48 w-[400px] h-[400px] rounded-[55%_45%_40%_60%_/_60%_50%_50%_40%] bg-gradient-to-bl from-indigo-900/15 to-slate-900/10 animate-[float_18s_ease-in-out_infinite_reverse]" />
-      <div className="absolute -bottom-20 left-1/4 w-[600px] h-[400px] rounded-[45%_55%_60%_40%_/_40%_55%_45%_60%] bg-gradient-to-t from-cyan-900/10 to-transparent animate-[float_20s_ease-in-out_infinite]" />
+      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-[40%_60%_55%_45%_/_50%_45%_55%_50%] bg-gradient-to-br from-cyan-300/25 to-blue-300/15 animate-[float_14s_ease-in-out_infinite]" />
+      <div className="absolute top-1/3 -right-48 w-[400px] h-[400px] rounded-[55%_45%_40%_60%_/_60%_50%_50%_40%] bg-gradient-to-bl from-blue-300/20 to-white/10 animate-[float_18s_ease-in-out_infinite_reverse]" />
+      <div className="absolute -bottom-20 left-1/4 w-[600px] h-[400px] rounded-[45%_55%_60%_40%_/_40%_55%_45%_60%] bg-gradient-to-t from-sky-300/20 to-transparent animate-[float_20s_ease-in-out_infinite]" />
 
       <div className="absolute inset-0 opacity-[0.04]" style={{
-        backgroundImage: `linear-gradient(rgba(0,212,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.3) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(14,116,204,0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(14,116,204,0.22) 1px, transparent 1px)`,
         backgroundSize: '60px 60px'
       }} />
 
@@ -65,7 +65,7 @@ function DarkGlassBg() {
 
 export default function LandingOverlay({ onEnter3D, onPricingClick }: LandingOverlayProps) {
   return (
-    <div className="fixed inset-0 z-[60] overflow-y-auto overflow-x-hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
+    <div className="orbit-landing fixed inset-0 z-[60] overflow-y-auto overflow-x-hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
       <DarkGlassBg />
       <div className="relative z-10">
         <HeroSection onEnter3D={onEnter3D} onPricingClick={onPricingClick} />
@@ -79,8 +79,8 @@ export default function LandingOverlay({ onEnter3D, onPricingClick }: LandingOve
   );
 }
 
-const glassCard = "rounded-lg sm:rounded-xl md:rounded-2xl border border-white/[0.12] bg-white/[0.03] backdrop-blur-md";
-const glassCardHover = "hover:border-cyan-400/30 hover:bg-white/[0.05] transition-all";
+const glassCard = "rounded-lg sm:rounded-xl md:rounded-2xl border border-blue-900/[0.12] bg-white/65 backdrop-blur-md";
+const glassCardHover = "hover:border-cyan-400/30 hover:bg-white/90 transition-all";
 
 function HeroSection({ onEnter3D, onPricingClick }: { onEnter3D: () => void; onPricingClick: () => void }) {
   const { t } = useTranslation();
@@ -98,7 +98,7 @@ function HeroSection({ onEnter3D, onPricingClick }: { onEnter3D: () => void; onP
           {t("landing.heroTitle")}
         </h1>
 
-        <p className="text-[11px] sm:text-base md:text-xl text-white/50 mb-2 sm:mb-3 md:mb-4 max-w-2xl mx-auto leading-[1.4]">
+        <p className="text-[11px] sm:text-base md:text-xl text-slate-900/50 mb-2 sm:mb-3 md:mb-4 max-w-2xl mx-auto leading-[1.4]">
           {t("landing.heroSubtitle")}
         </p>
 
@@ -125,7 +125,7 @@ function HeroSection({ onEnter3D, onPricingClick }: { onEnter3D: () => void; onP
           </button>
           <button
             onClick={onEnter3D}
-            className="w-full sm:w-auto px-5 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 rounded-xl sm:rounded-2xl md:rounded-2xl border border-white/20 bg-white/5 text-white/80 font-semibold text-[13px] sm:text-[14px] md:text-base tracking-wide hover:border-cyan-400/50 hover:text-white transition-all hover:-translate-y-0.5"
+            className="w-full sm:w-auto px-5 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 rounded-xl sm:rounded-2xl md:rounded-2xl border border-blue-900/20 bg-white/5 text-slate-900/80 font-semibold text-[13px] sm:text-[14px] md:text-base tracking-wide hover:border-cyan-400/50 hover:text-white transition-all hover:-translate-y-0.5"
           >
             {t("landing.heroCtaSecondary")}
           </button>
@@ -133,7 +133,7 @@ function HeroSection({ onEnter3D, onPricingClick }: { onEnter3D: () => void; onP
 
         <button
           onClick={onEnter3D}
-          className="inline-flex items-center gap-1 sm:gap-1.5 md:gap-2 text-[11px] sm:text-xs md:text-sm text-white/30 hover:text-cyan-400 transition-colors tracking-wide group"
+          className="inline-flex items-center gap-1 sm:gap-1.5 md:gap-2 text-[11px] sm:text-xs md:text-sm text-slate-900/30 hover:text-cyan-400 transition-colors tracking-wide group"
         >
           {t("landing.enter3d")}
           <ChevronDown size={11} className="group-hover:translate-y-0.5 transition-transform sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" />
@@ -173,8 +173,8 @@ function ProblemSection() {
                   <p.icon size={14} className="text-red-400/70 sm:w-[16px] sm:h-[16px] md:w-5 md:h-5 md:text-red-400" />
                 </div>
                 <div>
-                  <h3 className="text-[13px] sm:text-[14px] md:text-base font-bold text-white/90 mb-0.5 sm:mb-1.5 md:mb-2 leading-snug">{p.title}</h3>
-                  <p className="text-[11px] sm:text-xs md:text-sm text-white/40 leading-[1.4]">{p.desc}</p>
+                  <h3 className="text-[13px] sm:text-[14px] md:text-base font-bold text-slate-900/90 mb-0.5 sm:mb-1.5 md:mb-2 leading-snug">{p.title}</h3>
+                  <p className="text-[11px] sm:text-xs md:text-sm text-slate-900/40 leading-[1.4]">{p.desc}</p>
                 </div>
               </div>
             </div>
@@ -216,14 +216,14 @@ function SolutionSection() {
             return (
               <div
                 key={i}
-                className={`${glassCard} ${c.border} p-3 sm:p-4 md:p-6 hover:bg-white/[0.05] hover:-translate-y-0.5 transition-all`}
+                className={`${glassCard} ${c.border} p-3 sm:p-4 md:p-6 hover:bg-white/90 hover:-translate-y-0.5 transition-all`}
               >
                 <div className={`w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 rounded-lg sm:rounded-xl md:rounded-xl border flex items-center justify-center mb-1.5 sm:mb-3 md:mb-4 ${c.iconBg}`}>
                   <s.icon size={14} className={`${c.icon} sm:w-[16px] sm:h-[16px] md:w-5 md:h-5`} />
                 </div>
-                <h3 className="text-[13px] sm:text-[14px] md:text-base font-bold text-white/90 mb-0.5 sm:mb-1 md:mb-1 leading-snug">{s.title}</h3>
+                <h3 className="text-[13px] sm:text-[14px] md:text-base font-bold text-slate-900/90 mb-0.5 sm:mb-1 md:mb-1 leading-snug">{s.title}</h3>
                 <p className={`text-[9px] sm:text-[10px] md:text-xs tracking-wider mb-1 sm:mb-2 md:mb-3 font-semibold ${c.sub}`}>{s.sub}</p>
-                <p className="text-[11px] sm:text-xs md:text-sm text-white/40 leading-[1.4]">{s.desc}</p>
+                <p className="text-[11px] sm:text-xs md:text-sm text-slate-900/40 leading-[1.4]">{s.desc}</p>
               </div>
             );
           })}
@@ -259,9 +259,9 @@ function ShowcaseSection() {
               className={`group ${glassCard} ${glassCardHover} p-2.5 sm:p-4 md:p-5 cursor-pointer hover:-translate-y-0.5`}
             >
               <div className="text-lg sm:text-2xl md:text-3xl mb-1 sm:mb-2 md:mb-3">{s.icon}</div>
-              <h3 className="text-[11px] sm:text-[13px] md:text-base font-bold text-white/90 mb-0.5 sm:mb-0.5 md:mb-1 leading-snug">{s.title}</h3>
+              <h3 className="text-[11px] sm:text-[13px] md:text-base font-bold text-slate-900/90 mb-0.5 sm:mb-0.5 md:mb-1 leading-snug">{s.title}</h3>
               <p className="text-[8px] sm:text-[10px] md:text-xs text-cyan-400/50 tracking-wider mb-1 sm:mb-1.5 md:mb-2 font-semibold">{s.sub}</p>
-              <p className="text-[10px] sm:text-[11px] md:text-sm text-white/40 leading-[1.4] line-clamp-2">{s.desc}</p>
+              <p className="text-[10px] sm:text-[11px] md:text-sm text-slate-900/40 leading-[1.4] line-clamp-2">{s.desc}</p>
               <div className="mt-1.5 sm:mt-2 md:mt-3 flex items-center gap-1 text-[9px] sm:text-[10px] md:text-sm text-cyan-400/60 group-hover:text-cyan-400 transition-colors font-medium">
                 <ArrowRight size={10} className="sm:w-[11px] sm:h-[11px] md:w-3 md:h-3" />
                 <span>{t("landing.viewDemo")}</span>
@@ -296,7 +296,7 @@ function AutomationSection() {
           <h2 className="text-base sm:text-xl md:text-4xl font-extrabold text-white tracking-tight mb-1.5 sm:mb-3 md:mb-4">
             {t("landing.autoTitle")}
           </h2>
-          <p className="text-[11px] sm:text-sm md:text-base text-white/40 max-w-xl mx-auto leading-[1.4]">{t("landing.autoDesc")}</p>
+          <p className="text-[11px] sm:text-sm md:text-base text-slate-900/40 max-w-xl mx-auto leading-[1.4]">{t("landing.autoDesc")}</p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-5">
           {items.map((item, i) => (
@@ -307,8 +307,8 @@ function AutomationSection() {
               <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-lg sm:rounded-xl md:rounded-xl bg-indigo-400/5 border border-indigo-400/15 flex items-center justify-center mb-1 sm:mb-2 md:mb-3">
                 <item.icon size={12} className="text-indigo-400 sm:w-[14px] sm:h-[14px] md:w-[18px] md:h-[18px]" />
               </div>
-              <h3 className="text-[11px] sm:text-xs md:text-sm font-bold text-white/80 mb-0.5 sm:mb-1.5 md:mb-2 leading-snug">{item.title}</h3>
-              <p className="text-[10px] sm:text-[11px] md:text-xs text-white/40 leading-[1.4] line-clamp-2">{item.desc}</p>
+              <h3 className="text-[11px] sm:text-xs md:text-sm font-bold text-slate-900/80 mb-0.5 sm:mb-1.5 md:mb-2 leading-snug">{item.title}</h3>
+              <p className="text-[10px] sm:text-[11px] md:text-xs text-slate-900/40 leading-[1.4] line-clamp-2">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -330,7 +330,7 @@ function FinalCTA({ onPricingClick }: { onPricingClick: () => void }) {
         <h2 className="text-lg sm:text-2xl md:text-4xl font-extrabold text-white tracking-tight mb-2 sm:mb-4 md:mb-5">
           {t("landing.finalTitle")}
         </h2>
-        <p className="text-[11px] sm:text-sm md:text-lg text-white/40 mb-4 sm:mb-8 md:mb-10 max-w-lg mx-auto leading-[1.4]">
+        <p className="text-[11px] sm:text-sm md:text-lg text-slate-900/40 mb-4 sm:mb-8 md:mb-10 max-w-lg mx-auto leading-[1.4]">
           {t("landing.finalDesc")}
         </p>
 
@@ -338,7 +338,7 @@ function FinalCTA({ onPricingClick }: { onPricingClick: () => void }) {
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <div className="text-lg sm:text-2xl md:text-3xl font-extrabold text-cyan-400">{s.value}</div>
-              <div className="text-[8px] sm:text-[10px] md:text-sm text-white/30 mt-0.5 sm:mt-0.5 md:mt-1 font-medium">{s.label}</div>
+              <div className="text-[8px] sm:text-[10px] md:text-sm text-slate-900/30 mt-0.5 sm:mt-0.5 md:mt-1 font-medium">{s.label}</div>
             </div>
           ))}
         </div>
@@ -350,16 +350,16 @@ function FinalCTA({ onPricingClick }: { onPricingClick: () => void }) {
           >
             {t("landing.finalCta")}
           </button>
-          <button className="w-full sm:w-auto px-5 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 rounded-xl sm:rounded-2xl md:rounded-2xl border border-white/20 bg-white/5 text-white/80 font-semibold text-[13px] sm:text-[14px] md:text-base tracking-wide hover:border-cyan-400/50 hover:text-white transition-all hover:-translate-y-0.5">
+          <button className="w-full sm:w-auto px-5 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 rounded-xl sm:rounded-2xl md:rounded-2xl border border-blue-900/20 bg-white/5 text-slate-900/80 font-semibold text-[13px] sm:text-[14px] md:text-base tracking-wide hover:border-cyan-400/50 hover:text-white transition-all hover:-translate-y-0.5">
             {t("landing.finalCtaSecondary")}
           </button>
         </div>
 
-        <div className="orbit-line-contact mt-6 sm:mt-10 mx-auto flex items-center justify-center gap-3 sm:gap-4 rounded-xl border border-cyan-400/20 bg-slate-950/50 p-3 sm:p-4 text-left backdrop-blur-md">
+        <div className="orbit-line-contact mt-6 sm:mt-10 mx-auto flex items-center justify-center gap-3 sm:gap-4 rounded-xl border border-cyan-400/20 bg-white/80 p-3 sm:p-4 text-left backdrop-blur-md">
           <img src="/logo-light.jpg" alt="光曜星樞 SNT Logo" className="h-14 w-12 sm:h-16 sm:w-14 rounded-lg object-cover" />
           <div className="min-w-0 flex-1">
-            <div className="text-[10px] sm:text-xs font-bold tracking-wider text-white">光曜星樞 SNT</div>
-            <div className="mt-0.5 text-[9px] sm:text-[10px] leading-relaxed text-white/50">掃描 QR Code，或直接加入 LINE 聯絡我們</div>
+            <div className="text-[10px] sm:text-xs font-bold tracking-wider text-slate-900">光曜星樞 SNT</div>
+            <div className="mt-0.5 text-[9px] sm:text-[10px] leading-relaxed text-slate-900/50">掃描 QR Code，或直接加入 LINE 聯絡我們</div>
             <a href="https://line.me/R/ti/p/@559julyu" target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-[#06C755] px-2.5 py-1.5 text-[9px] font-bold text-white transition hover:brightness-110">
               <span aria-hidden="true">LINE</span> 即時諮詢
             </a>
@@ -368,7 +368,7 @@ function FinalCTA({ onPricingClick }: { onPricingClick: () => void }) {
         </div>
 
         <div className="mt-8 sm:mt-12 md:mt-16 pt-3 sm:pt-6 md:pt-8 border-t border-white/10">
-          <p className="text-[9px] sm:text-[10px] md:text-xs text-white/20 tracking-wider">{t("footer.copyright")}</p>
+          <p className="text-[9px] sm:text-[10px] md:text-xs text-slate-900/20 tracking-wider">{t("footer.copyright")}</p>
         </div>
       </div>
     </section>

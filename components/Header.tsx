@@ -21,7 +21,7 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
 
-  const logoSrc = theme === "cloud" ? "/logo-light.jpg" : "/logo-dark.jpg";
+  const logoSrc = "/orbit-logo.jpg";
 
   return (
     <>
