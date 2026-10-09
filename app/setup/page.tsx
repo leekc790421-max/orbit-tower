@@ -211,7 +211,7 @@ INSERT INTO stores (floor, face) VALUES
                   1. 回到 Supabase Dashboard → SQL Editor
                 </p>
                 <p className="text-white/80">
-                  2. 點擊 "New Query"，複製下方 SQL 並執行：
+                  2. 點擊 &ldquo;New Query&rdquo;，複製下方 SQL 並執行：
                 </p>
 
                 <div className="relative">
