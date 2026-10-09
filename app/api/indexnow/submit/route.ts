@@ -16,10 +16,6 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { withRateLimit } from '@/lib/rate-limit/rate-limiter';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit-tower.vercel.app';
-const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'orbit-tower-indexnow-key-2026';
-const INDEXNOW_KEY_LOCATION = `${SITE_URL}/${INDEXNOW_KEY}.txt`;
-
 // IndexNow API Endpoints
 const INDEXNOW_ENDPOINTS = [
   'https://api.indexnow.org/indexnow',
@@ -29,6 +25,11 @@ const INDEXNOW_ENDPOINTS = [
 ];
 
 export async function POST(request: NextRequest) {
+  // 在 handler 內部讀取環境變數（避免 build 階段問題）
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit-tower.vercel.app';
+  const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'orbit-tower-indexnow-key-2026';
+  const INDEXNOW_KEY_LOCATION = `${SITE_URL}/${INDEXNOW_KEY}.txt`;
+
   // Rate Limiting
   const rateLimitResult = withRateLimit(request, 'global');
   if (!rateLimitResult.allowed) {
@@ -72,7 +73,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 提交到 IndexNow
-    const results = await submitToIndexNow(validUrls, type || 'URLUpdated');
+    const results = await submitToIndexNow(validUrls, type || 'URLUpdated', SITE_URL, INDEXNOW_KEY, INDEXNOW_KEY_LOCATION);
 
     return NextResponse.json({
       success: true,
@@ -98,7 +99,10 @@ export async function POST(request: NextRequest) {
  */
 async function submitToIndexNow(
   urls: string[],
-  type: 'URLUpdated' | 'URLDeleted' | 'URLAdded'
+  type: 'URLUpdated' | 'URLDeleted' | 'URLAdded',
+  siteUrl: string,
+  key: string,
+  keyLocation: string
 ) {
   const results = [];
 
@@ -110,9 +114,9 @@ async function submitToIndexNow(
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          host: new URL(SITE_URL).hostname,
-          key: INDEXNOW_KEY,
-          keyLocation: INDEXNOW_KEY_LOCATION,
+          host: new URL(siteUrl).hostname,
+          key: key,
+          keyLocation: keyLocation,
           urlList: urls,
           type,
         }),
@@ -142,6 +146,11 @@ async function submitToIndexNow(
  * 查詢 IndexNow 狀態
  */
 export async function GET() {
+  // 在 handler 內部讀取環境變數
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit-tower.vercel.app';
+  const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'orbit-tower-indexnow-key-2026';
+  const INDEXNOW_KEY_LOCATION = `${SITE_URL}/${INDEXNOW_KEY}.txt`;
+
   return NextResponse.json({
     success: true,
     data: {

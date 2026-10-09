@@ -20,9 +20,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withRateLimit } from '@/lib/rate-limit/rate-limiter';
 import { getSupabaseAdmin } from '@/lib/supabase/client';
 
-const ADMIN_SECRET = process.env.ADMIN_SECRET || '';
-
 export async function POST(request: NextRequest) {
+  // 在 handler 內部讀取環境變數（避免 build 階段問題）
+  const ADMIN_SECRET = process.env.ADMIN_SECRET || '';
+
   // 1. Rate Limiting
   const rateLimitResult = withRateLimit(request, 'global');
   if (!rateLimitResult.allowed) {
@@ -152,6 +153,9 @@ export async function POST(request: NextRequest) {
  * 查詢待審核列表
  */
 export async function GET(request: NextRequest) {
+  // 在 handler 內部讀取環境變數
+  const ADMIN_SECRET = process.env.ADMIN_SECRET || '';
+
   // Admin Authentication
   const authHeader = request.headers.get('authorization');
   const providedSecret = authHeader?.replace('Bearer ', '');

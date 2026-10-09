@@ -18,12 +18,14 @@ import { validateJsonInput } from '@/lib/validation/validator';
 // Rate Limit: 每分鐘 30 次
 const RATE_LIMIT_TYPE = 'drift' as const;
 
-// Groq API 設定
-const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
+// Groq API 設定 (在 handler 內部讀取)
 const GROQ_MODEL = 'mixtral-8x7b-32768';
 const GROQ_TIMEOUT = 10000; // 10 秒
 
 export async function POST(request: NextRequest) {
+  // 在 handler 內部讀取環境變數（避免 build 階段問題）
+  const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
+
   // 1. Rate Limiting
   const rateLimitResult = withRateLimit(request, RATE_LIMIT_TYPE);
   if (!rateLimitResult.allowed) {
@@ -61,7 +63,7 @@ export async function POST(request: NextRequest) {
     }
     
     // 5. 生成漂流瓶內容
-    const fortune = await generateFortune(data.action, data.message, data.locale);
+    const fortune = await generateFortune(data.action, data.message, data.locale, GROQ_API_KEY);
     
     // 6. 成功
     return NextResponse.json({
@@ -99,10 +101,11 @@ export async function POST(request: NextRequest) {
 async function generateFortune(
   action: string,
   message?: string,
-  locale: string = 'zh-TW'
+  locale: string = 'zh-TW',
+  apiKey?: string
 ): Promise<string> {
   // 如果沒有 Groq API Key，使用預設內容
-  if (!GROQ_API_KEY) {
+  if (!apiKey) {
     return getDefaultFortune(action, locale);
   }
   
@@ -117,7 +120,7 @@ async function generateFortune(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${GROQ_API_KEY}`,
+        'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: GROQ_MODEL,
@@ -214,6 +217,9 @@ function getDefaultFortune(action: string, locale: string): string {
  * 取得漂流瓶 (快取測試用)
  */
 export async function GET(request: NextRequest) {
+  // 在 handler 內部讀取環境變數
+  const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
+
   const rateLimitResult = withRateLimit(request, RATE_LIMIT_TYPE);
   if (!rateLimitResult.allowed) {
     return rateLimitResult.response!;
@@ -231,7 +237,7 @@ export async function GET(request: NextRequest) {
   }
   
   // 生成漂流瓶
-  const fortune = await generateFortune(action, undefined, 'zh-TW');
+  const fortune = await generateFortune(action, undefined, 'zh-TW', GROQ_API_KEY);
   
   return NextResponse.json({
     success: true,
