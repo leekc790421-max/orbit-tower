@@ -123,17 +123,15 @@ function HomeInner() {
       <UnitInfoCard unit={selectedUnit} onClose={handleCloseCard} />
 
       {/* 資安防護狀態 + 免責聲明入口 Footer */}
-      <div className="fixed bottom-0 left-0 right-0 z-30 pointer-events-none">
-        <SecurityFooter />
-        {/* 免責聲明按鈕 */}
-        <div className="flex items-center justify-center pb-0.5 sm:pb-1 pointer-events-auto">
-          <button
-            onClick={() => setDisclaimerOpen(true)}
-            className="text-[7px] sm:text-[9px] text-white/20 hover:text-white/40 tracking-wider transition-colors px-2 sm:px-3 py-0.5 sm:py-1"
-          >
-            {t("security.disclaimer")}
-          </button>
-        </div>
+      <SecurityFooter />
+      {/* 免責聲明按鈕 */}
+      <div className="fixed bottom-1 sm:bottom-1.5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
+        <button
+          onClick={() => setDisclaimerOpen(true)}
+          className="text-[6px] sm:text-[8px] text-white/15 hover:text-white/40 tracking-wider transition-colors px-2 py-0.5"
+        >
+          {t("security.disclaimer")}
+        </button>
       </div>
 
       {/* FAQ 區塊 */}

@@ -81,15 +81,15 @@ export default function AIConcierge() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-14 sm:bottom-6 left-2 sm:left-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full glass-panel border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300 group"
+          className="fixed bottom-10 sm:bottom-4 left-1 sm:left-3 z-50 w-9 h-9 sm:w-11 sm:h-11 rounded-full glass-panel border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300 group"
         >
-          <MessageCircle size={20} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-          <div className="absolute -top-1 -right-1 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-cyan-400 rounded-full animate-pulse" />
+          <MessageCircle size={16} className="text-cyan-400 group-hover:scale-110 transition-transform" />
+          <div className="absolute -top-0.5 -right-0.5 w-2 h-2 sm:w-2.5 sm:h-2.5 bg-cyan-400 rounded-full animate-pulse" />
         </button>
       )}
 
       {isOpen && (
-        <div className="fixed bottom-12 sm:bottom-6 left-2 sm:left-6 right-2 sm:right-auto z-50 sm:w-[360px] h-[60vh] sm:h-[520px] max-h-[520px] glass-panel rounded-2xl border border-cyan-400/20 flex flex-col shadow-2xl shadow-cyan-400/10">
+        <div className="fixed bottom-10 sm:bottom-4 left-1 sm:left-3 right-1 sm:right-auto z-50 sm:w-[320px] h-[55vh] sm:h-[440px] max-h-[440px] glass-panel rounded-xl sm:rounded-2xl border border-cyan-400/20 flex flex-col shadow-2xl shadow-cyan-400/10">
           <div className="flex items-center justify-between p-3 sm:p-4 border-b border-white/10">
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center">

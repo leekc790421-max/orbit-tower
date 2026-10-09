@@ -25,164 +25,101 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-40 pointer-events-none">
-        <div className="flex items-center justify-center pt-3 sm:pt-6 px-2 sm:px-4">
-          <div className="glass-panel rounded-xl sm:rounded-2xl px-3.5 sm:px-7 py-2.5 sm:py-3.5 hud-border pointer-events-auto w-full max-w-2xl">
-            <div className="flex items-center justify-between gap-2 sm:gap-3">
-              {/* Logo + 標題 */}
-              <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
-                <div className="relative flex-shrink-0">
-                  <img 
-                    src={logoSrc} 
-                    alt={t("brand.name")} 
-                    className="w-9 h-9 sm:w-11 sm:h-11 object-contain rounded-full"
-                  />
-                </div>
-                <div className="min-w-0">
-                  <h1 className="text-sm sm:text-base font-bold tracking-[0.15em] sm:tracking-[0.3em] text-white uppercase neon-text truncate">
-                    SNT <span className="text-cyan-400">|</span> {t("brand.nameShort")}
-                  </h1>
-                  <p className="text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.2em] text-cyan-400/60 uppercase truncate">
-                    <span className="hidden sm:inline">ORBIT TOWER · {t("brand.taglineShort")}</span>
-                    <span className="sm:hidden">{t("brand.taglineShort")}</span>
-                  </p>
-                </div>
-              </div>
-
-              {/* 桌機選單 */}
-              <div className="hidden sm:flex items-center gap-2">
-                <button
-                  onClick={onAboutClick}
-                  className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
-                >
-                  <Info size={13} />
-                  {t("nav.about")}
-                </button>
-                <button
-                  onClick={onReadmeClick}
-                  className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
-                >
-                  <BookOpen size={13} />
-                  {t("nav.readme")}
-                </button>
-                <button
-                  onClick={() => setShareModalOpen(true)}
-                  className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
-                >
-                  <Share2 size={13} />
-                  {t("nav.share")}
-                </button>
-                <button
-                  onClick={onPricingClick}
-                  className="text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
-                >
-                  {t("nav.pricing")}
-                </button>
-                <button
-                  onClick={onLegalClick}
-                  className="text-xs px-3 py-2 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all tracking-wider"
-                >
-                  {t("nav.terms")}
-                </button>
-                <LanguageSwitcher />
-                <button
-                  onClick={onLoginClick}
-                  className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 transition-all tracking-wider font-bold"
-                >
-                  <LogIn size={13} />
-                  {t("nav.login")}
-                </button>
-                <div className="flex items-center gap-1.5 pl-2 border-l border-white/10">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[10px] text-emerald-400/80 tracking-wider uppercase">
-                    {t("nav.online")}
-                  </span>
-                </div>
-              </div>
-
-              {/* 手機漢堡選單 */}
-              <div className="flex sm:hidden items-center gap-2">
-                <LanguageSwitcher />
-                <button
-                  onClick={() => setShareModalOpen(true)}
-                  className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center hover:border-cyan-400/30 transition-all"
-                >
-                  <Share2 size={16} className="text-white/60" />
-                </button>
-                <button
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center hover:border-white/30 transition-all"
-                >
-                  {mobileMenuOpen ? (
-                    <X size={18} className="text-white/60" />
-                  ) : (
-                    <Menu size={18} className="text-white/60" />
-                  )}
-                </button>
-              </div>
+      {/* === 左上角：品牌 Logo === */}
+      <div className="fixed top-2 sm:top-4 left-2 sm:left-3 z-40 pointer-events-auto">
+        <div className="glass-panel rounded-lg sm:rounded-xl px-2.5 sm:px-4 py-1.5 sm:py-2 hud-border">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <img 
+              src={logoSrc} 
+              alt={t("brand.name")} 
+              className="w-6 h-6 sm:w-8 sm:h-8 object-contain rounded-full"
+            />
+            <div className="min-w-0">
+              <h1 className="text-[10px] sm:text-xs font-bold tracking-[0.1em] sm:tracking-[0.15em] text-white uppercase neon-text truncate">
+                SNT <span className="text-cyan-400">|</span> {t("brand.nameShort")}
+              </h1>
+              <p className="text-[7px] sm:text-[9px] tracking-[0.08em] text-cyan-400/50 uppercase truncate">
+                {t("brand.taglineShort")}
+              </p>
             </div>
-
-            {/* 手機展開選單 */}
-            {mobileMenuOpen && (
-              <div className="sm:hidden mt-3 pt-3 border-t border-white/10 space-y-2">
-                <button
-                  onClick={() => {
-                    onAboutClick();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full flex items-center gap-2 text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
-                >
-                  <Info size={15} />
-                  {t("nav.aboutFull")}
-                </button>
-                <button
-                  onClick={() => {
-                    onReadmeClick();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full flex items-center gap-2 text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
-                >
-                  <BookOpen size={15} />
-                  {t("nav.readmeFull")}
-                </button>
-                <button
-                  onClick={() => {
-                    onPricingClick();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
-                >
-                  {t("nav.pricing")}
-                </button>
-                <button
-                  onClick={() => {
-                    onLegalClick();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full text-left text-sm px-4 py-3 rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all"
-                >
-                  {t("nav.terms")}
-                </button>
-                <button
-                  onClick={() => {
-                    onLoginClick();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full flex items-center justify-center gap-2 text-sm px-4 py-3 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 font-bold"
-                >
-                  <LogIn size={16} />
-                  {t("nav.login")}
-                </button>
-                <div className="flex items-center justify-center gap-2 pt-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs text-emerald-400/80 tracking-wider uppercase">
-                    {t("nav.online")}
-                  </span>
-                </div>
-              </div>
-            )}
           </div>
         </div>
+      </div>
+
+      {/* === 右上角：功能按鈕 === */}
+      <div className="fixed top-2 sm:top-4 right-2 sm:right-3 z-40 pointer-events-auto">
+        <div className="glass-panel rounded-lg sm:rounded-xl px-2 sm:px-3 py-1.5 sm:py-2 hud-border">
+          {/* 桌機選單 */}
+          <div className="hidden sm:flex items-center gap-1.5">
+            <button onClick={onAboutClick} className="flex items-center gap-1 text-[11px] px-2 py-1.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all tracking-wider">
+              <Info size={12} />
+              {t("nav.about")}
+            </button>
+            <button onClick={onReadmeClick} className="flex items-center gap-1 text-[11px] px-2 py-1.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all tracking-wider">
+              <BookOpen size={12} />
+              {t("nav.readme")}
+            </button>
+            <button onClick={() => setShareModalOpen(true)} className="flex items-center gap-1 text-[11px] px-2 py-1.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all tracking-wider">
+              <Share2 size={12} />
+            </button>
+            <button onClick={onPricingClick} className="text-[11px] px-2 py-1.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all tracking-wider">
+              {t("nav.pricing")}
+            </button>
+            <button onClick={onLegalClick} className="text-[11px] px-2 py-1.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all tracking-wider">
+              {t("nav.terms")}
+            </button>
+            <LanguageSwitcher />
+            <button onClick={onLoginClick} className="flex items-center gap-1 text-[11px] px-2 py-1.5 rounded-md bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 transition-all tracking-wider font-bold">
+              <LogIn size={12} />
+              {t("nav.login")}
+            </button>
+          </div>
+
+          {/* 手機選單 */}
+          <div className="flex sm:hidden items-center gap-1.5">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setShareModalOpen(true)}
+              className="w-7 h-7 rounded-md border border-white/10 flex items-center justify-center hover:border-cyan-400/30 transition-all"
+            >
+              <Share2 size={13} className="text-white/50" />
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="w-7 h-7 rounded-md border border-white/10 flex items-center justify-center hover:border-white/30 transition-all"
+            >
+              {mobileMenuOpen ? (
+                <X size={14} className="text-white/50" />
+              ) : (
+                <Menu size={14} className="text-white/50" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* 手機展開選單 — 往下展開 */}
+        {mobileMenuOpen && (
+          <div className="sm:hidden mt-1 glass-panel rounded-lg p-2 hud-border space-y-1">
+            <button onClick={() => { onAboutClick(); setMobileMenuOpen(false); }} className="w-full flex items-center gap-2 text-left text-xs px-3 py-2 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all">
+              <Info size={13} />
+              {t("nav.aboutFull")}
+            </button>
+            <button onClick={() => { onReadmeClick(); setMobileMenuOpen(false); }} className="w-full flex items-center gap-2 text-left text-xs px-3 py-2 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all">
+              <BookOpen size={13} />
+              {t("nav.readmeFull")}
+            </button>
+            <button onClick={() => { onPricingClick(); setMobileMenuOpen(false); }} className="w-full text-left text-xs px-3 py-2 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all">
+              {t("nav.pricing")}
+            </button>
+            <button onClick={() => { onLegalClick(); setMobileMenuOpen(false); }} className="w-full text-left text-xs px-3 py-2 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all">
+              {t("nav.terms")}
+            </button>
+            <button onClick={() => { onLoginClick(); setMobileMenuOpen(false); }} className="w-full flex items-center justify-center gap-2 text-xs px-3 py-2 rounded-md bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 font-bold">
+              <LogIn size={13} />
+              {t("nav.login")}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Share Modal */}

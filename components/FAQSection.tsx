@@ -31,14 +31,14 @@ export default function FAQSection() {
 
   return (
     <>
-      {/* FAQ 觸發按鈕 */}
+      {/* FAQ 觸發按鈕 — 右側中間位置 */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed top-20 sm:top-24 right-2 sm:right-6 z-40 glass-panel rounded-xl px-3 py-2 hud-border flex items-center gap-2 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
+          className="fixed top-1/2 -translate-y-1/2 right-1 sm:right-3 z-40 glass-panel rounded-md sm:rounded-lg px-1.5 sm:px-2.5 py-1.5 sm:py-2 hud-border flex items-center gap-1 sm:gap-1.5 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
         >
-          <HelpCircle size={16} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-          <span className="text-sm text-cyan-300 font-bold tracking-wider">{t("faq.title")}</span>
+          <HelpCircle size={12} className="text-cyan-400 group-hover:scale-110 transition-transform" />
+          <span className="hidden sm:inline text-[10px] text-cyan-300 font-bold tracking-wider">{t("faq.title")}</span>
         </button>
       )}
 

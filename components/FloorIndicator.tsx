@@ -15,12 +15,12 @@ export default function FloorIndicator({ activeFloor, onFloorSelect }: FloorIndi
   const floorLabels = [t("floor.f1"), t("floor.f2"), t("floor.f3"), t("floor.f4"), t("floor.f5"), t("floor.f6")];
 
   return (
-    <div className="fixed left-1.5 sm:left-6 top-1/2 -translate-y-1/2 z-40">
-      <div className="glass-panel rounded-lg sm:rounded-xl p-1 sm:p-2 hud-border">
-        <div className="text-[7px] sm:text-[8px] tracking-widest text-cyan-400/60 text-center mb-1 sm:mb-2 uppercase font-bold">
+    <div className="fixed left-1 sm:left-3 top-1/2 -translate-y-1/2 z-40">
+      <div className="glass-panel rounded-md sm:rounded-lg p-0.5 sm:p-1.5 hud-border">
+        <div className="text-[6px] sm:text-[7px] tracking-widest text-cyan-400/50 text-center mb-0.5 sm:mb-1 uppercase font-bold">
           {t("floor.label")}
         </div>
-        <div className="flex flex-col-reverse gap-0.5 sm:gap-1">
+        <div className="flex flex-col-reverse gap-px sm:gap-0.5">
           {FLOORS.map((floor) => {
             const isActive = activeFloor === floor.floor;
             const occupiedCount = floor.units.filter((u) => u.status === "occupied").length;
@@ -30,17 +30,17 @@ export default function FloorIndicator({ activeFloor, onFloorSelect }: FloorIndi
                 key={floor.floor}
                 onClick={() => onFloorSelect(floor.floor)}
                 className={`
-                  relative group flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 
-                  px-1.5 sm:px-2 py-1 sm:py-1.5 rounded-md sm:rounded-lg text-[9px] sm:text-[10px]
+                  relative group flex items-center justify-center gap-0.5 sm:gap-1
+                  px-1 sm:px-2 py-0.5 sm:py-1 rounded text-[8px] sm:text-[10px]
                   transition-all duration-300 border
                   ${
                     isActive
                       ? "border-cyan-400/50 bg-cyan-400/10 text-cyan-300"
-                      : "border-transparent text-white/40 hover:text-white/70 hover:bg-white/5"
+                      : "border-transparent text-white/30 hover:text-white/60 hover:bg-white/5"
                   }
                 `}
               >
-                <Building size={9} className="sm:w-[10px] sm:h-[10px]" />
+                <Building size={8} className="sm:w-[10px] sm:h-[10px]" />
                 <span className="font-mono font-bold">{floor.floor}F</span>
                 <div className="hidden sm:flex gap-0.5 ml-auto">
                   {occupiedCount > 0 && <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />}

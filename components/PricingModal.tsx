@@ -21,31 +21,37 @@ interface Plan {
   badge?: string;
 }
 
-// 付款方式（不含敏感資訊）
+// 三通道金流（帳號不外顯，由後台管理）
 const PAYMENT_METHODS = [
   {
-    id: "atm",
-    name: "ATM 轉帳",
-    nameEn: "ATM Transfer",
-    icon: "🏧",
-    description: "台灣客戶適用",
-    descriptionEn: "For Taiwan customers",
+    id: "rakuten",
+    name: "通道 A — 樂天國際銀行",
+    nameEn: "Channel A — Rakuten Bank",
+    nameJa: "チャネルA — 楽天銀行",
+    icon: "🏦",
+    description: "國內大額匯款（推薦）",
+    descriptionEn: "Domestic large transfer (Recommended)",
+    descriptionJa: "国内大口送金（推奨）",
   },
   {
-    id: "bank",
-    name: "銀行匯款",
-    nameEn: "Bank Wire Transfer",
-    icon: "🏦",
-    description: "國內/國際匯款",
-    descriptionEn: "Domestic/International",
+    id: "bank_of_taiwan",
+    name: "通道 B — 台灣銀行松山分行",
+    nameEn: "Channel B — Bank of Taiwan, Songshan Br.",
+    nameJa: "チャネルB — 台湾銀行松山支店",
+    icon: "🏛️",
+    description: "海外電匯",
+    descriptionEn: "Overseas wire transfer",
+    descriptionJa: "海外送金",
   },
   {
     id: "payoneer",
-    name: "Payoneer",
-    nameEn: "Payoneer",
+    name: "通道 C — Payoneer",
+    nameEn: "Channel C — Payoneer",
+    nameJa: "チャネルC — Payoneer",
     icon: "💳",
-    description: "跨境快速支付",
-    descriptionEn: "Cross-border payment",
+    description: "跨境快速支付（USD）",
+    descriptionEn: "Cross-border fast payment (USD)",
+    descriptionJa: "越境クイック決済（USD）",
   },
 ];
 
@@ -102,8 +108,14 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
   ];
 
   const handleSelectPayment = (methodId: string) => {
-    // 付款方式選擇後，顯示聯絡資訊
-    alert(`已選擇付款方式。請聯繫我們的顧問完成付款流程。\n\n聯絡方式：\n• Email: service@snt.tw\n• LINE: @snt-official`);
+    const method = PAYMENT_METHODS.find(m => m.id === methodId);
+    const methodName = locale === "zh" ? method?.name : locale === "ja" ? method?.nameJa : method?.nameEn;
+    const msg = locale === "zh"
+      ? `已選擇：${methodName}\n\n系統將提供專屬付款資訊。\n匯款後請上傳水單，由後台 AI 確認審核。\n\n聯絡：service@snt.tw`
+      : locale === "ja"
+      ? `選択済み：${methodName}\n\n専用お支払い情報をご案内します。\n送金後、振込明細書をアップロードしてください。\n\n連絡先：service@snt.tw`
+      : `Selected: ${methodName}\n\nYou will receive dedicated payment info.\nAfter transfer, upload the receipt for AI audit.\n\nContact: service@snt.tw`;
+    alert(msg);
   };
 
   if (!isOpen) return null;
@@ -233,26 +245,26 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
               <div className="space-y-3 mb-4 sm:mb-6">
                 <h3 className="text-[11px] sm:text-xs font-bold text-white/70 tracking-wider flex items-center gap-2">
                   <CreditCard size={13} className="text-cyan-400" />
-                  選擇付款方式
+                  {locale === "zh" ? "選擇付款方式" : locale === "ja" ? "お支払い方法を選択" : "Select Payment Method"}
                 </h3>
 
                 {PAYMENT_METHODS.map((method) => (
                   <button
                     key={method.id}
                     onClick={() => handleSelectPayment(method.id)}
-                    className="w-full glass-panel rounded-xl p-4 border border-white/10 hover:border-cyan-400/30 transition-all text-left group"
+                    className="w-full glass-panel rounded-xl p-3 sm:p-4 border border-white/10 hover:border-cyan-400/30 transition-all text-left group"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-2xl">{method.icon}</span>
+                      <span className="text-xl sm:text-2xl">{method.icon}</span>
                       <div className="flex-1 min-w-0">
-                        <div className="text-sm font-bold text-white">
-                          {locale === "zh" ? method.name : method.nameEn}
+                        <div className="text-xs sm:text-sm font-bold text-white truncate">
+                          {locale === "zh" ? method.name : locale === "ja" ? method.nameJa : method.nameEn}
                         </div>
-                        <div className="text-[10px] text-white/40">
-                          {locale === "zh" ? method.description : method.descriptionEn}
+                        <div className="text-[9px] sm:text-[10px] text-white/40 truncate">
+                          {locale === "zh" ? method.description : locale === "ja" ? method.descriptionJa : method.descriptionEn}
                         </div>
                       </div>
-                      <ChevronRight size={16} className="text-white/20 group-hover:text-cyan-400 transition-colors" />
+                      <ChevronRight size={14} className="text-white/20 group-hover:text-cyan-400 transition-colors flex-shrink-0" />
                     </div>
                   </button>
                 ))}
@@ -264,10 +276,14 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                   <Shield size={14} className="text-emerald-400 flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <div className="text-[10px] sm:text-xs font-bold text-emerald-300 mb-1">
-                      安全付款保障
+                      {locale === "zh" ? "安全付款保障" : locale === "ja" ? "安全な決済" : "Secure Payment"}
                     </div>
                     <p className="text-[9px] sm:text-[10px] text-white/60 leading-relaxed">
-                      選擇付款方式後，系統將提供專屬付款資訊。所有交易均受安全保護，匯款後請上傳水單以便快速確認。
+                      {locale === "zh"
+                        ? "系統即時抓取美金匯率，自動換算台幣定價。匯款後請上傳水單，由後台 AI 確認審核。帳號資訊將於選擇通道後顯示。"
+                        : locale === "ja"
+                        ? "システムがリアルタイム為替を取得し、自動的に台湾元換算します。送金後、明細書をアップロードするとAI審査します。口座情報はチャネル選択後に表示。"
+                        : "System fetches real-time FX rates for auto TWD conversion. After transfer, upload receipt for AI audit. Account details shown after selecting a channel."}
                     </p>
                   </div>
                 </div>
