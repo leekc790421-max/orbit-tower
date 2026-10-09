@@ -79,6 +79,7 @@ export default function AIConcierge() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
+          aria-label="開啟 AI 樓管"
           className="orbit-control-left orbit-ai-control fixed bottom-8 sm:bottom-10 md:bottom-4 left-1 sm:left-2 md:left-3 z-50 w-8 h-8 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full glass-panel border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300 group"
         >
           <MessageCircle size={14} className="text-cyan-400 group-hover:scale-110 transition-transform sm:w-[15px] sm:h-[15px] md:w-4 md:h-4" />
@@ -100,6 +101,7 @@ export default function AIConcierge() {
             </div>
             <button
               onClick={() => setIsOpen(false)}
+              aria-label="關閉 AI 樓管"
               className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-red-400/50 hover:bg-red-400/10 transition-all"
             >
               <X size={12} className="text-white/40 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" />
@@ -179,6 +181,7 @@ export default function AIConcierge() {
               <button
                 onClick={() => handleSend()}
                 disabled={!input.trim()}
+                aria-label="送出訊息"
                 className="w-8 h-8 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-lg sm:rounded-xl md:rounded-2xl bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center hover:bg-cyan-400/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
               >
                 <Send size={12} className="text-cyan-400 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" />

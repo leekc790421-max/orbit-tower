@@ -142,8 +142,8 @@ export const zh = {
   ai: {
     title: "AI 樓管",
     subtitle: "Orbit Building Agent",
-    placeholder: "輸入訊息...",
-    welcome: "您好！我是 SNT 光躍星樞的 AI 樓管。\n\n歡迎來到 3D Cyber Luxury 自動化流量商場。目前我們有 6 層樓、每層 6 戶的六角晶體空間可供進駐。\n\n需要我帶您參觀哪些樓層？或者您對哪個業態分類有興趣？",
+    placeholder: "詢問 AI 樓管...",
+    welcome: "您好！我是 SNT 光躍星樞的 AI 樓管。\n\n歡迎來到賽博虛擬地產總部，也就是 3D Cyber Luxury 自動化流量商場。目前我們有 6 層樓、每層 6 戶的六角晶體空間可供進駐。\n\n需要我帶您參觀哪些樓層？或者您對哪個業態分類有興趣？",
     sug1: "帶我看 3F 的空置戶",
     sug2: "F 面機密沙盒是什麼？",
     sug3: "B2B 方案有哪些？",

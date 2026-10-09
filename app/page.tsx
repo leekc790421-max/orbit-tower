@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import dynamic from "next/dynamic";
 import * as THREE from "three";
-import Scene from "@/components/Scene";
+const Scene = dynamic(() => import("@/components/Scene"), { ssr: false, loading: () => null });
 import Header from "@/components/Header";
 import ControlHUD from "@/components/ControlHUD";
 import FloorIndicator from "@/components/FloorIndicator";
