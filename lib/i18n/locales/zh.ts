@@ -569,4 +569,56 @@ export const zh = {
     invalidCode: "無效的推薦碼",
     codeApplied: "推薦碼已套用，雙方可獲得獎勵！",
   },
+
+  // === Disclaimer (完整 13 章免責聲明) ===
+  disclaimer: {
+    mainTitle: "免責聲明",
+    mainSubtitle: "DISCLAIMER",
+    lastUpdated: "最後更新日期",
+    back: "返回",
+    backToSite: "返回網站",
+    section: "章節",
+    intro: "歡迎使用 Orbit Tower（以下簡稱「本平台」）。使用本平台即表示您已閱讀、理解並同意本免責聲明及相關服務條款。",
+    agreement: "使用本平台即表示您已閱讀並同意本免責聲明全部內容。",
+    contactInfo: "如有任何疑問，請聯繫我們",
+    
+    section1Title: "平台性質",
+    section1Content: "Orbit Tower 為數位展示與資訊發布平台。\n\n本平台主要提供：\n• AI 數位展示館\n• 3D 品牌展示空間\n• 多語系資訊展示\n• AI 導覽與互動功能\n• 企業品牌展示服務\n\n本平台不保證任何商業成果、營收成長、客戶增加、成交率提升或投資報酬率。",
+    
+    section2Title: "資訊正確性",
+    section2Content: "本平台盡力維持資訊正確性。\n\n但不保證：\n• 所有資訊即時更新\n• 所有內容完全正確\n• 所有內容無誤植\n• 所有資料符合特定用途\n\n使用者應自行判斷資訊之準確性與適用性。",
+    
+    section3Title: "AI 內容免責",
+    section3Content: "本平台部分內容由人工智慧系統生成。\n\nAI 回覆可能：\n• 不完整\n• 過時\n• 存在錯誤\n• 存在理解偏差\n\n任何 AI 所產生之內容：\n不構成\n• 法律建議\n• 醫療建議\n• 投資建議\n• 稅務建議\n• 專業顧問意見\n\n使用者應自行向相關專業人士確認。",
+    
+    section4Title: "商業成果免責",
+    section4Content: "本平台不保證：\n• 廣告效果\n• 品牌曝光成果\n• 銷售成果\n• 客戶數量增加\n• 網站流量增加\n• 搜尋排名提升\n\n任何商業成果皆受市場、產品、競爭環境與其他因素影響。",
+    
+    section5Title: "第三方服務免責",
+    section5Content: "本平台可能使用第三方服務。\n\n包括但不限於：\n• OpenAI\n• Google\n• Gemini\n• Anthropic\n• Payoneer\n• Cloudflare\n• Vercel\n• Supabase\n\n第三方服務之：\n• 中斷\n• 延遲\n• 異常\n• 資料遺失\n\n非本平台所能控制。本平台不承擔相關責任。",
+    
+    section6Title: "付款與金流免責",
+    section6Content: "本平台可能支援：\n• ATM 轉帳\n• 銀行匯款\n• Payoneer\n• 國際電匯\n\n所有付款皆受第三方金融機構規範。\n\n因銀行、支付機構、國際匯款流程所造成之：\n• 延遲\n• 扣款爭議\n• 匯率損失\n• 手續費差異\n\n本平台不承擔責任。",
+    
+    section7Title: "跨境服務免責",
+    section7Content: "本平台可供全球使用。\n\n用戶應自行確保其所在地之法律允許使用本平台服務。\n\n對於各地區：\n• 商業法規\n• 稅務法規\n• 電子商務法規\n• AI 相關法規\n\n使用者需自行遵守。",
+    
+    section8Title: "資料安全免責",
+    section8Content: "本平台採取合理安全措施。\n\n但無法保證：\n• 網路絕對安全\n• 系統永不遭受攻擊\n• 資料永不外洩\n\n使用者應自行備份重要資料。",
+    
+    section9Title: "服務可用性免責",
+    section9Content: "本平台不保證：\n• 永久在線\n• 永不故障\n• 永不維護\n• 永不中斷\n\n本平台得隨時進行：\n• 系統更新\n• 維護\n• 功能調整\n\n而無須事先通知。",
+    
+    section10Title: "智慧財產權",
+    section10Content: "本平台之：\n• 程式碼\n• 設計\n• 視覺效果\n• 商標\n• 品牌識別\n\n均受相關智慧財產權保護。\n\n未經授權不得複製、散布或商業使用。",
+    
+    section11Title: "責任限制",
+    section11Content: "在法律允許之最大範圍內：\n\nOrbit Tower 及其經營者\n\n對任何直接、間接、附帶、特殊或衍生性損害不負責任。\n\n包括但不限於：\n• 營收損失\n• 商譽損失\n• 資料遺失\n• 業務中斷\n• 第三方索賠",
+    
+    section12Title: "條款修改權",
+    section12Content: "本平台有權隨時修改：\n• 免責聲明\n• 服務條款\n• 隱私政策\n\n修改後公告於網站即生效。",
+    
+    section13Title: "準據法",
+    section13Content: "使用本平台所產生之爭議，以經營者所在地法律為準據法，並以當地法院為第一審管轄法院。",
+  },
 };

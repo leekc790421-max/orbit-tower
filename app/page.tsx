@@ -18,6 +18,7 @@ import AboutModal from "@/components/AboutModal";
 import ReadmeModal from "@/components/ReadmeModal";
 import FloatingCTA from "@/components/FloatingCTA";
 import LandingOverlay from "@/components/LandingOverlay";
+import DisclaimerPage from "@/components/DisclaimerPage";
 import { I18nProvider, useTranslation } from "@/lib/i18n";
 import type { Theme, LightColor, Unit } from "@/data/units";
 
@@ -46,6 +47,7 @@ function HomeInner() {
   
   const [aboutOpen, setAboutOpen] = useState(false);
   const [readmeOpen, setReadmeOpen] = useState(false);
+  const [disclaimerOpen, setDisclaimerOpen] = useState(false);
 
   // Landing overlay — 首次進入顯示商業定位頁
   const [showLanding, setShowLanding] = useState(() => {
@@ -73,6 +75,11 @@ function HomeInner() {
 
   return (
     <main className="relative w-full h-full">
+      {/* 完整免責聲明頁面 */}
+      {disclaimerOpen && (
+        <DisclaimerPage onBack={() => setDisclaimerOpen(false)} />
+      )}
+
       {/* 商業定位覆蓋層 */}
       {showLanding && (
         <LandingOverlay
@@ -121,7 +128,7 @@ function HomeInner() {
         {/* 免責聲明按鈕 */}
         <div className="flex items-center justify-center pb-0.5 sm:pb-1 pointer-events-auto">
           <button
-            onClick={() => setLegalOpen(true)}
+            onClick={() => setDisclaimerOpen(true)}
             className="text-[7px] sm:text-[9px] text-white/20 hover:text-white/40 tracking-wider transition-colors px-2 sm:px-3 py-0.5 sm:py-1"
           >
             {t("security.disclaimer")}
