@@ -9,6 +9,26 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { withRateLimit } from '@/lib/rate-limit/rate-limiter';
 import { getSupabase } from '@/lib/supabase/client';
+import { FLOORS } from '@/data/units';
+
+function staticStoreFallback(floor: string | null, face: string | null, status: string | null) {
+  return FLOORS.flatMap((item) => item.units).filter((unit) => {
+    const floorMatch = !floor || unit.floor === parseInt(floor, 10);
+    const faceMatch = !face || unit.face === face.toUpperCase();
+    const claimed = unit.status !== 'available';
+    const statusMatch = !status || (status === 'claimed' ? claimed : status === 'available' ? !claimed : true);
+    return floorMatch && faceMatch && statusMatch;
+  }).map((unit) => ({
+    id: unit.id,
+    floor: unit.floor,
+    face: unit.face,
+    number: unit.number,
+    is_claimed: unit.status !== 'available',
+    brand_name: unit.brand ?? null,
+    service: unit.service ?? null,
+    status: unit.status,
+  }));
+}
 
 export async function GET(request: NextRequest) {
   // Rate Limiting
@@ -49,10 +69,8 @@ export async function GET(request: NextRequest) {
 
     if (error) {
       console.error('Query stores error:', error);
-      return NextResponse.json(
-        { error: '查詢失敗' },
-        { status: 500 }
-      );
+      const fallback = staticStoreFallback(floor, face, status);
+      return NextResponse.json({ success: true, data: fallback, count: fallback.length, source: 'catalog-fallback' });
     }
 
     return NextResponse.json({

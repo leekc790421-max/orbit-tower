@@ -9,7 +9,7 @@ interface RootLayoutProps {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "SNT 光躍星樞 | AI數位旗艦館 — 3D品牌展示 × 多語客服 × 跨境收款",
+  title: "Orbit Tower 賽博虛擬總部 | SNT 光躍星樞",
   description:
     "打造專屬 AI 數位旗艦館，結合 3D 品牌展示、中英日三語 AI 客服、全球客戶接待與跨境付款。7~14 天快速部署，讓您的品牌向全球展示。",
   keywords: [

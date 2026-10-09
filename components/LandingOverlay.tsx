@@ -65,9 +65,9 @@ function DarkGlassBg() {
 
 export default function LandingOverlay({ onEnter3D, onPricingClick }: LandingOverlayProps) {
   return (
-    <div className="orbit-landing fixed inset-0 z-[60] overflow-y-auto overflow-x-hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
+    <div className="orbit-landing pointer-events-none fixed inset-0 z-[60] overflow-y-auto overflow-x-hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
       <DarkGlassBg />
-      <div className="relative z-10">
+      <div className="relative z-10 pointer-events-none">
         <HeroSection onEnter3D={onEnter3D} onPricingClick={onPricingClick} />
         <ProblemSection />
         <SolutionSection />
