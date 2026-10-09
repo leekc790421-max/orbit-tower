@@ -355,6 +355,18 @@ function FinalCTA({ onPricingClick }: { onPricingClick: () => void }) {
           </button>
         </div>
 
+        <div className="orbit-line-contact mt-6 sm:mt-10 mx-auto flex items-center justify-center gap-3 sm:gap-4 rounded-xl border border-cyan-400/20 bg-slate-950/50 p-3 sm:p-4 text-left backdrop-blur-md">
+          <img src="/logo-light.jpg" alt="光曜星樞 SNT Logo" className="h-14 w-12 sm:h-16 sm:w-14 rounded-lg object-cover" />
+          <div className="min-w-0 flex-1">
+            <div className="text-[10px] sm:text-xs font-bold tracking-wider text-white">光曜星樞 SNT</div>
+            <div className="mt-0.5 text-[9px] sm:text-[10px] leading-relaxed text-white/50">掃描 QR Code，或直接加入 LINE 聯絡我們</div>
+            <a href="https://line.me/R/ti/p/@559julyu" target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-[#06C755] px-2.5 py-1.5 text-[9px] font-bold text-white transition hover:brightness-110">
+              <span aria-hidden="true">LINE</span> 即時諮詢
+            </a>
+          </div>
+          <img src="/line-qr.png" alt="加入光曜星樞 LINE 的 QR Code" className="h-20 w-20 sm:h-24 sm:w-24 rounded-lg bg-white p-1" />
+        </div>
+
         <div className="mt-8 sm:mt-12 md:mt-16 pt-3 sm:pt-6 md:pt-8 border-t border-white/10">
           <p className="text-[9px] sm:text-[10px] md:text-xs text-white/20 tracking-wider">{t("footer.copyright")}</p>
         </div>

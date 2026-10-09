@@ -31,7 +31,7 @@ export default function FloatingCTA({ onPricingClick }: FloatingCTAProps) {
   if (!visible || dismissed) return null;
 
   return (
-    <div className="fixed bottom-16 sm:bottom-16 md:bottom-16 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-[92vw] sm:max-w-[90vw]">
+    <div className="orbit-floating-action fixed bottom-16 sm:bottom-16 md:bottom-16 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-[92vw] sm:max-w-[90vw]">
       <div className="relative glass-panel rounded-lg sm:rounded-xl md:rounded-2xl px-2.5 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 border border-cyan-400/40 shadow-2xl shadow-cyan-400/20 backdrop-blur-xl">
         <button
           onClick={handleDismiss}

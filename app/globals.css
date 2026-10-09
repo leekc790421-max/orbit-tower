@@ -269,3 +269,105 @@ body {
 .loading-bar {
   animation: loading-bar 2s ease-in-out infinite;
 }
+
+/* === Mobile 3D view: keep the tower's visual axis clear === */
+@media (max-width: 639px) {
+  .orbit-control-left,
+  .orbit-control-right {
+    max-width: 22vw;
+  }
+
+  .orbit-header-panel {
+    width: min(38vw, 158px);
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
+  }
+
+  .orbit-header-panel h1 {
+    max-width: 24vw;
+    font-size: 8px !important;
+  }
+
+  .orbit-header-panel p {
+    font-size: 5px !important;
+  }
+
+  .orbit-header-actions {
+    max-width: 48vw;
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+
+  .orbit-floor-indicator {
+    left: 2px !important;
+    transform: translateY(-50%) scale(0.86);
+    transform-origin: left center;
+  }
+
+  .orbit-faq-control {
+    right: 2px !important;
+    transform: translateY(-50%) scale(0.86);
+    transform-origin: right center;
+  }
+
+  .orbit-ai-control {
+    left: 2px !important;
+    bottom: 2.1rem !important;
+    transform: scale(0.86);
+    transform-origin: left bottom;
+  }
+
+  .orbit-scene-controls {
+    right: 2px !important;
+    bottom: 2.1rem !important;
+    transform: scale(0.82);
+    transform-origin: right bottom;
+  }
+
+  .orbit-floating-action {
+    left: auto !important;
+    right: 2px !important;
+    bottom: 5.4rem !important;
+    transform: none !important;
+    max-width: 44vw !important;
+  }
+
+  .orbit-floating-action > div {
+    padding: 0.3rem 0.4rem !important;
+  }
+
+  .orbit-floating-action > div > div {
+    gap: 0.3rem !important;
+  }
+
+  .orbit-floating-action button:not([aria-label]) {
+    padding: 0.25rem 0.4rem !important;
+    font-size: 8px !important;
+  }
+
+  .orbit-disclaimer {
+    left: auto !important;
+    right: 25vw !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1024px) {
+  .orbit-floating-action {
+    left: auto !important;
+    right: 5.5rem !important;
+    transform: none !important;
+    max-width: 38vw;
+  }
+}
+
+.orbit-line-contact {
+  width: min(100%, 390px);
+}
+@media (max-width: 639px) {
+  .orbit-line-contact {
+    width: min(100%, 330px);
+    gap: 0.5rem;
+    padding: 0.65rem;
+  }
+}

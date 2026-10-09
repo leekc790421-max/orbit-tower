@@ -26,8 +26,8 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
   return (
     <>
       {/* === 左上角：品牌 Logo === */}
-      <div className="fixed top-1.5 sm:top-2.5 md:top-4 left-1.5 sm:left-2 md:left-3 z-50 pointer-events-auto">
-        <div className="glass-panel rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 hud-border">
+      <div className="orbit-control-left fixed top-1.5 sm:top-2.5 md:top-4 left-1.5 sm:left-2 md:left-3 z-50 pointer-events-auto">
+        <div className="orbit-header-panel glass-panel rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 hud-border">
           <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5">
             <img 
               src={logoSrc} 
@@ -47,8 +47,8 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
       </div>
 
       {/* === 右上角：功能按鈕 === */}
-      <div className="fixed top-1.5 sm:top-2.5 md:top-4 right-1.5 sm:right-2 md:right-3 z-50 pointer-events-auto">
-        <div className="glass-panel rounded-lg sm:rounded-xl px-1.5 sm:px-2 md:px-3 py-1 sm:py-1.5 md:py-2 hud-border">
+      <div className="orbit-control-right fixed top-1.5 sm:top-2.5 md:top-4 right-1.5 sm:right-2 md:right-3 z-50 pointer-events-auto">
+        <div className="orbit-header-actions glass-panel rounded-lg sm:rounded-xl px-1.5 sm:px-2 md:px-3 py-1 sm:py-1.5 md:py-2 hud-border">
           {/* 桌面選單 (> 768px) */}
           <div className="hidden md:flex items-center gap-1.5">
             <button onClick={onAboutClick} className="flex items-center gap-1 text-[11px] px-2 py-1.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all tracking-wider">

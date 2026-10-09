@@ -34,7 +34,7 @@ export default function FAQSection() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed top-1/2 -translate-y-1/2 right-0.5 sm:right-1.5 md:right-3 z-40 glass-panel rounded-md sm:rounded-lg md:rounded-lg px-1 sm:px-2 md:px-2.5 py-1 sm:py-1.5 md:py-2 hud-border flex items-center gap-0.5 sm:gap-1 md:gap-1.5 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
+          className="orbit-control-right orbit-faq-control fixed top-1/2 -translate-y-1/2 right-0.5 sm:right-1.5 md:right-3 z-40 glass-panel rounded-md sm:rounded-lg md:rounded-lg px-1 sm:px-2 md:px-2.5 py-1 sm:py-1.5 md:py-2 hud-border flex items-center gap-0.5 sm:gap-1 md:gap-1.5 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all group"
         >
           <HelpCircle size={11} className="text-cyan-400 group-hover:scale-110 transition-transform sm:w-[13px] sm:h-[13px] md:w-3 md:h-3" />
           <span className="hidden sm:inline text-[9px] md:text-[10px] text-cyan-300 font-bold tracking-wider">{t("faq.title")}</span>

@@ -15,7 +15,7 @@ export default function FloorIndicator({ activeFloor, onFloorSelect }: FloorIndi
   const floorLabels = [t("floor.f1"), t("floor.f2"), t("floor.f3"), t("floor.f4"), t("floor.f5"), t("floor.f6")];
 
   return (
-    <div className="fixed left-0.5 sm:left-1.5 md:left-3 top-1/2 -translate-y-1/2 z-40">
+    <div className="orbit-control-left orbit-floor-indicator fixed left-0.5 sm:left-1.5 md:left-3 top-1/2 -translate-y-1/2 z-40">
       <div className="glass-panel rounded-md sm:rounded-lg md:rounded-lg p-0.5 sm:p-1 md:p-1.5 hud-border">
         <div className="text-[5px] sm:text-[6px] md:text-[7px] tracking-widest text-cyan-400/50 text-center mb-0 sm:mb-0.5 md:mb-1 uppercase font-bold">
           {t("floor.label")}

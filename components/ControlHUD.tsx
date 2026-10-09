@@ -44,7 +44,7 @@ export default function ControlHUD({
   };
 
   return (
-    <div className="fixed bottom-8 sm:bottom-10 md:bottom-4 right-1 sm:right-2 md:right-3 z-50 w-auto">
+    <div className="orbit-control-right orbit-scene-controls fixed bottom-8 sm:bottom-10 md:bottom-4 right-1 sm:right-2 md:right-3 z-50 w-auto">
       <button
         onClick={() => setExpanded(!expanded)}
         className="sm:hidden glass-panel rounded-lg px-2 py-1 hud-border flex items-center gap-1 mb-1 w-full justify-center"
