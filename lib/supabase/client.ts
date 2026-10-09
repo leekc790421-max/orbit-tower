@@ -5,20 +5,54 @@
  * - 原子性 Transaction (防止 Race Condition)
  * - Row-Level Security (RLS) 支援
  * - Optimistic Locking (版本控制)
+ * 
+ * 注意：使用 Lazy Initialization 避免 Build 階段讀取環境變數失敗
  */
 
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-// Supabase 環境變數
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key';
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder-service-key';
+// Lazy initialization - 只在第一次呼叫時才建立 client
+let supabaseInstance: SupabaseClient | null = null;
+let supabaseAdminInstance: SupabaseClient | null = null;
 
-// 匿名客戶端 (受 RLS 限制)
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+/**
+ * 取得 Supabase 匿名客戶端 (受 RLS 限制)
+ * 使用 Lazy Initialization 避免 Build 階段環境變數未載入
+ */
+export function getSupabase(): SupabaseClient {
+  if (!supabaseInstance) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key';
+    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey);
+  }
+  return supabaseInstance;
+}
 
-// 服務客戶端 (繞過 RLS，僅用於後端)
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+/**
+ * 取得 Supabase 服務客戶端 (繞過 RLS，僅用於後端)
+ * 使用 Lazy Initialization 避免 Build 階段環境變數未載入
+ */
+export function getSupabaseAdmin(): SupabaseClient {
+  if (!supabaseAdminInstance) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder-service-key';
+    supabaseAdminInstance = createClient(supabaseUrl, supabaseServiceKey);
+  }
+  return supabaseAdminInstance;
+}
+
+// 向後相容的 exports (使用 getter 延遲初始化)
+export const supabase = new Proxy({} as SupabaseClient, {
+  get(_, prop) {
+    return (getSupabase() as Record<string, unknown>)[prop as string];
+  },
+});
+
+export const supabaseAdmin = new Proxy({} as SupabaseClient, {
+  get(_, prop) {
+    return (getSupabaseAdmin() as Record<string, unknown>)[prop as string];
+  },
+});
 
 /**
  * Transaction 結果
@@ -72,7 +106,7 @@ class TransactionContext {
    * 檢查 Store 是否已被認領
    */
   async checkStoreAvailability(storeId: string): Promise<{ available: boolean; store?: Record<string, unknown> }> {
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('stores')
       .select('*')
       .eq('id', storeId)
@@ -97,7 +131,7 @@ class TransactionContext {
       plan: string;
     }
   ): Promise<{ success: boolean; error?: string }> {
-    const { error } = await supabase.rpc('claim_store', {
+    const { error } = await getSupabase().rpc('claim_store', {
       store_id: storeId,
       brand_name: claimData.brand_name,
       email: claimData.email,
@@ -119,7 +153,7 @@ class TransactionContext {
     amount: number,
     paymentChannel: string
   ): Promise<{ success: boolean; paymentId?: string; error?: string }> {
-    const { data, error } = await supabase
+    const { data, error } = await getSupabase()
       .from('payments')
       .insert({
         claim_id: claimId,
@@ -160,7 +194,7 @@ export async function updateStoreWithOptimisticLock(
   updates: Record<string, unknown>,
   currentVersion: number
 ): Promise<{ success: boolean; error?: string }> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('stores')
     .update({
       ...updates,
@@ -190,7 +224,7 @@ export async function updateStoreWithOptimisticLock(
  * 檢查 Store 是否已被認領
  */
 export async function isStoreClaimed(storeId: string): Promise<boolean> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('stores')
     .select('is_claimed')
     .eq('id', storeId)
@@ -207,7 +241,7 @@ export async function isStoreClaimed(storeId: string): Promise<boolean> {
  * 取得 Store 詳細資訊
  */
 export async function getStore(storeId: string): Promise<Record<string, unknown> | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('stores')
     .select('*')
     .eq('id', storeId)

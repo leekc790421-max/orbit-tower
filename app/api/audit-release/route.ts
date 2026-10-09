@@ -18,7 +18,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { withRateLimit } from '@/lib/rate-limit/rate-limiter';
-import { supabaseAdmin } from '@/lib/supabase/client';
+import { getSupabaseAdmin } from '@/lib/supabase/client';
 
 const ADMIN_SECRET = process.env.ADMIN_SECRET || '';
 
@@ -58,7 +58,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 3. 查詢認領記錄
+    // 3. 查詢認領記錄 (使用 Lazy Initialization)
+    const supabaseAdmin = getSupabaseAdmin();
     const { data: claim, error: claimError } = await supabaseAdmin
       .from('claims')
       .select('*')
@@ -165,6 +166,8 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const status = searchParams.get('status') || 'pending';
 
+  // 使用 Lazy Initialization
+  const supabaseAdmin = getSupabaseAdmin();
   const { data, error } = await supabaseAdmin
     .from('claims')
     .select(`

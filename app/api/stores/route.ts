@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { withRateLimit } from '@/lib/rate-limit/rate-limiter';
-import { supabase } from '@/lib/supabase/client';
+import { getSupabase } from '@/lib/supabase/client';
 
 export async function GET(request: NextRequest) {
   // Rate Limiting
@@ -23,6 +23,8 @@ export async function GET(request: NextRequest) {
     const face = searchParams.get('face');
     const status = searchParams.get('status');
 
+    // 使用 Lazy Initialization
+    const supabase = getSupabase();
     let query = supabase
       .from('stores')
       .select('*')
