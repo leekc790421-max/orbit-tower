@@ -44,7 +44,7 @@
         {
           "type": "header",
           "key": "user-agent",
-          "value": ".*(bot|crawl|spider|scan|nikto|sqlmap|nmap|masscan|zgrab).*"
+          "value": ".*(nikto|sqlmap|nmap|masscan|zgrab|dirbuster|havij|w3af).*"
         }
       ],
       "destination": "/403",

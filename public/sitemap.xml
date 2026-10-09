@@ -29,4 +29,31 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://orbit.xingdeng.tw/disclaimer</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://orbit.xingdeng.tw/disclaimer" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://orbit.xingdeng.tw/disclaimer?lang=en" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://orbit.xingdeng.tw/disclaimer?lang=ja" />
+  </url>
+  <url>
+    <loc>https://orbit.xingdeng.tw/terms</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://orbit.xingdeng.tw/terms" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://orbit.xingdeng.tw/terms?lang=en" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://orbit.xingdeng.tw/terms?lang=ja" />
+  </url>
+  <url>
+    <loc>https://orbit.xingdeng.tw/privacy</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://orbit.xingdeng.tw/privacy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://orbit.xingdeng.tw/privacy?lang=en" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://orbit.xingdeng.tw/privacy?lang=ja" />
+  </url>
 </urlset>
