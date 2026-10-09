@@ -44,13 +44,13 @@ export function getSupabaseAdmin(): SupabaseClient {
 // 向後相容的 exports (使用 getter 延遲初始化)
 export const supabase = new Proxy({} as SupabaseClient, {
   get(_, prop) {
-    return (getSupabase() as Record<string, unknown>)[prop as string];
+    return (getSupabase() as unknown as Record<string, unknown>)[prop as string];
   },
 });
 
 export const supabaseAdmin = new Proxy({} as SupabaseClient, {
   get(_, prop) {
-    return (getSupabaseAdmin() as Record<string, unknown>)[prop as string];
+    return (getSupabaseAdmin() as unknown as Record<string, unknown>)[prop as string];
   },
 });
 
