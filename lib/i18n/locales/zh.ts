@@ -621,4 +621,103 @@ export const zh = {
     section13Title: "準據法",
     section13Content: "使用本平台所產生之爭議，以經營者所在地法律為準據法，並以當地法院為第一審管轄法院。",
   },
+
+  // === Terms of Service (服務條款) ===
+  terms: {
+    mainTitle: "服務條款",
+    mainSubtitle: "TERMS OF SERVICE",
+    lastUpdated: "最後更新日期",
+    back: "返回",
+    backToSite: "返回網站",
+    section: "章節",
+    intro: "歡迎使用 Orbit Tower（以下簡稱「本平台」）。在使用本平台服務之前，請仔細閱讀以下服務條款。使用本平台即表示您同意遵守本條款。",
+    agreement: "使用本平台即表示您已閱讀並同意本服務條款全部內容。",
+    contactInfo: "如有任何疑問，請聯繫我們",
+    
+    section1Title: "服務內容",
+    section1Content: "Orbit Tower 提供以下服務：\n• AI 數位展示館建置\n• 3D 品牌展示空間\n• 多語系資訊展示系統\n• AI 導覽與互動功能\n• 企業品牌展示服務\n• 自動化行銷工具整合\n\n本平台保留隨時修改、暫停或終止部分或全部服務的權利，無需事先通知。",
+    
+    section2Title: "使用者義務",
+    section2Content: "使用者同意：\n• 提供真實、正確之註冊資料\n• 不從事任何違法或侵權行為\n• 不干擾或破壞本平台之運作\n• 不嘗試未經授權存取系統\n• 遵守所有適用的法律法規\n• 不利用本平台發送垃圾郵件或惡意內容\n\n違反上述義務者，本平台有權立即終止其帳號並追究法律責任。",
+    
+    section3Title: "帳號安全",
+    section3Content: "使用者應：\n• 妥善保管帳號密碼\n• 不與他人共用帳號\n• 發現帳號遭未經授權使用時立即通知本平台\n• 對帳號下之所有活動負責\n\n本平台不對因使用者未妥善保管帳號密碼所致之損失負責。",
+    
+    section4Title: "付款與訂閱",
+    section4Content: "本平台提供以下方案：\n• Starter 方案：NT$15,000\n• Pro 方案：NT$58,000\n• Enterprise 方案：NT$128,000\n\n付款方式：\n• ATM 轉帳\n• 銀行匯款\n• Payoneer\n• 國際電匯\n\n訂閱條款：\n• 所有方案皆為一次性付款\n• 付款完成後 1-2 個工作天內開通\n• 不提供退費服務\n• 價格可能隨時調整，調整後公告於網站",
+    
+    section5Title: "智慧財產權",
+    section5Content: "本平台之所有內容，包括但不限於：\n• 程式碼\n• 設計\n• 視覺效果\n• 商標\n• 品牌識別\n• 文件\n• 圖片\n\n均受智慧財產權保護。\n\n未經本平台書面授權，不得：\n• 複製\n• 修改\n• 散布\n• 商業使用\n• 反向工程",
+    
+    section6Title: "責任限制",
+    section6Content: "在法律允許之最大範圍內：\n\nOrbit Tower 及其經營者\n\n對任何直接、間接、附帶、特殊或衍生性損害不負責任。\n\n包括但不限於：\n• 營收損失\n• 商譽損失\n• 資料遺失\n• 業務中斷\n• 第三方索賠\n\n本平台之總責任不超過使用者實際支付之費用。",
+    
+    section7Title: "條款修改",
+    section7Content: "本平台有權隨時修改本服務條款。\n\n修改後：\n• 公告於網站即生效\n• 不另行通知個別使用者\n• 繼續使用視為同意修改後條款\n\n如不同意修改後條款，應立即停止使用本平台。",
+  },
+
+  // === Privacy Policy (隱私權政策) ===
+  privacy: {
+    mainTitle: "隱私權政策",
+    mainSubtitle: "PRIVACY POLICY",
+    lastUpdated: "最後更新日期",
+    back: "返回",
+    backToSite: "返回網站",
+    section: "章節",
+    intro: "Orbit Tower（以下簡稱「本平台」）重視您的隱私權。本隱私權政策說明我們如何蒐集、使用、儲存及保護您的個人資料。",
+    agreement: "使用本平台即表示您已閱讀並同意本隱私權政策全部內容。",
+    contactInfo: "如有任何疑問，請聯繫我們",
+    
+    section1Title: "資料蒐集",
+    section1Content: "本平台蒐集以下資料：\n\n註冊資料：\n• 公司名稱\n• 聯絡人姓名\n• 電子郵件\n• 電話號碼\n• 公司地址\n\n使用資料：\n• IP 位址\n• 瀏覽器類型\n• 裝置資訊\n• 瀏覽記錄\n• 操作日誌\n\n付款資料：\n• 匯款憑證\n• 發票資訊\n• 交易記錄",
+    
+    section2Title: "資料使用",
+    section2Content: "蒐集之資料用於以下目的：\n• 提供服務\n• 帳號管理\n• 客戶支援\n• 付款處理\n• 服務改善\n• 行銷推廣（經使用者同意）\n• 法律合規\n• 安全防護\n\n本平台不會將資料用於上述目的以外之用途。",
+    
+    section3Title: "資料分享",
+    section3Content: "本平台不會將您的個人資料出售給第三方。\n\n僅在以下情況分享：\n• 經您明確同意\n• 履行法律義務\n• 保護本平台權利\n• 與服務提供商合作（如金流、雲端服務）\n• 緊急情況（保護生命安全）\n\n服務提供商須遵守相同之資料保護標準。",
+    
+    section4Title: "資料儲存",
+    section4Content: "資料儲存措施：\n• 儲存於加密資料庫\n• 存取權限嚴格控管\n• 定期備份\n• 異地備援\n\n儲存期限：\n• 帳號存續期間\n• 法律要求之期限\n• 服務提供所需之期限\n\n超過儲存期限之資料將安全刪除。",
+    
+    section5Title: "Cookie 政策",
+    section5Content: "本平台使用 Cookie 以提供更好之服務體驗。\n\nCookie 類型：\n• 必要 Cookie：維持網站運作\n• 效能 Cookie：分析網站使用情況\n• 功能 Cookie：記住使用者偏好\n\n您可以：\n• 在瀏覽器設定中拒絕 Cookie\n• 隨時清除已儲存之 Cookie\n\n拒絕 Cookie 可能影響部分功能。",
+    
+    section6Title: "資料安全",
+    section6Content: "本平台採取以下安全措施：\n• SSL/TLS 加密傳輸\n• AES-256 資料加密\n• 存取權限控管\n• 定期安全檢測\n• 入侵偵測系統\n• 員工教育訓練\n\n但無法保證：\n• 網路絕對安全\n• 系統永不遭受攻擊\n• 資料永不外洩\n\n使用者應自行採取適當之安全措施。",
+    
+    section7Title: "使用者權利",
+    section7Content: "您擁有以下權利：\n• 查詢您的個人資料\n• 更正不正確之資料\n• 要求刪除資料\n• 撤回同意\n• 資料可攜權\n• 拒絕行銷\n\n行使權利請聯繫：\nsupport@orbit-tower.tw\n\n本平台將於 30 天內處理您的請求。",
+    
+    section8Title: "政策更新",
+    section8Content: "本平台可能隨時更新本隱私權政策。\n\n更新後：\n• 公告於網站\n• 重大變更另行通知\n• 繼續使用視為同意\n\n建議定期檢視本政策以了解最新內容。",
+  },
+
+  // === Admin Updates (系統更新管理) ===
+  admin: {
+    updates: {
+      mainTitle: "系統更新管理",
+      mainSubtitle: "SYSTEM UPDATE MANAGEMENT",
+      back: "返回管理後台",
+      systemStatus: "系統狀態",
+      needsUpdate: "需要更新",
+      upToDate: "已是最新",
+      lastUpdate: "上次更新",
+      updateCount: "更新次數",
+      times: "次",
+      nextAutoUpdate: "下次自動更新",
+      documentStatus: "文件更新狀態",
+      disclaimer: "免責聲明",
+      terms: "服務條款",
+      privacy: "隱私權政策",
+      updateNow: "立即更新",
+      updateAll: "全部更新",
+      updateSuccess: "更新成功",
+      updateFailed: "更新失敗",
+      howItWorks: "運作方式",
+      howItWorks1: "• 系統每 30 天自動檢查是否需要更新",
+      howItWorks2: "• 您可以手動觸發個別文件或全部更新",
+      howItWorks3: "• 更新後，頁面上顯示的日期會自動更新為今天",
+    },
+  },
 };

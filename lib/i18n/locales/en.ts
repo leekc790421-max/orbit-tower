@@ -591,4 +591,103 @@ export const en = {
     section13Title: "Governing Law",
     section13Content: "Disputes arising from the use of this platform shall be governed by the laws of the operator's location, and the local court shall be the court of first instance.",
   },
+
+  // === Terms of Service ===
+  terms: {
+    mainTitle: "Terms of Service",
+    mainSubtitle: "TERMS OF SERVICE",
+    lastUpdated: "Last Updated",
+    back: "Back",
+    backToSite: "Back to Site",
+    section: "Section",
+    intro: "Welcome to Orbit Tower (hereinafter referred to as \"this platform\"). Before using this platform's services, please carefully read the following terms of service. By using this platform, you agree to comply with these terms.",
+    agreement: "By using this platform, you indicate that you have read and agree to all contents of these terms of service.",
+    contactInfo: "If you have any questions, please contact us",
+    
+    section1Title: "Service Content",
+    section1Content: "Orbit Tower provides the following services:\n• AI Digital Showroom Construction\n• 3D Brand Display Space\n• Multi-language Information Display System\n• AI Guide & Interactive Features\n• Corporate Brand Display Services\n• Automated Marketing Tool Integration\n\nThis platform reserves the right to modify, suspend, or terminate part or all of the services at any time without prior notice.",
+    
+    section2Title: "User Obligations",
+    section2Content: "Users agree to:\n• Provide true and accurate registration information\n• Not engage in any illegal or infringing activities\n• Not interfere with or disrupt the operation of this platform\n• Not attempt unauthorized access to the system\n• Comply with all applicable laws and regulations\n• Not use this platform to send spam or malicious content\n\nThose who violate the above obligations, this platform has the right to immediately terminate their account and pursue legal responsibility.",
+    
+    section3Title: "Account Security",
+    section3Content: "Users should:\n• Properly keep account passwords\n• Not share accounts with others\n• Immediately notify this platform when discovering unauthorized use of account\n• Be responsible for all activities under the account\n\nThis platform is not responsible for losses caused by users' failure to properly keep account passwords.",
+    
+    section4Title: "Payment & Subscription",
+    section4Content: "This platform offers the following plans:\n• Starter Plan: NT$15,000\n• Pro Plan: NT$58,000\n• Enterprise Plan: NT$128,000\n\nPayment methods:\n• ATM Transfer\n• Bank Wire Transfer\n• Payoneer\n• International Wire Transfer\n\nSubscription terms:\n• All plans are one-time payments\n• Activated within 1-2 business days after payment\n• No refund service\n• Prices may be adjusted at any time, announced on the website after adjustment",
+    
+    section5Title: "Intellectual Property Rights",
+    section5Content: "All content of this platform, including but not limited to:\n• Code\n• Design\n• Visual effects\n• Trademarks\n• Brand identity\n• Documents\n• Images\n\nAre protected by intellectual property rights.\n\nWithout written authorization from this platform, you may not:\n• Copy\n• Modify\n• Distribute\n• Commercial use\n• Reverse engineer",
+    
+    section6Title: "Limitation of Liability",
+    section6Content: "To the maximum extent permitted by law:\n\nOrbit Tower and its operators\n\nAre not responsible for any direct, indirect, incidental, special, or consequential damages.\n\nIncluding but not limited to:\n• Revenue loss\n• Goodwill loss\n• Data loss\n• Business interruption\n• Third-party claims\n\nThe total liability of this platform shall not exceed the fees actually paid by the user.",
+    
+    section7Title: "Terms Modification",
+    section7Content: "This platform has the right to modify these terms of service at any time.\n\nAfter modification:\n• Takes effect after announcement on the website\n• No individual notification to users\n• Continued use is deemed as acceptance of modified terms\n\nIf you do not agree with the modified terms, you should immediately stop using this platform.",
+  },
+
+  // === Privacy Policy ===
+  privacy: {
+    mainTitle: "Privacy Policy",
+    mainSubtitle: "PRIVACY POLICY",
+    lastUpdated: "Last Updated",
+    back: "Back",
+    backToSite: "Back to Site",
+    section: "Section",
+    intro: "Orbit Tower (hereinafter referred to as \"this platform\") values your privacy. This privacy policy explains how we collect, use, store, and protect your personal data.",
+    agreement: "By using this platform, you indicate that you have read and agree to all contents of this privacy policy.",
+    contactInfo: "If you have any questions, please contact us",
+    
+    section1Title: "Data Collection",
+    section1Content: "This platform collects the following data:\n\nRegistration data:\n• Company name\n• Contact person name\n• Email\n• Phone number\n• Company address\n\nUsage data:\n• IP address\n• Browser type\n• Device information\n• Browsing history\n• Operation logs\n\nPayment data:\n• Remittance vouchers\n• Invoice information\n• Transaction records",
+    
+    section2Title: "Data Usage",
+    section2Content: "Collected data is used for the following purposes:\n• Providing services\n• Account management\n• Customer support\n• Payment processing\n• Service improvement\n• Marketing promotion (with user consent)\n• Legal compliance\n• Security protection\n\nThis platform will not use data for purposes other than those listed above.",
+    
+    section3Title: "Data Sharing",
+    section3Content: "This platform will not sell your personal data to third parties.\n\nOnly shared in the following situations:\n• With your explicit consent\n• To fulfill legal obligations\n• To protect this platform's rights\n• Cooperation with service providers (such as payment, cloud services)\n• Emergency situations (protecting life safety)\n\nService providers must comply with the same data protection standards.",
+    
+    section4Title: "Data Storage",
+    section4Content: "Data storage measures:\n• Stored in encrypted database\n• Strict access control\n• Regular backups\n• Off-site redundancy\n\nStorage period:\n• During account existence\n• Period required by law\n• Period required for service provision\n\nData exceeding the storage period will be safely deleted.",
+    
+    section5Title: "Cookie Policy",
+    section5Content: "This platform uses cookies to provide better service experience.\n\nCookie types:\n• Necessary cookies: Maintain website operation\n• Performance cookies: Analyze website usage\n• Functionality cookies: Remember user preferences\n\nYou can:\n• Refuse cookies in browser settings\n• Clear stored cookies at any time\n\nRefusing cookies may affect some functions.",
+    
+    section6Title: "Data Security",
+    section6Content: "This platform takes the following security measures:\n• SSL/TLS encrypted transmission\n• AES-256 data encryption\n• Access control\n• Regular security testing\n• Intrusion detection system\n• Employee education and training\n\nHowever, it cannot guarantee:\n• The network is absolutely secure\n• The system will never be attacked\n• Data will never leak\n\nUsers should take appropriate security measures on their own.",
+    
+    section7Title: "User Rights",
+    section7Content: "You have the following rights:\n• Query your personal data\n• Correct inaccurate data\n• Request data deletion\n• Withdraw consent\n• Data portability right\n• Refuse marketing\n\nTo exercise rights, please contact:\nsupport@orbit-tower.tw\n\nThis platform will process your request within 30 days.",
+    
+    section8Title: "Policy Updates",
+    section8Content: "This platform may update this privacy policy at any time.\n\nAfter update:\n• Announced on the website\n• Major changes will be notified separately\n• Continued use is deemed as acceptance\n\nIt is recommended to regularly review this policy to understand the latest content.",
+  },
+
+  // === Admin Updates ===
+  admin: {
+    updates: {
+      mainTitle: "System Update Management",
+      mainSubtitle: "SYSTEM UPDATE MANAGEMENT",
+      back: "Back to Admin",
+      systemStatus: "System Status",
+      needsUpdate: "Needs Update",
+      upToDate: "Up to Date",
+      lastUpdate: "Last Update",
+      updateCount: "Update Count",
+      times: "times",
+      nextAutoUpdate: "Next Auto Update",
+      documentStatus: "Document Update Status",
+      disclaimer: "Disclaimer",
+      terms: "Terms of Service",
+      privacy: "Privacy Policy",
+      updateNow: "Update Now",
+      updateAll: "Update All",
+      updateSuccess: "Update successful",
+      updateFailed: "Update failed",
+      howItWorks: "How It Works",
+      howItWorks1: "• System automatically checks for updates every 30 days",
+      howItWorks2: "• You can manually trigger individual or all document updates",
+      howItWorks3: "• After update, the date displayed on pages will automatically update to today",
+    },
+  },
 };

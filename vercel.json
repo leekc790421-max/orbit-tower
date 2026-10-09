@@ -32,7 +32,10 @@
     { "source": "/claim", "destination": "/" },
     { "source": "/dashboard", "destination": "/" },
     { "source": "/admin", "destination": "/" },
-    { "source": "/admin/:path*", "destination": "/" }
+    { "source": "/admin/:path*", "destination": "/" },
+    { "source": "/disclaimer", "destination": "/disclaimer" },
+    { "source": "/terms", "destination": "/terms" },
+    { "source": "/privacy", "destination": "/privacy" }
   ],
   "redirects": [
     {
