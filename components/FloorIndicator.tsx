@@ -15,12 +15,12 @@ export default function FloorIndicator({ activeFloor, onFloorSelect }: FloorIndi
   const floorLabels = [t("floor.f1"), t("floor.f2"), t("floor.f3"), t("floor.f4"), t("floor.f5"), t("floor.f6")];
 
   return (
-    <div className="fixed left-0.5 sm:left-3 top-1/2 -translate-y-1/2 z-40">
-      <div className="glass-panel rounded-md sm:rounded-lg p-0.5 sm:p-1.5 hud-border">
-        <div className="text-[5px] sm:text-[7px] tracking-widest text-cyan-400/50 text-center mb-0 sm:mb-1 uppercase font-bold">
+    <div className="fixed left-0.5 sm:left-1.5 md:left-3 top-1/2 -translate-y-1/2 z-40">
+      <div className="glass-panel rounded-md sm:rounded-lg md:rounded-lg p-0.5 sm:p-1 md:p-1.5 hud-border">
+        <div className="text-[5px] sm:text-[6px] md:text-[7px] tracking-widest text-cyan-400/50 text-center mb-0 sm:mb-0.5 md:mb-1 uppercase font-bold">
           {t("floor.label")}
         </div>
-        <div className="flex flex-col-reverse gap-px sm:gap-0.5">
+        <div className="flex flex-col-reverse gap-px sm:gap-0.5 md:gap-0.5">
           {FLOORS.map((floor) => {
             const isActive = activeFloor === floor.floor;
             const occupiedCount = floor.units.filter((u) => u.status === "occupied").length;
@@ -30,8 +30,8 @@ export default function FloorIndicator({ activeFloor, onFloorSelect }: FloorIndi
                 key={floor.floor}
                 onClick={() => onFloorSelect(floor.floor)}
                 className={`
-                  relative group flex items-center justify-center gap-0.5 sm:gap-1
-                  px-0.5 sm:px-2 py-0.5 sm:py-1 rounded text-[7px] sm:text-[10px]
+                  relative group flex items-center justify-center gap-0.5 sm:gap-1 md:gap-1
+                  px-0.5 sm:px-1.5 md:px-2 py-0.5 sm:py-1 md:py-1 rounded sm:rounded-md md:rounded-md text-[7px] sm:text-[9px] md:text-[10px]
                   transition-all duration-300 border
                   ${
                     isActive
@@ -40,7 +40,7 @@ export default function FloorIndicator({ activeFloor, onFloorSelect }: FloorIndi
                   }
                 `}
               >
-                <Building size={7} className="sm:w-[10px] sm:h-[10px]" />
+                <Building size={7} className="sm:w-[9px] sm:h-[9px] md:w-[10px] md:h-[10px]" />
                 <span className="font-mono font-bold">{floor.floor}F</span>
                 <div className="hidden sm:flex gap-0.5 ml-auto">
                   {occupiedCount > 0 && <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />}
