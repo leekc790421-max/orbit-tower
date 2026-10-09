@@ -46,10 +46,10 @@ export const STATUS_LABELS: Record<UnitStatus, string> = {
   isolated: "保護中",
 };
 
-export const THEME_LABELS: Record<Theme, { zh: string; en: string; icon: string }> = {
-  cyber: { zh: "霓虹夜城", en: "Cyber Night", icon: "🌃" },
-  cloud: { zh: "雲海日出", en: "Cloud Mountain", icon: "🌄" },
-  deepsea: { zh: "深海秘境", en: "Deep Sea", icon: "🌊" },
+export const THEME_LABELS: Record<Theme, { zh: string; en: string; ja: string; icon: string }> = {
+  cyber: { zh: "霓虹夜城", en: "Cyber Night", ja: "ネオンナイト", icon: "🌃" },
+  cloud: { zh: "雲海日出", en: "Cloud Mountain", ja: "雲海日の出", icon: "🌄" },
+  deepsea: { zh: "深海秘境", en: "Deep Sea", ja: "深海秘境", icon: "🌊" },
 };
 
 export const LIGHT_COLORS: Record<LightColor, { label: string; hex: string; css: string }> = {
@@ -60,14 +60,14 @@ export const LIGHT_COLORS: Record<LightColor, { label: string; hex: string; css:
 };
 
 const OCCUPIED_BRANDS: Record<string, Partial<Unit>> = {
-  "101": { brand: "NeuralForge", service: "AI 模型訓練平台", color: "#F5A623", status: "occupied" },
-  "102": { brand: "PixelMonk", service: "獨立遊戲工作室", color: "#A855F7", status: "occupied" },
-  "104": { brand: "PayStream", service: "跨境金流引擎", color: "#00D68F", status: "occupied" },
-  "203": { brand: "DeepSight AI", service: "醫療 AI 診斷", color: "#00D4FF", status: "occupied" },
-  "205": { brand: "GeoRank", service: "GEO 搜尋優化", color: "#F5A623", status: "occupied" },
-  "306": { brand: "Vault-X", service: "機密沙盒運算", color: "#FF4444", status: "isolated" },
-  "402": { brand: "QuantumLeap", service: "量子運算 SaaS", color: "#A855F7", status: "occupied" },
-  "405": { brand: "SkyLabs", service: "8K 影像處理", color: "#00D4FF", status: "occupied" },
+  "101": { brand: "NeuralForge", service: "unit.service101", color: "#F5A623", status: "occupied" },
+  "102": { brand: "PixelMonk", service: "unit.service102", color: "#A855F7", status: "occupied" },
+  "104": { brand: "PayStream", service: "unit.service104", color: "#00D68F", status: "occupied" },
+  "203": { brand: "DeepSight AI", service: "unit.service203", color: "#00D4FF", status: "occupied" },
+  "205": { brand: "GeoRank", service: "unit.service205", color: "#F5A623", status: "occupied" },
+  "306": { brand: "Vault-X", service: "unit.service306", color: "#FF4444", status: "isolated" },
+  "402": { brand: "QuantumLeap", service: "unit.service402", color: "#A855F7", status: "occupied" },
+  "405": { brand: "SkyLabs", service: "unit.service405", color: "#00D4FF", status: "occupied" },
 };
 
 export function generateFloors(): FloorData[] {
@@ -91,7 +91,7 @@ export function generateFloors(): FloorData[] {
       };
     });
 
-    const labels = ["大廳層", "科技新創層", "商戶營運層", "AI 智慧層", "品牌策略層", "企業旗艦層"];
+    const labels = ["floor.f1", "floor.f2", "floor.f3", "floor.f4", "floor.f5", "floor.f6"];
     floors.push({ floor: f, label: labels[f - 1], units });
   }
 

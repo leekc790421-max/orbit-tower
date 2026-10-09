@@ -116,7 +116,7 @@ export default function UnitInfoCard({ unit, onClose }: UnitInfoCardProps) {
                 <div className="text-xs sm:text-sm font-bold" style={{ color: unit.color }}>
                   {unit.brand}
                 </div>
-                <div className="text-[9px] sm:text-[10px] text-white/50">{unit.service}</div>
+                <div className="text-[9px] sm:text-[10px] text-white/50">{unit.service ? t(unit.service) : ""}</div>
               </div>
             </div>
           </div>

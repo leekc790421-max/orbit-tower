@@ -30,9 +30,7 @@ export default function ControlHUD({
   const [expanded, setExpanded] = useState(false);
 
   const getThemeLabel = (th: Theme) => {
-    if (locale === "ja") return t(`theme.${th}`);
-    if (locale === "en") return THEME_LABELS[th].en;
-    return THEME_LABELS[th].zh;
+    return t(`theme.${th}`);
   };
 
   const getLightLabel = (c: LightColor) => {

@@ -153,6 +153,12 @@ function OverviewContent() {
 
 function TechContent() {
   const { t } = useTranslation();
+  const archTitle = t("readme.archSystemTitle");
+  const arch3d = t("readme.arch3d");
+  const archBloom = t("readme.archBloom");
+  const archAi = t("readme.archAi");
+  const archPayment = t("readme.archPayment");
+  const archSearch = t("readme.archSearch");
   return (
     <div className="space-y-6">
       <div className="glass-panel rounded-xl p-5 border border-white/10">
@@ -161,10 +167,10 @@ function TechContent() {
           {t("readme.techTitle1")}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <TechCard title="Next.js 16" description="React Server Components + App Router" />
-          <TechCard title="React Three Fiber" description="Three.js 3D 渲染引擎" />
-          <TechCard title="TailwindCSS 4" description="原子化 CSS 框架" />
-          <TechCard title="TypeScript" description="型別安全的 JavaScript" />
+          <TechCard title="Next.js 16" description={t("readme.techNextjsDesc")} />
+          <TechCard title="React Three Fiber" description={t("readme.techR3fDesc")} />
+          <TechCard title="TailwindCSS 4" description={t("readme.techTwDesc")} />
+          <TechCard title="TypeScript" description={t("readme.techTsDesc")} />
         </div>
       </div>
 
@@ -174,10 +180,10 @@ function TechContent() {
           {t("readme.techTitle2")}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <TechCard title="Supabase" description="PostgreSQL + Realtime + Auth" />
-          <TechCard title="Groq API" description="毫秒級 AI 推理引擎" />
-          <TechCard title="Vercel Edge" description="全球 CDN + Edge Functions" />
-          <TechCard title="Stripe" description="金流訂閱 & 一次性付款" />
+          <TechCard title="Supabase" description={t("readme.techSupabaseDesc")} />
+          <TechCard title="Groq API" description={t("readme.techGroqDesc")} />
+          <TechCard title="Vercel Edge" description={t("readme.techEdgeDesc")} />
+          <TechCard title="Stripe" description={t("readme.techStripeDesc")} />
         </div>
       </div>
 
@@ -187,10 +193,10 @@ function TechContent() {
           {t("readme.techTitle3")}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <TechCard title="Vercel" description="自動部署 + Preview Environments" />
-          <TechCard title="Cloudflare" description="WAF + DDoS 防護 + CDN" />
-          <TechCard title="IndexNow" description="即時搜尋引擎推送" />
-          <TechCard title="Sentry" description="錯誤追蹤 & 效能監控" />
+          <TechCard title="Vercel" description={t("readme.techVercelDesc")} />
+          <TechCard title="Cloudflare" description={t("readme.techCfDesc")} />
+          <TechCard title="IndexNow" description={t("readme.techIndexNowDesc")} />
+          <TechCard title="Sentry" description={t("readme.techSentryDesc")} />
         </div>
       </div>
 
@@ -200,18 +206,18 @@ function TechContent() {
         </h3>
         <pre className="text-xs sm:text-sm text-cyan-300 overflow-x-auto">
 {`┌─────────────────────────────────────────────────────────────┐
-│                SNT 光躍星樞 架構                          │
+│                ${archTitle.padEnd(42)}│
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌──────────┐      ┌──────────┐      ┌──────────┐         │
-│  │  3D 場景 │◄────►│  React   │◄────►│ Supabase │         │
+│  │ ${arch3d.padEnd(8)} │◄────►│  React   │◄────►│ Supabase │         │
 │  │ Three.js │      │  Next.js │      │PostgreSQL│         │
 │  └──────────┘      └──────────┘      └──────────┘         │
 │        │                 │                 │                │
 │        ▼                 ▼                 ▼                │
 │  ┌──────────┐      ┌──────────┐      ┌──────────┐         │
-│  │  Bloom   │      │  Groq    │      │  Stripe  │         │
-│  │ 後處理   │      │  AI API  │      │  金流    │         │
+│  │ ${archBloom.padEnd(8)} │      │  Groq    │      │  Stripe  │         │
+│  │ ${archAi.padEnd(8)} │      │  AI API  │      │ ${archPayment.padEnd(8)} │         │
 │  └──────────┘      └──────────┘      └──────────┘         │
 │        │                 │                 │                │
 │        └─────────────────┴─────────────────┘                │
@@ -225,7 +231,7 @@ function TechContent() {
 │                          ▼                                  │
 │                    ┌──────────┐                            │
 │                    │IndexNow  │                            │
-│                    │搜尋推送  │                            │
+│                    │${archSearch.padEnd(10)}│                            │
 │                    └──────────┘                            │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘`}
@@ -249,8 +255,8 @@ function APIContent() {
             description={t("readme.apiStoresDesc")}
             fields={[
               "id: uuid (PK)",
-              "floor: int (樓層)",
-              "face: text (面向 A-F)",
+              `floor: int (${t("readme.fieldFloor")})`,
+              `face: text (${t("readme.fieldFace")})`,
               "brand_name: text",
               "owner_email: text",
               "is_claimed: boolean",

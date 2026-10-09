@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const SITE_URL = "https://orbit-tower.vercel.app";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://orbit.xingdeng.tw";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -94,7 +94,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="zh-TW" className="h-full antialiased">
+    <html lang="zh-TW" className="h-full antialiased" suppressHydrationWarning>
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
