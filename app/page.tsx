@@ -51,7 +51,10 @@ function HomeInner() {
 
   // Landing overlay — 首次進入顯示商業定位頁
   const [showLanding, setShowLanding] = useState(() => {
-    if (typeof window === 'undefined') return true;
+    if (typeof window === 'undefined') return false;
+    // 手機版直接展示 3D 大樓，避免首頁資訊覆蓋層遮住中央視線。
+    // 桌面版仍保留首頁導覽覆蓋層。
+    if (window.innerWidth < 640) return false;
     return !localStorage.getItem("orbit-3d-entered");
   });
 
