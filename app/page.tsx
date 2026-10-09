@@ -17,6 +17,7 @@ import Onboarding from "@/components/Onboarding";
 import AboutModal from "@/components/AboutModal";
 import ReadmeModal from "@/components/ReadmeModal";
 import FloatingCTA from "@/components/FloatingCTA";
+import LandingOverlay from "@/components/LandingOverlay";
 import { I18nProvider, useTranslation } from "@/lib/i18n";
 import type { Theme, LightColor, Unit } from "@/data/units";
 
@@ -46,6 +47,17 @@ function HomeInner() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [readmeOpen, setReadmeOpen] = useState(false);
 
+  // Landing overlay — 首次進入顯示商業定位頁
+  const [showLanding, setShowLanding] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    return !localStorage.getItem("orbit-3d-entered");
+  });
+
+  const handleEnter3D = useCallback(() => {
+    localStorage.setItem("orbit-3d-entered", "true");
+    setShowLanding(false);
+  }, []);
+
   const handleUnitClick = useCallback((unit: Unit, _position: THREE.Vector3) => {
     setSelectedUnit(unit);
     setActiveFloor(unit.floor);
@@ -61,6 +73,14 @@ function HomeInner() {
 
   return (
     <main className="relative w-full h-full">
+      {/* 商業定位覆蓋層 */}
+      {showLanding && (
+        <LandingOverlay
+          onEnter3D={handleEnter3D}
+          onPricingClick={() => setPricingOpen(true)}
+        />
+      )}
+
       {/* 3D 場景 */}
       <Scene theme={theme} lightColor={lightColor} onUnitClick={handleUnitClick} />
 
