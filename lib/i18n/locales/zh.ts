@@ -182,9 +182,13 @@ export const zh = {
     payoneerMethods: "支援信用卡、銀行轉帳等多種支付方式",
     goToPay: "前往支付",
     wireNotice: "⚠️ 匯款注意事項",
-    wireNote1: "• 匯款完成後請保留交易憑證並通知專屬顧問",
-    wireNote2: "• 財務人工對帳完成後（1-2 個工作天內）正式開通授權",
+    wireNote1: "• 匯款完成後請保留交易憑證並上傳水單",
+    wireNote2: "• 後台 AI 確審完成後（1-2 個工作天內）正式開通授權",
     wireNote3: "• 國際電匯請備註「SNT Nexus [方案名稱]」以便快速對帳",
+    // 匯率對齊
+    exchangeRateTitle: "💱 匯率對齊機制",
+    exchangeRateDesc: "系統即時抓取美金匯率，自動換算台幣定價。客戶匯款後上傳水單，由後台 AI 確審。實際金額以匯款當日匯率為準。",
+    channel: "通道",
     // Lite features
     liteF1: "標準 3D 展示館",
     liteF2: "AI 客服（中英日三語）",

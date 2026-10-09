@@ -21,29 +21,41 @@ interface Plan {
   badge?: string;
 }
 
-const BANK_INFO = [
+// 金流通道資訊（帳號部分隱藏）
+const PAYMENT_CHANNELS = [
   {
-    bank: "臺灣銀行 Bank of Taiwan",
-    type: "國內/國際電匯",
-    branch: "松山分行",
-    swift: "BKTWTWTP",
-    code: "0040646",
-    account: "004-064004306448",
-    icon: "🏦",
-  },
-  {
-    bank: "樂天國際商業銀行 Rakuten Bank",
-    type: "數位帳戶",
+    id: "A",
+    bank: "樂天國際商業銀行",
+    bankEn: "Rakuten Bank",
+    type: "國內大額匯款",
+    typeEn: "Domestic Wire Transfer",
     branch: null,
     swift: null,
     code: "826",
-    account: "81201001535981",
+    account: "8120100******81", // 帳號隱藏
+    accountFull: "81201001535981", // 完整帳號（僅後台使用）
     icon: "🏦",
+    note: "匯款後請上傳水單",
+  },
+  {
+    id: "B",
+    bank: "台灣銀行",
+    bankEn: "Bank of Taiwan",
+    type: "海外電匯",
+    typeEn: "International Wire Transfer",
+    branch: "松山分行",
+    branchEn: "Songshan Branch",
+    swift: "BKTWTWTP",
+    code: "0040646",
+    account: "004-0640043****", // 帳號隱藏
+    accountFull: "004-064004306448", // 完整帳號（僅後台使用）
+    icon: "🏦",
+    note: "International wire, please note 'SNT Nexus [Plan]'",
   },
 ];
 
 const PAYONEER_URL =
-  "https://link.payoneer.com/Token?t=4D0FBCB1CAEE48E48FEACE39662D6BB7&src=mobile";
+  "https://link.payoneer.com/Token?t=D03837B9300A4A2BA0650B36193A2836&src=mobile";
 
 export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
   const { t, locale } = useTranslation();
@@ -262,65 +274,97 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                 </div>
               </div>
 
-              {/* 銀行電匯資訊 */}
+              {/* 匯率提示 */}
+              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-amber-400/20 bg-amber-400/5 mb-4 sm:mb-6">
+                <div className="flex items-start gap-2">
+                  <span className="text-amber-400 text-sm">💱</span>
+                  <div className="flex-1">
+                    <div className="text-[10px] sm:text-xs font-bold text-amber-300 mb-1">
+                      {t("pricing.exchangeRateTitle")}
+                    </div>
+                    <p className="text-[9px] sm:text-[10px] text-white/60 leading-relaxed">
+                      {t("pricing.exchangeRateDesc")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 通道 A + B：銀行電匯資訊 */}
               <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
                 <h3 className="text-[11px] sm:text-xs font-bold text-white/70 tracking-wider flex items-center gap-2">
                   <Building2 size={13} className="text-cyan-400" />
                   {t("pricing.wireTransfer")}
                 </h3>
 
-                {BANK_INFO.map((bank, idx) => (
+                {PAYMENT_CHANNELS.map((channel, idx) => (
                   <div
-                    key={idx}
+                    key={channel.id}
                     className="glass-panel rounded-xl p-3 sm:p-4 border border-white/10"
                   >
+                    {/* 通道標籤 */}
                     <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                      <span className="text-base sm:text-lg">{bank.icon}</span>
-                      <div className="min-w-0">
-                        <div className="text-[11px] sm:text-xs font-bold text-white truncate">{bank.bank}</div>
-                        <div className="text-[9px] sm:text-[10px] text-white/40">{bank.type}</div>
+                      <span className="text-base sm:text-lg">{channel.icon}</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[9px] px-1.5 py-0.5 rounded bg-cyan-400/20 text-cyan-300 font-bold">
+                            {t("pricing.channel")} {channel.id}
+                          </span>
+                          <span className="text-[11px] sm:text-xs font-bold text-white truncate">
+                            {locale === "zh" ? channel.bank : channel.bankEn}
+                          </span>
+                        </div>
+                        <div className="text-[9px] sm:text-[10px] text-white/40">
+                          {locale === "zh" ? channel.type : channel.typeEn}
+                        </div>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
-                      {bank.branch && (
+                      {channel.branch && (
                         <InfoRow
                           label={t("pricing.branch")}
-                          value={bank.branch}
-                          onCopy={() => handleCopy(bank.branch!, `bank-branch-${idx}`)}
-                          copied={copiedField === `bank-branch-${idx}`}
+                          value={locale === "zh" ? channel.branch! : channel.branchEn!}
+                          onCopy={() => handleCopy(channel.branch!, `channel-branch-${idx}`)}
+                          copied={copiedField === `channel-branch-${idx}`}
                         />
                       )}
-                      {bank.swift && (
+                      {channel.swift && (
                         <InfoRow
                           label={t("pricing.swiftCode")}
-                          value={bank.swift}
+                          value={channel.swift}
                           highlight
-                          onCopy={() => handleCopy(bank.swift!, `bank-swift-${idx}`)}
-                          copied={copiedField === `bank-swift-${idx}`}
+                          onCopy={() => handleCopy(channel.swift!, `channel-swift-${idx}`)}
+                          copied={copiedField === `channel-swift-${idx}`}
                         />
                       )}
-                      {bank.code && (
+                      {channel.code && (
                         <InfoRow
-                          label={bank.swift ? t("pricing.branchCode") : t("pricing.bankCode")}
-                          value={bank.code}
-                          onCopy={() => handleCopy(bank.code!, `bank-code-${idx}`)}
-                          copied={copiedField === `bank-code-${idx}`}
+                          label={channel.swift ? t("pricing.branchCode") : t("pricing.bankCode")}
+                          value={channel.code}
+                          onCopy={() => handleCopy(channel.code!, `channel-code-${idx}`)}
+                          copied={copiedField === `channel-code-${idx}`}
                         />
                       )}
                       <InfoRow
                         label={t("pricing.account")}
-                        value={bank.account}
+                        value={channel.account}
                         highlight
-                        onCopy={() => handleCopy(bank.account, `bank-account-${idx}`)}
-                        copied={copiedField === `bank-account-${idx}`}
+                        onCopy={() => handleCopy(channel.account, `channel-account-${idx}`)}
+                        copied={copiedField === `channel-account-${idx}`}
                       />
+                    </div>
+
+                    {/* 通道備註 */}
+                    <div className="mt-2 pt-2 border-t border-white/5">
+                      <p className="text-[9px] text-white/40">
+                        💡 {locale === "zh" ? channel.note : (channel.id === "B" ? channel.note : "Please upload receipt after transfer")}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* Payoneer 快速支付 */}
+              {/* 通道 C：Payoneer 快速支付 */}
               <div className="glass-panel rounded-xl p-3 sm:p-4 border border-cyan-400/20 mb-4 sm:mb-6">
                 <div className="flex items-center justify-between flex-wrap gap-3">
                   <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -328,7 +372,12 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                       <CreditCard size={16} className="text-cyan-400" />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-[11px] sm:text-xs font-bold text-white">{t("pricing.payoneerQuick")}</div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-cyan-400/20 text-cyan-300 font-bold">
+                          {t("pricing.channel")} C
+                        </span>
+                        <span className="text-[11px] sm:text-xs font-bold text-white">{t("pricing.payoneerQuick")}</span>
+                      </div>
                       <div className="text-[9px] sm:text-[10px] text-white/40">
                         {t("pricing.payoneerMethods")}
                       </div>

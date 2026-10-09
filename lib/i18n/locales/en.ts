@@ -169,9 +169,13 @@ export const en = {
     payoneerMethods: "Supports credit cards, bank transfers, and more",
     goToPay: "Go to Pay",
     wireNotice: "⚠️ Wire Transfer Notes",
-    wireNote1: "• Please retain transaction receipts and notify your consultant after transfer",
-    wireNote2: "• Authorization will be activated after manual reconciliation (1-2 business days)",
+    wireNote1: "• Please retain transaction receipts and upload payment slip",
+    wireNote2: "• Authorization will be activated after AI verification (1-2 business days)",
     wireNote3: "• For international wires, note 'SNT Nexus [Plan Name]' for quick reconciliation",
+    // Exchange rate
+    exchangeRateTitle: "💱 Exchange Rate Alignment",
+    exchangeRateDesc: "The system fetches real-time USD exchange rates and automatically converts to TWD pricing. After remittance, upload the payment slip for backend AI verification. Actual amount is based on the exchange rate on the day of transfer.",
+    channel: "Channel",
     // Lite features
     liteF1: "Standard 3D Showroom",
     liteF2: "AI Customer Service (zh/en/ja)",
