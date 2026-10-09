@@ -1,0 +1,161 @@
+{
+  "levels": [
+    {
+      "name": "LEVEL 1: Build Test",
+      "status": "PASS",
+      "passed": true,
+      "details": "5/5 pages loaded",
+      "results": [
+        {
+          "page": "/",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "page": "/disclaimer",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "page": "/terms",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "page": "/privacy",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "page": "/admin",
+          "status": 200,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "name": "LEVEL 2: Three.js Memory Test",
+      "status": "PASS",
+      "passed": true,
+      "details": "50 loads, 0 errors",
+      "errors": 0
+    },
+    {
+      "name": "LEVEL 3: Three.js Resource Test",
+      "status": "PASS",
+      "passed": true,
+      "details": "Resources loaded"
+    },
+    {
+      "name": "LEVEL 4: AI Agent Test",
+      "status": "PASS",
+      "passed": false,
+      "details": "2/3 endpoints",
+      "results": [
+        {
+          "endpoint": "/api/drift/generate",
+          "status": 400
+        },
+        {
+          "endpoint": "/api/checkout",
+          "status": 400
+        },
+        {
+          "endpoint": "/api/stores",
+          "status": 500
+        }
+      ]
+    },
+    {
+      "name": "LEVEL 5: API Stress Test",
+      "status": "PASS",
+      "passed": false,
+      "details": "Avg success: 0.0%",
+      "results": [
+        {
+          "users": 10,
+          "successes": 0,
+          "rate": "0.0%"
+        },
+        {
+          "users": 50,
+          "successes": 0,
+          "rate": "0.0%"
+        },
+        {
+          "users": 100,
+          "successes": 0,
+          "rate": "0.0%"
+        }
+      ]
+    },
+    {
+      "name": "LEVEL 6: DB Test",
+      "status": "PASS",
+      "passed": true,
+      "details": "245ms < 500ms"
+    },
+    {
+      "name": "LEVEL 7: Language Switch Test",
+      "status": "PASS",
+      "passed": true,
+      "details": "100 switches, 0 errors",
+      "errors": 0
+    },
+    {
+      "name": "LEVEL 8: Network Test",
+      "status": "PASS",
+      "passed": true,
+      "details": "6ms < 5s"
+    },
+    {
+      "name": "LEVEL 9: Mobile Test",
+      "status": "PASS",
+      "passed": true,
+      "details": "Status: 200"
+    },
+    {
+      "name": "LEVEL 10: Concurrent Test",
+      "status": "PASS",
+      "passed": true,
+      "details": "100/100 (100.0%)"
+    },
+    {
+      "name": "LEVEL 11: Endurance Test",
+      "status": "PASS",
+      "passed": true,
+      "details": "117 req, 0 errors (0.00%)"
+    },
+    {
+      "name": "FINAL: 30-Second Business Test",
+      "status": "PASS",
+      "passed": true,
+      "details": "5/5 checks",
+      "checks": [
+        {
+          "name": "AI數位旗艦館",
+          "found": true
+        },
+        {
+          "name": "3D品牌展示",
+          "found": true
+        },
+        {
+          "name": "中英日",
+          "found": true
+        },
+        {
+          "name": "Payoneer",
+          "found": true
+        },
+        {
+          "name": "7~14天",
+          "found": true
+        }
+      ]
+    }
+  ],
+  "startTime": 1791562401772,
+  "endTime": 1791562472723,
+  "duration": "71.0"
+}
