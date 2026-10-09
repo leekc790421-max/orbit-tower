@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Copy, Check, Building2, CreditCard, ExternalLink, ChevronRight, Shield } from "lucide-react";
+import { X, CreditCard, ChevronRight, Shield } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
 interface PricingModalProps {
@@ -21,46 +21,37 @@ interface Plan {
   badge?: string;
 }
 
-// 金流通道資訊（帳號部分隱藏）
-const PAYMENT_CHANNELS = [
+// 付款方式（不含敏感資訊）
+const PAYMENT_METHODS = [
   {
-    id: "A",
-    bank: "樂天國際商業銀行",
-    bankEn: "Rakuten Bank",
-    type: "國內大額匯款",
-    typeEn: "Domestic Wire Transfer",
-    branch: null,
-    swift: null,
-    code: "826",
-    account: "8120100******81", // 帳號隱藏
-    accountFull: "81201001535981", // 完整帳號（僅後台使用）
-    icon: "🏦",
-    note: "匯款後請上傳水單",
+    id: "atm",
+    name: "ATM 轉帳",
+    nameEn: "ATM Transfer",
+    icon: "🏧",
+    description: "台灣客戶適用",
+    descriptionEn: "For Taiwan customers",
   },
   {
-    id: "B",
-    bank: "台灣銀行",
-    bankEn: "Bank of Taiwan",
-    type: "海外電匯",
-    typeEn: "International Wire Transfer",
-    branch: "松山分行",
-    branchEn: "Songshan Branch",
-    swift: "BKTWTWTP",
-    code: "0040646",
-    account: "004-0640043****", // 帳號隱藏
-    accountFull: "004-064004306448", // 完整帳號（僅後台使用）
+    id: "bank",
+    name: "銀行匯款",
+    nameEn: "Bank Wire Transfer",
     icon: "🏦",
-    note: "International wire, please note 'SNT Nexus [Plan]'",
+    description: "國內/國際匯款",
+    descriptionEn: "Domestic/International",
+  },
+  {
+    id: "payoneer",
+    name: "Payoneer",
+    nameEn: "Payoneer",
+    icon: "💳",
+    description: "跨境快速支付",
+    descriptionEn: "Cross-border payment",
   },
 ];
-
-const PAYONEER_URL =
-  "https://link.payoneer.com/Token?t=D03837B9300A4A2BA0650B36193A2836&src=mobile";
 
 export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
   const { t, locale } = useTranslation();
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
-  const [copiedField, setCopiedField] = useState<string | null>(null);
 
   // 台灣錨定 TWD，國外錨定 USD
   const isTW = locale === "zh";
@@ -110,21 +101,9 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
     },
   ];
 
-  const handleCopy = async (text: string, field: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedField(field);
-      setTimeout(() => setCopiedField(null), 2000);
-    } catch {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      document.body.removeChild(ta);
-      setCopiedField(field);
-      setTimeout(() => setCopiedField(null), 2000);
-    }
+  const handleSelectPayment = (methodId: string) => {
+    // 付款方式選擇後，顯示聯絡資訊
+    alert(`已選擇付款方式。請聯繫我們的顧問完成付款流程。\n\n聯絡方式：\n• Email: service@snt.tw\n• LINE: @snt-official`);
   };
 
   if (!isOpen) return null;
@@ -229,33 +208,9 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                   </div>
                 ))}
               </div>
-
-              {/* 快速 Payoneer 入口 */}
-              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-white/10">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                    <CreditCard size={18} className="text-cyan-400 flex-shrink-0" />
-                    <div className="min-w-0">
-                      <div className="text-[11px] sm:text-xs font-bold text-white">{t("pricing.quickPay")}</div>
-                      <div className="text-[9px] sm:text-[10px] text-white/40 truncate">
-                        {t("pricing.payoneerDesc")}
-                      </div>
-                    </div>
-                  </div>
-                  <a
-                    href={PAYONEER_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 text-[10px] sm:text-xs font-bold hover:bg-cyan-400/20 transition-all flex-shrink-0"
-                  >
-                    Payoneer
-                    <ExternalLink size={11} />
-                  </a>
-                </div>
-              </div>
             </>
           ) : (
-            /* ===== 金流結帳資訊 ===== */
+            /* ===== 付款方式選擇 ===== */
             <>
               {/* 已選方案摘要 */}
               <div className="glass-panel rounded-xl p-3 sm:p-4 border border-cyan-400/20 mb-4 sm:mb-6">
@@ -274,188 +229,53 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
                 </div>
               </div>
 
-              {/* 匯率提示 */}
-              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-amber-400/20 bg-amber-400/5 mb-4 sm:mb-6">
-                <div className="flex items-start gap-2">
-                  <span className="text-amber-400 text-sm">💱</span>
-                  <div className="flex-1">
-                    <div className="text-[10px] sm:text-xs font-bold text-amber-300 mb-1">
-                      {t("pricing.exchangeRateTitle")}
-                    </div>
-                    <p className="text-[9px] sm:text-[10px] text-white/60 leading-relaxed">
-                      {t("pricing.exchangeRateDesc")}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* 通道 A + B：銀行電匯資訊 */}
-              <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
+              {/* 付款方式 */}
+              <div className="space-y-3 mb-4 sm:mb-6">
                 <h3 className="text-[11px] sm:text-xs font-bold text-white/70 tracking-wider flex items-center gap-2">
-                  <Building2 size={13} className="text-cyan-400" />
-                  {t("pricing.wireTransfer")}
+                  <CreditCard size={13} className="text-cyan-400" />
+                  選擇付款方式
                 </h3>
 
-                {PAYMENT_CHANNELS.map((channel, idx) => (
-                  <div
-                    key={channel.id}
-                    className="glass-panel rounded-xl p-3 sm:p-4 border border-white/10"
+                {PAYMENT_METHODS.map((method) => (
+                  <button
+                    key={method.id}
+                    onClick={() => handleSelectPayment(method.id)}
+                    className="w-full glass-panel rounded-xl p-4 border border-white/10 hover:border-cyan-400/30 transition-all text-left group"
                   >
-                    {/* 通道標籤 */}
-                    <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                      <span className="text-base sm:text-lg">{channel.icon}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{method.icon}</span>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[9px] px-1.5 py-0.5 rounded bg-cyan-400/20 text-cyan-300 font-bold">
-                            {t("pricing.channel")} {channel.id}
-                          </span>
-                          <span className="text-[11px] sm:text-xs font-bold text-white truncate">
-                            {locale === "zh" ? channel.bank : channel.bankEn}
-                          </span>
+                        <div className="text-sm font-bold text-white">
+                          {locale === "zh" ? method.name : method.nameEn}
                         </div>
-                        <div className="text-[9px] sm:text-[10px] text-white/40">
-                          {locale === "zh" ? channel.type : channel.typeEn}
+                        <div className="text-[10px] text-white/40">
+                          {locale === "zh" ? method.description : method.descriptionEn}
                         </div>
                       </div>
+                      <ChevronRight size={16} className="text-white/20 group-hover:text-cyan-400 transition-colors" />
                     </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
-                      {channel.branch && (
-                        <InfoRow
-                          label={t("pricing.branch")}
-                          value={locale === "zh" ? channel.branch! : channel.branchEn!}
-                          onCopy={() => handleCopy(channel.branch!, `channel-branch-${idx}`)}
-                          copied={copiedField === `channel-branch-${idx}`}
-                        />
-                      )}
-                      {channel.swift && (
-                        <InfoRow
-                          label={t("pricing.swiftCode")}
-                          value={channel.swift}
-                          highlight
-                          onCopy={() => handleCopy(channel.swift!, `channel-swift-${idx}`)}
-                          copied={copiedField === `channel-swift-${idx}`}
-                        />
-                      )}
-                      {channel.code && (
-                        <InfoRow
-                          label={channel.swift ? t("pricing.branchCode") : t("pricing.bankCode")}
-                          value={channel.code}
-                          onCopy={() => handleCopy(channel.code!, `channel-code-${idx}`)}
-                          copied={copiedField === `channel-code-${idx}`}
-                        />
-                      )}
-                      <InfoRow
-                        label={t("pricing.account")}
-                        value={channel.account}
-                        highlight
-                        onCopy={() => handleCopy(channel.account, `channel-account-${idx}`)}
-                        copied={copiedField === `channel-account-${idx}`}
-                      />
-                    </div>
-
-                    {/* 通道備註 */}
-                    <div className="mt-2 pt-2 border-t border-white/5">
-                      <p className="text-[9px] text-white/40">
-                        💡 {locale === "zh" ? channel.note : (channel.id === "B" ? channel.note : "Please upload receipt after transfer")}
-                      </p>
-                    </div>
-                  </div>
+                  </button>
                 ))}
               </div>
 
-              {/* 通道 C：Payoneer 快速支付 */}
-              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-cyan-400/20 mb-4 sm:mb-6">
-                <div className="flex items-center justify-between flex-wrap gap-3">
-                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center flex-shrink-0">
-                      <CreditCard size={16} className="text-cyan-400" />
+              {/* 安全提示 */}
+              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-emerald-400/20 bg-emerald-400/5">
+                <div className="flex items-start gap-2">
+                  <Shield size={14} className="text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <div className="text-[10px] sm:text-xs font-bold text-emerald-300 mb-1">
+                      安全付款保障
                     </div>
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-cyan-400/20 text-cyan-300 font-bold">
-                          {t("pricing.channel")} C
-                        </span>
-                        <span className="text-[11px] sm:text-xs font-bold text-white">{t("pricing.payoneerQuick")}</span>
-                      </div>
-                      <div className="text-[9px] sm:text-[10px] text-white/40">
-                        {t("pricing.payoneerMethods")}
-                      </div>
-                    </div>
+                    <p className="text-[9px] sm:text-[10px] text-white/60 leading-relaxed">
+                      選擇付款方式後，系統將提供專屬付款資訊。所有交易均受安全保護，匯款後請上傳水單以便快速確認。
+                    </p>
                   </div>
-                  <a
-                    href={PAYONEER_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold hover:bg-cyan-400/20 transition-all hover:shadow-lg hover:shadow-cyan-400/10 flex-shrink-0"
-                  >
-                    {t("pricing.goToPay")}
-                    <ExternalLink size={12} />
-                  </a>
                 </div>
-              </div>
-
-              {/* 注意事項 */}
-              <div className="glass-panel rounded-xl p-3 sm:p-4 border border-amber-400/20 bg-amber-400/5">
-                <div className="text-[9px] sm:text-[10px] text-amber-400/80 tracking-wider uppercase font-bold mb-2">
-                  {t("pricing.wireNotice")}
-                </div>
-                <ul className="space-y-1 text-[10px] sm:text-[11px] text-white/60">
-                  <li>• {t("pricing.wireNote1")}</li>
-                  <li>• {t("pricing.wireNote2")}</li>
-                  <li>• {t("pricing.wireNote3")}</li>
-                </ul>
               </div>
             </>
           )}
         </div>
       </div>
-    </div>
-  );
-}
-
-function InfoRow({
-  label,
-  value,
-  highlight,
-  onCopy,
-  copied,
-}: {
-  label: string;
-  value: string;
-  highlight?: boolean;
-  onCopy: () => void;
-  copied: boolean;
-}) {
-  const { t } = useTranslation();
-  return (
-    <div className="flex items-center justify-between bg-white/[0.03] rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 border border-white/5">
-      <div className="min-w-0">
-        <div className="text-[8px] sm:text-[9px] text-white/30 uppercase tracking-wider">{label}</div>
-        <div
-          className={`text-[11px] sm:text-xs font-mono font-bold ${highlight ? "text-cyan-300" : "text-white/80"} truncate`}
-        >
-          {value}
-        </div>
-      </div>
-      <button
-        onClick={onCopy}
-        className={`
-          ml-2 w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center transition-all flex-shrink-0
-          ${
-            copied
-              ? "bg-emerald-400/20 border border-emerald-400/40"
-              : "bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20"
-          }
-        `}
-        title={t("pricing.copy")}
-      >
-        {copied ? (
-          <Check size={11} className="text-emerald-400" />
-        ) : (
-          <Copy size={11} className="text-white/40" />
-        )}
-      </button>
     </div>
   );
 }
