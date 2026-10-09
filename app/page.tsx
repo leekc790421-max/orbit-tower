@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
 import * as THREE from "three";
 const Scene = dynamic(() => import("@/components/Scene"), { ssr: false, loading: () => null });
@@ -35,30 +35,30 @@ function HomeInner() {
   const [authOpen, setAuthOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
   
-  // 首次進入顯示新手引導 - 使用 lazy initialization
-  const [onboardingOpen, setOnboardingOpen] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    const hasVisited = localStorage.getItem("orbit-tower-visited");
-    if (!hasVisited) {
-      localStorage.setItem("orbit-tower-visited", "true");
-      return true;
+  const [onboardingOpen, setOnboardingOpen] = useState(false);
+  useEffect(() => {
+    try {
+      if (!localStorage.getItem("orbit-tower-visited")) {
+        localStorage.setItem("orbit-tower-visited", "true");
+        // Intentional one-time post-hydration decision based on browser storage.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setOnboardingOpen(true);
+      }
+    } catch {
+      // Keep the main 3D experience usable when browser storage is unavailable.
     }
-    return false;
-  });
+  }, []);
   
   const [aboutOpen, setAboutOpen] = useState(false);
   const [readmeOpen, setReadmeOpen] = useState(false);
   const [disclaimerOpen, setDisclaimerOpen] = useState(false);
 
-  // Landing overlay — 首頁先顯示亮白藍品牌入口，所有尺寸一致
-  const [showLanding, setShowLanding] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return !localStorage.getItem("orbit-3d-entered");
-  });
-
   const handleEnter3D = useCallback(() => {
-    localStorage.setItem("orbit-3d-entered", "true");
-    setShowLanding(false);
+    try {
+      localStorage.setItem("orbit-3d-entered", "true");
+    } catch {
+      // This flag is only a convenience; it must not block the 3D experience.
+    }
   }, []);
 
   const handleUnitClick = useCallback((unit: Unit, _position: THREE.Vector3) => {
@@ -81,13 +81,11 @@ function HomeInner() {
         <DisclaimerPage onBack={() => setDisclaimerOpen(false)} />
       )}
 
-      {/* 商業定位覆蓋層 */}
-      {showLanding && (
-        <LandingOverlay
-          onEnter3D={handleEnter3D}
-          onPricingClick={() => setPricingOpen(true)}
-        />
-      )}
+      {/* 可收合的側邊導覽；不再以全頁覆蓋層遮擋 3D 大樓 */}
+      <LandingOverlay
+        onEnter3D={handleEnter3D}
+        onPricingClick={() => setPricingOpen(true)}
+      />
 
       {/* 3D 場景 */}
       <Scene theme={theme} lightColor={lightColor} onUnitClick={handleUnitClick} />

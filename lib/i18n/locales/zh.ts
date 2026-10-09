@@ -119,8 +119,8 @@ export const zh = {
   onboarding: {
     step1Title: "歡迎來到 SNT 光躍星樞",
     step1Desc: "SNT Nexus — 結合 3D 空間體驗、品牌虛擬展示與動態流量裂變的 Cyber Luxury 數位地產商場。",
-    step1TipMobile: "用手指滑動可以旋轉大樓，雙指張合可以縮小放大",
-    step1TipDesktop: "用滑鼠拖曳可以旋轉大樓，滾輪可以縮小放大",
+    step1TipMobile: "單指滑動可旋轉大樓；捲動畫面可瀏覽頁面內容",
+    step1TipDesktop: "拖曳可旋轉大樓；滾輪用來瀏覽頁面，不會縮放模型",
     step2Title: "🖱️ 拖拽探索 3D 樓層",
     step2Desc: "每層樓有 6 個品牌店面。點擊發光的方塊查看該品牌的詳細資訊。",
     step2Tip: "藍色 = 待認領，彩色 = 已進駐品牌，紅色 = 保護中",
@@ -454,6 +454,8 @@ export const zh = {
 
   // === Landing Overlay ===
   landing: {
+    openGuide: "快速導覽",
+    closeGuide: "關閉快速導覽",
     // Hero
     heroTitle: "Orbit Tower 賽博虛擬總部",
     heroSubtitle: "把企業品牌、服務與客戶接待，放進一座可互動的 3D 虛擬總部",

@@ -124,12 +124,10 @@ export default function Scene({ theme, lightColor, onUnitClick }: SceneProps) {
         {/* === 軌道控制 — 解除滾輪卡死，允許頁面滾動 === */}
         <OrbitControls
           ref={controlsRef}
-          enablePan={true}
-          enableZoom={true}
+          enablePan={false}
+          enableZoom={false}
           enableRotate={true}
           rotateSpeed={0.55}
-          zoomSpeed={0.8}
-          panSpeed={0.45}
           minDistance={5}
           maxDistance={18}
           minPolarAngle={Math.PI * 0.15}

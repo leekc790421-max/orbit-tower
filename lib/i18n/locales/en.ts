@@ -108,8 +108,8 @@ export const en = {
   onboarding: {
     step1Title: "Welcome to SNT Orbit Tower",
     step1Desc: "SNT Nexus — A Cyber Luxury digital real estate mall combining 3D spatial experiences, virtual brand showcases, and dynamic traffic fission.",
-    step1TipMobile: "Swipe to rotate the tower, pinch to zoom in/out",
-    step1TipDesktop: "Drag to rotate the tower, scroll to zoom in/out",
+    step1TipMobile: "Swipe with one finger to rotate the tower; scroll to browse the page",
+    step1TipDesktop: "Drag to rotate the tower; use the wheel to scroll the page, not zoom the model",
     step2Title: "🖱️ Drag to Explore 3D Floors",
     step2Desc: "Each floor has 6 brand units. Click on a glowing block to view brand details.",
     step2Tip: "Blue = Available, Color = Occupied, Red = Protected",
@@ -431,6 +431,8 @@ export const en = {
   },
 
   landing: {
+    openGuide: "Quick guide",
+    closeGuide: "Close quick guide",
     heroTitle: "Build Your AI Digital Flagship Store",
     heroSubtitle: "Showcase your brand globally in Chinese, English & Japanese",
     heroFeatures: "AI Customer Service · 3D Brand Showcase · Global Reception · Cross-border Payment",

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, useCallback, type ReactNode } from "react";
 import { zh } from "./locales/zh";
 import { en } from "./locales/en";
 import { ja } from "./locales/ja";
@@ -24,31 +24,45 @@ interface I18nContextValue {
 const I18nContext = createContext<I18nContextValue | null>(null);
 
 function getNestedValue(obj: Record<string, unknown>, path: string): string {
-  const keys = path.split(".");
   let current: unknown = obj;
-  for (const key of keys) {
+  for (const key of path.split(".")) {
     if (current == null || typeof current !== "object") return path;
     current = (current as Record<string, unknown>)[key];
   }
   return typeof current === "string" ? current : path;
 }
 
-function getInitialLocale(): Locale {
-  if (typeof window === "undefined") return "zh";
-  const saved = localStorage.getItem("orbit-tower-locale") as Locale | null;
-  if (saved && saved in LOCALES) return saved;
-  const lang = navigator.language.slice(0, 2);
-  if (lang in LOCALES) return lang as Locale;
-  return "zh";
+function getPreferredLocale(): Locale {
+  try {
+    const saved = window.localStorage.getItem("orbit-tower-locale") as Locale | null;
+    if (saved && saved in LOCALES) return saved;
+  } catch {
+    // Browser storage can be disabled; fall back to the browser language.
+  }
+  const language = window.navigator.language.slice(0, 2);
+  return language in LOCALES ? (language as Locale) : "zh";
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
+  // Keep server and first client render deterministic, then apply saved/browser preference.
+  const [locale, setLocaleState] = useState<Locale>("zh");
+
+  useEffect(() => {
+    const preferred = getPreferredLocale();
+    // Intentional post-hydration sync: browser-only locale preference is unavailable on the server.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setLocaleState(preferred);
+    document.documentElement.lang = LOCALE_META[preferred].htmlLang;
+  }, []);
 
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale);
-    localStorage.setItem("orbit-tower-locale", newLocale);
     document.documentElement.lang = LOCALE_META[newLocale].htmlLang;
+    try {
+      window.localStorage.setItem("orbit-tower-locale", newLocale);
+    } catch {
+      // The selected language still applies for the current page session.
+    }
   }, []);
 
   const t = useCallback(

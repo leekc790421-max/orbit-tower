@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import {
   Building2, Bot, Globe, Users, Search, Share2,
-  Workflow, Megaphone, BarChart3, ArrowRight, Zap,
+  Workflow, Megaphone, BarChart3, ArrowRight, Zap, X,
   Eye, MessageSquare, TrendingUp, ChevronDown,
 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
@@ -15,7 +16,7 @@ interface LandingOverlayProps {
 function DarkGlassBg() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-sky-50 to-blue-100/90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950/95 via-slate-950/90 to-slate-900/95" />
 
       <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-[40%_60%_55%_45%_/_50%_45%_55%_50%] bg-gradient-to-br from-cyan-300/25 to-blue-300/15 animate-[float_14s_ease-in-out_infinite]" />
       <div className="absolute top-1/3 -right-48 w-[400px] h-[400px] rounded-[55%_45%_40%_60%_/_60%_50%_50%_40%] bg-gradient-to-bl from-blue-300/20 to-white/10 animate-[float_18s_ease-in-out_infinite_reverse]" />
@@ -64,18 +65,60 @@ function DarkGlassBg() {
 }
 
 export default function LandingOverlay({ onEnter3D, onPricingClick }: LandingOverlayProps) {
+  const { t } = useTranslation();
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <div className="orbit-landing pointer-events-none fixed inset-0 z-[60] overflow-y-auto overflow-x-hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
-      <DarkGlassBg />
-      <div className="relative z-10 pointer-events-none">
-        <HeroSection onEnter3D={onEnter3D} onPricingClick={onPricingClick} />
-        <ProblemSection />
-        <SolutionSection />
-        <ShowcaseSection />
-        <AutomationSection />
-        <FinalCTA onPricingClick={onPricingClick} />
-      </div>
-    </div>
+    <>
+      {!expanded && (
+        <div className="fixed left-2 top-[4.5rem] z-[45] pointer-events-none sm:left-4 sm:top-20">
+          <button
+            type="button"
+            aria-expanded={false}
+            onClick={() => setExpanded(true)}
+            className="glass-panel hud-border pointer-events-auto flex min-h-10 items-center gap-2 rounded-xl px-3 py-2 text-left text-xs font-semibold text-cyan-100 shadow-lg transition hover:border-cyan-300/60 hover:bg-cyan-950/80"
+          >
+            <Building2 size={15} aria-hidden="true" />
+            <span>{t("landing.openGuide")}</span>
+            <ChevronDown size={13} aria-hidden="true" />
+          </button>
+        </div>
+      )}
+
+      {expanded && (
+        <div className="orbit-landing fixed inset-0 z-[60] pointer-events-none">
+          <aside
+            aria-label={t("landing.heroTitle")}
+            className="orbit-landing-drawer fixed inset-y-0 left-0 overflow-x-hidden overflow-y-auto overscroll-contain pointer-events-auto"
+            style={{ WebkitOverflowScrolling: "touch" }}
+          >
+            <DarkGlassBg />
+            <button
+              type="button"
+              aria-label={t("landing.closeGuide")}
+              onClick={() => setExpanded(false)}
+              className="orbit-landing-close fixed top-3 z-[70] ml-2 flex h-9 w-9 items-center justify-center rounded-full border border-cyan-300/30 bg-slate-950/80 text-white/80 backdrop-blur-md transition hover:border-cyan-200 hover:text-white"
+            >
+              <X size={16} aria-hidden="true" />
+            </button>
+            <div className="relative z-10 pointer-events-none">
+              <HeroSection
+                onEnter3D={() => {
+                  setExpanded(false);
+                  onEnter3D();
+                }}
+                onPricingClick={onPricingClick}
+              />
+              <ProblemSection />
+              <SolutionSection />
+              <ShowcaseSection />
+              <AutomationSection />
+              <FinalCTA onPricingClick={onPricingClick} />
+            </div>
+          </aside>
+        </div>
+      )}
+    </>
   );
 }
 

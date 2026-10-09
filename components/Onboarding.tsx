@@ -62,10 +62,10 @@ export default function Onboarding({ onClose }: OnboardingProps) {
   const Icon = STEP_ICONS[currentStep];
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
+    <div className="pointer-events-none fixed inset-0 z-[200]">
+      <div className="pointer-events-none absolute inset-0 bg-black/[0.08]" />
 
-      <div className="relative w-full max-w-lg glass-panel rounded-2xl border border-cyan-400/30 shadow-2xl shadow-cyan-400/20">
+      <div className="pointer-events-auto absolute bottom-16 left-2 top-20 flex max-h-[calc(100svh-9rem)] w-[min(19rem,calc(100vw-1rem))] flex-col overflow-y-auto rounded-2xl border border-cyan-400/30 bg-slate-950/75 shadow-2xl shadow-cyan-400/10 backdrop-blur-md sm:bottom-auto sm:left-auto sm:right-20 sm:top-20 sm:max-h-[calc(100svh-6rem)] sm:w-full sm:max-w-sm glass-panel">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:border-red-400/50 hover:bg-red-400/10 transition-all z-10"
@@ -73,28 +73,28 @@ export default function Onboarding({ onClose }: OnboardingProps) {
           <X size={16} className="text-white/40" />
         </button>
 
-        <div className="p-6 sm:p-8">
-          <div className="flex justify-center mb-6">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-cyan-400/10 border-2 border-cyan-400/30 flex items-center justify-center">
-              <Icon size={32} className="text-cyan-400" />
+        <div className="p-3 sm:p-5">
+          <div className="mb-3 flex justify-center sm:mb-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-cyan-400/30 bg-cyan-400/10 sm:h-14 sm:w-14">
+              <Icon size={24} className="text-cyan-400" />
             </div>
           </div>
 
-          <h2 className="text-xl sm:text-2xl font-bold text-white text-center mb-3">
+          <h2 className="mb-2 text-base font-bold text-center text-white sm:text-lg">
             {step.title}
           </h2>
 
-          <p className="text-sm sm:text-base text-white/70 text-center mb-4 leading-relaxed">
+          <p className="mb-3 text-xs leading-relaxed text-center text-white/75 sm:text-sm">
             {step.description}
           </p>
 
-          <div className="glass-panel rounded-xl p-4 border border-cyan-400/20 bg-cyan-400/5 mb-6">
-            <p className="text-xs sm:text-sm text-cyan-300 text-center">
+          <div className="glass-panel mb-4 rounded-xl border border-cyan-400/20 bg-cyan-400/5 p-3">
+            <p className="text-[11px] text-center text-cyan-200 sm:text-xs">
               💡 {step.tip}
             </p>
           </div>
 
-          <div className="flex justify-center gap-2 mb-6">
+          <div className="mb-4 flex justify-center gap-2">
             {steps.map((_, idx) => (
               <div
                 key={idx}

@@ -108,8 +108,8 @@ export const ja = {
   onboarding: {
     step1Title: "SNT 光躍星枢へようこそ",
     step1Desc: "SNT Nexus — 3D空間体験、バーチャルブランド展示、ダイナミック流量分裂を融合したサイバーラグジュアリーデジタル不動産モール。",
-    step1TipMobile: "指でスワイプしてタワーを回転、ピンチで拡大・縮小",
-    step1TipDesktop: "マウスドラッグでタワーを回転、スクロールで拡大・縮小",
+    step1TipMobile: "1本指のスワイプでタワーを回転。画面スクロールでページを閲覧できます",
+    step1TipDesktop: "ドラッグでタワーを回転。ホイールはモデルのズームではなくページ移動に使います",
     step2Title: "🖱️ 3Dタワーをドラッグして探索",
     step2Desc: "各フロアに6つのブランド店舗があります。光るブロックをクリックしてブランド詳細を表示。",
     step2Tip: "青 = 請求可能、カラー = 入居ブランド、赤 = 保護中",
@@ -431,6 +431,8 @@ export const ja = {
   },
 
   landing: {
+    openGuide: "クイックガイド",
+    closeGuide: "ガイドを閉じる",
     heroTitle: "専属AIデジタル旗艦館を構築",
     heroSubtitle: "中英日三語でブランドを世界に発信",
     heroFeatures: "AIカスタマーサービス · 3Dブランド展示 · グローバル顧客対応 · 越境決済",
