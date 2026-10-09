@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://orbit.xingdeng.tw";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://orbit.xingdeng.tw";
 
 interface RootLayoutProps {
   children: React.ReactNode;
