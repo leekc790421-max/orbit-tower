@@ -180,4 +180,125 @@
     });
   });
 
+  // ============================================
+  // ADMIN LOGIN SYSTEM
+  // ============================================
+  
+  const ADMIN_USERNAME = 'kclee1654';
+  const STORAGE_KEY_ADMIN = 'aegis-admin-logged-in';
+  
+  // Check if already logged in on page load
+  function checkAdminSession() {
+    try {
+      const isLoggedIn = sessionStorage.getItem(STORAGE_KEY_ADMIN) === 'true';
+      if (isLoggedIn) {
+        showAdminLoggedIn();
+      }
+    } catch (e) {}
+  }
+  
+  // Open login modal
+  window.openLoginModal = function() {
+    const modal = document.getElementById('admin-login-modal');
+    if (modal) {
+      modal.classList.add('active');
+      document.getElementById('admin-username').focus();
+    }
+  };
+  
+  // Close login modal
+  window.closeLoginModal = function() {
+    const modal = document.getElementById('admin-login-modal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.getElementById('login-error').style.display = 'none';
+      document.getElementById('admin-username').value = '';
+    }
+  };
+  
+  // Admin login
+  window.adminLogin = function() {
+    const username = document.getElementById('admin-username').value.trim();
+    const errorEl = document.getElementById('login-error');
+    
+    if (username === ADMIN_USERNAME) {
+      // Success
+      try {
+        sessionStorage.setItem(STORAGE_KEY_ADMIN, 'true');
+      } catch (e) {}
+      
+      closeLoginModal();
+      showAdminLoggedIn();
+    } else {
+      // Error
+      errorEl.style.display = 'block';
+      document.getElementById('admin-username').style.borderColor = '#dc2626';
+      setTimeout(() => {
+        document.getElementById('admin-username').style.borderColor = '';
+      }, 2000);
+    }
+  };
+  
+  // Admin logout
+  window.adminLogout = function() {
+    try {
+      sessionStorage.removeItem(STORAGE_KEY_ADMIN);
+    } catch (e) {}
+    
+    hideAdminPanel();
+  };
+  
+  // Show admin logged in state
+  function showAdminLoggedIn() {
+    document.getElementById('admin-login-btn').style.display = 'none';
+    document.getElementById('admin-user-info').style.display = 'flex';
+    document.getElementById('admin-panel').style.display = 'block';
+    showAdminSection('overview');
+  }
+  
+  // Hide admin panel
+  function hideAdminPanel() {
+    document.getElementById('admin-login-btn').style.display = 'flex';
+    document.getElementById('admin-user-info').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'none';
+  }
+  
+  // Show admin section
+  window.showAdminSection = function(section) {
+    // Hide all sections
+    document.querySelectorAll('.admin-section').forEach(s => s.style.display = 'none');
+    
+    // Show selected section
+    const target = document.getElementById('admin-' + section);
+    if (target) target.style.display = 'block';
+    
+    // Update button states
+    document.querySelectorAll('.admin-action-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  };
+  
+  // Handle Enter key in login form
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const modal = document.getElementById('admin-login-modal');
+      if (modal && modal.classList.contains('active')) {
+        adminLogin();
+      }
+    }
+    if (e.key === 'Escape') {
+      closeLoginModal();
+    }
+  });
+  
+  // Click outside modal to close
+  document.addEventListener('click', function(e) {
+    const modal = document.getElementById('admin-login-modal');
+    if (e.target === modal) {
+      closeLoginModal();
+    }
+  });
+  
+  // Check admin session on load
+  checkAdminSession();
+
 })();
