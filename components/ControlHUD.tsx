@@ -63,8 +63,8 @@ export default function ControlHUD({
           <span className="text-[9px] sm:text-[11px] md:text-xs text-cyan-300 font-bold tracking-wider">{t("hud.claimStore")}</span>
         </button>
 
-        <div className="glass-panel rounded-lg sm:rounded-xl md:rounded-2xl p-1 sm:p-2 md:p-2.5 hud-border">
-          <div className="text-[7px] sm:text-[9px] md:text-[10px] tracking-widest text-cyan-400/70 mb-0.5 sm:mb-1 md:mb-1.5 uppercase font-bold">
+        <div className="glass-hud-premium rounded-lg sm:rounded-xl md:rounded-2xl p-1 sm:p-2 md:p-2.5 hud-border">
+          <div className="text-[7px] sm:text-[9px] md:text-[10px] tracking-widest text-cyan-400/70 mb-0.5 sm:mb-1 md:mb-1.5 uppercase font-bold font-tech">
             {t("hud.sceneAmbience")}
           </div>
           <div className="flex flex-col gap-0.5 sm:gap-1 md:gap-1.5">
@@ -93,8 +93,8 @@ export default function ControlHUD({
           </div>
         </div>
 
-        <div className="glass-panel rounded-lg sm:rounded-xl md:rounded-2xl p-1 sm:p-2 md:p-2.5 hud-border">
-          <div className="text-[7px] sm:text-[9px] md:text-[10px] tracking-widest text-cyan-400/70 mb-0.5 sm:mb-1 md:mb-1.5 uppercase font-bold flex items-center gap-0.5 sm:gap-1 md:gap-1.5">
+        <div className="glass-hud-premium rounded-lg sm:rounded-xl md:rounded-2xl p-1 sm:p-2 md:p-2.5 hud-border">
+          <div className="text-[7px] sm:text-[9px] md:text-[10px] tracking-widest text-cyan-400/70 mb-0.5 sm:mb-1 md:mb-1.5 uppercase font-bold flex items-center gap-0.5 sm:gap-1 md:gap-1.5 font-tech">
             <Palette size={8} className="sm:w-[10px] sm:h-[10px] md:w-[12px] md:h-[12px]" />
             <span>{t("hud.spectrumHue")}</span>
           </div>

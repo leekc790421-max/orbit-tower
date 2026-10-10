@@ -380,10 +380,24 @@ function FinalCTA({ onPricingClick }: { onPricingClick: () => void }) {
         <div className="flex items-center justify-center gap-3 sm:gap-8 md:gap-12 mb-5 sm:mb-8 md:mb-10">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
-              <div className="text-lg sm:text-2xl md:text-3xl font-extrabold text-cyan-400">{s.value}</div>
+              <div className="text-lg sm:text-2xl md:text-3xl font-extrabold text-cyan-400 led-pulse font-mono-data">{s.value}</div>
               <div className="text-[8px] sm:text-[10px] md:text-sm text-slate-900/30 mt-0.5 sm:mt-0.5 md:mt-1 font-medium">{s.label}</div>
             </div>
           ))}
+        </div>
+
+        {/* LED 動態數據跑馬燈 */}
+        <div className="led-ticker glass-hud-premium rounded-lg px-4 py-2 mb-5 sm:mb-8 md:mb-10 max-w-2xl mx-auto hud-border">
+          <div className="led-ticker-content text-[10px] sm:text-xs text-cyan-400/80 font-mono-data">
+            <span className="led-blink">⚡</span> 35ms 響應時間 &nbsp;|&nbsp; 
+            <span className="led-blink">🔒</span> 100% 沙盒隔離 &nbsp;|&nbsp; 
+            <span className="led-blink">🌐</span> 中英日三語支援 &nbsp;|&nbsp; 
+            <span className="led-blink">⚡</span> 7天快速部署 &nbsp;|&nbsp; 
+            <span className="led-blink">🔒</span> SOC2 合規 &nbsp;|&nbsp; 
+            <span className="led-blink">🌐</span> 全球 CDN 加速 &nbsp;|&nbsp; 
+            <span className="led-blink">⚡</span> 99.9% 在線率 &nbsp;|&nbsp; 
+            <span className="led-blink">🔒</span> 端到端加密
+          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 md:gap-4 px-3">

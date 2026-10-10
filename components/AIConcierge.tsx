@@ -80,7 +80,7 @@ export default function AIConcierge() {
         <button
           onClick={() => setIsOpen(true)}
           aria-label="開啟 AI 樓管"
-          className="orbit-control-left orbit-ai-control fixed bottom-8 sm:bottom-10 md:bottom-4 left-1 sm:left-2 md:left-3 z-50 w-8 h-8 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full glass-panel border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300 group"
+          className="orbit-control-left orbit-ai-control fixed bottom-8 sm:bottom-10 md:bottom-4 left-1 sm:left-2 md:left-3 z-50 w-8 h-8 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full glass-hud-neon border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300 group"
         >
           <MessageCircle size={14} className="text-cyan-400 group-hover:scale-110 transition-transform sm:w-[15px] sm:h-[15px] md:w-4 md:h-4" />
           <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-2.5 md:h-2.5 bg-cyan-400 rounded-full animate-pulse" />
@@ -88,15 +88,15 @@ export default function AIConcierge() {
       )}
 
       {isOpen && (
-        <div className="orbit-control-left orbit-ai-control fixed bottom-8 sm:bottom-10 md:bottom-4 left-1 sm:left-2 md:left-3 right-1 sm:right-auto md:right-auto z-50 sm:w-[280px] md:w-[320px] h-[50vh] sm:h-[400px] md:h-[440px] max-h-[400px] glass-panel rounded-xl sm:rounded-xl md:rounded-2xl border border-cyan-400/20 flex flex-col shadow-2xl shadow-cyan-400/10">
+        <div className="orbit-control-left orbit-ai-control fixed bottom-8 sm:bottom-10 md:bottom-4 left-1 sm:left-2 md:left-3 right-1 sm:right-auto md:right-auto z-50 sm:w-[280px] md:w-[320px] h-[50vh] sm:h-[400px] md:h-[440px] max-h-[400px] glass-hud-premium rounded-xl sm:rounded-xl md:rounded-2xl border border-cyan-400/20 flex flex-col shadow-2xl shadow-cyan-400/10">
           <div className="flex items-center justify-between p-2.5 sm:p-3 md:p-4 border-b border-white/10">
             <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5">
               <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center">
                 <Bot size={12} className="text-cyan-400 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" />
               </div>
               <div>
-                <div className="text-[10px] sm:text-[11px] md:text-xs font-bold text-white tracking-wider">{t("ai.title")}</div>
-                <div className="text-[7px] sm:text-[8px] md:text-[9px] text-cyan-400/60">{t("ai.subtitle")}</div>
+                <div className="text-[10px] sm:text-[11px] md:text-xs font-bold text-white tracking-wider font-tech">{t("ai.title")}</div>
+                <div className="text-[7px] sm:text-[8px] md:text-[9px] text-cyan-400/60 font-mono-data">{t("ai.subtitle")}</div>
               </div>
             </div>
             <button

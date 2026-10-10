@@ -27,7 +27,7 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
     <>
       {/* === 左上角：品牌 Logo === */}
       <div className="orbit-control-left fixed top-1.5 sm:top-2.5 md:top-4 left-1.5 sm:left-2 md:left-3 z-50 pointer-events-auto">
-        <div className="orbit-header-panel glass-panel rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 hud-border">
+        <div className="orbit-header-panel glass-hud-premium rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 hud-border">
           <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5">
             <img 
               src={logoSrc} 
@@ -35,10 +35,10 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
               className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 object-contain rounded-full"
             />
             <div className="min-w-0">
-              <h1 className="text-[9px] sm:text-[10px] md:text-xs font-bold tracking-[0.08em] sm:tracking-[0.12em] md:tracking-[0.15em] text-white uppercase neon-text truncate max-w-[80px] sm:max-w-[100px] md:max-w-none">
+              <h1 className="text-[9px] sm:text-[10px] md:text-xs font-bold tracking-[0.08em] sm:tracking-[0.12em] md:tracking-[0.15em] text-white uppercase neon-text truncate max-w-[80px] sm:max-w-[100px] md:max-w-none font-tech">
                 SNT <span className="text-cyan-400">|</span> {t("brand.nameShort")}
               </h1>
-              <p className="text-[6px] sm:text-[7px] md:text-[9px] tracking-[0.06em] text-cyan-400/50 uppercase truncate">
+              <p className="text-[6px] sm:text-[7px] md:text-[9px] tracking-[0.06em] text-cyan-400/50 uppercase truncate font-mono-data">
                 {t("brand.taglineShort")}
               </p>
             </div>
@@ -48,7 +48,7 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
 
       {/* === 右上角：功能按鈕 === */}
       <div className="orbit-control-right fixed top-1.5 sm:top-2.5 md:top-4 right-1.5 sm:right-2 md:right-3 z-50 pointer-events-auto">
-        <div className="orbit-header-actions glass-panel rounded-lg sm:rounded-xl px-1.5 sm:px-2 md:px-3 py-1 sm:py-1.5 md:py-2 hud-border">
+        <div className="orbit-header-actions glass-hud-premium rounded-lg sm:rounded-xl px-1.5 sm:px-2 md:px-3 py-1 sm:py-1.5 md:py-2 hud-border">
           {/* 桌面選單 (> 768px) */}
           <div className="hidden md:flex items-center gap-1.5">
             <button onClick={onAboutClick} className="flex items-center gap-1 text-[11px] px-2 py-1.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all tracking-wider">

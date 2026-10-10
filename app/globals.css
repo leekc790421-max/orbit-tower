@@ -23,7 +23,7 @@
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'JetBrains Mono', 'Orbitron', 'Noto Sans TC', 'Courier New', monospace;
+  font-family: 'Inter', 'Space Grotesk', 'JetBrains Mono', 'Orbitron', 'Noto Sans TC', 'Noto Sans JP', sans-serif;
   overflow: hidden;
   cursor: crosshair;
   -webkit-font-smoothing: antialiased;
@@ -409,4 +409,101 @@ body {
 @media (min-width: 1025px) {
   .orbit-scene-controls { right: 24px !important; bottom: 24px !important; }
   .orbit-floor-indicator { left: 24px !important; }
+}
+
+/* === LED 動態數據跑馬燈效果 === */
+@keyframes led-scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes led-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes led-pulse {
+  0%, 100% { 
+    text-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+    opacity: 1;
+  }
+  50% { 
+    text-shadow: 0 0 4px currentColor, 0 0 8px currentColor;
+    opacity: 0.7;
+  }
+}
+
+.led-ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.led-ticker-content {
+  display: inline-block;
+  animation: led-scroll 20s linear infinite;
+}
+
+.led-blink {
+  animation: led-blink 1.5s ease-in-out infinite;
+}
+
+.led-pulse {
+  animation: led-pulse 2s ease-in-out infinite;
+}
+
+.led-data {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* === 強化玻璃擬物化 HUD === */
+.glass-hud-premium {
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 1px rgba(0, 212, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.glass-hud-neon {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(14px) saturate(1.5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  box-shadow: 
+    0 0 20px rgba(0, 212, 255, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* === 字體層級 === */
+.font-display {
+  font-family: 'Space Grotesk', 'Inter', 'Noto Sans TC', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.font-heading {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  font-weight: 500;
+}
+
+.font-mono-data {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.font-tech {
+  font-family: 'Orbitron', 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
