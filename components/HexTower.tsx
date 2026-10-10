@@ -14,10 +14,8 @@ interface HexTowerProps {
 function FloatingParticles({ count, color, radius }: { count: number; color: string; radius: number }) {
   const pointsRef = useRef<THREE.Points>(null);
 
-  // 使用 useRef 初始化隨機值，避免 React 19 strict mode 錯誤
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
-    // 使用 deterministic seed 避免 strict mode 問題
     let seed = count * radius * 1000;
     const seededRandom = () => {
       seed = (seed * 9301 + 49297) % 233280;
@@ -56,23 +54,28 @@ function FloatingParticles({ count, color, radius }: { count: number; color: str
   );
 }
 
-// ===== 金庫核心 (C面金流, F面機密) — 參考圖1: 藍色金屬保險箱 =====
+// ===== 金庫核心 (C面金流, F面機密) — 參考圖2: 藍色金屬保險箱 =====
 function VaultCore({ color }: { color: string }) {
   const groupRef = useRef<THREE.Group>(null);
   const ringRef = useRef<THREE.Mesh>(null);
   const ring2Ref = useRef<THREE.Mesh>(null);
+  const doorRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
     if (ringRef.current) ringRef.current.rotation.z = t * 0.6;
     if (ring2Ref.current) ring2Ref.current.rotation.z = -t * 0.4;
     if (groupRef.current) groupRef.current.rotation.y = t * 0.12;
+    if (doorRef.current) {
+      const mat = doorRef.current.material as THREE.MeshStandardMaterial;
+      mat.emissiveIntensity = 0.1 + Math.sin(t * 2) * 0.05;
+    }
   });
 
   return (
     <group ref={groupRef} scale={0.32}>
       {/* 中央金屬方塊 — 保險箱主體 */}
-      <mesh>
+      <mesh ref={doorRef}>
         <boxGeometry args={[0.7, 0.7, 0.7]} />
         <meshStandardMaterial
           color="#111122"
@@ -124,6 +127,11 @@ function VaultCore({ color }: { color: string }) {
           />
         </mesh>
       ))}
+      {/* 保險箱門把手 */}
+      <mesh position={[0.2, 0, 0.36]}>
+        <cylinderGeometry args={[0.06, 0.06, 0.02, 16]} />
+        <meshStandardMaterial color="#444" metalness={1} roughness={0.1} />
+      </mesh>
       <FloatingParticles count={18} color={color} radius={0.55} />
     </group>
   );
@@ -134,6 +142,7 @@ function EnergyCore({ color }: { color: string }) {
   const coreRef = useRef<THREE.Mesh>(null);
   const ringsRef = useRef<THREE.Group>(null);
   const platesRef = useRef<THREE.Group>(null);
+  const beamRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
@@ -143,6 +152,10 @@ function EnergyCore({ color }: { color: string }) {
     }
     if (ringsRef.current) ringsRef.current.rotation.y = t * 0.9;
     if (platesRef.current) platesRef.current.rotation.y = -t * 0.3;
+    if (beamRef.current) {
+      const mat = beamRef.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = 0.15 + Math.sin(t * 4) * 0.08;
+    }
   });
 
   return (
@@ -156,6 +169,15 @@ function EnergyCore({ color }: { color: string }) {
           emissiveIntensity={1.2}
           transparent
           opacity={0.85}
+        />
+      </mesh>
+      {/* 垂直能量光束 */}
+      <mesh ref={beamRef}>
+        <cylinderGeometry args={[0.02, 0.02, 1.8, 8]} />
+        <meshBasicMaterial
+          color={color}
+          transparent
+          opacity={0.15}
         />
       </mesh>
       {/* 外層能量光柱 */}
@@ -205,11 +227,12 @@ function EnergyCore({ color }: { color: string }) {
   );
 }
 
-// ===== 量子核心 (B面品牌, E面GEO) — 參考圖2: 紫色量子軌道 =====
+// ===== 量子核心 (B面品牌, E面GEO) — 參考圖3: 紫色量子軌道 =====
 function QuantumCore({ color }: { color: string }) {
   const ringsRef = useRef<THREE.Group>(null);
   const coreRef = useRef<THREE.Mesh>(null);
   const spheresRef = useRef<THREE.Group>(null);
+  const starburstRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
@@ -222,6 +245,11 @@ function QuantumCore({ color }: { color: string }) {
       mat.emissiveIntensity = 1.2 + Math.sin(t * 2.5) * 0.6;
     }
     if (spheresRef.current) spheresRef.current.rotation.y = t * 0.55;
+    if (starburstRef.current) {
+      const mat = starburstRef.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = 0.1 + Math.sin(t * 3) * 0.06;
+      starburstRef.current.scale.setScalar(1 + Math.sin(t * 2) * 0.1);
+    }
   });
 
   return (
@@ -237,6 +265,16 @@ function QuantumCore({ color }: { color: string }) {
           opacity={0.9}
         />
       </mesh>
+      {/* 中心星爆光暈 */}
+      <mesh ref={starburstRef}>
+        <sphereGeometry args={[0.35, 16, 16]} />
+        <meshBasicMaterial
+          color={color}
+          transparent
+          opacity={0.1}
+          side={THREE.BackSide}
+        />
+      </mesh>
       {/* 外層光暈球 */}
       <mesh>
         <sphereGeometry args={[0.25, 16, 16]} />
@@ -249,7 +287,7 @@ function QuantumCore({ color }: { color: string }) {
           side={THREE.BackSide}
         />
       </mesh>
-      {/* 雙環軌道 */}
+      {/* 三環軌道 — 對齊參考圖3的原子軌道 */}
       <group ref={ringsRef}>
         <mesh rotation={[Math.PI / 3, 0, 0]}>
           <torusGeometry args={[0.42, 0.018, 16, 48]} />
@@ -373,7 +411,7 @@ function InnerCore({ unit, color }: { unit: Unit; color: string }) {
   }
 }
 
-// ===== 單一晶體方塊戶別單元 (對齊參考圖: 玻璃方塊展示櫃 + 機械核心) =====
+// ===== 單一晶體方塊戶別單元 — 對齊參考圖: 玻璃方塊展示櫃 + 機械核心 =====
 function CrystalUnit({
   unit,
   position,
@@ -387,6 +425,7 @@ function CrystalUnit({
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const edgeRef = useRef<THREE.LineSegments>(null);
+  const glowRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const baseColor = LIGHT_COLORS[lightColor].hex;
   const unitColor = unit.color || baseColor;
@@ -404,6 +443,12 @@ function CrystalUnit({
       const baseOpacity = unit.status === "available" ? 0.3 : unit.status === "isolated" ? 0.7 : 0.5;
       mat.opacity = baseOpacity + Math.sin(t * 2) * 0.15;
     }
+    // 外層光暈脈動
+    if (glowRef.current) {
+      const mat = glowRef.current.material as THREE.MeshBasicMaterial;
+      const base = unit.status === "occupied" ? 0.06 : unit.status === "isolated" ? 0.08 : 0.03;
+      mat.opacity = base + Math.sin(t * 1.5) * 0.02;
+    }
   });
 
   const getStatusEmissive = () => {
@@ -416,7 +461,7 @@ function CrystalUnit({
 
   // 晶體方塊尺寸
   const cubeSize = 0.72;
-  const gap = 0.02; // 方塊間隙
+  const gap = 0.02;
 
   return (
     <group
@@ -468,12 +513,12 @@ function CrystalUnit({
       </lineSegments>
 
       {/* === 外層光暈框 — 參考圖的 edge glow === */}
-      <mesh>
-        <boxGeometry args={[cubeSize + 0.01, cubeSize + 0.01, cubeSize + 0.01]} />
+      <mesh ref={glowRef}>
+        <boxGeometry args={[cubeSize + 0.02, cubeSize + 0.02, cubeSize + 0.02]} />
         <meshBasicMaterial
           color={unit.status === "available" ? "#4488ff" : unitColor}
           transparent
-          opacity={0.03}
+          opacity={0.04}
           side={THREE.BackSide}
         />
       </mesh>
@@ -481,7 +526,7 @@ function CrystalUnit({
       {/* === 內部核心 — 對齊參考圖的機械核心 === */}
       <InnerCore unit={unit} color={unitColor} />
 
-      {/* === 內部點光源 — 更強的青藍發光 === */}
+      {/* === 內部點光源 — 更強的發光 === */}
       <pointLight
         position={[0, 0, 0]}
         color={unitColor}
@@ -567,7 +612,7 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
         />
       </mesh>
 
-      {/* === 中央柱外層光暈 — 更強的 glow === */}
+      {/* === 中央柱外層光暈 === */}
       <mesh ref={coreGlowRef} position={[0, 0, 0]}>
         <cylinderGeometry args={[0.35, 0.35, 7.5, 16]} />
         <meshBasicMaterial
@@ -606,7 +651,7 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
         />
       ))}
 
-      {/* === 頂樓天線 — 更細更亮 === */}
+      {/* === 頂樓天線 === */}
       <mesh position={[0, 4.2, 0]}>
         <cylinderGeometry args={[0.02, 0.02, 2.0, 8]} />
         <meshStandardMaterial
@@ -615,7 +660,7 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
           emissiveIntensity={2.0}
         />
       </mesh>
-      
+
       {/* 天線頂端發光球 */}
       <mesh position={[0, 5.2, 0]}>
         <sphereGeometry args={[0.06, 16, 16]} />
@@ -625,7 +670,7 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
           opacity={0.9}
         />
       </mesh>
-      
+
       <pointLight
         position={[0, 5.2, 0]}
         color={LIGHT_COLORS[lightColor].hex}
@@ -647,7 +692,7 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
         />
       </mesh>
 
-      {/* === 地面中心發光環 — 對齊參考圖的底部光環 === */}
+      {/* === 地面中心發光環 === */}
       <mesh position={[0, -3.79, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[1.2, 1.8, 6]} />
         <meshBasicMaterial
@@ -658,7 +703,7 @@ export default function HexTower({ lightColor, onUnitClick }: HexTowerProps) {
         />
       </mesh>
 
-      {/* === 漂浮粒子 — 對齊參考圖的懸浮微粒 === */}
+      {/* === 漂浮粒子 === */}
       <FloatingParticles count={60} color={LIGHT_COLORS[lightColor].hex} radius={3.5} />
     </group>
   );

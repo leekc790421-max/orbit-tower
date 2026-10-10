@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
         success: true,
         data: {
           referral_code: referralCode,
-          referral_link: `https://orbit-tower.vercel.app/?ref=${referralCode}`,
+          referral_link: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit.xingdeng.tw'}/?ref=${referralCode}`,
           rewards: REFERRAL_REWARDS,
         },
       });
@@ -170,7 +170,7 @@ export async function GET(request: NextRequest) {
     valid: true,
     data: {
       referral_code: code,
-      referral_link: `https://orbit-tower.vercel.app/?ref=${code}`,
+      referral_link: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit.xingdeng.tw'}/?ref=${code}`,
     },
   });
 }

@@ -9,6 +9,7 @@ interface EnvironmentProps {
   theme: Theme;
 }
 
+// ===== 霓虹夜城 — 參考圖1: 翡翠綠博物館展廳 =====
 function CyberNight() {
   const particlesRef = useRef<THREE.Points>(null);
 
@@ -26,7 +27,6 @@ function CyberNight() {
       pos[i * 3 + 1] = (seededRandom() - 0.5) * 30;
       pos[i * 3 + 2] = (seededRandom() - 0.5) * 40;
       const c = new THREE.Color();
-      // 更偏青藍色調
       c.setHSL(0.55 + seededRandom() * 0.08, 0.9, 0.5 + seededRandom() * 0.3);
       col[i * 3] = c.r;
       col[i * 3 + 1] = c.g;
@@ -45,24 +45,24 @@ function CyberNight() {
     <>
       {/* 更深的霧氣 — 對齊參考圖的黑暗氛圍 */}
       <fog attach="fog" args={["#030308", 4, 28]} />
-      
+
       {/* 環境光 — 更暗 */}
       <ambientLight intensity={0.05} color="#1a1a3a" />
-      
+
       {/* 主方向光 — 模擬頂部聚光燈 */}
       <directionalLight position={[0, 15, 0]} intensity={0.4} color="#ffffff" />
-      
+
       {/* 側面補光 — 青藍色調 */}
       <directionalLight position={[8, 8, 8]} intensity={0.2} color="#4488ff" />
       <directionalLight position={[-8, 8, -8]} intensity={0.15} color="#00ccff" />
-      
+
       {/* 底部微弱反射光 */}
       <pointLight position={[0, -5, 0]} intensity={0.3} color="#0066cc" distance={15} />
-      
+
       {/* 遠處氛圍光 */}
       <pointLight position={[-12, 3, -12]} intensity={0.4} color="#2244aa" distance={25} />
       <pointLight position={[12, 3, 12]} intensity={0.4} color="#0088ff" distance={25} />
-      
+
       {/* 漂浮粒子 */}
       <points ref={particlesRef}>
         <bufferGeometry>
@@ -71,13 +71,14 @@ function CyberNight() {
         </bufferGeometry>
         <pointsMaterial size={0.04} vertexColors transparent opacity={0.85} sizeAttenuation />
       </points>
-      
+
       {/* 地面網格 — 更暗更細 */}
       <gridHelper args={[50, 50, "#002244", "#000a1a"]} position={[0, -5, 0]} />
     </>
   );
 }
 
+// ===== 雲海日出 — 參考圖2: 琥珀金奢華展廳 =====
 function CloudMountain() {
   const cloudsRef = useRef<THREE.Points>(null);
 
@@ -126,6 +127,7 @@ function CloudMountain() {
   );
 }
 
+// ===== 深海秘境 — 參考圖3: 極光紫量子展廳 =====
 function DeepSea() {
   const particlesRef = useRef<THREE.Points>(null);
 
@@ -133,7 +135,6 @@ function DeepSea() {
     const count = 1800;
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
-    // 使用 deterministic seed 避免 strict mode 問題
     let seed = 12345;
     const seededRandom = () => {
       seed = (seed * 9301 + 49297) % 233280;
@@ -153,8 +154,8 @@ function DeepSea() {
   }, []);
 
   useFrame((state) => {
+    const t = state.clock.elapsedTime;
     if (particlesRef.current) {
-      const t = state.clock.elapsedTime;
       particlesRef.current.rotation.y = t * 0.015;
       particlesRef.current.rotation.x = Math.sin(t * 0.1) * 0.05;
     }

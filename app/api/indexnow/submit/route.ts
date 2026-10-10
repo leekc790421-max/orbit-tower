@@ -26,7 +26,7 @@ const INDEXNOW_ENDPOINTS = [
 
 export async function POST(request: NextRequest) {
   // 在 handler 內部讀取環境變數（避免 build 階段問題）
-  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit-tower.vercel.app';
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit.xingdeng.tw';
   const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'orbit-tower-indexnow-key-2026';
   const INDEXNOW_KEY_LOCATION = `${SITE_URL}/${INDEXNOW_KEY}.txt`;
 
@@ -147,7 +147,7 @@ async function submitToIndexNow(
  */
 export async function GET() {
   // 在 handler 內部讀取環境變數
-  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit-tower.vercel.app';
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://orbit.xingdeng.tw';
   const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'orbit-tower-indexnow-key-2026';
   const INDEXNOW_KEY_LOCATION = `${SITE_URL}/${INDEXNOW_KEY}.txt`;
 
