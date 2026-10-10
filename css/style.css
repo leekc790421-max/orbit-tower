@@ -73,7 +73,7 @@ p {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(10, 10, 15, 0.95);
+  background: var(--nav-bg, rgba(10, 10, 15, 0.95));
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-glow);
   padding: 1rem 2rem;
@@ -190,7 +190,7 @@ p {
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 900;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #fff 0%, var(--primary-blue) 50%, var(--primary-purple) 100%);
+  background: linear-gradient(135deg, var(--gradient-text-start, #fff) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -258,7 +258,7 @@ p {
   font-size: var(--font-3xl);
   text-align: center;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #fff, var(--primary-blue));
+  background: linear-gradient(135deg, var(--gradient-text-start, #fff), var(--primary-blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -485,7 +485,7 @@ p {
 
 .solution-features li {
   padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--divider, rgba(255, 255, 255, 0.1));
   color: var(--text-secondary);
   font-size: var(--font-md);
 }
@@ -496,7 +496,7 @@ p {
 
 /* Footer */
 .footer {
-  background: rgba(5, 5, 10, 0.95);
+  background: var(--footer-bg, rgba(5, 5, 10, 0.95));
   border-top: 1px solid var(--border-glow);
   padding: 4rem 2rem 2rem;
   margin-top: 6rem;
@@ -668,8 +668,8 @@ p {
 }
 
 .line-float-label {
-  background: rgba(10, 10, 15, 0.9);
-  color: white;
+  background: var(--nav-bg, rgba(10, 10, 15, 0.9));
+  color: var(--text-primary, white);
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
   font-size: 13px;

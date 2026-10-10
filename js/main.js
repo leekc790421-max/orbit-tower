@@ -30,8 +30,8 @@ document.querySelectorAll('.card, .capability-card, .solution-card, .explore-ite
 const nav = document.querySelector('.nav-main');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
-    nav.style.background = 'rgba(10, 10, 15, 0.98)';
+    nav.style.background = 'var(--nav-bg-scroll, rgba(10, 10, 15, 0.98))';
   } else {
-    nav.style.background = 'rgba(10, 10, 15, 0.95)';
+    nav.style.background = 'var(--nav-bg, rgba(10, 10, 15, 0.95))';
   }
 });

@@ -14,7 +14,7 @@
   font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 900;
   text-align: center;
-  background: linear-gradient(135deg, #fff, var(--primary-purple), var(--primary-blue));
+  background: linear-gradient(135deg, var(--gradient-text-start, #fff), var(--primary-purple), var(--primary-blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -161,7 +161,7 @@
   position: fixed;
   inset: 0;
   z-index: 2000;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
   align-items: center;
   justify-content: center;
@@ -202,10 +202,10 @@
   right: 1rem;
   width: 40px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  color: white;
+  color: var(--text-primary);
   font-size: 1.5rem;
   cursor: pointer;
   display: flex;
