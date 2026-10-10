@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aegis Domain AI — 網域資產管理系統 | Orbit Tower</title>
+  <meta name="description" content="Aegis Domain AI — Orbit Tower 網域資產管理系統。網域分租、風險分析、自動開通、續約管理、違規監控。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/aegis.css">
+  <link rel="stylesheet" href="css/line-chat.css">
+  <link rel="stylesheet" href="css/theme-switcher.css">
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="nav-main">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/snt-logo.jpg" alt="SNT Logo" class="nav-logo-img">
+        <span class="nav-logo-text">ORBIT TOWER</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="tower.html">3D 大樓</a></li>
+        <li><a href="gallery.html">科技藝廊</a></li>
+        <li><a href="pricing.html">價格方案</a></li>
+        <li><a href="legal/index.html">法律中心</a></li>
+        <li><a href="aegis.html" style="color:var(--primary-blue);">Aegis</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">立即預約</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="aegis-hero">
+    <div class="aegis-hero-content fade-in-up">
+      <div class="aegis-logo">🛡️</div>
+      <h1 class="aegis-title">Aegis Domain AI</h1>
+      <p class="aegis-subtitle">Orbit Tower Domain Asset Manager</p>
+      <p class="aegis-tagline">網域資產 · 網域分租 · 到期管理 · DNS · 租戶管理 · SEO 權重管理</p>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="aegis-stats">
+    <div class="aegis-stat-card">
+      <div class="aegis-stat-value" id="stat-domains">48</div>
+      <div class="aegis-stat-label">管理網域</div>
+    </div>
+    <div class="aegis-stat-card">
+      <div class="aegis-stat-value" id="stat-tenants">23</div>
+      <div class="aegis-stat-label">活躍租戶</div>
+    </div>
+    <div class="aegis-stat-card">
+      <div class="aegis-stat-value" id="stat-score">94</div>
+      <div class="aegis-stat-label">平均 Tenant Score</div>
+    </div>
+    <div class="aegis-stat-card">
+      <div class="aegis-stat-value" id="stat-uptime">99.9%</div>
+      <div class="aegis-stat-label">系統可用率</div>
+    </div>
+  </div>
+
+  <!-- MODULE 1: Domain Verification -->
+  <section class="aegis-module" id="verification">
+    <div class="aegis-module-header">
+      <div class="aegis-module-icon">🔐</div>
+      <h2 class="aegis-module-title">Domain Verification</h2>
+    </div>
+    <p class="aegis-module-desc">驗證申請人身份，建立 Tenant Score。系統自動檢查 Email、手機 OTP、公司統編、公司名稱、用途說明、產業類別。</p>
+    
+    <div class="verification-form">
+      <div class="verification-grid">
+        <div class="verification-field">
+          <label>電子郵件</label>
+          <input type="email" placeholder="your@company.com" value="admin@techcorp.tw">
+        </div>
+        <div class="verification-field">
+          <label>手機 OTP</label>
+          <input type="tel" placeholder="+886-9XX-XXX-XXX" value="+886-912-345-678">
+        </div>
+        <div class="verification-field">
+          <label>公司統编</label>
+          <input type="text" placeholder="8 位數統編" value="24681357">
+        </div>
+        <div class="verification-field">
+          <label>公司名稱</label>
+          <input type="text" placeholder="公司全名" value="科技领航有限公司">
+        </div>
+        <div class="verification-field">
+          <label>用途說明</label>
+          <textarea placeholder="請說明網域用途">企業官方網站、產品展示、客戶服務入口</textarea>
+        </div>
+        <div class="verification-field">
+          <label>產業類別</label>
+          <select>
+            <option value="tech" selected>科技業</option>
+            <option value="manufacturing">製造業</option>
+            <option value="finance">金融業</option>
+            <option value="healthcare">醫療業</option>
+            <option value="education">教育業</option>
+            <option value="retail">零售業</option>
+            <option value="other">其他</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="tenant-score-display">
+        <div class="tenant-score-value" id="tenant-score">87</div>
+        <div class="tenant-score-label">Tenant Score — 高可信度租戶</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 2: Risk Analysis Engine -->
+  <section class="aegis-module" id="risk">
+    <div class="aegis-module-header">
+      <div class="aegis-module-icon">⚡</div>
+      <h2 class="aegis-module-title">Risk Analysis Engine</h2>
+    </div>
+    <p class="aegis-module-desc">AI 驅動風險分析引擎，綜合評估產業、網站內容、關鍵字、用途，產生 Risk Score（0~100）。</p>
+    
+    <div class="risk-analysis-panel">
+      <div class="risk-meter">
+        <div class="risk-gauge">
+          <svg viewBox="0 0 200 200">
+            <circle class="risk-gauge-bg" cx="100" cy="100" r="85"></circle>
+            <circle class="risk-gauge-fill" id="risk-gauge-fill" cx="100" cy="100" r="85" 
+              stroke-dasharray="534" stroke-dashoffset="374" stroke="#22c55e"></circle>
+          </svg>
+          <div class="risk-gauge-text">
+            <div class="risk-gauge-value" id="risk-score">30</div>
+            <div class="risk-gauge-label">Risk Score</div>
+          </div>
+        </div>
+        
+        <div class="risk-breakdown">
+          <div class="risk-factor">
+            <span class="risk-factor-name">產業風險</span>
+            <div class="risk-factor-bar">
+              <div class="risk-factor-fill" style="width: 15%; background: #22c55e;"></div>
+            </div>
+            <span class="risk-factor-score" style="color: #16a34a;">15</span>
+          </div>
+          <div class="risk-factor">
+            <span class="risk-factor-name">內容風險</span>
+            <div class="risk-factor-bar">
+              <div class="risk-factor-fill" style="width: 25%; background: #22c55e;"></div>
+            </div>
+            <span class="risk-factor-score" style="color: #16a34a;">25</span>
+          </div>
+          <div class="risk-factor">
+            <span class="risk-factor-name">關鍵字風險</span>
+            <div class="risk-factor-bar">
+              <div class="risk-factor-fill" style="width: 20%; background: #22c55e;"></div>
+            </div>
+            <span class="risk-factor-score" style="color: #16a34a;">20</span>
+          </div>
+          <div class="risk-factor">
+            <span class="risk-factor-name">用途風險</span>
+            <div class="risk-factor-bar">
+              <div class="risk-factor-fill" style="width: 10%; background: #22c55e;"></div>
+            </div>
+            <span class="risk-factor-score" style="color: #16a34a;">10</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="risk-decision">
+        <div class="risk-decision-badge pass">
+          <span>✓</span> 0~30 自動通過
+        </div>
+        <div class="risk-decision-badge review">
+          <span>⏳</span> 31~70 人工審核
+        </div>
+        <div class="risk-decision-badge reject">
+          <span>✗</span> 71+ 拒絕申請
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 3: Domain Leasing Engine -->
+  <section class="aegis-module" id="leasing">
+    <div class="aegis-module-header">
+      <div class="aegis-module-icon">🌐</div>
+      <h2 class="aegis-module-title">Domain Leasing Engine</h2>
+    </div>
+    <p class="aegis-module-desc">管理可出租網域，顯示流量等級、SEO 等級、租用狀態、到期日、續約狀態。</p>
+    
+    <div class="domain-grid">
+      <div class="domain-card">
+        <div class="domain-card-header">
+          <span class="domain-name">ai-solutions.tw</span>
+          <span class="domain-status available">可出租</span>
+        </div>
+        <div class="domain-metrics">
+          <div class="domain-metric">
+            <div class="domain-metric-value">A</div>
+            <div class="domain-metric-label">流量等級</div>
+          </div>
+          <div class="domain-metric">
+            <div class="domain-metric-value">92</div>
+            <div class="domain-metric-label">SEO 等級</div>
+          </div>
+          <div class="domain-metric">
+            <div class="domain-metric-value">DA 68</div>
+            <div class="domain-metric-label">Domain Auth</div>
+          </div>
+        </div>
+        <div class="domain-info">
+          <div class="domain-info-row">
+            <span>產業：</span><span>AI / 科技</span>
+          </div>
+          <div class="domain-info-row">
+            <span>月流量：</span><span>45,000+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="domain-card">
+        <div class="domain-card-header">
+          <span class="domain-name">smart-mfg.com</span>
+          <span class="domain-status leased">已出租</span>
+        </div>
+        <div class="domain-metrics">
+          <div class="domain-metric">
+            <div class="domain-metric-value">B+</div>
+            <div class="domain-metric-label">流量等級</div>
+          </div>
+          <div class="domain-metric">
+            <div class="domain-metric-value">78</div>
+            <div class="domain-metric-label">SEO 等級</div>
+          </div>
+          <div class="domain-metric">
+            <div class="domain-metric-value">DA 55</div>
+            <div class="domain-metric-label">Domain Auth</div>
+          </div>
+        </div>
+        <div class="domain-info">
+          <div class="domain-info-row">
+            <span>租戶：</span><span>智慧製造有限公司</span>
+          </div>
+          <div class="domain-info-row">
+            <span>到期日：</span><span>2027-03-15</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="domain-card">
+        <div class="domain-card-header">
+          <span class="domain-name">fintech-hub.asia</span>
+          <span class="domain-status expiring">即將到期</span>
+        </div>
+        <div class="domain-metrics">
+          <div class="domain-metric">
+            <div class="domain-metric-value">A+</div>
+            <div class="domain-metric-label">流量等級</div>
+          </div>
+          <div class="domain-metric">
+            <div class="domain-metric-value">95</div>
+            <div class="domain-metric-label">SEO 等級</div>
+          </div>
+          <div class="domain-metric">
+            <div class="domain-metric-value">DA 72</div>
+            <div class="domain-metric-label">Domain Auth</div>
+          </div>
+        </div>
+        <div class="domain-info">
+          <div class="domain-info-row">
+            <span>租戶：</span><span>亞洲金融科技</span>
+          </div>
+          <div class="domain-info-row">
+            <span>到期日：</span><span style="color: #ca8a04; font-weight: 600;">2026-11-30</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 4: Auto Provisioning -->
+  <section class="aegis-module" id="provisioning">
+    <div class="aegis-module-header">
+      <div class="aegis-module-icon">🚀</div>
+      <h2 class="aegis-module-title">Auto Provisioning</h2>
+    </div>
+    <p class="aegis-module-desc">付款完成後自動建立：Tenant ID、Workspace、Portal、CRM、Knowledge Base、Client Dashboard。</p>
+    
+    <div class="provisioning-flow">
+      <div class="provisioning-step completed">
+        <div class="provisioning-step-icon">✓</div>
+        <div class="provisioning-step-label">Tenant ID<br>建立</div>
+      </div>
+      <div class="provisioning-arrow">→</div>
+      <div class="provisioning-step completed">
+        <div class="provisioning-step-icon">✓</div>
+        <div class="provisioning-step-label">Workspace<br>配置</div>
+      </div>
+      <div class="provisioning-arrow">→</div>
+      <div class="provisioning-step completed">
+        <div class="provisioning-step-icon">✓</div>
+        <div class="provisioning-step-label">Portal<br>部署</div>
+      </div>
+      <div class="provisioning-arrow">→</div>
+      <div class="provisioning-step active">
+        <div class="provisioning-step-icon">⚙️</div>
+        <div class="provisioning-step-label">CRM<br>整合中</div>
+      </div>
+      <div class="provisioning-arrow">→</div>
+      <div class="provisioning-step">
+        <div class="provisioning-step-icon">📚</div>
+        <div class="provisioning-step-label">Knowledge<br>Base</div>
+      </div>
+      <div class="provisioning-arrow">→</div>
+      <div class="provisioning-step">
+        <div class="provisioning-step-icon">📊</div>
+        <div class="provisioning-step-label">Dashboard<br>啟動</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 5: Auto Renewal -->
+  <section class="aegis-module" id="renewal">
+    <div class="aegis-module-header">
+      <div class="aegis-module-icon">🔔</div>
+      <h2 class="aegis-module-title">Auto Renewal</h2>
+    </div>
+    <p class="aegis-module-desc">到期前 90、60、30、15、7 天自動通知。支援信用卡續扣、自動續約。</p>
+    
+    <div class="renewal-timeline">
+      <div class="renewal-milestones">
+        <div class="renewal-milestone">
+          <div class="renewal-dot active"></div>
+          <div class="renewal-label">90 天</div>
+          <div class="renewal-sublabel">首次通知</div>
+        </div>
+        <div class="renewal-milestone">
+          <div class="renewal-dot active"></div>
+          <div class="renewal-label">60 天</div>
+          <div class="renewal-sublabel">二次提醒</div>
+        </div>
+        <div class="renewal-milestone">
+          <div class="renewal-dot active"></div>
+          <div class="renewal-label">30 天</div>
+          <div class="renewal-sublabel">緊急通知</div>
+        </div>
+        <div class="renewal-milestone">
+          <div class="renewal-dot"></div>
+          <div class="renewal-label">15 天</div>
+          <div class="renewal-sublabel">最後提醒</div>
+        </div>
+        <div class="renewal-milestone">
+          <div class="renewal-dot"></div>
+          <div class="renewal-label">7 天</div>
+          <div class="renewal-sublabel">到期倒數</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="renewal-options">
+      <div class="renewal-option">
+        <div class="renewal-option-icon">💳</div>
+        <div class="renewal-option-text">
+          <h4>信用卡續扣</h4>
+          <p>綁定信用卡自動扣款，無需手動操作</p>
+        </div>
+      </div>
+      <div class="renewal-option">
+        <div class="renewal-option-icon">🔄</div>
+        <div class="renewal-option-text">
+          <h4>自動續約</h4>
+          <p>到期前自動完成續約，確保服務不中斷</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 6: Violation Monitoring -->
+  <section class="aegis-module" id="violation">
+    <div class="aegis-module-header">
+      <div class="aegis-module-icon">🔍</div>
+      <h2 class="aegis-module-title">Violation Monitoring</h2>
+    </div>
+    <p class="aegis-module-desc">AI 巡檢：詐騙、侵權、非法投資、色情、惡意內容。建立警告、停權、終止流程。</p>
+    
+    <div class="violation-panel">
+      <div class="violation-categories">
+        <div class="violation-category">
+          <div class="violation-category-icon">🚨</div>
+          <div class="violation-category-name">詐騙</div>
+        </div>
+        <div class="violation-category">
+          <div class="violation-category-icon">©️</div>
+          <div class="violation-category-name">侵權</div>
+        </div>
+        <div class="violation-category">
+          <div class="violation-category-icon">💰</div>
+          <div class="violation-category-name">非法投資</div>
+        </div>
+        <div class="violation-category">
+          <div class="violation-category-icon">🔞</div>
+          <div class="violation-category-name">色情</div>
+        </div>
+        <div class="violation-category">
+          <div class="violation-category-icon">⚠️</div>
+          <div class="violation-category-name">惡意內容</div>
+        </div>
+      </div>
+      
+      <div class="violation-actions">
+        <div class="violation-action warning">
+          <div class="violation-action-icon">⚠️</div>
+          <div class="violation-action-title">警告</div>
+          <div class="violation-action-desc">發送警告通知，要求限期改善</div>
+        </div>
+        <div class="violation-action suspend">
+          <div class="violation-action-icon">⏸️</div>
+          <div class="violation-action-title">停權</div>
+          <div class="violation-action-desc">暫停網域服務，保留資料</div>
+        </div>
+        <div class="violation-action terminate">
+          <div class="violation-action-icon">🚫</div>
+          <div class="violation-action-title">終止</div>
+          <div class="violation-action-desc">終止租約，收回網域</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="aegis-cta">
+    <h2>準備好管理您的網域資產了嗎？</h2>
+    <p>Aegis Domain AI 為 Orbit Tower 企業級網域分租方案提供完整的後台管理能力</p>
+    <div class="hero-cta-group">
+      <a href="index.html#contact" class="btn-primary">聯絡顧問</a>
+      <a href="pricing.html" class="btn-secondary">查看方案</a>
+    </div>
+  </section>
+
+  <!-- LINE FLOATING BUTTON -->
+  <div class="line-float">
+    <button class="line-float-btn" title="LINE 諮詢" onclick="lineChat.toggle()">
+      <div class="line-float-pulse"></div>
+      <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.514.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.465.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.592.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.181 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.383 24 12.458 24 10.314"/></svg>
+    </button>
+    <span class="line-float-label">LINE 諮詢</span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Orbit Tower</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="tower.html">3D 大樓</a></li>
+          <li><a href="gallery.html">科技藝廊</a></li>
+          <li><a href="pricing.html">價格方案</a></li>
+          <li><a href="aegis.html">Aegis Domain AI</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>法律中心</h4>
+        <ul>
+          <li><a href="legal/terms.html">服務條款</a></li>
+          <li><a href="legal/privacy.html">隱私政策</a></li>
+          <li><a href="legal/ai-policy.html">AI 聲明</a></li>
+          <li><a href="legal/disclaimer.html">免責聲明</a></li>
+          <li><a href="legal/cloud-services.html">雲端服務聲明</a></li>
+          <li><a href="legal/contracts.html">合約下載</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>聯絡</h4>
+        <ul>
+          <li><a href="mailto:contact@559julyu.ai">contact@559julyu.ai</a></li>
+          <li><a href="index.html#contact">免費預約展示</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Orbit Tower. AI Digital Headquarters. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/line-chat.js"></script>
+  <script src="js/theme-switcher.js"></script>
+  <script src="js/aegis.js"></script>
+</body>
+</html>

@@ -1,0 +1,777 @@
+/* ============================================
+   Aegis Domain AI — Dashboard Styles
+   Orbit Tower Domain Asset Manager
+   ============================================ */
+
+/* HERO */
+.aegis-hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8rem 2rem 4rem;
+  background: var(--hero-gradient);
+  overflow: hidden;
+}
+
+.aegis-hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: aegisPulse 6s ease-in-out infinite;
+}
+
+@keyframes aegisPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+}
+
+.aegis-hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.aegis-logo {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 20px rgba(37,99,235,0.3));
+}
+
+.aegis-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--gradient-text-start, #0f172a), var(--primary-blue), var(--primary-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.aegis-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.aegis-tagline {
+  font-size: 1rem;
+  color: var(--primary-blue);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* STATS BAR */
+.aegis-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: -3rem auto 0;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.aegis-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+}
+
+.aegis-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.aegis-stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  margin-bottom: 0.25rem;
+}
+
+.aegis-stat-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* MODULE SECTIONS */
+.aegis-module {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.aegis-module-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.aegis-module-icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.2);
+}
+
+.aegis-module-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.aegis-module-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 700px;
+}
+
+/* MODULE 1: Domain Verification */
+.verification-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+}
+
+.verification-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.verification-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.verification-field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.verification-field input,
+.verification-field select,
+.verification-field textarea {
+  padding: 0.875rem 1rem;
+  background: var(--input-bg);
+  border: 1px solid var(--border-glow);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.verification-field input:focus,
+.verification-field select:focus,
+.verification-field textarea:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.verification-field textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.tenant-score-display {
+  background: linear-gradient(135deg, var(--input-bg), transparent);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.tenant-score-value {
+  font-size: 4rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tenant-score-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* MODULE 2: Risk Analysis */
+.risk-analysis-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+}
+
+.risk-meter {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.risk-gauge {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.risk-gauge svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.risk-gauge-bg {
+  fill: none;
+  stroke: var(--divider, rgba(0,0,0,0.1));
+  stroke-width: 12;
+}
+
+.risk-gauge-fill {
+  fill: none;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease, stroke 0.5s ease;
+}
+
+.risk-gauge-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.risk-gauge-value {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+.risk-gauge-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.risk-breakdown {
+  flex: 1;
+  min-width: 280px;
+}
+
+.risk-factor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.risk-factor:last-child {
+  border-bottom: none;
+}
+
+.risk-factor-name {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.risk-factor-bar {
+  flex: 1;
+  margin: 0 1rem;
+  height: 8px;
+  background: var(--divider);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.risk-factor-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s ease;
+}
+
+.risk-factor-score {
+  font-size: 0.875rem;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: right;
+}
+
+.risk-decision {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.risk-decision-badge {
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.risk-decision-badge.pass {
+  background: rgba(34,197,94,0.1);
+  color: #16a34a;
+  border: 1px solid rgba(34,197,94,0.3);
+}
+
+.risk-decision-badge.review {
+  background: rgba(234,179,8,0.1);
+  color: #ca8a04;
+  border: 1px solid rgba(234,179,8,0.3);
+}
+
+.risk-decision-badge.reject {
+  background: rgba(239,68,68,0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239,68,68,0.3);
+}
+
+/* MODULE 3: Domain Leasing */
+.domain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.domain-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.domain-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.domain-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.domain-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.domain-status {
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.domain-status.available {
+  background: rgba(34,197,94,0.1);
+  color: #16a34a;
+}
+
+.domain-status.leased {
+  background: rgba(37,99,235,0.1);
+  color: var(--primary-blue);
+}
+
+.domain-status.expiring {
+  background: rgba(234,179,8,0.1);
+  color: #ca8a04;
+}
+
+.domain-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.domain-metric {
+  text-align: center;
+  padding: 0.75rem;
+  background: var(--input-bg);
+  border-radius: 10px;
+}
+
+.domain-metric-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.domain-metric-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.domain-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.domain-info-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* MODULE 4: Auto Provisioning */
+.provisioning-flow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.provisioning-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  min-width: 140px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.provisioning-step.active {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 20px rgba(37,99,235,0.15);
+}
+
+.provisioning-step.completed {
+  border-color: #16a34a;
+  background: rgba(34,197,94,0.05);
+}
+
+.provisioning-step-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.provisioning-step.completed .provisioning-step-icon {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.provisioning-step-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.provisioning-arrow {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+}
+
+/* MODULE 5: Auto Renewal */
+.renewal-timeline {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px;
+  padding: 2.5rem;
+  position: relative;
+}
+
+.renewal-timeline::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 2rem;
+  right: 2rem;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+  border-radius: 2px;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.renewal-milestones {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.renewal-milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.renewal-dot {
+  width: 24px;
+  height: 24px;
+  background: var(--bg-card);
+  border: 3px solid var(--primary-blue);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.renewal-dot.active {
+  background: var(--primary-blue);
+  box-shadow: 0 0 12px rgba(37,99,235,0.4);
+}
+
+.renewal-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.renewal-sublabel {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.renewal-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.renewal-option {
+  background: var(--input-bg);
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.renewal-option-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.renewal-option-text h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.renewal-option-text p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* MODULE 6: Violation Monitoring */
+.violation-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+
+.violation-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.violation-category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background: var(--input-bg);
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.violation-category:hover {
+  border-color: #dc2626;
+  background: rgba(239,68,68,0.05);
+}
+
+.violation-category-icon {
+  font-size: 2rem;
+}
+
+.violation-category-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.violation-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.violation-action {
+  flex: 1;
+  min-width: 200px;
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.violation-action.warning {
+  background: rgba(234,179,8,0.1);
+  border: 1px solid rgba(234,179,8,0.3);
+}
+
+.violation-action.suspend {
+  background: rgba(249,115,22,0.1);
+  border: 1px solid rgba(249,115,22,0.3);
+}
+
+.violation-action.terminate {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+}
+
+.violation-action-icon {
+  font-size: 2rem;
+}
+
+.violation-action-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.violation-action.warning .violation-action-title { color: #ca8a04; }
+.violation-action.suspend .violation-action-title { color: #ea580c; }
+.violation-action.terminate .violation-action-title { color: #dc2626; }
+
+.violation-action-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* CTA SECTION */
+.aegis-cta {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, var(--input-bg), transparent);
+  border-top: 1px solid var(--border-glow);
+  border-bottom: 1px solid var(--border-glow);
+}
+
+.aegis-cta h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.aegis-cta p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .aegis-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .risk-meter {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .provisioning-flow {
+    flex-direction: column;
+  }
+  
+  .provisioning-arrow {
+    transform: rotate(90deg);
+  }
+  
+  .renewal-timeline::before {
+    display: none;
+  }
+  
+  .renewal-milestones {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .domain-metrics {
+    grid-template-columns: 1fr;
+  }
+}
