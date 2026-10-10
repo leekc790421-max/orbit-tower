@@ -77,6 +77,17 @@ const floorData = {
 let isRotating = true;
 let currentFloor = null;
 
+function setActiveFloorState(floorId) {
+  const page = document.body;
+  const activeFloor = floorId || 'default';
+
+  page.setAttribute('data-active-floor', activeFloor);
+
+  document.querySelectorAll('.tower-floor').forEach((floor) => {
+    floor.classList.toggle('is-active', floor.dataset.floor === floorId);
+  });
+}
+
 function selectFloor(floorId) {
   const data = floorData[floorId];
   if (!data) return;
@@ -91,17 +102,8 @@ function selectFloor(floorId) {
   document.getElementById('right-title').textContent = data.rightTitle;
   document.getElementById('right-content').innerHTML = data.rightContent;
   
-  // Highlight selected floor
-  document.querySelectorAll('.tower-floor').forEach(f => {
-    f.style.borderColor = 'rgba(0, 212, 255, 0.3)';
-    f.style.background = 'rgba(0, 212, 255, 0.05)';
-  });
-  const selectedFloor = document.querySelector(`[data-floor="${floorId}"]`);
-  if (selectedFloor) {
-    selectedFloor.style.borderColor = 'var(--primary-blue)';
-    selectedFloor.style.background = 'rgba(0, 212, 255, 0.2)';
-    selectedFloor.style.boxShadow = '0 0 30px rgba(0, 212, 255, 0.5)';
-  }
+  // Update page ambience and selected floor state
+  setActiveFloorState(floorId);
   
   // Show modal
   document.getElementById('modal-floor-title').textContent = data.title;
@@ -130,11 +132,7 @@ function toggleRotation() {
 }
 
 function resetView() {
-  document.querySelectorAll('.tower-floor').forEach(f => {
-    f.style.borderColor = 'rgba(0, 212, 255, 0.3)';
-    f.style.background = 'rgba(0, 212, 255, 0.05)';
-    f.style.boxShadow = 'none';
-  });
+  setActiveFloorState(null);
   document.getElementById('left-title').textContent = 'AI Digital Headquarters';
   document.getElementById('left-content').innerHTML = '<p>歡迎進入 Orbit Tower — 一座可互動探索的未來企業數位總部。</p><p>點擊右側大樓樓層，探索每個區域的功能與對應的科技展品。</p><ul class="info-panel-list"><li>8 大功能樓層</li><li>12 件科技展品</li><li>6 大 AI 協同能力</li></ul>';
   document.getElementById('right-title').textContent = '樓層資訊';
@@ -165,6 +163,7 @@ function handleHash() {
 }
 
 // Init
+setActiveFloorState(null);
 createParticles();
 handleHash();
 window.addEventListener('hashchange', handleHash);
