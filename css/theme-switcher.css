@@ -665,3 +665,158 @@ body .line-float-pulse {
     font-size: 18px;
   }
 }
+
+/* ============================================
+   ORBIT TOWER 3D DARK IMMERSIVE OVERRIDE
+   The tower experience stays dark across every rotating theme.
+   ============================================ */
+.tower-page {
+  --bg-dark: #0f172a;
+  --bg-card: rgba(15, 23, 42, 0.78);
+  --bg-glass: rgba(15, 23, 42, 0.66);
+  --text-primary: #f8fbff;
+  --text-secondary: #c4d2e3;
+  --border-glow: rgba(34, 211, 238, 0.34);
+  --shadow-glow: 0 0 36px rgba(34, 211, 238, 0.18);
+  --nav-bg: rgba(7, 15, 31, 0.84);
+  --nav-bg-scroll: rgba(7, 15, 31, 0.94);
+  --footer-bg: #080f20;
+  --input-bg: rgba(34, 211, 238, 0.08);
+  --divider: rgba(34, 211, 238, 0.18);
+  background: #0f172a !important;
+  color: #f8fbff !important;
+}
+
+.tower-page.theme-arctic,
+.tower-page.theme-sunrise,
+.tower-page.theme-emerald {
+  --bg-dark: #0f172a;
+  --bg-card: rgba(15, 23, 42, 0.78);
+  --bg-glass: rgba(15, 23, 42, 0.66);
+  --text-primary: #f8fbff;
+  --text-secondary: #c4d2e3;
+  --nav-bg: rgba(7, 15, 31, 0.84);
+  --nav-bg-scroll: rgba(7, 15, 31, 0.94);
+  --footer-bg: #080f20;
+}
+
+.tower-page .nav-main {
+  background: linear-gradient(180deg, rgba(7, 15, 31, 0.96), rgba(7, 15, 31, 0.78)) !important;
+  border-bottom-color: rgba(34, 211, 238, 0.28) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28), 0 1px 0 rgba(34, 211, 238, 0.14) inset;
+}
+
+.tower-page .nav-links a,
+.tower-page .nav-logo-text,
+.tower-page .nav-cta {
+  color: #e6f7ff !important;
+}
+
+.tower-page .tower-container {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(14, 116, 144, 0.20), transparent 30%),
+    radial-gradient(circle at 15% 80%, rgba(124, 58, 237, 0.14), transparent 32%),
+    linear-gradient(135deg, #020617 0%, #0f172a 45%, #071426 100%) !important;
+}
+
+.tower-page .tower-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  background-image: linear-gradient(rgba(34, 211, 238, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 211, 238, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+  z-index: -1;
+}
+
+.tower-page .tower-floor {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(8, 47, 73, 0.48)) !important;
+  border-color: rgba(34, 211, 238, 0.42) !important;
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.08), inset 0 0 22px rgba(34, 211, 238, 0.06);
+}
+
+.tower-page .tower-floor:hover,
+.tower-page .tower-floor[style*="border-color"] {
+  background: linear-gradient(135deg, rgba(8, 47, 73, 0.88), rgba(30, 41, 59, 0.84)) !important;
+  border-color: #22d3ee !important;
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.52), inset 0 0 28px rgba(34, 211, 238, 0.14) !important;
+}
+
+.tower-page .tower-floor-label {
+  color: #d9f9ff !important;
+  text-shadow: 0 0 12px rgba(34, 211, 238, 0.72), 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.tower-page .info-panel,
+.tower-page .floor-modal-content,
+.tower-page .tower-control-btn {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.62)) !important;
+  color: #f8fbff !important;
+  border-color: rgba(34, 211, 238, 0.34) !important;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 0 28px rgba(34, 211, 238, 0.04);
+  backdrop-filter: blur(18px) saturate(130%);
+}
+
+.tower-page .info-panel-content,
+.tower-page .info-panel-content p,
+.tower-page .info-panel-list li,
+.tower-page .floor-modal-desc {
+  color: #c4d2e3 !important;
+}
+
+.tower-page .info-panel-title,
+.tower-page .floor-modal-title {
+  color: #67e8f9 !important;
+  text-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
+}
+
+.tower-page .tower-control-btn {
+  color: #e6f7ff !important;
+}
+
+.tower-page .tower-control-btn:hover,
+.tower-page .tower-control-btn.active {
+  background: linear-gradient(135deg, #0891b2, #2563eb) !important;
+  color: #ffffff !important;
+  border-color: #67e8f9 !important;
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.35);
+}
+
+.tower-page .floor-modal {
+  background: rgba(2, 6, 23, 0.76) !important;
+}
+
+.tower-page .floor-modal-close {
+  background: rgba(15, 23, 42, 0.86) !important;
+  border-color: rgba(103, 232, 249, 0.3) !important;
+  color: #e6f7ff !important;
+}
+
+.tower-page .section,
+.tower-page .footer {
+  background: #080f20 !important;
+  color: #f8fbff !important;
+}
+
+.tower-page .section-title,
+.tower-page .section-subtitle,
+.tower-page .card-title,
+.tower-page .card-description,
+.tower-page .footer h4,
+.tower-page .footer p {
+  color: #e6f7ff !important;
+}
+
+.tower-page .card {
+  background: rgba(15, 23, 42, 0.72) !important;
+  border-color: rgba(34, 211, 238, 0.24) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+@media (max-width: 768px) {
+  .tower-page .tower-container { min-height: 100svh; }
+  .tower-page .info-panel { background: rgba(15, 23, 42, 0.92) !important; }
+}
