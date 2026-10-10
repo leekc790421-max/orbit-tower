@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Tower — AI Digital Headquarters | Orbit Tower</title>
+  <meta name="description" content="Orbit Tower 3D 互動大樓 — 探索八大樓層，從 AI Core 到策略中心，沉浸式體驗未來企業總部。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tower.css">
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="nav-main">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">ORBIT TOWER</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="tower.html" style="color:var(--primary-blue);">3D 大樓</a></li>
+        <li><a href="gallery.html">科技藝廊</a></li>
+        <li><a href="pricing.html">價格方案</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">立即預約</a>
+    </div>
+  </nav>
+
+  <!-- 3D TOWER SCENE -->
+  <div class="tower-container">
+    <div class="tower-ambient" id="particles"></div>
+
+    <!-- LEFT INFO PANEL -->
+    <div class="info-panel info-panel-left" id="left-panel">
+      <h3 class="info-panel-title" id="left-title">AI Digital Headquarters</h3>
+      <div class="info-panel-content" id="left-content">
+        <p>歡迎進入 Orbit Tower — 一座可互動探索的未來企業數位總部。</p>
+        <p>點擊右側大樓樓層，探索每個區域的功能與對應的科技展品。</p>
+        <ul class="info-panel-list">
+          <li>8 大功能樓層</li>
+          <li>12 件科技展品</li>
+          <li>6 大 AI 協同能力</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3D TOWER -->
+    <div class="tower-scene">
+      <div class="tower-3d" id="tower-3d">
+        <div class="tower-floor floor-8" data-floor="strategy" onclick="selectFloor('strategy')"><span class="tower-floor-label">🎯 策略中心</span></div>
+        <div class="tower-floor floor-7" data-floor="legal" onclick="selectFloor('legal')"><span class="tower-floor-label">⚖️ 法務中心</span></div>
+        <div class="tower-floor floor-6" data-floor="delivery" onclick="selectFloor('delivery')"><span class="tower-floor-label">🚀 交付中心</span></div>
+        <div class="tower-floor floor-5" data-floor="ops" onclick="selectFloor('ops')"><span class="tower-floor-label">⚙️ 維運中心</span></div>
+        <div class="tower-floor floor-4" data-floor="content" onclick="selectFloor('content')"><span class="tower-floor-label">✍️ 內容中心</span></div>
+        <div class="tower-floor floor-3" data-floor="sales" onclick="selectFloor('sales')"><span class="tower-floor-label">📊 業務中心</span></div>
+        <div class="tower-floor floor-2" data-floor="cloud" onclick="selectFloor('cloud')"><span class="tower-floor-label">☁️ 雲端辦公室</span></div>
+        <div class="tower-floor floor-1" data-floor="aicore" onclick="selectFloor('aicore')"><span class="tower-floor-label">🧠 AI Core</span></div>
+      </div>
+    </div>
+
+    <!-- RIGHT INFO PANEL -->
+    <div class="info-panel info-panel-right" id="right-panel">
+      <h3 class="info-panel-title" id="right-title">樓層資訊</h3>
+      <div class="info-panel-content" id="right-content">
+        <p>選擇一個樓層以查看詳細資訊。</p>
+        <p>每個樓層都對應特定的企業功能與科技展品。</p>
+      </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="tower-controls">
+      <button class="tower-control-btn" onclick="toggleRotation()" id="rotate-btn">暫停旋轉</button>
+      <button class="tower-control-btn" onclick="resetView()">重置視角</button>
+    </div>
+  </div>
+
+  <!-- FLOOR MODAL -->
+  <div class="floor-modal" id="floor-modal">
+    <div class="floor-modal-content">
+      <button class="floor-modal-close" onclick="closeFloorModal()">&times;</button>
+      <h2 class="floor-modal-title" id="modal-floor-title"></h2>
+      <p class="floor-modal-desc" id="modal-floor-desc"></p>
+      <div id="modal-floor-link"></div>
+    </div>
+  </div>
+
+  <!-- CASES SECTION (below tower) -->
+  <section class="section" id="cases">
+    <h2 class="section-title">案例中心</h2>
+    <p class="section-subtitle">成功客戶實績 — 從新創到跨國企業的數位轉型故事</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏭</div>
+        <h4 class="card-title">半導體製造商</h4>
+        <p class="card-description">導入 Orbit Growth 方案後，線上商機提升 340%，客戶轉換率增長 2.5 倍。AI 客戶接待系統每月自動處理 2,000+ 詢價。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏗</div>
+        <h4 class="card-title">工程顧問公司</h4>
+        <p class="card-description">透過 AI Digital Headquarters 建立專業形象，國際客戶來案量增長 180%。GEO 建置讓搜尋能見度覆蓋 12 個國家。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💎</div>
+        <h4 class="card-title">國際品牌集團</h4>
+        <p class="card-description">Orbit Enterprise 方案整合 CRM 與 ERP，實現全流程自動化。內容工廠每月產出 200+ 篇 SEO 優化文章。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Orbit Tower</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="tower.html">3D 大樓</a></li>
+          <li><a href="gallery.html">科技藝廊</a></li>
+          <li><a href="pricing.html">價格方案</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>解決方案</h4>
+        <ul>
+          <li><a href="index.html#website">企業建站方案</a></li>
+          <li><a href="index.html#domain">網域分租方案</a></li>
+          <li><a href="index.html#ai-capabilities">六大 AI 能力</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>聯絡</h4>
+        <ul>
+          <li><a href="mailto:contact@orbittower.ai">contact@orbittower.ai</a></li>
+          <li><a href="index.html#contact">免費預約展示</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Orbit Tower. AI Digital Headquarters. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/tower.js"></script>
+</body>
+</html>

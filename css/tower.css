@@ -1,0 +1,327 @@
+/* 3D Tower Page Styles */
+/* Font sizes increased for better readability */
+
+.tower-container {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0a0a0f 0%, #0d1117 50%, #0a0a0f 100%);
+}
+
+.tower-scene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+/* 3D Tower Structure */
+.tower-3d {
+  position: relative;
+  width: 280px;
+  height: 700px;
+  transform-style: preserve-3d;
+  animation: towerRotate 30s linear infinite;
+}
+
+@keyframes towerRotate {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.tower-floor {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  background: rgba(0, 212, 255, 0.05);
+  backdrop-filter: blur(5px);
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.tower-floor:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+.tower-floor-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--primary-blue);
+  font-size: 18px; /* Increased from 16px */
+  font-weight: 600;
+  white-space: nowrap;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* Floor positions */
+.floor-1 { bottom: 0; }
+.floor-2 { bottom: 85px; }
+.floor-3 { bottom: 170px; }
+.floor-4 { bottom: 255px; }
+.floor-5 { bottom: 340px; }
+.floor-6 { bottom: 425px; }
+.floor-7 { bottom: 510px; }
+.floor-8 { bottom: 595px; }
+
+/* Info Panels - Enhanced font sizes */
+.info-panel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 380px;
+  background: rgba(15, 15, 25, 0.85);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(15px);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.info-panel:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+}
+
+.info-panel-left {
+  left: 2rem;
+}
+
+.info-panel-right {
+  right: 2rem;
+}
+
+.info-panel-title {
+  font-size: 26px; /* Increased from 22px (+4px) */
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.info-panel-title::before {
+  content: '';
+  width: 6px;
+  height: 30px;
+  background: linear-gradient(180deg, var(--primary-blue), var(--primary-purple));
+  border-radius: 3px;
+}
+
+.info-panel-content {
+  font-size: 18px; /* Increased from 16px (+2px) */
+  line-height: 1.8; /* Increased line height 10% */
+  color: var(--text-secondary);
+}
+
+.info-panel-content p {
+  font-size: 18px; /* Increased */
+  margin-bottom: 1rem;
+}
+
+.info-panel-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.info-panel-list li {
+  font-size: 18px; /* Increased */
+  padding: 0.5rem 0;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-panel-list li::before {
+  content: '▸';
+  color: var(--primary-blue);
+}
+
+/* Floor Detail Modal */
+.floor-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(20px);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.floor-modal.active {
+  display: flex;
+}
+
+.floor-modal-content {
+  max-width: 800px;
+  width: 100%;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px;
+  padding: 3rem;
+  position: relative;
+}
+
+.floor-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floor-modal-title {
+  font-size: 32px; /* Increased */
+  color: var(--primary-blue);
+  margin-bottom: 1.5rem;
+}
+
+.floor-modal-desc {
+  font-size: 20px; /* Increased */
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.floor-modal-link {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.floor-modal-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Tower Controls */
+.tower-controls {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 100;
+}
+
+.tower-control-btn {
+  background: rgba(15, 15, 25, 0.8);
+  border: 1px solid var(--border-glow);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-primary);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tower-control-btn:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--primary-blue);
+}
+
+.tower-control-btn.active {
+  background: var(--primary-blue);
+  color: #000;
+}
+
+/* Ambient Effects */
+.tower-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.tower-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--primary-blue);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: particleFloat 8s infinite;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-200px) translateX(50px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .info-panel {
+    width: 300px;
+    padding: 1.5rem;
+  }
+  
+  .info-panel-title {
+    font-size: 22px;
+  }
+  
+  .info-panel-content {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .info-panel {
+    position: relative;
+    width: 100%;
+    left: auto !important;
+    right: auto !important;
+    top: auto;
+    transform: none;
+    margin-bottom: 1rem;
+  }
+  
+  .tower-scene {
+    flex-direction: column;
+    height: auto;
+    padding: 2rem 0;
+  }
+  
+  .tower-3d {
+    height: 500px;
+    width: 200px;
+  }
+}

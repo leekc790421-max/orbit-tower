@@ -1,0 +1,9 @@
+{
+  "name": "orbit-tower",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Static site - use any HTTP server'",
+    "build": "echo 'Static site - no build needed'"
+  }
+}

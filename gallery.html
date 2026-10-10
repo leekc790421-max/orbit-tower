@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>科技藝廊 — Technology Gallery | Orbit Tower</title>
+  <meta name="description" content="Orbit Tower 科技藝廊 — 沉浸式未來科技展覽館。探索量子核心、黃金智慧樞紐、神經網路矩陣等前沿科技展品。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="nav-main">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">ORBIT TOWER</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="tower.html">3D 大樓</a></li>
+        <li><a href="gallery.html" style="color:var(--primary-blue);">科技藝廊</a></li>
+        <li><a href="pricing.html">價格方案</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">立即預約</a>
+    </div>
+  </nav>
+
+  <!-- GALLERY HERO -->
+  <section class="gallery-hero">
+    <div style="text-align:center;">
+      <h1 class="gallery-title">科技藝廊</h1>
+      <p style="font-size:18px;color:var(--primary-purple);margin-bottom:1rem;font-weight:600;letter-spacing:0.1em;">TECHNOLOGY GALLERY</p>
+      <p class="gallery-subtitle">沉浸式未來科技展覽館 — 每一件展品都代表著 Orbit Tower 世界觀中的一項核心技術</p>
+    </div>
+  </section>
+
+  <!-- GALLERY GRID -->
+  <section class="gallery-grid" id="gallery-grid">
+
+    <!-- Exhibit 1: Quantum Core Assembly -->
+    <div class="exhibit-card" onclick="openModal(0)">
+      <div class="exhibit-image-container">
+        <img src="assets/quantum-core.png" alt="Quantum Core Assembly" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">量子核心組裝中心</h3>
+        <p class="exhibit-title-en">Quantum Core Assembly</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">展示多機械臂同步協作之未來製造場景。透過 AI 調度系統實現精密組裝、即時監控與自主校正，達到纳米級精度。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>提升生產效率 300%</li>
+            <li>降低人工成本 70%</li>
+            <li>強化品管一致性</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>智慧工廠</li>
+            <li>半導體製造</li>
+            <li>高端精密業</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 2: Golden Intelligence Nexus -->
+    <div class="exhibit-card" onclick="openModal(1)">
+      <div class="exhibit-image-container">
+        <img src="assets/golden-coin.png" alt="Golden Intelligence Nexus" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">黃金智慧核心</h3>
+        <p class="exhibit-title-en">Golden Intelligence Nexus</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">象徵企業 AI 中樞神經系統。將知識、內容、流程、客戶資料與決策支援集中管理，形成統一智慧樞紐。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>提升決策效率 200%</li>
+            <li>建立企業知識庫</li>
+            <li>實現智慧營運</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>企業總部</li>
+            <li>AI 指揮中心</li>
+            <li>數位轉型專案</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 3: Neural Data Matrix -->
+    <div class="exhibit-card" onclick="openModal(2)">
+      <div class="exhibit-image-container">
+        <img src="assets/green-network.png" alt="Neural Data Matrix" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">神經數據矩陣</h3>
+        <p class="exhibit-title-en">Neural Data Matrix</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">以類神經網路架構為基礎的數據處理核心。透過多節點平行運算，實現即時資料分析與模式識別。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>毫秒級數據分析</li>
+            <li>預測性商業洞察</li>
+            <li>自動化報告生成</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>金融風控</li>
+            <li>供應鏈優化</li>
+            <li>市場預測</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 4: Crimson Energy Core -->
+    <div class="exhibit-card" onclick="openModal(3)">
+      <div class="exhibit-image-container">
+        <img src="assets/red-sphere.png" alt="Crimson Energy Core" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">紅晶能量核心</h3>
+        <p class="exhibit-title-en">Crimson Energy Core</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">高效能運算能量管理系統。以磁約束技術穩定核心能量輸出，確保 24/7 不間斷的算力供應。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>降低能耗 45%</li>
+            <li>99.99% 系統穩定性</li>
+            <li>綠色永續營運</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>資料中心</li>
+            <li>雲端服務</li>
+            <li>邊緣運算</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 5: Violet Orbital Engine -->
+    <div class="exhibit-card" onclick="openModal(4)">
+      <div class="exhibit-image-container">
+        <img src="assets/violet-core.png" alt="Violet Orbital Engine" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">紫晶軌道引擎</h3>
+        <p class="exhibit-title-en">Violet Orbital Engine</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">多軌道協同處理引擎，模擬星體運行軌跡的資料排程系統。實現跨區域、跨時區的任務自動分配。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>全球化任務排程</li>
+            <li>跨時區協作效率</li>
+            <li>資源最佳配置</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>跨國企業</li>
+            <li>遠端團隊</li>
+            <li>全球運籌</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 6: Azure Reactor System -->
+    <div class="exhibit-card" onclick="openModal(5)">
+      <div class="exhibit-image-container">
+        <img src="assets/blue-reactor.png" alt="Azure Reactor System" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">藍光反應爐系統</h3>
+        <p class="exhibit-title-en">Azure Reactor System</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">高效能 AI 模型訓練反應爐。以冷卻系統維持最佳運算溫度，支援大規模深度學習模型訓練。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>加速模型訓練 5x</li>
+            <li>降低算力成本</li>
+            <li>彈性擴展架構</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>AI 研發</li>
+            <li>大模型訓練</li>
+            <li>科學運算</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 7: Golden Automation Grid -->
+    <div class="exhibit-card" onclick="openModal(6)">
+      <div class="exhibit-image-container">
+        <img src="assets/golden-system.webp" alt="Golden Automation Grid" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">黃金自動化矩陣</h3>
+        <p class="exhibit-title-en">Golden Automation Grid</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">全自動化生產線控制系統。結合電路板層級的精密控制與 AI 決策邏輯，實現零人工干預的智慧製造。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>全自動化生產</li>
+            <li>品質一致性保證</li>
+            <li>24/7 不間斷運轉</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>電子製造</li>
+            <li>汽車工業</li>
+            <li>精密組裝</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 8: Emerald Quantum Field -->
+    <div class="exhibit-card" onclick="openModal(7)">
+      <div class="exhibit-image-container">
+        <img src="assets/green-cube.webp" alt="Emerald Quantum Field" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">翡翠量子力場</h3>
+        <p class="exhibit-title-en">Emerald Quantum Field</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">量子運算模擬力場。以多維度節點網路模擬量子態疊加，為複雜問題提供指數級加速的解決方案。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>指數級運算加速</li>
+            <li>複雜問題求解</li>
+            <li>密碼學安全</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>藥物研發</li>
+            <li>金融模型</li>
+            <li>物流最佳化</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 9: Crimson Containment Protocol -->
+    <div class="exhibit-card" onclick="openModal(8)">
+      <div class="exhibit-image-container">
+        <img src="assets/red-chamber.webp" alt="Crimson Containment Protocol" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">紅盾安全協定</h3>
+        <p class="exhibit-title-en">Crimson Containment Protocol</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">企業級資安防護系統。以多層能量屏障隔離威脅，結合 AI 威脅偵測實現主動防禦。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>零日威脅防禦</li>
+            <li>即時入侵偵測</li>
+            <li>合規自動審查</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>企業資安</li>
+            <li>金融防護</li>
+            <li>政府機構</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 10: Azure Swarm Intelligence -->
+    <div class="exhibit-card" onclick="openModal(9)">
+      <div class="exhibit-image-container">
+        <img src="assets/spider-bots.webp" alt="Azure Swarm Intelligence" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">藍光群體智慧</h3>
+        <p class="exhibit-title-en">Azure Swarm Intelligence</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">多代理協同作業系統。模擬自然界群體智慧，讓多個 AI Agent 自主協作完成複雜任務。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>多任務並行處理</li>
+            <li>自主錯誤修復</li>
+            <li>彈性任務分配</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>客服自動化</li>
+            <li>資料探勘</li>
+            <li>智慧監控</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 11: Holographic Data Core -->
+    <div class="exhibit-card" onclick="openModal(10)">
+      <div class="exhibit-image-container">
+        <img src="assets/holographic-cube.webp" alt="Holographic Data Core" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">全息數據核心</h3>
+        <p class="exhibit-title-en">Holographic Data Core</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">三維全息資料視覺化引擎。將複雜數據轉化為沉浸式 3D 影像，讓決策者直觀理解數據關係。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>直觀數據理解</li>
+            <li>加速決策流程</li>
+            <li>跨部門溝通效率</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>經營分析</li>
+            <li>專案管理</li>
+            <li>簡報展示</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exhibit 12: Cyan Processing Hub -->
+    <div class="exhibit-card" onclick="openModal(11)">
+      <div class="exhibit-image-container">
+        <img src="assets/blue-sphere.webp" alt="Cyan Processing Hub" class="exhibit-image">
+        <div class="exhibit-overlay"><span class="exhibit-overlay-text">點擊放大查看</span></div>
+      </div>
+      <div class="exhibit-content">
+        <h3 class="exhibit-title">藍芯處理樞紐</h3>
+        <p class="exhibit-title-en">Cyan Processing Hub</p>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">技術說明</h5>
+          <p class="exhibit-text">多核心平行處理樞紐。以六軸機械臂環繞核心進行即時校準，確保運算精度與穩定性。</p>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">商業價值</h5>
+          <ul class="exhibit-list">
+            <li>超高運算精度</li>
+            <li>自動校準系統</li>
+            <li>模組化擴展</li>
+          </ul>
+        </div>
+        <div class="exhibit-section">
+          <h5 class="exhibit-section-title">應用場景</h5>
+          <ul class="exhibit-list">
+            <li>精密運算</li>
+            <li>醫療影像</li>
+            <li>工程模擬</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal" id="exhibit-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <img id="modal-img" class="modal-image" src="" alt="">
+      <div class="modal-info" id="modal-info"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Orbit Tower</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="tower.html">3D 大樓</a></li>
+          <li><a href="gallery.html">科技藝廊</a></li>
+          <li><a href="pricing.html">價格方案</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>解決方案</h4>
+        <ul>
+          <li><a href="index.html#website">企業建站方案</a></li>
+          <li><a href="index.html#domain">網域分租方案</a></li>
+          <li><a href="index.html#ai-capabilities">六大 AI 能力</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>聯絡</h4>
+        <ul>
+          <li><a href="mailto:contact@orbittower.ai">contact@orbittower.ai</a></li>
+          <li><a href="index.html#contact">免費預約展示</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Orbit Tower. AI Digital Headquarters. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/gallery.js"></script>
+</body>
+</html>

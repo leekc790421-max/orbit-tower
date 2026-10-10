@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orbit Tower — AI Digital Headquarters</title>
+  <meta name="description" content="Orbit Tower — 未來企業數位總部。AI Digital Headquarters、科技藝廊、雲端辦公室、六大AI協同能力。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* HERO PARTICLES */
+    .particles-canvas { position: absolute; inset: 0; z-index: 0; }
+    /* ORBIT RING */
+    .orbit-ring { position: absolute; border: 1px solid rgba(0,212,255,0.15); border-radius: 50%; animation: orbitSpin 20s linear infinite; }
+    .orbit-ring-1 { width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .orbit-ring-2 { width: 900px; height: 900px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 30s; animation-direction: reverse; }
+    .orbit-ring-3 { width: 1200px; height: 1200px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 40s; }
+    @keyframes orbitSpin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .orbit-dot { position: absolute; width: 8px; height: 8px; background: var(--primary-blue); border-radius: 50%; box-shadow: 0 0 15px var(--primary-blue); }
+    /* OPERATIONS CENTER */
+    .ops-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .ops-card { background: var(--bg-glass); border: 1px solid var(--border-glow); border-radius: 14px; padding: 2rem 1.5rem; text-align: center; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: var(--text-primary); }
+    .ops-card:hover { transform: translateY(-8px); border-color: var(--primary-blue); box-shadow: var(--shadow-glow); }
+    .ops-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .ops-card h4 { font-size: 20px; margin-bottom: 0.5rem; }
+    .ops-card p { font-size: 15px; color: var(--text-secondary); }
+    /* POSTER BANNER */
+    .poster-banner { position: relative; border-radius: 20px; overflow: hidden; margin-top: 3rem; }
+    .poster-banner img { width: 100%; height: auto; display: block; }
+    .poster-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,15,0.9) 0%, transparent 60%); display: flex; align-items: center; padding: 3rem; }
+    .poster-text h3 { font-size: 32px; margin-bottom: 1rem; }
+    .poster-text p { font-size: 18px; color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 400px; }
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="nav-main">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">ORBIT TOWER</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="tower.html">3D 大樓</a></li>
+        <li><a href="gallery.html">科技藝廊</a></li>
+        <li><a href="pricing.html">價格方案</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">立即預約</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="orbit-ring orbit-ring-1"><div class="orbit-dot" style="top:0;left:50%;"></div></div>
+      <div class="orbit-ring orbit-ring-2"><div class="orbit-dot" style="bottom:0;right:0;"></div></div>
+      <div class="orbit-ring orbit-ring-3"><div class="orbit-dot" style="top:50%;left:0;"></div></div>
+    </div>
+    <div class="hero-content fade-in-up">
+      <h1 class="hero-title">ORBIT TOWER</h1>
+      <p class="hero-subtitle">AI Digital Headquarters — 未來企業數位總部<br>進入一座可互動探索的智慧企業總部與未來科技展示館</p>
+      <div class="hero-cta-group">
+        <a href="tower.html" class="btn-primary">探索 3D 大樓</a>
+        <a href="gallery.html" class="btn-secondary">科技藝廊</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORBIT 2.0 POSTER -->
+  <section class="section">
+    <div class="poster-banner">
+      <img src="assets/orbit-poster.png" alt="Orbit 2.0 光曜星樞">
+      <div class="poster-overlay">
+        <div class="poster-text">
+          <h3>ORBIT 2.0 光曜星樞</h3>
+          <p>萬流歸樞，萬智歸一。整合 GEO 搜尋、AI 客服、行銷推播、戰情分析等六大模組的企業智慧中樞。</p>
+          <a href="tower.html" class="btn-primary">深入了解</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPLORE ORBIT TOWER -->
+  <section class="section" id="explore">
+    <h2 class="section-title">探索 Orbit Tower</h2>
+    <p class="section-subtitle">從數位展示館到價格方案，一站式探索未來企業總部的每一個角落</p>
+    <div class="explore-grid">
+      <a href="tower.html" class="explore-item"><span class="explore-icon">🏢</span><div class="explore-text"><h4>AI Digital Headquarters</h4><p>3D 互動數位企業總部</p></div></a>
+      <a href="tower.html#cloud" class="explore-item"><span class="explore-icon">☁️</span><div class="explore-text"><h4>雲端辦公室</h4><p>六大營運中心即時管理</p></div></a>
+      <a href="#ai-capabilities" class="explore-item"><span class="explore-icon">🤖</span><div class="explore-text"><h4>六大 AI 能力</h4><p>智慧分析到決策支援</p></div></a>
+      <a href="gallery.html" class="explore-item"><span class="explore-icon">🖼️</span><div class="explore-text"><h4>科技藝廊</h4><p>沉浸式未來科技展覽館</p></div></a>
+      <a href="#domain" class="explore-item"><span class="explore-icon">🌐</span><div class="explore-text"><h4>網域分租</h4><p>企業級 GEO 數位資產</p></div></a>
+      <a href="#website" class="explore-item"><span class="explore-icon">🛠</span><div class="explore-text"><h4>網站建置方案</h4><p>從基礎到企業級方案</p></div></a>
+      <a href="tower.html#cases" class="explore-item"><span class="explore-icon">📚</span><div class="explore-text"><h4>案例中心</h4><p>成功客戶實績展示</p></div></a>
+      <a href="pricing.html" class="explore-item"><span class="explore-icon">💰</span><div class="explore-text"><h4>價格方案</h4><p>透明化的企業級定價</p></div></a>
+      <a href="#contact" class="explore-item"><span class="explore-icon">📅</span><div class="explore-text"><h4>免費預約展示</h4><p>專屬顧問一對一導覽</p></div></a>
+    </div>
+  </section>
+
+  <!-- ENTERPRISE AI OPERATIONS CENTER -->
+  <section class="section" id="operations">
+    <h2 class="section-title">企業 AI 營運中心</h2>
+    <p class="section-subtitle">六大營運中心，覆蓋企業全場景。點擊可連結至 3D 大樓對應樓層。</p>
+    <div class="ops-grid">
+      <a href="tower.html#floor-sales" class="ops-card"><div class="ops-icon">📊</div><h4>業務中心</h4><p>商机管理、客戶追蹤、銷售分析</p></a>
+      <a href="tower.html#floor-content" class="ops-card"><div class="ops-icon">✍️</div><h4>內容中心</h4><p>內容工廠、SEO 優化、多語生成</p></a>
+      <a href="tower.html#floor-ops" class="ops-card"><div class="ops-icon">⚙️</div><h4>維運中心</h4><p>系統監控、自動備份、安全防護</p></a>
+      <a href="tower.html#floor-delivery" class="ops-card"><div class="ops-icon">🚀</div><h4>交付中心</h4><p>專案管理、品質管控、準時交付</p></a>
+      <a href="tower.html#floor-legal" class="ops-card"><div class="ops-icon">⚖️</div><h4>法務中心</h4><p>合約管理、合規審查、智慧財產</p></a>
+      <a href="tower.html#floor-strategy" class="ops-card"><div class="ops-icon">🎯</div><h4>策略中心</h4><p>數據分析、市場洞察、決策支援</p></a>
+    </div>
+  </section>
+
+  <!-- SIX AI CAPABILITIES -->
+  <section class="section ai-capabilities" id="ai-capabilities">
+    <h2 class="section-title">六大 AI 協同能力</h2>
+    <p class="section-subtitle">從智慧分析到決策支援，全方位 AI 驅動企業營運升級</p>
+    <div class="capability-grid">
+      <div class="capability-card"><div class="capability-icon">📊</div><h3 class="capability-title">智慧分析</h3><p class="capability-desc">AI 驅動的數據分析引擎，即時洞察市場趨勢與客戶行為，提供精準決策依據。</p></div>
+      <div class="capability-card"><div class="capability-icon">🤝</div><h3 class="capability-title">客戶接待</h3><p class="capability-desc">24/7 AI 客戶服務系統，多語系即時回應，自動分類商機並追蹤轉換。</p></div>
+      <div class="capability-card"><div class="capability-icon">✍️</div><h3 class="capability-title">內容生成</h3><p class="capability-desc">AI 內容工廠自動產出 SEO 優化文章、社群貼文、產品描述，大幅降低內容成本。</p></div>
+      <div class="capability-card"><div class="capability-icon">📚</div><h3 class="capability-title">知識管理</h3><p class="capability-desc">企業知識庫自動建檔、智慧分類、快速檢索，讓組織知識不再流失。</p></div>
+      <div class="capability-card"><div class="capability-icon">⚡</div><h3 class="capability-title">流程自動化</h3><p class="capability-desc">從報價、合約到交付，AI 自動化串聯企業全流程，減少 80% 重複性工作。</p></div>
+      <div class="capability-card"><div class="capability-icon">🎯</div><h3 class="capability-title">決策支援</h3><p class="capability-desc">整合多維度數據，AI 模擬不同策略情境，輔助高層做出最佳決策。</p></div>
+    </div>
+  </section>
+
+  <!-- WEBSITE & DOMAIN SOLUTIONS -->
+  <section class="section" id="website">
+    <h2 class="section-title">企業建站 & 網域分租方案</h2>
+    <p class="section-subtitle">不只是網站，更是企業級 GEO 與 SEO 數位資產</p>
+    <div class="solution-cards">
+      <div class="solution-card">
+        <span class="solution-badge">企業建站方案</span>
+        <h3 class="solution-title">AI Digital Showroom</h3>
+        <p class="solution-desc">從個人品牌到跨國企業，提供三階段建站方案。每個方案皆包含 AI 驅動的智慧功能與全球部署。</p>
+        <ul class="solution-features">
+          <li>Orbit Foundation — 個人品牌 / 工作室 — $6,800 起</li>
+          <li>Orbit Growth — B2B 企業 / 製造業 — $14,800 起</li>
+          <li>Orbit Enterprise — 大型企業 / 國際品牌 — $32,000 起</li>
+          <li>含 SEO / GEO 基礎建置、AI 客戶接待、全球 CDN 部署</li>
+        </ul>
+        <a href="pricing.html" class="btn-primary">查看完整方案</a>
+      </div>
+      <div class="solution-card" id="domain">
+        <span class="solution-badge">網域分租方案</span>
+        <h3 class="solution-title">GEO 數位資產租賃</h3>
+        <p class="solution-desc">租用已建立權威的產業網域，快速獲得搜尋引擎信任度。適合新創品牌與區域型企業進軍國際市場。</p>
+        <ul class="solution-features">
+          <li>已建立 Domain Authority 的產業網域</li>
+          <li>含 SEO 基礎優化與 GEO 定位設定</li>
+          <li>獨立品牌空間，可客製企業形象</li>
+          <li>按月 / 按年彈性租賃方案</li>
+        </ul>
+        <a href="#contact" class="btn-secondary">聯絡顧問</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="section" id="contact" style="text-align:center;">
+    <h2 class="section-title">準備好進入未來企業總部了嗎？</h2>
+    <p class="section-subtitle">預約專屬顧問導覽，親自體驗 Orbit Tower 的沉浸式數位體驗</p>
+    <div class="hero-cta-group">
+      <a href="mailto:contact@orbittower.ai" class="btn-primary">免費預約展示</a>
+      <a href="pricing.html" class="btn-secondary">查看價格方案</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Orbit Tower</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="tower.html">3D 大樓</a></li>
+          <li><a href="gallery.html">科技藝廊</a></li>
+          <li><a href="pricing.html">價格方案</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>解決方案</h4>
+        <ul>
+          <li><a href="#website">企業建站方案</a></li>
+          <li><a href="#domain">網域分租方案</a></li>
+          <li><a href="#ai-capabilities">六大 AI 能力</a></li>
+          <li><a href="#operations">企業營運中心</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>資源</h4>
+        <ul>
+          <li><a href="tower.html#cases">案例中心</a></li>
+          <li><a href="#">部落格</a></li>
+          <li><a href="#">技術文件</a></li>
+          <li><a href="#">API 文件</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>聯絡</h4>
+        <ul>
+          <li><a href="mailto:contact@orbittower.ai">contact@orbittower.ai</a></li>
+          <li><a href="#contact">免費預約展示</a></li>
+          <li><a href="#">顧問諮詢</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Orbit Tower. AI Digital Headquarters. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

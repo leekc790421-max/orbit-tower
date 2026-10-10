@@ -1,0 +1,240 @@
+/* Technology Gallery Styles */
+
+.gallery-hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8rem 2rem 4rem;
+  background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+}
+
+.gallery-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  text-align: center;
+  background: linear-gradient(135deg, #fff, var(--primary-purple), var(--primary-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.gallery-subtitle {
+  text-align: center;
+  font-size: var(--font-xl);
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+  padding: 4rem 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Exhibition Card */
+.exhibit-card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.exhibit-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-purple);
+  box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
+}
+
+.exhibit-image-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.exhibit-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.exhibit-card:hover .exhibit-image {
+  transform: scale(1.05);
+}
+
+.exhibit-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.exhibit-card:hover .exhibit-overlay {
+  opacity: 1;
+}
+
+.exhibit-overlay-text {
+  color: white;
+  font-size: var(--font-sm);
+}
+
+.exhibit-content {
+  padding: 2rem;
+}
+
+.exhibit-title {
+  font-size: var(--font-xl);
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.exhibit-title-en {
+  font-size: var(--font-sm);
+  color: var(--primary-purple);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.exhibit-section {
+  margin-bottom: 1.5rem;
+}
+
+.exhibit-section-title {
+  font-size: var(--font-md);
+  color: var(--primary-blue);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.exhibit-section-title::before {
+  content: '';
+  width: 4px;
+  height: 20px;
+  background: var(--primary-blue);
+  border-radius: 2px;
+}
+
+.exhibit-text {
+  color: var(--text-secondary);
+  font-size: var(--font-md);
+  line-height: var(--line-height);
+}
+
+.exhibit-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.exhibit-list li {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: var(--font-sm);
+  color: var(--primary-blue);
+}
+
+/* Modal / Lightbox */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  max-width: 1200px;
+  max-height: 90vh;
+  position: relative;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-info {
+  padding: 3rem;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .modal-content {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+  
+  .modal-image {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+  }
+}
