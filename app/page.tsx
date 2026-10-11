@@ -117,22 +117,22 @@ function HomeInner() {
       {viewMode === "spatial" && <LandingOverlay onEnter3D={handleEnter3D} onPricingClick={() => setPricingOpen(true)} />}
 
       {/* 3D 場景 */}
-      {viewMode === "spatial" ? <Scene theme={theme} lightColor={lightColor} onUnitClick={handleUnitClick} /> : <ClassicView />}
+      {viewMode === "spatial" ? <Scene theme={theme} lightColor={lightColor} onUnitClick={handleUnitClick} /> : <ClassicView onOpenSpatial={() => handleViewModeChange("spatial")} />}
 
       {/* 掃描線覆蓋層（手機版 CSS 自動隱藏） */}
       {viewMode === "spatial" && <div className="scanline-overlay" />}
 
       {/* 頂部標題（含登入/定價/條款/關於/README 入口） */}
-      <Header
-        theme={theme}
-        onLoginClick={() => setAuthOpen(true)}
-        onPricingClick={() => setPricingOpen(true)}
-        onLegalClick={() => setLegalOpen(true)}
-        onAboutClick={() => setAboutOpen(true)}
-        onReadmeClick={() => setReadmeOpen(true)}
-        mode={viewMode}
-        onModeChange={handleViewModeChange}
-      />
+      {viewMode === "spatial" && <Header
+          theme={theme}
+          onLoginClick={() => setAuthOpen(true)}
+          onPricingClick={() => setPricingOpen(true)}
+          onLegalClick={() => setLegalOpen(true)}
+          onAboutClick={() => setAboutOpen(true)}
+          onReadmeClick={() => setReadmeOpen(true)}
+          mode={viewMode}
+          onModeChange={handleViewModeChange}
+        />}
 
       {/* 左側樓層指示器 */}
       {viewMode === "spatial" && <FloorIndicator activeFloor={activeFloor} onFloorSelect={handleFloorSelect} />}

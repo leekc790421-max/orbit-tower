@@ -52,9 +52,9 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
       {/* === 右上角：功能按鈕 === */}
       <div className="orbit-control-right fixed top-1.5 sm:top-2.5 md:top-4 right-1.5 sm:right-2 md:right-3 z-50 pointer-events-auto">
         <div className="orbit-header-actions glass-hud-premium rounded-lg sm:rounded-xl px-1.5 sm:px-2 md:px-3 py-1 sm:py-1.5 md:py-2 hud-border">
+          <ModeSwitcher mode={mode} onChange={onModeChange} />
           {/* 桌面選單 (> 768px) */}
-          <div className="hidden md:flex items-center gap-1.5">
-            <ModeSwitcher mode={mode} onChange={onModeChange} />
+          <div className="header-desktop-menu hidden md:flex items-center gap-1.5">
             <button onClick={onAboutClick} className="flex items-center gap-1 text-[11px] px-2 py-1.5 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all tracking-wider">
               <Info size={12} />
               {t("nav.about")}
@@ -80,8 +80,7 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
           </div>
 
           {/* 車載機選單 (640-768px) — 精簡橫向 */}
-          <div className="hidden sm:flex md:hidden items-center gap-1">
-            <ModeSwitcher mode={mode} onChange={onModeChange} />
+          <div className="header-tablet-menu hidden sm:flex md:hidden items-center gap-1">
             <button onClick={onAboutClick} className="flex items-center gap-0.5 text-[9px] px-1.5 py-1 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all tracking-wider">
               <Info size={10} />
               {t("nav.about")}
@@ -110,8 +109,7 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
           </div>
 
           {/* 手機選單 (< 640px) */}
-          <div className="flex sm:hidden items-center gap-1">
-            <ModeSwitcher mode={mode} onChange={onModeChange} />
+          <div className="header-mobile-menu flex sm:hidden items-center gap-1">
             <LanguageSwitcher />
             <button
               onClick={() => setShareModalOpen(true)}
@@ -135,7 +133,6 @@ export default function Header({ theme = "cyber", onLoginClick, onPricingClick, 
         {/* 手機/車載機展開選單 — 往下展開 */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-1 glass-panel rounded-lg p-2 hud-border space-y-1 min-w-[160px]">
-            <div className="mb-1"><ModeSwitcher mode={mode} onChange={onModeChange} /></div>
             <button onClick={() => { onAboutClick(); setMobileMenuOpen(false); }} className="w-full flex items-center gap-2 text-left text-[11px] sm:text-xs px-3 py-2 rounded-md border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all">
               <Info size={12} />
               {t("nav.aboutFull")}
