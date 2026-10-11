@@ -10,28 +10,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* HERO PARTICLES */
-    .particles-canvas { position: absolute; inset: 0; z-index: 0; }
     /* ORBIT RING */
-    .orbit-ring { position: absolute; border: 1px solid rgba(0,212,255,0.15); border-radius: 50%; animation: orbitSpin 20s linear infinite; }
-    .orbit-ring-1 { width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-    .orbit-ring-2 { width: 900px; height: 900px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 30s; animation-direction: reverse; }
-    .orbit-ring-3 { width: 1200px; height: 1200px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 40s; }
+    .orbit-ring { position: absolute; border: 1px solid rgba(212, 175, 55, 0.08); border-radius: 50%; animation: orbitSpin 20s linear infinite; }
+    .orbit-ring-1 { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .orbit-ring-2 { width: 800px; height: 800px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 30s; animation-direction: reverse; }
+    .orbit-ring-3 { width: 1100px; height: 1100px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 40s; }
     @keyframes orbitSpin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
-    .orbit-dot { position: absolute; width: 8px; height: 8px; background: var(--primary-blue); border-radius: 50%; box-shadow: 0 0 15px var(--primary-blue); }
-    /* OPERATIONS CENTER */
-    .ops-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-    .ops-card { background: var(--bg-glass); border: 1px solid var(--border-glow); border-radius: 14px; padding: 2rem 1.5rem; text-align: center; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: var(--text-primary); }
-    .ops-card:hover { transform: translateY(-8px); border-color: var(--primary-blue); box-shadow: var(--shadow-glow); }
-    .ops-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .ops-card h4 { font-size: 20px; margin-bottom: 0.5rem; }
-    .ops-card p { font-size: 15px; color: var(--text-secondary); }
+    .orbit-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 12px var(--gold); }
     /* POSTER BANNER */
-    .poster-banner { position: relative; border-radius: 20px; overflow: hidden; margin-top: 3rem; }
+    .poster-banner { position: relative; border-radius: 8px; overflow: hidden; margin-top: 2rem; border: 1px solid rgba(212, 175, 55, 0.1); }
     .poster-banner img { width: 100%; height: auto; display: block; }
-    .poster-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,15,0.9) 0%, transparent 60%); display: flex; align-items: center; padding: 3rem; }
-    .poster-text h3 { font-size: 32px; margin-bottom: 1rem; }
-    .poster-text p { font-size: 18px; color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 400px; }
+    .poster-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5, 7, 10, 0.92) 0%, transparent 60%); display: flex; align-items: center; padding: 2.5rem; }
+    .poster-text h3 { font-size: var(--font-2xl); margin-bottom: 0.75rem; letter-spacing: 0.02em; }
+    .poster-text p { font-size: var(--font-sm); color: var(--text-secondary); margin-bottom: 1.25rem; max-width: 380px; }
+    /* TABS CONSOLE */
+    .console-tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 1px solid var(--divider); }
+    .console-tab { padding: 0.85rem 1.5rem; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); background: transparent; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.3s ease; }
+    .console-tab:hover { color: var(--gold); }
+    .console-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .console-panel { display: none; padding: 2rem 0 0; }
+    .console-panel.active { display: block; }
+    /* QR Section */
+    .qr-container { display: inline-block; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); }
   </style>
   <link rel="stylesheet" href="css/line-chat.css">
   <link rel="stylesheet" href="css/theme-switcher.css">
@@ -74,7 +74,7 @@
   </section>
 
   <!-- ORBIT 2.0 POSTER -->
-  <section class="section">
+  <section class="section" style="padding-top:2rem;">
     <div class="poster-banner">
       <img src="assets/orbit-poster.png" alt="Orbit 2.0 光曜星樞">
       <div class="poster-overlay">
@@ -101,7 +101,7 @@
     <div class="explore-grid">
       <a href="tower.html" class="explore-item"><span class="explore-icon">🏢</span><div class="explore-text"><h4>AI Digital Headquarters</h4><p>3D 互動數位企業總部</p></div></a>
       <a href="tower.html#cloud" class="explore-item"><span class="explore-icon">☁️</span><div class="explore-text"><h4>雲端辦公室</h4><p>六大營運中心即時管理</p></div></a>
-      <a href="#ai-capabilities" class="explore-item"><span class="explore-icon">🤖</span><div class="explore-text"><h4>六大 AI 能力</h4><p>智慧分析到決策支援</p></div></a>
+      <a href="#console" class="explore-item"><span class="explore-icon">🤖</span><div class="explore-text"><h4>六大 AI 能力</h4><p>智慧分析到決策支援</p></div></a>
       <a href="gallery.html" class="explore-item"><span class="explore-icon">🖼️</span><div class="explore-text"><h4>科技藝廊</h4><p>沉浸式未來科技展覽館</p></div></a>
       <a href="#domain" class="explore-item"><span class="explore-icon">🌐</span><div class="explore-text"><h4>網域分租</h4><p>企業級 GEO 數位資產</p></div></a>
       <a href="#website" class="explore-item"><span class="explore-icon">🛠</span><div class="explore-text"><h4>建站方案</h4><p>從基礎到企業級方案</p></div></a>
@@ -113,106 +113,84 @@
     </div>
   </section>
 
-  <!-- ENTERPRISE AI OPERATIONS CENTER -->
-  <section class="section" id="operations">
-    <h2 class="section-title">企業 AI 營運中心</h2>
-    <p class="section-subtitle">六大營運中心，覆蓋企業全場景。點擊可連結至 3D 大樓對應樓層。</p>
-    <div class="ops-grid">
-      <a href="tower.html#floor-sales" class="ops-card"><div class="ops-icon">📊</div><h4>業務中心</h4><p>商机管理、客戶追蹤、銷售分析</p></a>
-      <a href="tower.html#floor-content" class="ops-card"><div class="ops-icon">✍️</div><h4>內容中心</h4><p>內容工廠、SEO 優化、多語生成</p></a>
-      <a href="tower.html#floor-ops" class="ops-card"><div class="ops-icon">⚙️</div><h4>維運中心</h4><p>系統監控、自動備份、安全防護</p></a>
-      <a href="tower.html#floor-delivery" class="ops-card"><div class="ops-icon">🚀</div><h4>交付中心</h4><p>專案管理、品質管控、準時交付</p></a>
-      <a href="tower.html#floor-legal" class="ops-card"><div class="ops-icon">⚖️</div><h4>法務中心</h4><p>合約管理、合規審查、智慧財產</p></a>
-      <a href="tower.html#floor-strategy" class="ops-card"><div class="ops-icon">🎯</div><h4>策略中心</h4><p>數據分析、市場洞察、決策支援</p></a>
-    </div>
-  </section>
+  <!-- ═══ ENTERPRISE CONSOLE (Tabs) ═══ -->
+  <section class="section" id="console">
+    <h2 class="section-title">企業控制台</h2>
+    <p class="section-subtitle">六大營運中心、建站方案、法律合規 — 整合於一體的高密度控制台</p>
 
-  <!-- CLOUD OFFICE LARGE BLOCK -->
-  <section class="section" id="cloud-office">
-    <h2 class="section-title">雲端辦公室</h2>
-    <p class="section-subtitle">Cloud Office — 六大營運中心即時管理，隨時掌握企業動態</p>
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem; max-width:1200px; margin:0 auto;">
-      <a href="tower.html#floor-sales" style="display:block; background:linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,212,255,0.02)); border:1px solid rgba(0,212,255,0.3); border-radius:16px; padding:2.5rem; text-decoration:none; color:var(--text-primary); transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 0 30px rgba(0,212,255,0.2)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-        <div style="font-size:3rem; margin-bottom:1rem;">📊</div>
-        <h3 style="font-size:24px; margin-bottom:0.5rem;">業務中心</h3>
-        <p style="color:var(--text-secondary); font-size:15px;">商机管理、客戶追蹤、銷售分析、AI 預測</p>
-        <p style="color:var(--primary-blue); font-size:14px; margin-top:1rem;">進入樓層 →</p>
-      </a>
-      <a href="tower.html#floor-content" style="display:block; background:linear-gradient(135deg, rgba(168,85,247,0.1), rgba(168,85,247,0.02)); border:1px solid rgba(168,85,247,0.3); border-radius:16px; padding:2.5rem; text-decoration:none; color:var(--text-primary); transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 0 30px rgba(168,85,247,0.2)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-        <div style="font-size:3rem; margin-bottom:1rem;">✍️</div>
-        <h3 style="font-size:24px; margin-bottom:0.5rem;">內容中心</h3>
-        <p style="color:var(--text-secondary); font-size:15px;">AI 內容工廠、SEO 優化、多語生成、知識庫</p>
-        <p style="color:var(--primary-purple); font-size:14px; margin-top:1rem;">進入樓層 →</p>
-      </a>
-      <a href="tower.html#floor-ops" style="display:block; background:linear-gradient(135deg, rgba(251,191,36,0.1), rgba(251,191,36,0.02)); border:1px solid rgba(251,191,36,0.3); border-radius:16px; padding:2.5rem; text-decoration:none; color:var(--text-primary); transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 0 30px rgba(251,191,36,0.2)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-        <div style="font-size:3rem; margin-bottom:1rem;">⚙️</div>
-        <h3 style="font-size:24px; margin-bottom:0.5rem;">維運中心</h3>
-        <p style="color:var(--text-secondary); font-size:15px;">系統監控、自動備份、安全防護、效能優化</p>
-        <p style="color:var(--primary-gold); font-size:14px; margin-top:1rem;">進入樓層 →</p>
-      </a>
-      <a href="tower.html#floor-delivery" style="display:block; background:linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,212,255,0.02)); border:1px solid rgba(0,212,255,0.3); border-radius:16px; padding:2.5rem; text-decoration:none; color:var(--text-primary); transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 0 30px rgba(0,212,255,0.2)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-        <div style="font-size:3rem; margin-bottom:1rem;">🚀</div>
-        <h3 style="font-size:24px; margin-bottom:0.5rem;">交付中心</h3>
-        <p style="color:var(--text-secondary); font-size:15px;">專案管理、品質管控、準時交付、客戶滿意</p>
-        <p style="color:var(--primary-blue); font-size:14px; margin-top:1rem;">進入樓層 →</p>
-      </a>
-      <a href="tower.html#floor-legal" style="display:block; background:linear-gradient(135deg, rgba(168,85,247,0.1), rgba(168,85,247,0.02)); border:1px solid rgba(168,85,247,0.3); border-radius:16px; padding:2.5rem; text-decoration:none; color:var(--text-primary); transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 0 30px rgba(168,85,247,0.2)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-        <div style="font-size:3rem; margin-bottom:1rem;">⚖️</div>
-        <h3 style="font-size:24px; margin-bottom:0.5rem;">法務中心</h3>
-        <p style="color:var(--text-secondary); font-size:15px;">合約管理、合規審查、智慧財產、法律諮詢</p>
-        <p style="color:var(--primary-purple); font-size:14px; margin-top:1rem;">進入樓層 →</p>
-      </a>
-      <a href="tower.html#floor-strategy" style="display:block; background:linear-gradient(135deg, rgba(251,191,36,0.1), rgba(251,191,36,0.02)); border:1px solid rgba(251,191,36,0.3); border-radius:16px; padding:2.5rem; text-decoration:none; color:var(--text-primary); transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 0 30px rgba(251,191,36,0.2)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-        <div style="font-size:3rem; margin-bottom:1rem;">🎯</div>
-        <h3 style="font-size:24px; margin-bottom:0.5rem;">策略中心</h3>
-        <p style="color:var(--text-secondary); font-size:15px;">數據分析、市場洞察、決策支援、成長規劃</p>
-        <p style="color:var(--primary-gold); font-size:14px; margin-top:1rem;">進入樓層 →</p>
-      </a>
-    </div>
-  </section>
-
-  <!-- SIX AI CAPABILITIES -->
-  <section class="section ai-capabilities" id="ai-capabilities">
-    <h2 class="section-title">六大 AI 協同能力</h2>
-    <p class="section-subtitle">從智慧分析到決策支援，全方位 AI 驅動企業營運升級</p>
-    <div class="capability-grid">
-      <div class="capability-card"><div class="capability-icon">📊</div><h3 class="capability-title">智慧分析</h3><p class="capability-desc">AI 驅動的數據分析引擎，即時洞察市場趨勢與客戶行為，提供精準決策依據。</p></div>
-      <div class="capability-card"><div class="capability-icon">🤝</div><h3 class="capability-title">客戶接待</h3><p class="capability-desc">24/7 AI 客戶服務系統，多語系即時回應，自動分類商機並追蹤轉換。</p></div>
-      <div class="capability-card"><div class="capability-icon">✍️</div><h3 class="capability-title">內容生成</h3><p class="capability-desc">AI 內容工廠自動產出 SEO 優化文章、社群貼文、產品描述，大幅降低內容成本。</p></div>
-      <div class="capability-card"><div class="capability-icon">📚</div><h3 class="capability-title">知識管理</h3><p class="capability-desc">企業知識庫自動建檔、智慧分類、快速檢索，讓組織知識不再流失。</p></div>
-      <div class="capability-card"><div class="capability-icon">⚡</div><h3 class="capability-title">流程自動化</h3><p class="capability-desc">從報價、合約到交付，AI 自動化串聯企業全流程，減少 80% 重複性工作。</p></div>
-      <div class="capability-card"><div class="capability-icon">🎯</div><h3 class="capability-title">決策支援</h3><p class="capability-desc">整合多維度數據，AI 模擬不同策略情境，輔助高層做出最佳決策。</p></div>
-    </div>
-  </section>
-
-  <!-- WEBSITE & DOMAIN SOLUTIONS -->
-  <section class="section" id="website">
-    <h2 class="section-title">企業建站 & 網域分租方案</h2>
-    <p class="section-subtitle">不只是網站，更是企業級 GEO 與 SEO 數位資產</p>
-    <div class="solution-cards">
-      <div class="solution-card">
-        <span class="solution-badge">企業建站方案</span>
-        <h3 class="solution-title">AI Digital Showroom</h3>
-        <p class="solution-desc">從個人品牌到跨國企業，提供三階段建站方案。每個方案皆包含 AI 驅動的智慧功能與全球部署。</p>
-        <ul class="solution-features">
-          <li>Orbit Foundation — 個人品牌 / 工作室 — $6,800 起</li>
-          <li>Orbit Growth — B2B 企業 / 製造業 — $14,800 起</li>
-          <li>Orbit Enterprise — 大型企業 / 國際品牌 — $32,000 起</li>
-          <li>含 SEO / GEO 基礎建置、AI 客戶接待、全球 CDN 部署</li>
-        </ul>
-        <a href="pricing.html" class="btn-primary">查看完整方案</a>
+    <div style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);border:var(--glass-border);box-shadow:var(--glass-shadow);border-radius:var(--glass-radius);padding:0 2rem 2rem;max-width:1200px;margin:0 auto;">
+      <!-- TABS -->
+      <div class="console-tabs">
+        <button class="console-tab active" onclick="switchTab('ops')">營運中心</button>
+        <button class="console-tab" onclick="switchTab('ai')">AI 能力</button>
+        <button class="console-tab" onclick="switchTab('build')">建站方案</button>
+        <button class="console-tab" onclick="switchTab('legal-tab')">法律合規</button>
       </div>
-      <div class="solution-card" id="domain">
-        <span class="solution-badge">網域分租方案</span>
-        <h3 class="solution-title">GEO 數位資產租賃</h3>
-        <p class="solution-desc">租用已建立權威的產業網域，快速獲得搜尋引擎信任度。適合新創品牌與區域型企業進軍國際市場。</p>
-        <ul class="solution-features">
-          <li>已建立 Domain Authority 的產業網域</li>
-          <li>含 SEO 基礎優化與 GEO 定位設定</li>
-          <li>獨立品牌空間，可客製企業形象</li>
-          <li>按月 / 按年彈性租賃方案</li>
-        </ul>
-        <a href="#contact" class="btn-secondary">聯絡顧問</a>
+
+      <!-- PANEL: Operations Center -->
+      <div class="console-panel active" id="panel-ops">
+        <div class="ops-grid">
+          <a href="tower.html#floor-sales" class="ops-card"><div class="ops-icon">📊</div><h4>業務中心</h4><p>商机管理、客戶追蹤、銷售分析</p></a>
+          <a href="tower.html#floor-content" class="ops-card"><div class="ops-icon">✍️</div><h4>內容中心</h4><p>內容工廠、SEO 優化、多語生成</p></a>
+          <a href="tower.html#floor-ops" class="ops-card"><div class="ops-icon">⚙️</div><h4>維運中心</h4><p>系統監控、自動備份、安全防護</p></a>
+          <a href="tower.html#floor-delivery" class="ops-card"><div class="ops-icon">🚀</div><h4>交付中心</h4><p>專案管理、品質管控、準時交付</p></a>
+          <a href="tower.html#floor-legal" class="ops-card"><div class="ops-icon">⚖️</div><h4>法務中心</h4><p>合約管理、合規審查、智慧財產</p></a>
+          <a href="tower.html#floor-strategy" class="ops-card"><div class="ops-icon">🎯</div><h4>策略中心</h4><p>數據分析、市場洞察、決策支援</p></a>
+        </div>
+      </div>
+
+      <!-- PANEL: AI Capabilities -->
+      <div class="console-panel" id="panel-ai">
+        <div class="capability-grid">
+          <div class="capability-card"><div class="capability-icon">📊</div><h3 class="capability-title">智慧分析</h3><p class="capability-desc">AI 驅動的數據分析引擎，即時洞察市場趨勢與客戶行為。</p></div>
+          <div class="capability-card"><div class="capability-icon">🤝</div><h3 class="capability-title">客戶接待</h3><p class="capability-desc">24/7 AI 客戶服務系統，多語系即時回應，自動分類商機。</p></div>
+          <div class="capability-card"><div class="capability-icon">✍️</div><h3 class="capability-title">內容生成</h3><p class="capability-desc">AI 內容工廠自動產出 SEO 優化文章、社群貼文、產品描述。</p></div>
+          <div class="capability-card"><div class="capability-icon">📚</div><h3 class="capability-title">知識管理</h3><p class="capability-desc">企業知識庫自動建檔、智慧分類、快速檢索。</p></div>
+          <div class="capability-card"><div class="capability-icon">⚡</div><h3 class="capability-title">流程自動化</h3><p class="capability-desc">從報價、合約到交付，AI 自動化串聯企業全流程。</p></div>
+          <div class="capability-card"><div class="capability-icon">🎯</div><h3 class="capability-title">決策支援</h3><p class="capability-desc">整合多維度數據，AI 模擬不同策略情境。</p></div>
+        </div>
+      </div>
+
+      <!-- PANEL: Build Plans -->
+      <div class="console-panel" id="panel-build">
+        <div class="solution-cards" id="website">
+          <div class="solution-card">
+            <span class="solution-badge">企業建站</span>
+            <h3 class="solution-title">AI Digital Showroom</h3>
+            <p class="solution-desc">從個人品牌到跨國企業，三階段建站方案。每個方案皆含 AI 智慧功能與全球部署。</p>
+            <ul class="solution-features">
+              <li>Orbit Foundation — 個人品牌 — $6,800 起</li>
+              <li>Orbit Growth — B2B 企業 — $14,800 起</li>
+              <li>Orbit Enterprise — 大型企業 — $32,000 起</li>
+              <li>含 SEO / GEO 基礎建置、AI 客戶接待、全球 CDN</li>
+            </ul>
+            <a href="pricing.html" class="btn-primary">查看完整方案</a>
+          </div>
+          <div class="solution-card" id="domain">
+            <span class="solution-badge">網域分租</span>
+            <h3 class="solution-title">GEO 數位資產租賃</h3>
+            <p class="solution-desc">租用已建立權威的產業網域，快速獲得搜尋引擎信任度。適合新創品牌與區域型企業。</p>
+            <ul class="solution-features">
+              <li>已建立 Domain Authority 的產業網域</li>
+              <li>含 SEO 基礎優化與 GEO 定位設定</li>
+              <li>獨立品牌空間，可客製企業形象</li>
+              <li>按月 / 按年彈性租賃方案</li>
+            </ul>
+            <a href="#contact" class="btn-secondary">聯絡顧問</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: Legal -->
+      <div class="console-panel" id="panel-legal-tab">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;">
+          <a href="legal/terms.html" class="explore-item"><span class="explore-icon">📜</span><div class="explore-text"><h4>服務條款</h4><p>Terms of Service</p></div></a>
+          <a href="legal/privacy.html" class="explore-item"><span class="explore-icon">🔒</span><div class="explore-text"><h4>隱私政策</h4><p>Privacy Policy</p></div></a>
+          <a href="legal/ai-policy.html" class="explore-item"><span class="explore-icon">🤖</span><div class="explore-text"><h4>AI 聲明</h4><p>AI Usage Policy</p></div></a>
+          <a href="legal/disclaimer.html" class="explore-item"><span class="explore-icon">⚠️</span><div class="explore-text"><h4>免責聲明</h4><p>Disclaimer</p></div></a>
+          <a href="legal/cloud-services.html" class="explore-item"><span class="explore-icon">☁️</span><div class="explore-text"><h4>雲端服務聲明</h4><p>Cloud Services</p></div></a>
+          <a href="legal/contracts.html" class="explore-item"><span class="explore-icon">📋</span><div class="explore-text"><h4>合約下載</h4><p>Contract Downloads</p></div></a>
+        </div>
       </div>
     </div>
   </section>
@@ -228,17 +206,17 @@
   </section>
 
   <!-- SITE QR CODE SECTION -->
-  <section class="section" style="text-align:center;">
+  <section class="section" style="text-align:center;padding-top:1rem;">
     <h2 class="section-title">掃描訪問網站</h2>
-    <p class="section-subtitle">使用手機掃描 QR Code，立即體驗 Orbit Tower AI Digital Headquarters</p>
-    <div style="display:inline-block; background:white; padding:2rem; border-radius:20px; box-shadow:0 0 40px rgba(0,212,255,0.3);">
-      <img src="assets/site-qr.png" alt="Orbit Tower Website QR Code" style="width:250px; height:250px; display:block;">
+    <p class="section-subtitle">使用手機掃描 QR Code，立即體驗 Orbit Tower</p>
+    <div class="qr-container">
+      <img src="assets/site-qr.png" alt="Orbit Tower Website QR Code" style="width:200px;height:200px;display:block;">
     </div>
-    <p style="margin-top:1.5rem; font-size:18px; color:var(--primary-blue); font-weight:600;">orbit.xingdeng.tw</p>
+    <p style="margin-top:1rem;font-size:var(--font-md);color:var(--gold);font-weight:600;">orbit.xingdeng.tw</p>
   </section>
 
   <!-- LINE CONTACT SECTION -->
-  <section class="section">
+  <section class="section" style="padding-top:1rem;">
     <div class="line-section">
       <div class="line-qr-container">
         <img src="assets/line-qr.png" alt="LINE QR Code" class="line-qr-img">
@@ -246,7 +224,7 @@
       </div>
       <div class="line-info">
         <h3>LINE 即時諮詢</h3>
-        <p>加入光曜星樞官方 LINE，專屬顧問即時為您服務。<br>免費諮詢企業建站、AI 數位總部、網域分租等方案。</p>
+        <p>加入光曜星樞官方 LINE，專屬顧問即時為您服務。</p>
         <a href="https://line.me/R/ti/p/@559julyu" class="line-info-btn" target="_blank">
           <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.514.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.465.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.592.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.181 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.383 24 12.458 24 10.314"/></svg>
           加入官方 LINE
@@ -281,8 +259,7 @@
         <ul>
           <li><a href="#website">企業建站方案</a></li>
           <li><a href="#domain">網域分租方案</a></li>
-          <li><a href="#ai-capabilities">六大 AI 能力</a></li>
-          <li><a href="#operations">企業營運中心</a></li>
+          <li><a href="#console">六大 AI 能力</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -313,5 +290,13 @@
   <script src="js/main.js"></script>
   <script src="js/line-chat.js"></script>
   <script src="js/theme-switcher.js"></script>
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.console-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.console-panel').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('panel-' + tabId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
