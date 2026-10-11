@@ -21,6 +21,8 @@ import ReadmeModal from "@/components/ReadmeModal";
 import FloatingCTA from "@/components/FloatingCTA";
 import LandingOverlay from "@/components/LandingOverlay";
 import DisclaimerPage from "@/components/DisclaimerPage";
+import ClassicView from "@/components/ClassicView";
+import type { ViewMode } from "@/components/ModeSwitcher";
 import { I18nProvider, useTranslation } from "@/lib/i18n";
 import type { Theme, LightColor, Unit } from "@/data/units";
 
@@ -30,6 +32,35 @@ function HomeInner() {
   const [lightColor, setLightColor] = useState<LightColor>("cyber-blue");
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [activeFloor, setActiveFloor] = useState<number | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>("classic");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("orbit-view-mode");
+      if (saved === "classic" || saved === "spatial") {
+        // Intentional post-hydration decision based on browser storage.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setViewMode(saved);
+      }
+    } catch {
+      // Classic mode remains the safe default when storage is unavailable.
+    }
+  }, []);
+
+  const handleViewModeChange = useCallback((nextMode: ViewMode) => {
+    if (nextMode === viewMode) return;
+    setIsTransitioning(true);
+    window.setTimeout(() => {
+      setViewMode(nextMode);
+      setIsTransitioning(false);
+    }, 180);
+    try {
+      localStorage.setItem("orbit-view-mode", nextMode);
+    } catch {
+      // The selected mode still applies for the current session.
+    }
+  }, [viewMode]);
 
   // Modal 狀態
   const [pricingOpen, setPricingOpen] = useState(false);
@@ -76,23 +107,20 @@ function HomeInner() {
   }, []);
 
   return (
-    <main className="relative w-full h-full">
+    <main className={`relative w-full h-full ${viewMode === "classic" ? "is-classic-view" : "is-spatial-view"} ${isTransitioning ? "is-mode-transitioning" : ""}`}>
       {/* 完整免責聲明頁面 */}
       {disclaimerOpen && (
         <DisclaimerPage onBack={() => setDisclaimerOpen(false)} />
       )}
 
       {/* 可收合的側邊導覽；不再以全頁覆蓋層遮擋 3D 大樓 */}
-      <LandingOverlay
-        onEnter3D={handleEnter3D}
-        onPricingClick={() => setPricingOpen(true)}
-      />
+      {viewMode === "spatial" && <LandingOverlay onEnter3D={handleEnter3D} onPricingClick={() => setPricingOpen(true)} />}
 
       {/* 3D 場景 */}
-      <Scene theme={theme} lightColor={lightColor} onUnitClick={handleUnitClick} />
+      {viewMode === "spatial" ? <Scene theme={theme} lightColor={lightColor} onUnitClick={handleUnitClick} /> : <ClassicView />}
 
       {/* 掃描線覆蓋層（手機版 CSS 自動隱藏） */}
-      <div className="scanline-overlay" />
+      {viewMode === "spatial" && <div className="scanline-overlay" />}
 
       {/* 頂部標題（含登入/定價/條款/關於/README 入口） */}
       <Header
@@ -102,46 +130,48 @@ function HomeInner() {
         onLegalClick={() => setLegalOpen(true)}
         onAboutClick={() => setAboutOpen(true)}
         onReadmeClick={() => setReadmeOpen(true)}
+        mode={viewMode}
+        onModeChange={handleViewModeChange}
       />
 
       {/* 左側樓層指示器 */}
-      <FloorIndicator activeFloor={activeFloor} onFloorSelect={handleFloorSelect} />
+      {viewMode === "spatial" && <FloorIndicator activeFloor={activeFloor} onFloorSelect={handleFloorSelect} />}
 
       {/* 右下角控制面板 */}
-      <ControlHUD
+      {viewMode === "spatial" && <ControlHUD
         theme={theme}
         lightColor={lightColor}
         onThemeChange={setTheme}
         onLightColorChange={setLightColor}
         onPricingClick={() => setPricingOpen(true)}
-      />
+      />}
 
       {/* 左下角 AI 樓管 */}
-      <AIConcierge />
+      {viewMode === "spatial" && <AIConcierge />}
 
       {/* 右下角：可審核、可複製、可分享的認知擴散文案機器人 */}
-      <CognitiveGrowthBot />
+      {viewMode === "spatial" && <CognitiveGrowthBot />}
 
       {/* 戶別資訊卡 */}
-      <UnitInfoCard unit={selectedUnit} onClose={handleCloseCard} />
+      {viewMode === "spatial" && <UnitInfoCard unit={selectedUnit} onClose={handleCloseCard} />}
 
       {/* 資安防護狀態 + 免責聲明入口 Footer */}
-      <SecurityFooter />
+      {viewMode === "spatial" && <SecurityFooter />}
       {/* 免責聲明按鈕 */}
-      <div className="orbit-disclaimer fixed bottom-0.5 sm:bottom-1.5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
+      {viewMode === "spatial" && <div className="orbit-disclaimer fixed bottom-0.5 sm:bottom-1.5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
         <button
           onClick={() => setDisclaimerOpen(true)}
           className="text-[5px] sm:text-[8px] text-white/15 hover:text-white/40 tracking-wider transition-colors px-1.5 sm:px-2 py-0.5"
         >
           {t("security.disclaimer")}
         </button>
-      </div>
+      </div>}
 
       {/* FAQ 區塊 */}
-      <FAQSection />
+      {viewMode === "spatial" && <FAQSection />}
 
       {/* 浮動 CTA 按鈕 */}
-      <FloatingCTA onPricingClick={() => setPricingOpen(true)} />
+      {viewMode === "spatial" && <FloatingCTA onPricingClick={() => setPricingOpen(true)} />}
 
       {/* 關於區塊 */}
       <AboutModal isOpen={aboutOpen} onClose={() => setAboutOpen(false)} />

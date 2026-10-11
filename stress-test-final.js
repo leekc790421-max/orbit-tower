@@ -319,6 +319,7 @@ async function runAllTests() {
   });
   
   // Save results
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const fs = require('fs');
   fs.writeFileSync('/workspace/orbit-tower/stress-test-results.json', JSON.stringify(RESULTS, null, 2));
   console.log('\n✓ Results saved to stress-test-results.json');
