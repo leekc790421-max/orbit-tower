@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>行銷裂變與 OMO 數據中樞 | Orbit Tower</title>
+  <meta name="description" content="Orbit Tower 行銷裂變引擎 — 推薦獎勵、自動推播、SEO/AEO 霸榜、OMO 虛實整合、廣告追蹤像素。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/marketing-hub.css">
+  <link rel="stylesheet" href="css/line-chat.css">
+  <link rel="stylesheet" href="css/theme-switcher.css">
+  <script src="js/site-head.js" defer></script>
+  <script src="js/site-tracking.js" defer></script>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="nav-main">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/snt-logo.jpg" alt="SNT Logo" class="nav-logo-img">
+        <span class="nav-logo-text">ORBIT TOWER</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="tower.html">3D 大樓</a></li>
+        <li><a href="gallery.html">科技藝廊</a></li>
+        <li><a href="pricing.html">價格方案</a></li>
+        <li><a href="marketing-hub.html" style="color:var(--primary-blue);">行銷中樞</a></li>
+        <li><a href="legal/index.html">法律中心</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">立即預約</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="min-height:60vh; padding-top:8rem;">
+    <div class="hero-bg"></div>
+    <div class="hero-content fade-in-up">
+      <h1 class="hero-title" style="font-size:clamp(2rem,5vw,3.5rem);">🚀 行銷裂變與 OMO 數據中樞</h1>
+      <p class="hero-subtitle">全自動行銷引擎 — 推薦裂變、智能推播、SEO/AEO 霸榜、虛實整合、廣告追蹤</p>
+    </div>
+  </section>
+
+  <!-- REFERRAL SYSTEM -->
+  <section class="referral-hud" id="referral">
+    <div class="hud-header">
+      <h2>💎 推薦裂變引擎 — Viral Growth</h2>
+      <p>生成專屬賽博門牌邀請碼，舊帶新雙向獎勵，一鍵分享至社群平台</p>
+    </div>
+    <div class="referral-card-container">
+      <!-- 推薦碼卡片 -->
+      <div class="referral-card">
+        <h3>🔑 我的賽博門牌邀請碼</h3>
+        <div class="referral-code-box">
+          <div class="referral-code-label">專屬推薦碼</div>
+          <div class="referral-code-value" id="referral-code-display">OT-XXXXXXXX</div>
+        </div>
+        <div class="referral-reward-info">
+          <h4>🎁 雙向獎勵機制</h4>
+          <ul>
+            <li>成功推薦新企業進駐，您可折抵 <strong>1 個月 MRR 維護費</strong></li>
+            <li>或獲得等值 <strong>AI 額外算力 Token</strong></li>
+            <li>新租戶享受首次 <strong>9 折優惠</strong></li>
+          </ul>
+        </div>
+        <div style="margin-bottom:1rem;">
+          <div class="referral-code-label">專屬推廣連結</div>
+          <div id="referral-link-display" style="font-size:13px;color:var(--primary-blue);word-break:break-all;font-family:monospace;">https://orbit.xingdeng.tw/?ref=OT-XXXXXXXX</div>
+        </div>
+        <div class="referral-share-buttons">
+          <button class="share-btn share-btn-line" data-share-line>LINE</button>
+          <button class="share-btn share-btn-fb" data-share-fb>Facebook</button>
+          <button class="share-btn share-btn-x" data-share-x>X</button>
+          <button class="share-btn share-btn-linkedin" data-share-linkedin>LinkedIn</button>
+          <button class="share-btn share-btn-copy" data-copy-referral>複製連結</button>
+        </div>
+      </div>
+      <!-- QR Code 卡片 -->
+      <div class="referral-card referral-qr-section">
+        <h3>📱 專屬推廣 QR Code</h3>
+        <div class="referral-qr-display">
+          <canvas id="referral-qr-canvas"></canvas>
+        </div>
+        <p class="referral-qr-hint">掃描 QR Code 即可進入 3D 大樓體驗<br>適用於實體展場、名片、DM 印刷</p>
+        <div style="margin-top:1.5rem;">
+          <button class="btn-primary" onclick="alert('QR Code 圖片下載功能開發中')">📥 下載 QR Code 圖片</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO/AEO STATS -->
+  <section class="section" id="seo-stats">
+    <h2 class="section-title">📊 SEO / AEO 霸榜矩陣</h2>
+    <p class="section-subtitle">全自動搜尋引擎與 AI 回答引擎優化狀態</p>
+    <div class="seo-stats">
+      <div class="seo-stat-card">
+        <div class="seo-stat-value">✓</div>
+        <div class="seo-stat-label">Sitemap.xml 已生成</div>
+      </div>
+      <div class="seo-stat-card">
+        <div class="seo-stat-value">✓</div>
+        <div class="seo-stat-label">JSON-LD Schema 已嵌入</div>
+      </div>
+      <div class="seo-stat-card">
+        <div class="seo-stat-value">✓</div>
+        <div class="seo-stat-label">robots.txt 已配置</div>
+      </div>
+      <div class="seo-stat-card">
+        <div class="seo-stat-value">✓</div>
+        <div class="seo-stat-label">OG 社群預覽已設定</div>
+      </div>
+      <div class="seo-stat-card">
+        <div class="seo-stat-value">✓</div>
+        <div class="seo-stat-label">FAQ Schema 已部署</div>
+      </div>
+      <div class="seo-stat-card">
+        <div class="seo-stat-value">✓</div>
+        <div class="seo-stat-label">外鏈飛輪已啟動</div>
+      </div>
+    </div>
+    <div class="automation-status">
+      <h4>⚡ 自動化行銷引擎狀態</h4>
+      <div class="automation-list" id="automation-status-list"></div>
+    </div>
+  </section>
+
+  <!-- OMO MODULE -->
+  <section class="omo-hud" id="omo">
+    <div class="hud-header">
+      <h2>🌐 OMO 虛實整合引擎</h2>
+      <p>Online-Merge-Offline — 實體展場秒級連線 3D 門戶，流量轉化為雲端資產</p>
+    </div>
+    <div class="omo-grid">
+      <div class="omo-card">
+        <div class="omo-card-icon">📱</div>
+        <h4>展會 QR Code 秒掃</h4>
+        <p>實體展場訪客掃描 3D 門牌 QR Code，手機端秒級進入 3D 動態門戶。無需下載 APP，瀏覽器即開即玩。</p>
+      </div>
+      <div class="omo-card">
+        <div class="omo-card-icon">🤝</div>
+        <h4>LINE 好友自動對接</h4>
+        <p>掃碼後自動引導加入 LINE 官方帳號 (@559julyu)，訪客資訊即時同步後台 CRM，完成流量轉換。</p>
+      </div>
+      <div class="omo-card">
+        <div class="omo-card-icon">🏪</div>
+        <h4>實體門市數位延伸</h4>
+        <p>門市展示 QR Code 貼紙，顧客掃碼即可進入 3D 產品展示館，線上線下無縫接軌。</p>
+      </div>
+      <div class="omo-card">
+        <div class="omo-card-icon">📊</div>
+        <h4>流量分析儀表板</h4>
+        <p>即時追蹤實體掃碼流量來源、轉換率、LINE 好友增長數，數據驅動行銷決策。</p>
+      </div>
+      <div class="omo-card">
+        <div class="omo-card-icon">🎯</div>
+        <h4>精準受眾再行銷</h4>
+        <p>掃碼訪客自動標記 Custom Audience，觸發 Meta / Google 重定向廣告，持續追蹤轉換。</p>
+      </div>
+      <div class="omo-card">
+        <div class="omo-card-icon">🔗</div>
+        <h4>外鏈飛輪引擎</h4>
+        <p>結合 3C 產業觀測站 (news3c.xingdeng.tw) 自動生成產業專欄，錨定引流至 Orbit Tower，建立 SEO 外鏈飛輪。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AD TRACKING -->
+  <section class="section" id="ad-tracking">
+    <h2 class="section-title">📡 廣告追蹤與像素矩陣</h2>
+    <p class="section-subtitle">全站嵌入 Meta Pixel、GTM、GA4、TikTok Pixel，精準追蹤 3D 大樓互動行為</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📘</div>
+        <h4 class="card-title">Meta Pixel (Facebook)</h4>
+        <p class="card-description">追蹤訪客在 3D 大樓中的點擊行為，同步自訂受眾至 Facebook Ads Manager，觸發重定向再行銷廣告。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h4 class="card-title">Google Tag Manager</h4>
+        <p class="card-description">統一管理所有追蹤標籤，支援 GA4、Ads、第三方像素。無需修改程式碼即可新增追蹤事件。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <h4 class="card-title">Google Analytics 4</h4>
+        <p class="card-description">深度分析訪客行為、轉換路徑、3D 大樓樓層停留時間。支援自訂事件與受眾分群。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎵</div>
+        <h4 class="card-title">TikTok Pixel</h4>
+        <p class="card-description">追蹤 TikTok 廣告轉換，鎖定年輕受眾。支援動態廣告與產品目錄整合。</p>
+      </div>
+    </div>
+    <div class="automation-status" style="margin-top:2rem;">
+      <h4>🎯 追蹤事件清單</h4>
+      <div class="automation-list">
+        <div class="automation-item">
+          <div class="automation-item-status active"></div>
+          <div class="automation-item-text">
+            <strong>PageView — 頁面瀏覽</strong>
+            <span>全站所有頁面載入時觸發</span>
+          </div>
+        </div>
+        <div class="automation-item">
+          <div class="automation-item-status active"></div>
+          <div class="automation-item-text">
+            <strong>Floor_Click — 樓層點擊</strong>
+            <span>3D 大樓樓層點擊行為追蹤</span>
+          </div>
+        </div>
+        <div class="automation-item">
+          <div class="automation-item-status active"></div>
+          <div class="automation-item-text">
+            <strong>Payment_Modal — 金流彈窗</strong>
+            <span>開啟金流資訊 Modal 時觸發</span>
+          </div>
+        </div>
+        <div class="automation-item">
+          <div class="automation-item-status active"></div>
+          <div class="automation-item-text">
+            <strong>Referral_Share — 推薦分享</strong>
+            <span>用戶點擊社群分享按鈕時觸發</span>
+          </div>
+        </div>
+        <div class="automation-item">
+          <div class="automation-item-status active"></div>
+          <div class="automation-item-text">
+            <strong>LINE_Add — 加入 LINE</strong>
+            <span>點擊加入 LINE 官方帳號時觸發</span>
+          </div>
+        </div>
+        <div class="automation-item">
+          <div class="automation-item-status active"></div>
+          <div class="automation-item-text">
+            <strong>QR_Scan — QR Code 掃碼</strong>
+            <span>OMO 實體掃碼進入時觸發</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="text-align:center;">
+    <h2 class="section-title">啟動全自動行銷引擎</h2>
+    <p class="section-subtitle">讓 Orbit Tower 成為您的 24/7 自動獲客機器</p>
+    <div class="hero-cta-group">
+      <a href="index.html#contact" class="btn-primary">免費諮詢方案</a>
+      <a href="tower.html" class="btn-secondary">體驗 3D 大樓</a>
+    </div>
+  </section>
+
+  <!-- LINE FLOATING BUTTON -->
+  <div class="line-float">
+    <button class="line-float-btn" title="LINE 諮詢" onclick="lineChat.toggle()">
+      <div class="line-float-pulse"></div>
+      <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.514.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.465.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.592.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.181 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.383 24 12.458 24 10.314"/></svg>
+    </button>
+    <span class="line-float-label">LINE 諮詢</span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Orbit Tower</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="tower.html">3D 大樓</a></li>
+          <li><a href="gallery.html">科技藝廊</a></li>
+          <li><a href="pricing.html">價格方案</a></li>
+          <li><a href="marketing-hub.html">行銷中樞</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>行銷引擎</h4>
+        <ul>
+          <li><a href="#referral">推薦裂變</a></li>
+          <li><a href="#seo-stats">SEO/AEO 霸榜</a></li>
+          <li><a href="#omo">OMO 虛實整合</a></li>
+          <li><a href="#ad-tracking">廣告追蹤</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>法律中心</h4>
+        <ul>
+          <li><a href="legal/terms.html">服務條款</a></li>
+          <li><a href="legal/privacy.html">隱私政策</a></li>
+          <li><a href="legal/ai-policy.html">AI 聲明</a></li>
+          <li><a href="legal/disclaimer.html">免責聲明</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>聯絡</h4>
+        <ul>
+          <li><a href="mailto:contact@559julyu.ai">contact@559julyu.ai</a></li>
+          <li><a href="https://line.me/R/ti/p/@559julyu" target="_blank">LINE 官方帳號</a></li>
+          <li><a href="index.html#contact">免費預約展示</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Orbit Tower. AI Digital Headquarters. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/line-chat.js"></script>
+  <script src="js/theme-switcher.js"></script>
+  <script src="js/marketing-hub.js"></script>
+</body>
+</html>
