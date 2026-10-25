@@ -74,7 +74,7 @@ function generateAutoReply(message) {
 
   // Pricing inquiries
   if (lowerMsg.includes('價格') || lowerMsg.includes('費用') || lowerMsg.includes('多少') || lowerMsg.includes('pricing')) {
-    return '感謝您的詢問！我們的方案從 NT$228,000 起跳。建議您預約免費顧問諮詢，我們將根據您的需求推薦最適合的方案。請加入 LINE 官方帳號 @559julyu 或直接致電聯繫我們。';
+    return '感謝您的詢問！我們的方案從 NT$228,000 起跳。建議您預約免費顧問諮詢，我們將根據您的需求推薦最適合的方案。請加入 LINE 官方帳號 @559julyu。';
   }
 
   // Demo/consultation requests
