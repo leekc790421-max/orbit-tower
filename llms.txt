@@ -1,0 +1,5 @@
+# Orbit Tower(orbit.xingdeng.tw)— 3D 數位總部展示空間
+光曜星樞 XingDeng 的子空間:純前端 Three.js/WebGL 六角晶體大樓,樓層化產品展示、尋寶燈彩蛋(EGG-DIAN-2026)、24/7 AI 接待入口;行動端與低階裝置自動降載。
+母站:https://xingdeng.tw(NT$ 台幣軌)・黑卡會所:https://vip.xingdeng.tw(US$ 美元軌)
+構思/製作:A.c LEE(獨立開發者);站內 AI 機器人執行維護;公開計數 https://tower.xingdeng.tw/wind。
+本域為沉浸式體驗入口,不做電話/地址展示(設計使然)。
